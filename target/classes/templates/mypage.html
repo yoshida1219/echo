@@ -89,8 +89,17 @@
 
                                 <!-- 数字 -->
                                 <div class="mypage-suji">
-                                    <p>フォロー：[[${follow.follower}]]</p>
-                                    <p id="foorowa2">フォロワー：[[${follower.follower}]]</p>
+                                    <p>
+                                        <a th:href="@{/followerListViewer}">
+                                            フォロー：[[${follow.follower}]]
+                                        </a>
+                                    </p>
+                                    
+                                    <p id="foorowa2">
+                                        <a th:href="@{/followerListViewer}">
+                                            フォロワー：[[${follower.follower}]]
+                                        </a>                                        
+                                    </p>
                                 </div>
 
                                 <!-- 登録ジャンル -->

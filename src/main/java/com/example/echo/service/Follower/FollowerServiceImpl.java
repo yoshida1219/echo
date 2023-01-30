@@ -14,7 +14,7 @@ import com.example.echo.repository.FollowerRepository;
 public class FollowerServiceImpl implements FollowerService {
 
     @Autowired
-FollowerRepository inst;
+    FollowerRepository inst;
 
     @Override
     public Optional<Follower> OrderFollower(String user_id) {
