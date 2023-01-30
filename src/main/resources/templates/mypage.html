@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- コピペ111 -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>卒業テスト</title>
+    <script src="js/jquery-3.6.1.min.js"></script>
+    <link rel="icon" href="img/ファビコン/favicon.ico">
+    <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
+    <link rel="stylesheet" th:href="@{css/style.css}" />
+
+
+    <link rel="stylesheet" th:href="@{css/mypage.css}" />
+    <link rel="stylesheet" th:href="@{css/videoLyout.css}" />
+
+
+    <link rel="stylesheet" th:href="@{reset/ress.min.css}" />
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
+    <!-- /111 -->
+</head>
+
+<body>
+
+    <header th:replace="~{commons/layout :: header}"></header>
+
+
+    <main>
+
+
+        <!-- <div class="head">
+            <p>Echo</p>
+        </div> -->
+        <div class="moto">
+            <div class="center">
+
+                <div class="head">
+                    <p>Echo</p>
+                </div>
+                <!-- タイトル -->
+
+                <!-- マイページ -->
+                <div class="mypage-back">
+
+                    <div class="warlpa">
+
+                        <div class="prof">
+                            <p>---------　　MY PROFILE　　---------</p>
+                        </div>
+                        
+                        <div class="search-up">
+
+                            <!-- 顔 -->
+                            <div class="up-1">
+
+                                <div class="follw-my-icon">
+                                    <img th:src="${list.icon}">
+                                </div>
+
+                                <div class="mypage-name">
+                                    <p id="naaaame" th:text="${list.user_name}"></p>
+                                    <p th:text="${list.search_name}"></p>
+                                </div>
+
+
+                            </div>
+
+                            <!-- 文章 -->
+                            <div class="up-2">
+
+                                <!-- フォロー　プロフィール編集 -->
+                                <div class="follow-btn1">
+                                    <th:block th:unless="${login}==${list.user_id}">
+                                        <th:block th:if="${checkFollow}==0">
+                                            <button
+                                                th:attr="onClick='location.href=\''+ @{/follow?user_id={user_id}&check_follow=0 (user_id=${list.user_id})} +'\''">フォロー</button>
+                                        </th:block>
+                                        <th:block th:if="${checkFollow}==1">
+                                            <button
+                                                th:attr="onClick='location.href=\''+ @{/follow?user_id={user_id}&check_follow=1 (user_id=${list.user_id})} +'\''">フォロー解除</button>
+                                        </th:block>
+                                    </th:block>
+                                    <th:block th:if="${login}==${list.user_id}">
+                                        <button
+                                            th:attr="onClick='location.href=\''+ @{/edit?user_id={user_id} (user_id=${list.user_id})} +'\''">プロフィール編集</button>
+                                    </th:block>
+                                </div>
+
+                                <!-- 数字 -->
+                                <div class="mypage-suji">
+                                    <p>フォロー：[[${follow.follower}]]</p>
+                                    <p id="foorowa2">フォロワー：[[${follower.follower}]]</p>
+                                </div>
+
+                                <!-- 登録ジャンル -->
+                                <div class="mypage-janru">
+                                    <a href="">音楽</a>
+                                    <a href="">芸術</a>
+                                </div>
+
+                                <!-- 一言コメント -->
+                                <div class="my-page-coment">
+                                    <p th:text="${list.introduction}"></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="start-data">
+                            <p>登録日：<span>2020年1月26日　　</span><span>投稿数：[[${responseCount.submitcount}]]</span></p>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <!-- 動画 -->
+                <div class="search-cent">
+
+
+                    <div class="cent-1">
+                        <p>ピックアップ動画</p>
+                    </div>
+
+                    <div class="cent-2 container">
+
+
+
+
+
+                        <div class="dwon-ex2 bgu">
+
+                            <li class="news-item" th:each="loop : ${favoriteMovieList}">
+
+                                <th:block th:if="${login}==${list.user_id}">
+                                    <a th:href="@{/favoriteMovie?user_id={user_id}&movie_id={movie_id}&check=1 (user_id=${loop.user_id}, movie_id=${loop.movie_id})}"
+                                        class="example">削除</a>
+                                </th:block>
+
+                                <div class="news-item-container">
+                                    <div class="image-wrapper">
+                                        <img th:src="${loop.thumbnail}" alt="">
+                                    </div>
+
+                                    <div class="tag-wrapper">
+                                        <p class="hoOLxL tag ja-tag" data-testid="border-radius-tag">その他
+                                        </p>
+                                        <div class="date">2022/12/15</div>
+                                    </div>
+
+                                    <div class="text">
+                                        <div class="title"><span
+                                                class="text text-overflow">[[${loop.movie_name}]]</span></div>
+                                    </div>
+
+
+                                </div>
+                            </li>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="search-dwon">
+                    <div class="dwon-1">
+                        <p>並び替え</p>
+                        <p>投稿削除</p>
+                    </div>
+
+
+                    <div class="dwon-ex2 bgu">
+
+                        <li class="news-item" th:each=" loop : ${myResponseList}">
+                            <button
+                                th:attr="onClick='location.href=\''+ @{/Hiroba/RessDetail/{url}?&user_id={user_id}&response_id={response_id} (url=${loop.url}, user_id=${loop.user_id}, response_id=${loop.response_id})} +'\''">
+
+                                <div class="news-item-container">
+                                    <div class="image-wrapper">
+
+                                        <th:block th:if="${login}==${list.user_id}">
+                                            <a th:href="@{/favoriteMovie?user_id={user_id}&movie_id={movie_id}&check=0 (user_id=${loop.user_id}, movie_id=${loop.movie_id})}"
+                                                class="example">お気に入り登録</a>
+                                        </th:block>
+                                        <img th:src="${loop.thumbnail}" alt="">
+                                    </div>
+
+                                    <div class="tag-wrapper">
+                                        <p class="hoOLxL tag ja-tag" data-testid="border-radius-tag">その他
+                                        </p>
+                                    </div>
+                                    <div class="date">[[${loop.response_submit}]]</div>
+
+                                    <div class="text">
+                                        <div class="title"><span
+                                                class="text text-overflow">[[${loop.movie_name}]]</span></div>
+                                    </div>
+
+                                    <div class="text">
+                                        <div class="title"><span
+                                                class="text text-overflow">[[${loop.response_name}]]</span></div>
+                                    </div>
+                                </div>
+                            </button>
+                        </li>
+                    </div>
+
+
+
+                    <!-- 
+                        <div class="dwon-2">
+
+                        <div class="img-list">
+                            <img src="img/sample-vvv/URanime - All David usage of Sandevistan Cyberpunk Edgerunners [xoLBt2vayAc - 1176x664 - 1m00s].png"
+                                alt="">
+                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m08s].png"
+                                alt="">
+                            <img src="img/sample-vvv/URanime - All David usage of Sandevistan Cyberpunk Edgerunners [xoLBt2vayAc - 1176x664 - 1m13s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m34s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 1m00s].png"
+                                alt="">
+                            <img src="img/sample-vvv/URanime - All David usage of Sandevistan Cyberpunk Edgerunners [xoLBt2vayAc - 1176x664 - 1m51s].png"
+                                alt="">
+                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 1m05s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m30s] (1).png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m58s].png"
+                                alt="">
+                            <img src="img/sample-vvv/URanime - All David usage of Sandevistan Cyberpunk Edgerunners [xoLBt2vayAc - 1176x664 - 2m02s].png"
+                                alt="">
+                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m38s].png"
+                                alt="">
+                            <img src="img/sample-vvv/URanime - All David usage of Sandevistan Cyberpunk Edgerunners [xoLBt2vayAc - 1176x664 - 2m25s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m30s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m23s].png"
+                                alt="">
+                            <img src="img/sample-vvv/URanime - All David usage of Sandevistan Cyberpunk Edgerunners [xoLBt2vayAc - 1276x721 - 0m32s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m59s].png"
+                                alt="">
+                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m01s].png"
+                                alt="">
+                            <img src="img/sample-vvv/URanime - All David usage of Sandevistan Cyberpunk Edgerunners [xoLBt2vayAc - 1176x664 - 4m36s].png"
+                                alt="">
+                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m19s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m37s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m36s].png"
+                                alt="">
+                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 0m45s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m26s].png"
+                                alt="">
+                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m47s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m29s] (1).png"
+                                alt="">
+                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m57s].png"
+                                alt="">
+                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 0m17s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m34s] (1).png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m29s].png"
+                                alt="">
+                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 0m26s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m32s].png"
+                                alt="">
+                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 1m00s].png"
+                                alt="">
+                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 0m38s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m28s].png"
+                                alt="">
+                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 1m00s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m27s].png"
+                                alt="">
+                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m29s].png"
+                                alt="">
+                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 1m22s].png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m36s] (1).png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m31s].png"
+                                alt="">
+                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m15s].png"
+                                alt="">
+                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 1m27s].png"
+                                alt="">
+                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m20s].png"
+                                alt="">
+                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 1m36s].png"
+                                alt="">
+                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1280x720 - 0m02s].png"
+                                alt="">
+
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 1m00s] (1).png"
+                                alt="">
+                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 1m01s].png"
+                                alt="">
+
+                        </div>
+                    </div>
+ -->
+
+
+                </div>
+
+
+
+            </div>
+
+            <!--  -->
+
+
+
+
+
+            <!--通知エリア（右） -->
+
+            <div class="side" th:replace="~{commons/layout :: side}"></div>
+
+            <!-- /*通知エリア*/ -->
+        </div>
+
+
+        <div class="foot0">
+
+            <div class="foot1">
+                <h6 class="heading">top</h6>
+                <p><a href="">このサイトについて[...]</a></p>
+                <p><a href="">サポートトップ</a></p>
+                <p><a href="">修正のご案内</a></p>
+                <p><a href="">Echoアカウント</a></p>
+                <p><a href="">よくあるご質問</a></p>
+            </div>
+
+
+            <div class="foot2">
+                <h6 class="heading">Next</h6>
+                <p><a href="">会社概要</a></p>
+                <p><a href="">経営方針</a></p>
+                <p><a href="">業務・財務情報</a></p>
+                <p><a href="">IRライブラリ</a></p>
+                <p><a href="">個人投資家の皆様へ</a></p>
+                <p></p>
+                <a href="#">At massa in sed tortor sit amet</a>
+            </div>
+
+            <div class="foot4">
+                <h6 class="heading">会社概要</h6>
+                <p>株式会社YuzawaIndustry</p>
+                <p>東証プライム市場</p>
+                <p>設立：1997年6月25日</p>
+                <p>資本金：99,611百万円</p>
+                <p>従業員数：5名(連結、2022年12月10日現在)</p>
+                <p>〒950-0901 新潟県新潟市中央区弁天２丁目</p>
+            </div>
+
+        </div>
+
+
+
+
+        <footer>
+            <p id="lasrrt">Copyright © 2023 -- 一般社団法人阿部情報大臣湯沢支部 All Rights Reserved </p>
+        </footer>
+
+
+
+
+
+
+
+
+
+        <!-- <button class="modal__button create-sa" id="open-modal">投稿</button> -->
+        <button id="scroll-to-top-btn">↑</button>
+
+    </main>
+
+
+    <script src="js/pop.js"></script>
+    <script src="js/scroll.js"></script>
+</body>
+
+</html>

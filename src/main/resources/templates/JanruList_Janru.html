@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- コピペ111 -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>卒業テスト</title>
+    <script src="js/jquery-3.6.1.min.js"></script>
+    <link rel="icon" href="img/ファビコン/favicon.ico">
+    <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
+    <link rel="stylesheet" href="css/style.css" />
+
+
+    <link rel="stylesheet" href="css/List_Janru.css" />
+
+
+    <link rel="stylesheet" href="reset/ress.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
+    <!-- /111 -->
+</head>
+
+<body>
+
+    <header th:replace="~{commons/layout :: header}"></header>
+
+
+    <main>
+
+
+        <!-- <div class="head">
+            <p>Echo</p>
+        </div> -->
+        <div class="moto">
+            <div class="center">
+
+
+                <div class="head">
+                    <p>Echo</p>
+                </div>
+
+                <div class="Janru1">
+                    <div class="item_ja"><button>エンタメ</button></div>
+                    <div class="item_ja"><button>音楽</button></div>
+                    <div class="item_ja"><button>スポーツ</button></div>
+                    <div class="item_ja"><button>ゲーム</button></div>
+                    <div class="item_ja"><button>動物</button></div>
+                    <div class="item_ja"><button>美容・健康</button></div>
+                    <div class="item_ja"><button>美術</button></div>
+                    <div class="item_ja"><button>ビジネス・教育</button></div>
+                    <div class="item_ja"><button>料理</button></div>
+                    <div class="item_ja"><button>商品紹介</button></div>
+                    <div class="item_ja"><button>ニュース・政治</button></div>
+                    <div class="item_ja"><button>Vlog</button></div>
+                    <div class="item_ja"><button>自然</button></div>
+                    <div class="item_ja"><button>機械</button></div>
+                    <div class="item_ja"><button>その他</button></div>
+                </div>
+
+
+                <div class="label_ja1">
+                    <p>人気ランキング</p>
+                </div>
+
+                <div class="waku1">
+                    <div class="tag v">
+                        <p>人気</p>
+                    </div>
+                    <div class="tag n">
+                        <p>新着</p>
+                    </div>
+
+                </div>
+
+                <div class="List_ja">
+                    <div class="content_ja">
+
+                        <div class="container-item">
+                            <div class="container-item-img">
+                                <img src="img/sample画像/hqdefault.jpg" alt="">
+                            </div>
+                            
+                            
+                            
+                            <div class="container-item-date">
+
+                                <!-- アイコン　userName -->
+                                <div class="t1">
+                                    
+                                    <div class="tt1">
+                                        <img src="img/logo2.png" alt="">
+                                    </div>
+                                    <div class="tt2">
+                                        <p>usernameeeeeeeeeeeeeeeeeeeeee</p>    
+                                    </div>
+                                </div>
+
+                                <!-- 動画タイトル -->
+                                <div class="t2">
+                                    <div class="text-t2">
+                                    <p>タイトルが入りますああああああああああああああ </p>    
+                                    </div>
+                                </div>
+                                
+                                <!-- 数字 -->
+                                <div class="t3">
+                                    <p id="t3-p">再生数 :</p>
+                                    <p id="t3-p1">いいね :</p>
+                                    <p id="t3-p2">共有 :</p>
+                                </div>
+
+                                <!-- ジャンル -->
+                                <div class="t4">
+                                    <p>ジャンル1</p>    
+                                </div>
+                            
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="content_ja">
+
+                        <div class="container-item">
+                            <div class="container-item-img">
+                                <img src="img/sample画像/default.jpg" alt="">
+                            </div>
+                            <div class="container-item-date">
+                                <p>ユーザ名</p>
+                                <p>タイトルが入りますああああああああああああああ </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content_ja">
+
+                        <div class="container-item">
+                            <div class="container-item-img">
+                                <img src="img/sample画像/maxresdefault.jpg" alt="">
+                            </div>
+                            <div class="container-item-date">
+                                <p>ユーザ名</p>
+                                <p>タイトルが入りますああああああああああああああ </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content_ja">
+
+                        <div class="container-item">
+                            <div class="container-item-img">
+                                <img src="img/sample画像/sddefault.jpg" alt="">
+                            </div>
+                            <div class="container-item-date">
+                                <p>ユーザ名</p>
+                                <p>タイトルが入りますああああああああああああああ </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+            <!-- 通知エリア（右） -->
+            <div class="side">
+                <div class="light1">
+                    <p>おすすめ</p>
+                    <ul class="osusu">
+                        <li>user</li>
+                        <li>user</li>
+                        <li>user</li>
+                    </ul>
+                    <p>もっと見る</p>
+
+                </div>
+                <div class="light2">
+                    <p>通知</p>
+                    <div class="tuiti">
+                        <p>aiueo</p>
+                    </div>
+                    <div class="tuiti">
+                        <p>aiueo</p>
+                    </div>
+                    <div class="tuiti">
+                        <p>aiueo</p>
+                    </div>
+                    <div class="tuiti">
+                        <p>aiueo</p>
+                    </div>
+                    <div class="tuiti">
+                        <p>aiueo</p>
+                    </div>
+                    <div class="tuiti">
+                        <p>aiueo</p>
+                    </div>
+                    <div class="tuiti">
+                        <p>aiueo</p>
+                    </div>
+                    <div class="tuiti">
+                        <p>aiueo</p>
+                    </div>
+                    <div class="tuiti">
+                        <p>aiueo</p>
+                    </div>
+                    <div class="tuiti">
+                        <p>aiueo</p>
+                    </div>
+                    <div class="tuiti">
+                        <p>aiueo</p>
+                    </div>
+                    <div class="tuiti">
+                        <p>aiueo</p>
+                    </div>
+                </div>
+            </div>
+            <!-- /*通知エリア*/ -->
+
+        </div>
+
+    </main>
+
+
+</body>
+
+</html>

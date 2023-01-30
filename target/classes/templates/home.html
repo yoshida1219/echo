@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>卒業テスト</title>
+    <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+    <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
+    <link rel="icon" th:href="@{/img/ファビコン/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/reset/ress.min.css}" />
+
+    <link rel="stylesheet" th:href="@{/css/pop.css}">
+
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
+</head>
+
+<body>
+
+    <header th:replace="~{commons/layout :: header}"></header>
+
+    <main>
+
+        
+        <!-- <div class="head">
+            <p>Echo</p>
+        </div> -->
+        <div class="moto">
+            <div class="center">
+
+                <div class="head">
+                    <p>Echo</p>
+                </div>
+
+                <div>
+                    <button class="create-sa" id="open-modal2">投稿作成</button>
+                </div>
+
+                <!--
+                    画像URLは後で実装 12/9
+                -->
+
+                <div class="cent-1" th:unless="${#lists.isEmpty(timeline)}">
+                    <div th:each="obj:${timeline}" class="TimeLine">
+                        <div class="flec">
+                            
+                            <!-- ユーザのアイコン画像 -->
+                            <div class="Frame2">
+                                <button class="clickshow"
+                                    th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
+                                    <img th:src="${obj.icon}" class="rogo2">
+                                </button>
+                                <p th:text="${obj.follower_name}"></p>
+                            </div>
+
+
+                            <div class="Frame3 balloon1-left">
+                                <!-- <button type="button" class="clickshow" onclick="buttonClick()"> -->
+                                <button class="clickshow"
+                                    th:attr="onClick='location.href=\''+ @{/Hiroba/RessDetail/{url}?user_id={user_id}&response_id={response_id} (url=${obj.url},user_id=${obj.user_id},response_id=${obj.response_id})} +'\''">
+                                    
+                                    
+
+
+                                    <div class="coment">
+                                        <div class="user">
+                                            <p th:text="${obj.response_name}"></p>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                    <div class="Content">
+                                        <div class="douga">
+
+
+
+                                            <div class="samneiru">
+                                                <!-- 動画のサムネ画像 -->
+                                                <img th:src="${obj.thumbnail}" alt="">
+                                            </div>
+
+
+                                            <div class="con23">
+                                                <div class="content2">
+                                                    <p class="titl" th:text="${obj.movie_name}"></p>
+                                                </div>
+                                                <!-- <button th:attr="onClick='location.href=\' '+ @{/Hiroba/delete_response?response_creater={response_creater}&response_id={response_id} (response_creater=${obj.user_id},response_id=${obj.response_id})} + '\''">
+                                                    投稿削除
+                                                </button> -->
+                                            </div>
+                                        </div>
+
+                                        <div class="content3">
+
+
+                                            <div class="come ine">
+                                                <p class="iine">いいね</p>
+                                                <span th:text="${obj.like}"></span>
+                                            </div>
+
+                                            <div class="come kyou">
+                                                <p class="iine2">共有</p>
+                                                <span th:text="${obj.share}"></span>
+                                            </div>
+
+                                            <div class="come">
+                                                <!-- 削除？ -->
+                                            </div>
+
+                                        </div>
+                                        
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 投稿作成画面　　ポップアップ -->
+                <div class="modal container">
+                    <div class="modal__container" id="modal-container">
+
+                        <div class="modal__content">
+
+
+                            <!-- 中身 -->
+                            <div class="fka"><button class="modal__button modal__button-width close-modal">X</button>
+                            </div>
+
+                            <div class="tweet-1">
+
+
+                                <div class="formbox">
+                                    <div class="stronger">投稿画面</div>
+                                    <div class="formbody">
+
+                                        <form th:object="${responseCreateForm}" th:action="@{/response_creater}">
+                                            <p>
+                                                <!-- 動画URLの入力 -->
+                                                <input class="formelem maxwidth" placeholder="動画URL" size="70"
+                                                    th:field="*{url}" minlength="11" required>
+
+                                                <!-- コメントの入力 -->
+                                                <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
+                                                    cols="50" wrap="off" th:field="*{response_name}" maxlength="200"
+                                                    required></textarea>
+
+                                                <input type="hidden" name="user_id" th:value="${session.sessionData.user_id}">
+
+                                                <button id="send" class="submitbtn tweebtn" type="submit">書き込む</button>
+                                            </p>
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                                <div class="formbox ">
+                                    <div class="stronger">動画プレビュー</div>
+                                    <div class="formbody preview">
+                                        <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
+                                        <iframe id="video-player" class="b" width="560" height="315" src=""
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- タイムライン終わり -->
+            </div>
+            <!-- 通知エリア（右） -->
+            <div class="side" th:replace="~{commons/layout :: side}"></div>
+        </div>
+    </main>
+
+    <script th:src="@{/js/pop.js}"></script>
+    <script th:src="@{/js/scroll.js}"></script>
+    <script th:src="@{/js/hover1.js}"></script>
+    <script th:src="@{/js/ajax.js}"></script>
+</body>
+
+</html>
