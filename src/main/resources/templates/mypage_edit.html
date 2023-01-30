@@ -47,38 +47,66 @@
 
 
                 <div class="search-up">
-                    <div class="up-1">
-                        <div class="mypage-name">
-                            <p th:text="${list.user_name}"></p>
-
-                        </div>
-                        <div class="mypage-name">
-                            <p th:text="${list.search_name}"></p>
-
-                        </div>
-                        <div class="mypage-name">
-                            <p th:text="${list.introduction}"></p>
-
-                        </div>
-                        <div class="follw-my-icon">
-                            <img th:src="*{list.icon}" alt="ないぞ">
-                        </div>
-
-                        
-
-
-                    </div>
-                    <div class="up-2">
-                        <th:block th:unless="${#lists.isEmpty(jenre)}">
-                            <th:block th:each="obj:${jenre}">
-                                <p th:text="${obj.jenre_id}"></p>
-                            </th:block>
-                        </th:block>
-                    </div>
                     
-                </div>
+                        <div class="up-1">
+                            
+                            <div class="follw-my-icon">
+                                <img th:src="*{list.icon}" alt="ないぞ" >
+                            </div>
+                            
+                            <!-- <th:block th:if="${login}==${list.user_id}">
+                                <button th:attr="onClick='location.href=\''+ @{/edit_change?user_id={user_id} (user_id=${list.user_id})} +'\''">プロフィール編集</button>
+                            </th:block> -->
+
+                            
 
 
+                        </div>
+                        <div class="up-2">
+                            <div class="mypage-name">
+                                <p th:text="${list.user_name}"></p>
+
+                            </div>
+                            <div class="mypage-name">
+                                <p th:text="${list.search_name}"></p>
+
+                            </div>
+                            <div class="mypage-name">
+                                <p th:text="${list.introduction}"></p>
+
+                            
+
+                            <!-- <form th:action="@{/home/result/save}" method="post" enctype="multipart/form-data" >
+                                <input type="hidden" name="file" id="file" th:value="${file}">
+                                <input type="submit" th:attr="onClick='location.href=\''+ @{/edit_change?user_id={user_id} (user_id=${list.user_id})} +'\''">
+                            </form> -->
+
+                            
+                                
+                                <!-- 動画URLの入力 -->
+                                
+                                <!-- コメントの入力 -->                                            
+                                <!-- <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
+                                    wrap="off" th:field="*{response_name}" maxlength="200" required></textarea> -->
+
+                            <form th:action="@{/edit_change?user_id={user_id} (user_id=${list.user_id})}" method="post" enctype="multipart/form-data">
+                                <input type="file" id="fileInput" name="file" onchange="previewImage()">
+                                <input type="submit" value="アップロード">
+                            </form>
+                            
+                            <th:block th:unless="${#lists.isEmpty(jenre)}">
+                                <th:block th:each="obj:${jenre}">
+                                    <p th:text="${obj.jenre_name}"></p>
+                                </th:block>
+                            </th:block>
+                            </div>
+                            <div class="prev_img">
+                                <img id="preview" src="" alt="Preview"/>
+                            </div>
+                        
+                        </div>
+
+                    
 
 <!-- 
                         <div class="dwon-2">
@@ -311,6 +339,7 @@
 
     <script src="js/pop.js"></script>
     <script src="js/scroll.js"></script>
+    <script th:src="@{/js/icon_pop.js}"></script>
 </body>
 
 </html>

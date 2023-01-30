@@ -22,4 +22,6 @@ public interface UserService {
     Optional<User> selectUser(String user_id);
 
     Iterable<User> selectUserByWord(String search_word);
+
+    void updateIcon(String user_id, String icon);
 }

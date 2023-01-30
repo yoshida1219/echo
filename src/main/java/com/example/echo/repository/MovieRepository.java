@@ -27,4 +27,7 @@ public interface MovieRepository extends CrudRepository<Movie,String>{
 
     @Query("SELECT * FROM movie WHERE url = :url")
     Optional<Movie> findMovieId(@Param("url") String url);
+
+    @Query("select url from echo_sns.movie where url = :url;")
+    Optional<Movie> existsUrl(@Param("url") String url);
 }

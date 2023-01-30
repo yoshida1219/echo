@@ -14,6 +14,6 @@ public interface MovieService {
 
     Optional<Movie> selectMovieId(String url);
 
-    
+    Optional<Movie> existsMovie(String url);
 
 }

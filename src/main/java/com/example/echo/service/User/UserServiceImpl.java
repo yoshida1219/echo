@@ -65,4 +65,10 @@ public class UserServiceImpl implements UserService{
     public Iterable<User> selectUserByWord(String search_word) {
         return repository.findUserByWord(search_word);
     }
+
+    @Override
+    public void updateIcon(String user_id, String icon) {
+        repository.updateIcon(user_id, icon);
+        
+    }
 }
