@@ -152,9 +152,15 @@ public class Collection {
         String movie_id = movieService.SelectMaxMovieId();
         movie_id = createId(movie_id);
 
-        String movie_name = api.savedThumbnail(url);
+        
+        Optional<Movie> user = movieService.existsMovie(url);
 
-        String thumbnail = "/img/thumbnail/" + url + ".jpg";
+        String movie_name = api.savedThumbnail(url, user);
+        
+
+        String thumbnail = "https://skpacket.s3.ap-northeast-1.amazonaws.com/thumbnail/" + url + ".jpg";
+
+
 
         this.movie_id = movie_id;
 

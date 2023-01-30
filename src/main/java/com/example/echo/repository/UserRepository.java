@@ -41,4 +41,11 @@ public interface UserRepository extends CrudRepository<User, String>{
     @Query("SELECT * FROM user WHERE case when :search_word != '' then user_name like concat('%', :search_word, '%') else 1=0 end"
         + " or case when :search_word != '' then search_name like concat('%', :search_word, '%') else 1=0 end")
     Iterable<User> findUserByWord(@Param("search_word") String search_word);
+
+    @Modifying
+    @Query("UPDATE echo_sns.user SET icon = :icon where user_id = :user_id;")
+    void updateIcon(
+        @Param("user_id") String user_id,
+        @Param("icon") String icon
+    );
 }

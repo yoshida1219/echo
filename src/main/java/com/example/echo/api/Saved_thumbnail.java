@@ -2,13 +2,18 @@ package com.example.echo.api;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.api.services.youtube.YouTube;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.example.echo.config.Youtube_key;
 // 必要なライブラリのインポート
 import com.google.api.client.http.HttpRequest;
@@ -25,17 +30,27 @@ import javax.imageio.ImageIO;
 
 
 import java.io.IOException;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-
+import java.io.FileOutputStream;
 import java.awt.Image;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+import java.awt.Color;
+    import com.example.echo.entity.Movie;
+
+import com.example.echo.service.Movie.MovieService;
 
 import java.util.concurrent.ExecutorService;
 
 @Service
 @Transactional
+
 public class Saved_thumbnail{
+    
+    //@Autowired
+    
 
     public List<String> getYoutubeInf(String str, String url) throws IOException{
         
@@ -165,7 +180,8 @@ public class Saved_thumbnail{
             return null;
     }
 
-    public String savedThumbnail(String url) throws IOException{
+    public String savedThumbnail(String url, Optional<Movie> user) throws IOException{
+        
             // YouTube APIのクライアントを作成
             YouTube youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
                 public void initialize(HttpRequest request) throws IOException {}
@@ -210,6 +226,8 @@ public class Saved_thumbnail{
             long start = 0L;
             long stop = 0L;
             int imageQualityJudge = 0;
+
+                
     
             //検索結果が1件以上だった場合は検索結果を出力する
             if (searchResults.size() > 0) {
@@ -227,15 +245,15 @@ public class Saved_thumbnail{
                 title = ifSearchResult.getSnippet().getTitle();
                 start =  System.currentTimeMillis();
                 //thumbnailフォルダにサムネイル画像が保存されているか判定する
-                File file = new File("src/main/resources/static/img/thumbnail/" + url + ".jpg");
-                if (file.exists()) {
-                    imageExistCheck = true;
-                }
-            
+                // File file = new File("src/main/resources/static/img/thumbnail/" + url + ".jpg");
+                // if (file.exists()) {
+                //     imageExistCheck = true;
+                // }
                 
+
                 
                 //画像がすでに保存されてあるかテェック
-                if(!(imageExistCheck)){
+                if(!(user.isPresent())){
                     
                     
 
@@ -340,10 +358,10 @@ public class Saved_thumbnail{
                         
                         // URLから画像データを読み込む
                         URL imgUrl = new URL(imageUrl);
-                        BufferedImage image = ImageIO.read(imgUrl);
+                        BufferedImage inputImage = ImageIO.read(imgUrl);
                 
-                        // 画像データを保存する
-                        ImageIO.write(image, "jpg", new File("src/main/resources/static/img/thumbnail/" + url + ".jpg"));
+                        // // 画像データを保存する
+                        // ImageIO.write(image, "jpg", new File("src/main/resources/static/img/thumbnail/" + url + ".jpg"));
 
                           // リサイズ後の幅
                         int width = 1200;
@@ -351,12 +369,34 @@ public class Saved_thumbnail{
                         int height = 700;
 
                         // 入力画像を読み込む
-                        BufferedImage inputImage = ImageIO.read(new File("src/main/resources/static/img/thumbnail/" + url + ".jpg"));
-                        // リサイズする
+                        //BufferedImage inputImage = ImageIO.read(new File("src/main/resources/static/img/thumbnail/" + url + ".jpg"));
+                        System.out.println(url);
+                            // リサイズする
                         BufferedImage outputImage = new BufferedImage(width, height, inputImage.getType());
                         outputImage.getGraphics().drawImage(inputImage.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH), 0, 0, null);
-                        // 出力画像を保存する
-                        ImageIO.write(outputImage, "jpg", new File("src/main/resources/static/img/thumbnail/" + url + ".jpg"));
+                        
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        ImageIO.write(outputImage, "jpg", baos);
+                            baos.flush();
+                            
+                        byte[] imageInByte = baos.toByteArray();
+                        baos.close();
+                        
+                            InputStream in = new ByteArrayInputStream(imageInByte);
+                        
+                        S3Upload myf = new S3Upload();
+                        AmazonS3 s3client = myf.authS3();
+                        
+                        String objectKey = "thumbnail/" + url + ".jpg";
+                        ObjectMetadata metadata = new ObjectMetadata();
+                            metadata.setContentLength(imageInByte.length);
+                        
+                    s3client.putObject("skpacket", objectKey, in, metadata);
+                        
+                            
+
+                            // // 出力画像を保存する
+                            // ImageIO.write(outputImage, "jpg", new File("src/main/resources/static/img/thumbnail/" + url + ".jpg"));
 
 
                     } catch (IOException e) {
@@ -371,6 +411,61 @@ public class Saved_thumbnail{
             System.out.println("try終了" + (stop - start) + " ms");
             return title;
 
+        }
+        public void saved_icon(MultipartFile file, String user_id){
+
+    
+            if (!file.isEmpty()) {
+                try {
+                    // File savefile = new File("src/main/resources/static/img/icon/" + user_id + "jpg");
+                    // byte[] bytes = file.getBytes();
+                    // FileOutputStream fos = new FileOutputStream(savefile);
+                    // fos.write(bytes);
+                    // fos.close();
+    
+                    // //File file = new File("C:/Users/202152/Desktop/api_test/demo/src/main/java/com/example/demo/api/news_gohou.tiff");
+                    // File file2 = new File("src/main/resources/static/img/icon/" + user_id + "jpg");
+                    byte[] bytes = file.getBytes();
+                    ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+                    BufferedImage image = ImageIO.read(bis);
+            
+                    // 画像を JPG フォーマットに変換する
+                    BufferedImage newImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
+                    newImage.createGraphics().drawImage(image, 0, 0, Color.WHITE, null);
+            
+                    // リサイズ後の幅
+                    int width = 1080;
+                    // リサイズ後の高さ
+                    int height = 1080;
+    
+                    // リサイズする
+                    BufferedImage outputImage = new BufferedImage(width, height, newImage.getType());
+                    outputImage.getGraphics().drawImage(newImage.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH), 0, 0, null);
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    ImageIO.write(outputImage, "jpg", baos);
+                    baos.flush();
+                            
+                    byte[] imageInByte = baos.toByteArray();
+                    baos.close();
+                        
+                    InputStream in = new ByteArrayInputStream(imageInByte);
+                        
+                    S3Upload myf = new S3Upload();
+                    AmazonS3 s3client = myf.authS3();
+                        
+                    String objectKey = "icon/" + user_id + ".jpg";
+                    ObjectMetadata metadata = new ObjectMetadata();
+                    metadata.setContentLength(imageInByte.length);
+
+                    s3client.putObject("skpacket", objectKey, in, metadata);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    
+                }
+            } else {
+                
+            }
         }
 
     /*

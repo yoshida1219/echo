@@ -34,4 +34,7 @@ public class MovieServiceImpl implements MovieService{
         public Optional<Movie> selectMovieId(String url) {
             return repository.findMovieId(url);
         }
+        public Optional<Movie> existsMovie(String url){
+            return repository.existsUrl(url);
+        }
 }

@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.echo.entity.User;
+import com.example.echo.api.Saved_thumbnail;
 import com.example.echo.entity.Jenre;
 import com.example.echo.entity.select.FavoriteMovie;
 import com.example.echo.entity.select.Follower;
@@ -123,7 +126,26 @@ public class MypageController {
         return "mypage_edit";
     }
 
+    //プロフィールを編集する
+    @PostMapping("/edit_change")
+    public String changeEdit(Model model, @RequestParam("user_id") String user_id, @RequestParam("file") MultipartFile file) {
 
+        String login_user = sessionData.getUser_id();
+        Saved_thumbnail saved_thumbnail = new Saved_thumbnail();
+
+        String icon = "https://skpacket.s3.ap-northeast-1.amazonaws.com/icon/" + user_id + ".jpg";
+        saved_thumbnail.saved_icon(file, user_id);
+
+        userService.updateIcon(user_id, icon);
+
+
+        
+        
+
+        return "redirect:/mypage?user_id=" + user_id;
+    }
+
+    //人をフォローする（フォローを外す）
     @GetMapping("/follow")
     public String showFollow(Model model,  @RequestParam("user_id") String user_id, @RequestParam("check_follow") Integer check_follow, RedirectAttributes redirectAttributes) {
     
@@ -137,6 +159,7 @@ public class MypageController {
 
     }
 
+    //動画をお気に入りにする
     @GetMapping("/favoriteMovie")
     public String showFavoriteMovie(Model model, @RequestParam("movie_id") String movie_id, @RequestParam("user_id") String user_id, @RequestParam("check") Integer check, RedirectAttributes redirectAttributes) {
 
