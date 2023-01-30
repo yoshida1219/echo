@@ -126,6 +126,7 @@ public class MypageController {
         return "mypage_edit";
     }
 
+    //プロフィールを編集する
     @PostMapping("/edit_change")
     public String changeEdit(Model model, @RequestParam("user_id") String user_id, @RequestParam("file") MultipartFile file) {
 
@@ -144,7 +145,7 @@ public class MypageController {
         return "redirect:/mypage?user_id=" + user_id;
     }
 
-
+    //人をフォローする（フォローを外す）
     @GetMapping("/follow")
     public String showFollow(Model model,  @RequestParam("user_id") String user_id, @RequestParam("check_follow") Integer check_follow, RedirectAttributes redirectAttributes) {
     
@@ -158,6 +159,7 @@ public class MypageController {
 
     }
 
+    //動画をお気に入りにする
     @GetMapping("/favoriteMovie")
     public String showFavoriteMovie(Model model, @RequestParam("movie_id") String movie_id, @RequestParam("user_id") String user_id, @RequestParam("check") Integer check, RedirectAttributes redirectAttributes) {
 
