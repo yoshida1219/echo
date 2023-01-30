@@ -10,13 +10,13 @@ img{
 }
 .dwon-ex2 {
     width: 100%;
-    display: flex;
     flex-wrap: wrap;
     -webkit-box-pack: justify;
     justify-content: space-between;
     opacity: 1;
     transition: opacity 0.2s ease-out 0s;
-    padding: 50px;
+    padding: 0% 4%;
+    display: flex;
 
 }
 .dwon-ex2 img{
@@ -58,5 +58,3 @@ img{
     -webkit-line-clamp: 2;
     overflow: hidden;
 }
-
-
