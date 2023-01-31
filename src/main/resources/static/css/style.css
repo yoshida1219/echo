@@ -76,7 +76,7 @@ main {
 
 
 .kari{
-  margin: 2%;
+  /* margin: 2%; */
 }
 
 
@@ -84,7 +84,7 @@ main {
 /*今の画面　上の*/
 .head {
   text-align: center;
-  background-color: #9c9c9c;
+  background-color: #ababab;
   color: #ffffff;
   height: 40px;
   padding: 0.5em 0.5em;
@@ -227,7 +227,7 @@ main {
   width: 87%;
 }
 .cent-1 {
-  margin: 0 10%;
+  margin: 0 3%;
   /* background-color: rgb(177, 255, 255); */
 }
 
@@ -463,7 +463,7 @@ display: block;
 
 /***************右側       「右」　　　　**************************************/
 .side {
-  background-color: rgb(223, 223, 223);
+  background-color: rgb(225 225 225);
   width: 25%;
 }
 
@@ -624,19 +624,26 @@ display: block;
 
 
 .janru{
-  width: 90%;
+  width: 100%;
   margin-top: 10px;
   /* background-color: rgb(233, 213, 252); */
+  /* flex-wrap: wrap; */
 }
 
 ul {
   list-style: none;
   padding: 0;
+  /* float: left; */
 }
 
 .Tabs {
   display: flex;
+  /* flex-wrap: wrap; */
 }
+.Tabs li{
+  /* float:left; */
+}
+
 .Tabs-tab {
   background: #e5e5e5;
   border-radius: 4px;
@@ -651,6 +658,7 @@ ul {
   margin-right: 8px;
   position: relative;
   text-align: center;
+  /* width: 10%; */
 }
 
 .Tabs-tab:hover{

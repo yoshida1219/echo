@@ -26,6 +26,9 @@ import com.example.echo.service.Recommend.RecommendService;
 import com.example.echo.service.SubmitResponse.SubmitResponseService;
 import com.example.echo.service.User.UserService;
 import com.example.echo.session.SessionData;
+
+import jakarta.websocket.Session;
+
 import com.example.echo.service.Jenre.JenreService;
 
 
@@ -126,6 +129,7 @@ public class MypageController {
         return "mypage_edit";
     }
 
+    //プロフィールを編集する
     @PostMapping("/edit_change")
     public String changeEdit(Model model, @RequestParam("user_id") String user_id, @RequestParam("file") MultipartFile file, @RequestParam("user_name") String user_name, @RequestParam("search_name") String search_name, @RequestParam("introduction") String introduction) {
 
@@ -146,7 +150,7 @@ public class MypageController {
         return "redirect:/mypage?user_id=" + user_id;
     }
 
-
+    //人をフォローする（フォローを外す）
     @GetMapping("/follow")
     public String showFollow(Model model,  @RequestParam("user_id") String user_id, @RequestParam("check_follow") Integer check_follow, RedirectAttributes redirectAttributes) {
     
@@ -160,6 +164,7 @@ public class MypageController {
 
     }
 
+    //動画をお気に入りにする
     @GetMapping("/favoriteMovie")
     public String showFavoriteMovie(Model model, @RequestParam("movie_id") String movie_id, @RequestParam("user_id") String user_id, @RequestParam("check") Integer check, RedirectAttributes redirectAttributes) {
 
@@ -176,4 +181,5 @@ public class MypageController {
         }
         return "redirect:/mypage?user_id=" + user_id;
     }
+
 }

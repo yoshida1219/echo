@@ -11,10 +11,11 @@ public interface FollowThreadRepository extends CrudRepository<FollowThreadRepos
     //フォローしているスレッドを呼び出す
     @Query("with pickup_movie as ("
     + " select * from ("
-    + " select * ,case when response.response_id is null then 1 else row_number() over(partition by response.thread_id order by response.like desc) end as 'rank'"
+    + " select * ,case when response.response_id is null then 1 else row_number() over(partition by response.thread_id order by like_count desc) end as 'rank'"
     + " from thread"
     + " left outer join response using(thread_id)"
     + " left outer join movie using(movie_id)"
+    + " left outer join ( select response_creater, response_id, sum(view_like) as 'like_count' from view_response tmp1 group by response_creater, response_id ) like_count using(response_creater, response_id)"
     + " order by response.response_submit desc"
     + " ) as temp where temp.rank = 1), "
     + " new_movie as ("
