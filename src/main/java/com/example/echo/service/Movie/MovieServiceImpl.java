@@ -37,4 +37,9 @@ public class MovieServiceImpl implements MovieService{
         public Optional<Movie> existsMovie(String url){
             return repository.existsUrl(url);
         }
+    
+    @Override
+    public void updateThumbnail(String url, String thumbnail) {
+        repository.updateThumbnail(url, thumbnail);
+    }
 }

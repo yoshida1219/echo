@@ -127,17 +127,19 @@ public class MypageController {
     }
 
     @PostMapping("/edit_change")
-    public String changeEdit(Model model, @RequestParam("user_id") String user_id, @RequestParam("file") MultipartFile file) {
+    public String changeEdit(Model model, @RequestParam("user_id") String user_id, @RequestParam("file") MultipartFile file, @RequestParam("user_name") String user_name, @RequestParam("search_name") String search_name, @RequestParam("introduction") String introduction) {
 
         String login_user = sessionData.getUser_id();
         Saved_thumbnail saved_thumbnail = new Saved_thumbnail();
 
+
+
         String icon = "https://skpacket.s3.ap-northeast-1.amazonaws.com/icon/" + user_id + ".jpg";
         saved_thumbnail.saved_icon(file, user_id);
 
-        userService.updateIcon(user_id, icon);
+        // userService.updateIcon(user_id, icon);
 
-
+        mypageResponseService.updateUser(user_name, search_name, introduction, icon, user_id);
         
         
 

@@ -16,4 +16,5 @@ public interface MovieService {
 
     Optional<Movie> existsMovie(String url);
 
+    void updateThumbnail(String url, String thumbnail);
 }
