@@ -186,10 +186,10 @@ public class MypageController {
     public String showFollowerList(Model model){
         
         Iterable<Follow> FollowList = followUserService.selectFollow("U00000002");
-        model.addAttribute("FollowList", FollowList);
+        Iterable<Follower> FollowerList = followerService.OrderFollowerList("U00000002");
         
-        // Iterable<Follower> FollowerList = followerService.FollowList(sessionData.getUser_id());
-        // model.addAttribute("FollowerList", FollowerList);
+        model.addAttribute("FollowList", FollowList);
+        model.addAttribute("FollowerList", FollowerList);
         
         return "followerListViewer";
     }

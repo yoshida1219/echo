@@ -26,9 +26,8 @@ public interface FollowerRepository extends CrudRepository<FollowerRepository, I
         Optional<Follower> OrderFollowerPeople(@Param("user_id") String user_id);
 
     @Query("select count(*) from follow where user_id = :user_id and followuser_id = :follow_user_id")
-        Optional<Integer> OrderCheckFollow(@Param("user_id") String user_id, @Param("follow_user_id") String follow_user_id);
-
-
+    Optional<Integer> OrderCheckFollow(@Param("user_id") String user_id, @Param("follow_user_id") String follow_user_id);
+    
     @Modifying
     @Query("INSERT INTO follow VALUES(:user_id, :follow_user_id, now(), 1)")
         void insert(
