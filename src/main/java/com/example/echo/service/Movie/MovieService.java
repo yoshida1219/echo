@@ -6,7 +6,7 @@ import com.example.echo.entity.Movie;
 
 public interface MovieService {
     
-    Iterable<Movie> SelectMovie();
+    Optional<Movie> SelectMovie(String movie_id);
 
     String SelectMaxMovieId();
 

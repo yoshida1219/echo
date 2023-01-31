@@ -111,7 +111,7 @@ public class MypageController {
     @GetMapping("/edit")
     public String showEdit(Model model, @RequestParam("user_id") String user_id) {
 
-        String login_user = sessionData.getUser_id();
+        //String login_user = sessionData.getUser_id();
 
         Iterable<Jenre> jenre = jenreService.findJenre(user_id);
         Optional<User> list = userService.selectMypageUser(user_id);
@@ -130,7 +130,7 @@ public class MypageController {
     @PostMapping("/edit_change")
     public String changeEdit(Model model, @RequestParam("user_id") String user_id, @RequestParam("file") MultipartFile file) {
 
-        String login_user = sessionData.getUser_id();
+        //String login_user = sessionData.getUser_id();
         Saved_thumbnail saved_thumbnail = new Saved_thumbnail();
 
         String icon = "https://skpacket.s3.ap-northeast-1.amazonaws.com/icon/" + user_id + ".jpg";

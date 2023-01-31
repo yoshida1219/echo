@@ -220,10 +220,10 @@ public class HirobaController {
         
         Iterable<Comment> Comment = commentservice.SelectComment(user_id, response_id);
         Iterable<SelectResponse> response = selectResponseService.SelectResponse(response_id,user_id);
-        Iterable<Movie> movie = movieservice.SelectMovie();
+        Optional<Movie> movie = movieservice.SelectMovie(threadList.getMovie_id());
         
         model.addAttribute("list", Comment);
-        model.addAttribute("movie", movie);
+        model.addAttribute("movie", movie.get());
         model.addAttribute("response", response);
         model.addAttribute("thread", thread);
         model.addAttribute("url",url);
