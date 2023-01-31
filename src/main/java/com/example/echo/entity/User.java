@@ -24,5 +24,8 @@ public class User {
     //2023-1-11追加(阿部)
     private String introduction;
 
+    //2023-1-31追加(阿部)
+    private String open_date;
+
     private String icon;
 }
