@@ -26,6 +26,9 @@ import com.example.echo.service.Recommend.RecommendService;
 import com.example.echo.service.SubmitResponse.SubmitResponseService;
 import com.example.echo.service.User.UserService;
 import com.example.echo.session.SessionData;
+
+import jakarta.websocket.Session;
+
 import com.example.echo.service.Jenre.JenreService;
 
 
@@ -176,4 +179,5 @@ public class MypageController {
         }
         return "redirect:/mypage?user_id=" + user_id;
     }
+
 }
