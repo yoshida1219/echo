@@ -11,10 +11,11 @@ public interface MyThreadRepository extends CrudRepository<MyThread,String>{
     //自分作成したスレッドを呼び出す
     @Query("with p as (select * from ( "
     + "select thread.thread_id, thread.thread_name, thread.thread_creater, jenre.jenre_name, thread.thread_submit, coalesce(movie.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, response.response_creater, response.response_id, "
-    + "case when response.response_id is null then 1 else row_number() over(partition by response.thread_id order by response.like desc) end as 'rank' "
+    + "case when response.response_id is null then 1 else row_number() over(partition by response.thread_id order by like_count desc) end as 'rank' "
     + "from thread inner join jenre using(jenre_id) "
     + "left outer join response on response.thread_id = thread.thread_id "
     + "left outer join movie on movie.movie_id = response.movie_id "
+    + " left outer join ( select response_creater, response_id, sum(view_like) as 'like_count' from view_response tmp1 group by response_creater, response_id ) like_count using(response_creater, response_id)"
     + "where thread.thread_creater = :user_id "
     + "order by response.response_submit desc, thread.thread_submit desc) as temp where temp.rank = 1 ), "
     + "new_movie as ( "
