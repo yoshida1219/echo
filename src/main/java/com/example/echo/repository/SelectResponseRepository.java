@@ -55,10 +55,11 @@ public interface SelectResponseRepository extends CrudRepository<SelectResponse,
 	        "select *, row_number() over(partition by temp.jenre_id order by temp.thread_submit desc) as 'new_th' " +
 	        "from ( " +
 		    "select thread.jenre_id, thread.thread_id, thread.thread_name, thread.thread_submit, thread.thread_creater, response.response_creater, response.response_id, response.response_name, movie.movie_id, coalesce(movie.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, " +
-		    "case when response.response_id is null then 1 else row_number() over(partition by response.thread_id order by response.like desc) end as 'rank' " +
+		    "case when response.response_id is null then 1 else row_number() over(partition by response.thread_id order by like_count desc) end as 'rank' " +
 		    "from thread " +
 		    "left outer join response on response.thread_id = thread.thread_id " +
 	        "left outer join movie on movie.movie_id = response.movie_id " +
+            " left outer join ( select response_creater, response_id, sum(view_like) as 'like_count' from view_response tmp1 group by response_creater, response_id ) like_count using(response_creater, response_id) " +
 	        ") as temp where temp.rank = 1) " + 
             "select * from new_thread where new_thread.new_th <= 5 and new_thread.jenre_id = :jenre_id;")
     Iterable<SelectResponse> OrderNewThread(@Param("jenre_id") String jenre_id);
