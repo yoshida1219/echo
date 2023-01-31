@@ -488,13 +488,13 @@ public class HirobaController {
 
     /*共有するとき*/
     @GetMapping("share_response")
-    public String ShareResponse(Model model, @RequestParam("response_creater") String response_creater, @RequestParam("response_id") String response_id) {
+    public String ShareResponse(Model model, @RequestParam("response_creater") String response_creater, @RequestParam("response_id") String response_id, @RequestParam("url") String url) {
         String login_user_id = sessionData.getUser_id();
         String login_user_response = collection.createId(responseService.selectMaxResponseId(login_user_id));
 
         responseService.ShareResponse(login_user_id, login_user_response, response_creater, response_id);
         
-        return "RessDetail";
+        return "redirect:/Hiroba/RessDetail/" + url + "?user_id=" + response_creater + "&response_id=" + response_id;
     }
 
     /*

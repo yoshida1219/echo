@@ -152,5 +152,16 @@ public class LoginController {
         
         return "redirect:/home";
     }
+
+
+    @GetMapping("logout")
+    public String logout(Model model) {
+        sessionData.setJenre_id(null);
+        sessionData.setUser_id(null);
+        session.removeAttribute(null);
+
+        return "login";
+        
+    }
     
 }
