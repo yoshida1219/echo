@@ -30,4 +30,11 @@ public interface MovieRepository extends CrudRepository<Movie,String>{
 
     @Query("select url from echo_sns.movie where url = :url;")
     Optional<Movie> existsUrl(@Param("url") String url);
+
+    @Modifying
+    @Query("UPDATE echo_sns.movie SET thumbnail = :thumbnail where url = :url;")
+    void updateThumbnail(
+        @Param("url") String url,
+        @Param("thumbnail") String thumbnail
+    );
 }

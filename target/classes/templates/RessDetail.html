@@ -86,7 +86,7 @@
                                                 </a>
                                             </th:block>
                                             <th:block th:unless="${login_user}==${response_creater}">
-                                                    <a th:href="@{/Hiroba/share_response?response_creater={response_creater}&response_id={response_id} (response_creater=*{response_creater},response_id=*{response_id})}">
+                                                    <a th:href="@{/Hiroba/share_response?response_creater={response_creater}&response_id={response_id}&url={url} (response_creater=*{response_creater},response_id=*{response_id}, url=*{url})}">
                                                     共有
                                                     </a>
                                             </th:block>
@@ -156,12 +156,8 @@
 
 
             <!-- 通知エリア（右） -->
-<<<<<<< HEAD
-            <th:block th:replace="~{commons/layout :: side}"></th:block>
-=======
             
             <div class="side" th:replace="~{commons/layout :: side}"></div>
->>>>>>> 3fdf5433cb4a3faff47af68de4742313256f7403
             <!-- /*通知エリア*/ -->
 
         </div>
