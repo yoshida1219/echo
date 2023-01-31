@@ -378,7 +378,7 @@ blockquote cite {
 .container-item{
   background-color: rgb(247, 247, 247);
   margin: 10px;
-  width: 34.7vh;
+  width: 29.7vh;
   padding: 10px;
   transition: 0.2s;
 }
@@ -595,8 +595,4 @@ blockquote cite {
 .kaijo:hover{
   color: #ffffff;
   background-color: #c4b81b;
-}
-
-.fifif{
-  position:relative;
 }
