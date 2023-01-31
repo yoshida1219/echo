@@ -1,5 +1,6 @@
 package com.example.echo.repository;
 
+import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -15,5 +16,15 @@ public interface MypageResponseRespository extends CrudRepository<MypageResponse
     + "order by response.response_submit desc"
     + ";")
     Iterable<MypageResponse> findMypageResponse(@Param("user_id") String user_id);
-    
+
+
+    @Modifying
+    @Query("UPDATE echo_sns.user SET user_name = :user_name, search_name=:search_name, introduction=:introduction, icon=:icon where user_id = :user_id;")
+    void updateUser(
+        @Param("user_name") String user_name,
+        @Param("search_name") String search_name,
+        @Param("introduction") String introduction,
+        @Param("icon") String icon,
+        @Param("user_id") String user_id
+    );
 }

@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,14 +32,13 @@ import java.io.IOException;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.awt.Image;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.awt.Color;
     import com.example.echo.entity.Movie;
 
-import com.example.echo.service.Movie.MovieService;
+
 
 import java.util.concurrent.ExecutorService;
 
@@ -244,11 +242,7 @@ public class Saved_thumbnail{
 
                 title = ifSearchResult.getSnippet().getTitle();
                 start =  System.currentTimeMillis();
-                //thumbnailフォルダにサムネイル画像が保存されているか判定する
-                // File file = new File("src/main/resources/static/img/thumbnail/" + url + ".jpg");
-                // if (file.exists()) {
-                //     imageExistCheck = true;
-                // }
+
                 
 
                 
@@ -257,48 +251,7 @@ public class Saved_thumbnail{
                     
                     
 
-                        // try {
-                        //     System.out.println("保存try");
-                        //     start = System.currentTimeMillis();
-                        //     // 画像を表示しているURL
-                        //     URL imageCheck = new URL("https://img.youtube.com/vi/" + url + "/"  + imageQuality[imageQualityCheck] + ".jpg");
-
-                        //     /* 時間計測 */
-                        //     stop = System.currentTimeMillis();
-                        //     System.out.println("" + (stop - start) + " ms");
-                        //     start = System.currentTimeMillis();
-                            
-                        //     // URLから画像を読み込む
-                        //     InputStream inputStream = imageCheck.openStream();
-                        //     BufferedImage image = ImageIO.read(inputStream);
-
-                        //     /* 時間計測 */
-                        //     stop = System.currentTimeMillis();
-                        //     System.out.println("" + (stop - start) + " ms");
-                        //     start = System.currentTimeMillis();
-                
-                        //     // 画像が読み込めた場合
-                        //     if (image != null) {
-                                
-                        //         System.out.println(imageQuality[imageQualityCheck] + " OK");
-                        //         imageUrl = "https://img.youtube.com/vi/" + url + "/"  + imageQuality[imageQualityCheck] + ".jpg";
-                        //         checkFlag = true;
-
-                        //         /* 時間計測 */
-                        //         stop = System.currentTimeMillis();
-                        //         System.out.println("成功" + (stop - start) + " ms");
-                        //         start = System.currentTimeMillis();
-
-                        //         break;
-                        //     }
-                        //     System.out.println(imageQuality[imageQualityCheck] + " NG");
-                        //     /* 時間計測 */
-                        //     stop = System.currentTimeMillis();
-                        //     System.out.println("失敗" + (stop - start) + " ms");
-                        //     start = System.currentTimeMillis();
-                        // } catch (Exception e) {
-                        //     e.printStackTrace();
-                        // }
+                        
                         ExecutorService executor = Executors.newFixedThreadPool(10);
                         String[] imageUrls = {"https://img.youtube.com/vi/" + url + "/" + imageQuality[0] + ".jpg",
                                             "https://img.youtube.com/vi/" + url + "/" + imageQuality[1] + ".jpg",
@@ -468,28 +421,5 @@ public class Saved_thumbnail{
             }
         }
 
-    /*
-    public void changeImage() throws IOException{
-        // 画像を読み込む
-        File file = new File("img/news_gohou.png");
-        BufferedImage image = ImageIO.read(file);
-
-        // 画像を JPG フォーマットに変換する
-        BufferedImage newImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
-        newImage.createGraphics().drawImage(image, 0, 0, Color.WHITE, null);
-
-        // 変換した画像を新しいファイルに保存する
-        File newFile = new File("img/news_gohou.jpg");
-        ImageIO.write(newImage, "jpg", newFile);
-
-        
-    }
-
-    
-    public void updatethumbnail(Movie movie) {
-        repository.save(movie);
-        
-    }
-    */
 
 }

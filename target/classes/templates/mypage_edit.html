@@ -63,16 +63,18 @@
 
                         </div>
                         <div class="up-2">
-                            <div class="mypage-name">
-                                <p th:text="${list.user_name}"></p>
+                            <form th:action="@{/edit_change?user_id={user_id} (user_id=${list.user_id})}" method="post" enctype="multipart/form-data">
+                                <div class="mypage-name">
+                                    <input type="text" name="user_name" th:value="${list.user_name}">
 
-                            </div>
-                            <div class="mypage-name">
-                                <p th:text="${list.search_name}"></p>
+                                </div>
+                                <div class="mypage-name">
+                                    <input type="text" name="search_name" th:value="${list.search_name}">
 
-                            </div>
-                            <div class="mypage-name">
-                                <p th:text="${list.introduction}"></p>
+                                </div>
+                                <div class="mypage-name">
+                                    <input type="text" name="introduction" th:value="${list.introduction}">
+                                </div>
 
                             
 
@@ -89,7 +91,7 @@
                                 <!-- <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
                                     wrap="off" th:field="*{response_name}" maxlength="200" required></textarea> -->
 
-                            <form th:action="@{/edit_change?user_id={user_id} (user_id=${list.user_id})}" method="post" enctype="multipart/form-data">
+                            
                                 <input type="file" id="fileInput" name="file" onchange="previewImage()">
                                 <input type="submit" value="アップロード">
                             </form>
@@ -340,6 +342,7 @@
     <script src="js/pop.js"></script>
     <script src="js/scroll.js"></script>
     <script th:src="@{/js/icon_pop.js}"></script>
+    <script th:src="@{/js/edit_icon.js}"></script>
 </body>
 
 </html>

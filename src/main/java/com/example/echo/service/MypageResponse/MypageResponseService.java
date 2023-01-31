@@ -8,4 +8,5 @@ import com.example.echo.entity.select.MypageResponse;
 public interface MypageResponseService {
     Iterable<MypageResponse> orderMypageResponse(String user_id);
     
+    void updateUser(String user_name,String search_name,String introduction,String icon,String user_id);
 }
