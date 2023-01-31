@@ -76,7 +76,7 @@ main {
 
 
 .kari{
-  margin: 2%;
+  /* margin: 2%; */
 }
 
 
@@ -624,19 +624,26 @@ display: block;
 
 
 .janru{
-  width: 90%;
+  width: 100%;
   margin-top: 10px;
   /* background-color: rgb(233, 213, 252); */
+  /* flex-wrap: wrap; */
 }
 
 ul {
   list-style: none;
   padding: 0;
+  /* float: left; */
 }
 
 .Tabs {
   display: flex;
+  /* flex-wrap: wrap; */
 }
+.Tabs li{
+  /* float:left; */
+}
+
 .Tabs-tab {
   background: #e5e5e5;
   border-radius: 4px;
@@ -651,6 +658,7 @@ ul {
   margin-right: 8px;
   position: relative;
   text-align: center;
+  /* width: 10%; */
 }
 
 .Tabs-tab:hover{
