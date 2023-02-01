@@ -183,7 +183,7 @@ public class HirobaController {
 
         model.addAttribute("user", user);
 
-        return "commons/layout :: search_user";
+        return "commons/layout :: result_user";
     }
 
 

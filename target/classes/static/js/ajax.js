@@ -6,7 +6,7 @@ $("#search_form").on('submit', function (e) {
         type : "GET",
         url : paramUrl,
         dataType : "html",
-
+        
         success : function(data, status, xhr) {
             $("#result").html(data);
         },

@@ -1,6 +1,8 @@
 package com.example.echo.controller;
 
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,17 +11,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.echo.entity.User;
 import com.example.echo.api.Saved_thumbnail;
+import com.example.echo.entity.Follow;
 import com.example.echo.entity.Jenre;
 import com.example.echo.entity.select.FavoriteMovie;
 import com.example.echo.entity.select.Follower;
 import com.example.echo.entity.select.MypageResponse;
 import com.example.echo.entity.select.SubmitResponse;
 import com.example.echo.service.FavoriteMovie.FavoriteMovieService;
+import com.example.echo.service.Follow.FollowUserService;
 import com.example.echo.service.Follower.FollowerService;
 import com.example.echo.service.MypageResponse.MypageResponseService;
 import com.example.echo.service.Recommend.RecommendService;
@@ -27,6 +32,7 @@ import com.example.echo.service.SubmitResponse.SubmitResponseService;
 import com.example.echo.service.User.UserService;
 import com.example.echo.session.SessionData;
 
+import jakarta.validation.constraints.Future;
 import jakarta.websocket.Session;
 
 import com.example.echo.service.Jenre.JenreService;
@@ -39,6 +45,7 @@ import com.example.echo.service.Jenre.JenreService;
 @RequestMapping("")
 public class MypageController {
     private final UserService userService;
+    private final FollowUserService followUserService;
     private final FollowerService followerService;
     private final SubmitResponseService submitResponseService;
     private final FavoriteMovieService favoriteMovieService;
@@ -51,6 +58,7 @@ public class MypageController {
     @Autowired
     public MypageController(
         UserService userService,
+        FollowUserService followUserService,
         FollowerService followerService,
         SubmitResponseService submitResponseService,
         FavoriteMovieService favoriteMovieService,
@@ -61,6 +69,7 @@ public class MypageController {
         SessionData sessionData
     ) {
         this.userService = userService;
+        this.followUserService = followUserService;
         this.followerService = followerService;
         this.submitResponseService = submitResponseService;
         this.favoriteMovieService = favoriteMovieService;
@@ -182,4 +191,26 @@ public class MypageController {
         return "redirect:/mypage?user_id=" + user_id;
     }
 
+    @GetMapping("/followerListViewer")
+    public String showFollowerList(Model model){
+        
+        Iterable<Follow> FollowList = followUserService.selectFollow(sessionData.getUser_id());
+        Iterable<Follower> FollowerList = followerService.OrderFollowerList(sessionData.getUser_id());
+        model.addAttribute("FollowList", FollowList);
+        model.addAttribute("FollowerList", FollowerList);
+        model.addAttribute("", FollowerList);
+        return "followerListViewer";
+    }
+
+    @PostMapping("/insertfollow")
+    @ResponseBody
+    public void insertFollow(@RequestParam("user_id") String user_id){
+        
+        if(followUserService.follow_judgement(user_id, sessionData.getUser_id())){
+            followUserService.deleteFollow(user_id, sessionData.getUser_id());
+        }else{
+            followUserService.insertFollow(user_id, sessionData.getUser_id());
+        }
+
+    }
 }

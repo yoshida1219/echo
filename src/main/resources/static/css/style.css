@@ -94,17 +94,10 @@ main {
   padding: 0 0 0 8%;
 }
 
-
-.kari{
-  /* margin: 2%; */
-}
-
-
-
 /*今の画面　上の*/
 .head {
   text-align: center;
-  background-color: #ababab;
+  background-color: #9c9c9c;
   color: #ffffff;
   height: 40px;
   padding: 0.5em 0.5em;
@@ -135,38 +128,6 @@ main {
   display: flex;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /***************真ん中************************************/
 .center {
 
@@ -185,26 +146,8 @@ min-height: 100vh;
 
 /***************コンテンツ       「中身」　　　　**************************************/
 .TimeLine {
-  margin: 1% 1%;
+  margin: 2% 2% 1% 2%;
   padding: 1%;
-  border-radius: 10px;
-  /* background-color: #5fc360; */
-  background-color: #ffffff;
-  box-shadow: 0 3px 4px rgb(0 0 0 / 15%);
-  transition: 0.2s ;
-
- 
-}
-.TimeLine:hover{
-  /* background-color: #666666; */
-  background-color: #ff835d;
-  font-weight: bold;
-  
-
-}
-
-.balloon1-left:hover +.TimeLine{
-  
 }
 
 .flec {
@@ -244,28 +187,21 @@ min-height: 100vh;
 
 .Content {
   display: flex;
-  margin: 1% 0%;
+  margin: 3px;
+  padding: 10px;
 }
 
 .content1 {
   position: relative;
   width: 87%;
 }
-.cent-1 {
-  margin: 0 3%;
-  /* background-color: rgb(177, 255, 255); */
-}
 
 .douga {
-/*  background-color: #ececec;
-
- 
-  border-radius: 10px; */
-  /* border-right: #d1d1d1 2px solid;
-  border-radius: 10px 0 0 10px; */
-  background-color: white;
-  padding: 2%;
-  width: 70%;
+  background-color: #ececec;
+  border-right: #d1d1d1 2px solid;
+  border-radius: 10px 0 0 10px;
+  padding: 2% 0 2% 2%;
+  width: 60%;
 }
 
 iframe {
@@ -274,11 +210,9 @@ iframe {
 }
 
 .coment {
-  /* background-color: #ececec;
-   */
-   background-color: white;
-  text-align: left;
-  border-radius: 10px;
+  background-color: #ececec;
+  width: 40%;
+  border-radius: 0 10px 10px 0;
   padding: 10px;
 }
 
@@ -298,7 +232,7 @@ iframe {
   max-width: 100%;
   color: #555;
   font-size: 16px;
-  background-color: #d1d1d1e0;
+  background-color: rgb(219, 219, 219);
   border-radius: 5px;
 }
 
@@ -309,7 +243,7 @@ iframe {
   left: -30px;
   margin-top: -15px;
   border: 15px solid transparent;
-  border-right: 15px solid #d1d1d1e0;
+  border-right: 15px solid rgb(219, 219, 219);
 }
 
 .balloon1-left p {
@@ -348,79 +282,22 @@ iframe {
 .content2 {
   font-size: 22px;
   display: flex;
+  width: 75%;
 }
 
 .content3 {
-  /* background-color: #ececec; */
-  width: 30%;
-  margin: 0 0px 0 10px;
-  border-radius: 0 10px 10px 0;
+  width: 25%;
 }
 
-
-.samneiru img {
-  display: block;
-  object-fit: cover;
-  width: 100%;
-  border-radius: 10px;
-}
-
-.come{
-  height: 33.3%;
-  padding: 35px;
-  background-color: white;
-}
 .iine {
   font-size: 16px;
   color: #ff6ab0;
+  height: 50%;
 }
-.ine span{
-  color: #ff6ab0;
-  font-size: 28px;
-  font-weight: bold;
-}
-.iine2 {
-  font-size: 16px;
+
+.iine:last-child {
   color: #00a149;
 }
-.kyou span{
-  color: #00a149;
-  font-size: 28px;
-  font-weight: bold;
-}
-.iine3 {
-  font-size: 16px;
-  color: #ff0000;
-  font-weight: bold;
-}
-.jaf{
-  color: #ff0000;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.rank{
-  transition: 0.2s;
-}
-
-.rankiine{
-  font-size: 16px;
-  color: #ff6ab0;
-}
-.rankiine2{
-  font-size: 16px;
-  color: #00a149;
-}
-
-
-.rank:hover{
-  background-color: #ff4d17;
-}
-
-/* 
-.iine:nth-child(2){
-  color: #00a149;
-} */
 
 .clickshow {
   width: 100%;
@@ -491,33 +368,36 @@ display: block;
 
 /***************右側       「右」　　　　**************************************/
 .side {
-  background-color: rgb(225 225 225);
+  background-color: rgb(223, 223, 223);
   width: 25%;
+  position: sticky;
+  height: 1000px;
+  top: 0px;
 }
 
-/*おすすめユーザー*/
-.light1 {
+#search_user {
   text-align: center;
-  padding: 5%;
-  margin: 5%;
+  padding: 0.5em;
+  margin: 1em;
   background-color: #ffffff;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 10px;
-  height: 280px;
-  border-radius: 15px 15px 0px 0px;
+  height: 420px;
+  border-radius: 15px;
 }
+
+#search_form input {
+  border: 1px solid;
+  background: white;
+  border-radius: 5px;
+}
+
 
 /*通知*/
 .light2 {
   text-align: center;
-  padding: 10%;
-  margin: 5%;
+  padding: 0.5em;
+  margin: 1em;
   background-color: #ffffff;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 300px;
-  height: 600px;
+  height: 500px;
   border-radius: 15px;
   overflow-y: scroll;
 }
@@ -526,8 +406,9 @@ display: block;
   text-align: center;
   padding: 10%;
   margin: 5%;
-  background-color: #ffffff;
-  color: #b73300;
+  background-color: #008037;
+  color: #ffffff;
+  border-radius: 10px;
 }
 
 .osusu {
@@ -539,7 +420,35 @@ display: block;
   background-color: #00a149;
   height: 50px;
   margin: 5px;
+  /* position: relative; */
 }
+
+.osusu li button {
+  display: flex;
+  width: 100%;
+  /* vertical-align: baseline; */
+  /* text-align: center; */
+}
+
+.osusu li button img{
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+}
+
+#user_icon {
+  width: 15%;
+  position: relative;
+}
+
+#user_details {
+  width: 60%;
+  text-align: start;
+}
+
+
 
 .foot0 {
   position: relative;
@@ -630,7 +539,7 @@ display: block;
 #scroll-to-top-btn {
   position: fixed;
   bottom: 10px;
-  left: 11%;
+  left: 200px;
   height: 50px;
   width: 50px;
   color: #FFF;
