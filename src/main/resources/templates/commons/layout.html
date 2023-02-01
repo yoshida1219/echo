@@ -9,66 +9,130 @@
 <body>
 
     <!-- ヘッダー -->
-    <header th:fragment="header">
-        <div class="tit">
-            <img th:src="@{/img/block.png}" class="rogo1">
+    <th:block th:fragment="header">
+
+        <div class="openbtn"><span></span><span></span><span></span></div>
+
+        <div class="header">
+            <div class="tit">
+
+                <!-- <img th:src="@{/img/block.png}" class="rogo1"> -->
+            </div>
+
+            <div class="btn1" id="d">
+                <button th:attr="onClick='location.href=\''+@{/home}+'\''">ホーム</button>
+            </div>
+
+
+            <div class="btn1">
+                <button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''">広場</button>
+            </div>
+
+
+
+
+            <div class="btn1">
+                <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">マイページ</button>
+            </div>
+
+
+            <div class="btn1 login-user">
+                <div class="userr-iconnn"><img th:src="@{/img/icon/user.png}" class="rogo2"></div>
+                <p>情報　太郎</p>
+                <p>ログイン中</p>
+            </div>
+
+            <div class="btn1">
+                <button th:attr="onClick='location.href=\''+@{/logout}+'\''">ログアウト</button>
+            </div>
+        </div>
+    </th:block>
+
+
+    <!-- kari -->
+    <th:block th:fragment="humber-nemu">
+        <div id="header">
+            <h1 id="grandt">Echo</h1>
+            <nav id="g-navi">
+                <ul>
+                    <li><button th:attr="onClick='location.href=\''+@{/home}+'\''"><a>ホーム</a></button></li>
+                    <li><button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''"><a>広場</a></button></li>
+                    <li><button th:attr="onClick='location.href=\''+@{/mediate}+'\''"><a>マイページ</a></button></li>
+                    <li><button th:attr="onClick='location.href=\''+@{/logout}+'\''"><a>ログアウト</a></button></li>
+                    <li><!-- ハンバーガーメニュー -->
+                        <!-- <div class="openbtn1 nume">
+                            <span></span><span></span><span></span>
+                        </div> -->
+                    </li>
+
+                </ul>
+            </nav>
         </div>
 
-        <div class="btn1" id="d">
-            <button th:attr="onClick='location.href=\''+@{/home}+'\''">ホーム</button>
-        </div>
+        <div class="openbtn1"><span></span><span></span><span></span></div>
 
-        
-        <div class="btn1">
-            <button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''">広場</button>
-        </div>
 
-        <div class="btn1">
-            <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">マイページ</button>
-        </div>
+    </th:block>
 
-        <div class="btn1">
-            <button th:attr="onClick='location.href=\''+@{/logout}+'\''">ログアウト</button>
-        </div>
-    </header>
+
+
 
     <!-- 右 -->
     <div class="side" th:fragment="side">
 
         <!-- ユーザ検索 -->
-        <p>ユーザ検索</p>
-        <!-- 検索フォーム -->
-        <form id="search_form" th:action="@{/Hiroba/search_user}">
-            <input type="text" id="search_word" name="search_word">
-            <input type="submit" value="検索">
-        </form>
+        <div id="search_user">
+            <p>ユーザ検索</p>
+            <!-- 検索フォーム -->
+            <form id="search_form" th:action="@{/Hiroba/search_user}">
+                <input type="text" id="search_word" name="search_word" placeholder="ユーザ名を入力">
+                <input type="submit" value="検索">
+            </form>
 
-        <div id="result">
-            <th:block th:replace="~{commons/layout :: search_user}"></th:block>
+            <div id="result">
+                <th:block th:replace="~{commons/layout :: result_user}"></th:block>
+            </div>
         </div>
-        
+
 
         <!-- 通知エリア -->
         <div class="light2">
+            <p>表示された人にフォローされました</p>
             <ul class="osusu">
                 <li th:each="obj:${follow_notice}" th:object="${obj}">
-                    <a th:href="@{/notice?user_id={user_id} (user_id=*{user_id})}"
-                        class="">[[*{user_name}]]</a>
+<<<<<<< HEAD
+                    <a th:href="@{/notice?user_id={user_id} (user_id=*{user_id})}" class="">[[*{user_name}]]</a>
+=======
+                    <button th:attr="onClick='location.href=\''+@{/notice?user_id={user_id} (user_id=*{user_id})}+'\''">
+                        <div id="user_icon">
+                            <img th:src="*{icon}" alt="">
+                        </div>
+                        <div id="user_details">
+                            <p th:text="*{user_name}"></p>
+                            <p th:text="*{search_name}"></p>
+                        </div>
+                    </button>
+>>>>>>> 97403249b41047917494f46373f8749c7743eeef
                 </li>
             </ul>
         </div>
 
     </div>
 
-    
+
     <!-- ユーザ検索 -->
-    <th:block th:fragment="search_user">
+    <th:block th:fragment="result_user">
         <div class="light1">
             <ul class="osusu">
                 <li th:each="obj:${user}" th:object="${obj}">
                     <button th:attr="onClick='location.href=\''+@{/mypage?user_id={user_id} (user_id=*{user_id})}+'\''">
-                        <p th:text="*{user_name}"></p>
-                        <p th:text="*{search_name}"></p>
+                        <div id="user_icon">
+                            <img th:src="*{icon}" alt="">
+                        </div>
+                        <div id="user_details">
+                            <p th:text="*{user_name}"></p>
+                            <p th:text="*{search_name}"></p>
+                        </div>
                     </button>
                 </li>
         </div>
@@ -104,11 +168,11 @@
                         </div>
                     </div>
 
-                    <div class="formbox ">
+                    <div class="formbox video-form">
                         <div class="stronger">動画プレビュー</div>
                         <div class="formbody preview">
                             <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
-                            <iframe class="b" width="560" height="315" src="" title="YouTube video player"
+                            <iframe class="b" width="100%" height="100%" src="" title="YouTube video player"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen>
@@ -165,20 +229,20 @@
 
 
                         <div class="List-sita">
-                            
+
 
 
                             <!-- 数字 -->
                             <div class="List-come">
-                                
+
                                 <div class="List-suji">
                                     <span>投稿数</span>
                                     <p>[[*{res_count}]]</p>
                                 </div>
-                                
+
                                 <div class="List-suji">
-                                <span>フォロー数</span>
-                                <p>[[*{follow_count}]]</p>
+                                    <span>フォロー数</span>
+                                    <p>[[*{follow_count}]]</p>
                                 </div>
 
                             </div>
@@ -197,7 +261,7 @@
                                 <div class="List-user-name">
                                     <p th:text="*{user_name}"></p>
                                 </div>
-                                
+
                             </div>
 
                         </div>

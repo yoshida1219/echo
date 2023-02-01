@@ -1,0 +1,48 @@
+package com.example.echo.service.Follow;
+
+import java.util.Date;
+import java.util.concurrent.CompletableFuture;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.echo.entity.Follow;
+import com.example.echo.repository.FollowRepository;
+
+@Service
+@Transactional
+public class FollowUserServiceImpl implements FollowUserService{
+
+    @Autowired
+    FollowRepository Follow;
+
+    @Override
+    public Iterable<Follow> selectFollow(String user_id) {
+        return Follow.selectFollow(user_id);
+    }
+
+    @Override
+    public void insertFollow(String user_id,
+                             String followuser_id){
+        Follow.insertFollow(user_id, followuser_id);
+    }
+
+    @Override
+    public void deleteFollow(String user_id,
+                             String followuser_id){
+        Follow.deleteFollow(user_id, followuser_id);
+    }
+
+    @Override
+    public Boolean follow_judgement(String user_id,
+                                    String followuser_id){
+        int judgment = Follow.follow_judgement(user_id, followuser_id);
+        if(judgment > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}

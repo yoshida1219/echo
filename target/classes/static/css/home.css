@@ -1,3 +1,203 @@
 #title {
     color: blue;
 }
+
+.head{
+    display: flex;
+}
+
+
+/*リストの形状*/
+
+#header.dnone.panelactive #g-navi li a {
+    color: #333;
+    text-decoration: none;
+    padding: 30px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    transition: all 0.3s;
+    border: solid;
+    margin-bottom: 5px;
+    width: 20em;
+  }
+  
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+
+/*========= ボタンのためのCSS ===============*/
+
+/*ボタン全体の形状*/
+.openbtn1 {
+    /*ここでnoneとかblockで調整*/
+    display: none;
+    /*ボタンの位置*/
+    position: relative;
+    z-index: 999;
+    /*ボタンの形状*/
+    background: #666;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+  }
+  
+  .nume{
+    display: block;
+  }
+  
+  /*ボタンのアイコン設定*/
+  .openbtn1 span {
+    display: inline-block;
+    transition: all 0.4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #fff;
+    width: 45%;
+  }
+  
+  .openbtn1 span:nth-of-type(1) {
+    top: 15px;
+  }
+  
+  .openbtn1 span:nth-of-type(2) {
+    top: 23px;
+  }
+  
+  .openbtn1 span:nth-of-type(3) {
+    top: 31px;
+  }
+  
+  /*activeクラスが付与された後のボタンのアイコン設定*/
+  .openbtn1.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+  }
+  
+  .openbtn1.active span:nth-of-type(2) {
+    opacity: 0;
+  }
+  
+  .openbtn1.active span:nth-of-type(3) {
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+  }
+
+
+  
+  .fix{
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
+  
+
+  
+/*fadeDownクラスが付与された後のボタンの出現アニメーション設定*/
+.fadeDown {
+    animation-name: fadeDownAnime;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    display: block;
+    /* display: none; */
+  }
+  @keyframes fadeDownAnime {
+    from {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /*========= ヘッダーナビゲーションのためのCSS ===============*/
+  
+  /*==ヘッダーの形状*/
+  #header {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #9e9e9e;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+
+  /*.doneクラスがついたヘッダー*/
+  #header.dnone {
+    opacity: 0; /*透過0にして非表示に*/
+  }
+  
+  /*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたら*/
+  #header.dnone.panelactive {
+    opacity: 1; /*不透明にして出現*/
+  }
+  
+  /*==ヘッダーのテキストナビゲーションの形状*/
+  
+  #g-navi ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  #g-navi ul li a {
+    display: block;
+    text-decoration: none;
+    color: #332e2e;
+    font-weight: bold;
+    padding: 10px;
+  }
+  
+  #g-navi ul li.current a,
+  #g-navi ul li a:hover {
+    color: #fff;
+  }
+  
+  /*.doneクラスがついたヘッダーのテキストナビゲーションの形状*/
+  #header.dnone #g-navi {
+    /*固定位置にして最背面に*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /*高さと幅*/
+    width: 100%;
+    height: 100vh;
+    /*天地中央＆テキスト中央揃え*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /*はじめは透過0に*/
+    opacity: 0;
+    transition: all 0.4s;
+  }
+  
+  /*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたナビゲーションの形状*/
+  #header.dnone.panelactive #g-navi {
+    opacity: 1; /*不透明に*/
+    z-index: 3; /*最前面に*/
+    background: #eee;
+  }
+  
+  #header.dnone.panelactive #g-navi ul {
+    display: block; /*flexの横並びをblockにして縦並びに*/
+  }
+  

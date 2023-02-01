@@ -13,4 +13,12 @@ public class Follower {
     
     @Id
     private Integer follower; 
+
+    private String user_id;
+
+    private String user_name;
+
+    private String introduction;
+
+    private String icon;
 }

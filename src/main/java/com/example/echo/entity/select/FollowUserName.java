@@ -11,4 +11,6 @@ public class FollowUserName {
     private String user_name;
 
     private String user_name_follow;
+
+    
 }

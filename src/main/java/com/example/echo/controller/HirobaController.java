@@ -183,7 +183,7 @@ public class HirobaController {
 
         model.addAttribute("user", user);
 
-        return "commons/layout :: search_user";
+        return "commons/layout :: result_user";
     }
 
 
@@ -339,11 +339,11 @@ public class HirobaController {
     /*
      * コメント作成機能
      */
-    @PostMapping("comment_create/{url}")
-    public String comment_create(@PathVariable("url") String url,
-                                 @Validated CommentCreateForm commentCreateForm, 
-                                 BindingResult result, Model model, 
-                                 RedirectAttributes redirect){
+    @MessageMapping("/comment")
+    @SendTo("/comment/posting")
+    public void comment_create(CommentCreateForm commentCreateForm){
+
+        System.out.println(commentCreateForm);
 
         Comment comment = new Comment();
         String view_user = sessionData.getUser_id();
@@ -362,8 +362,10 @@ public class HirobaController {
         comment.setResponse_creater(commentCreateForm.getResponse_creater());        
         commentservice.insertComment(comment);
 
-        return "redirect:/Hiroba/RessDetail/" + url + "?response_id="+ commentCreateForm.getResponse_id() +"&user_id=" + commentCreateForm.getResponse_creater();
+        //return "redirect:/Hiroba/RessDetail/" + url + "?response_id="+ commentCreateForm.getResponse_id() +"&user_id=" + commentCreateForm.getResponse_creater();
     }
+
+
     /*
      * スレッド一覧画面
      */
