@@ -1,9 +1,11 @@
 package com.example.echo.service.SelectResponse;
 
+import java.util.Optional;
+
 import com.example.echo.entity.select.SelectResponse;
 
 public interface SelectResponseService {
-    Iterable<SelectResponse> SelectResponse(String response_id,String user_id);
+    Optional<SelectResponse> SelectResponse(String response_id,String user_id);
 
     String SelectThread_id(String response_id,String user_id);
 

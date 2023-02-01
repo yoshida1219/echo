@@ -31,6 +31,7 @@ import com.example.echo.entity.select.PopularThread;
 import com.example.echo.entity.select.SelectResponse;
 import com.example.echo.entity.select.SharedThread;
 import com.example.echo.entity.select.SpikeUpMovie;
+import com.example.echo.entity.select.SubmitResponse;
 import com.example.echo.entity.select.ThreadDetail;
 import com.example.echo.entity.select.ThreadList;
 import com.example.echo.form.AlertFrom;
@@ -44,6 +45,7 @@ import com.example.echo.entity.Jenre;
 import com.example.echo.entity.Movie;
 import com.example.echo.service.Comment.CommentService;
 import com.example.echo.service.FollowThread.FollowThreadService;
+import com.example.echo.service.Follower.FollowerService;
 import com.example.echo.service.Jenre.JenreService;
 import com.example.echo.service.Movie.MovieService;
 import com.example.echo.service.MyThread.MyThreadService;
@@ -54,6 +56,7 @@ import com.example.echo.service.Response.ResponseService;
 import com.example.echo.service.SelectResponse.SelectResponseService;
 import com.example.echo.service.SharedThread.SharedThreadService;
 import com.example.echo.service.SpikeUpMovie.SpikeUpMovieService;
+import com.example.echo.service.SubmitResponse.SubmitResponseService;
 import com.example.echo.service.Thread.ThreadService;
 import com.example.echo.service.ThreadDetail.ThreadDetailService;
 import com.example.echo.service.ThreadList.ThreadListService;
@@ -107,6 +110,12 @@ public class HirobaController {
     SpikeUpMovieService spikeUpMovieService;
 
     @Autowired
+    FollowerService followerService;
+
+    @Autowired
+    SubmitResponseService submitResponseService;
+
+    @Autowired
     NoticeService noticeService;
 
     @Autowired
@@ -123,7 +132,6 @@ public class HirobaController {
 
     @Autowired
     View_responseService view_responseService;
-    
 
     @ModelAttribute
     public ThreadCreateForm setUpForm() {
@@ -145,7 +153,7 @@ public class HirobaController {
      */
     @GetMapping
     public String showHiroba(Model model) {
-        Iterable<SelectResponse> popularmovie = selectResponseService.OrderPopular(); 
+        Iterable<SelectResponse> popularmovie = selectResponseService.OrderPopular();
         Iterable<SelectResponse> newthread = selectResponseService.OrderNewThread(sessionData.getJenre_id());
         Iterable<PopularThread> popularthread = popularThreadservice.OrderPopularThread(sessionData.getJenre_id());
         Iterable<FollowThread> followthread = followthreadservice.OrderFollowThread(sessionData.getUser_id());
@@ -161,17 +169,14 @@ public class HirobaController {
         model.addAttribute("jenre", jenre);
         model.addAttribute("spikeupmovie", spikeUpMovie);
 
-        
         Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
         model.addAttribute("recommend", recommend);
 
-        
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
-        
+
         return "Hiroba";
     }
-
 
     /*
      * ユーザ検索
@@ -179,8 +184,8 @@ public class HirobaController {
      */
     @GetMapping("/search_user")
     public String searchUser(Model model, @RequestParam("search_word") String search_word) {
-        //search_wordの加工
-        if(search_word.substring(0,1).equals("@")) {
+        // search_wordの加工
+        if (search_word.substring(0, 1).equals("@")) {
             search_word = search_word.substring(1);
         }
 
@@ -191,55 +196,56 @@ public class HirobaController {
         return "commons/layout :: result_user";
     }
 
-
-
     /*
      * レスポンス詳細画面
      */
     @GetMapping("RessDetail/{url}")
     public String showRessDatail(Model model,
-                                AlertFrom alertFrom, 
-                                @PathVariable("url") String url,
-                                @RequestParam("user_id") String user_id,
-                                @RequestParam("response_id") String response_id,
-                                RedirectAttributes redirectAttributes) {
-        
-            Response threadList = new Response();
-            threadList.setThread_id(selectResponseService.SelectThread_id(response_id, user_id));
-            threadList.setMovie_id(selectResponseService.SelectMovie_id(response_id, user_id));
-            Iterable<SharedThread> thread = sharedThreadService.selectThread(threadList);
-            
-            
-            //view_response ここの処理をressdetailに遷移したときに行う
-            Response view_response = new Response();
-            view_response.setResponse_id(response_id);
-            view_response.setResponse_creater(user_id);
-            view_response.setView_user(sessionData.getUser_id());
+            AlertFrom alertFrom,
+            @PathVariable("url") String url,
+            @RequestParam("user_id") String user_id,
+            @RequestParam("response_id") String response_id,
+            RedirectAttributes redirectAttributes) {
 
-            Boolean FirstTimeView = responseService.FirstTimeView(view_response);
-        
+        Response threadList = new Response();
+        String login_user = sessionData.getUser_id();
+        threadList.setThread_id(selectResponseService.SelectThread_id(response_id, user_id));
+        threadList.setMovie_id(selectResponseService.SelectMovie_id(response_id, user_id));
+        Iterable<SharedThread> thread = sharedThreadService.selectThread(threadList);
 
-        if(FirstTimeView == false){
+        // 2023-02-01追加(阿部)
+        Optional<Integer> checkFollow = followerService.FindCheckFollow(login_user, user_id);
+
+        // view_response ここの処理をressdetailに遷移したときに行う
+        Response view_response = new Response();
+        view_response.setResponse_id(response_id);
+        view_response.setResponse_creater(user_id);
+        view_response.setView_user(sessionData.getUser_id());
+
+        Boolean FirstTimeView = responseService.FirstTimeView(view_response);
+
+        if (FirstTimeView == false) {
             responseService.insertView_Response(view_response);
         }
-        
+
         Iterable<Comment> Comment = commentservice.SelectComment(user_id, response_id);
-        Iterable<SelectResponse> response = selectResponseService.SelectResponse(response_id,user_id);
+        Optional<SelectResponse> response = selectResponseService.SelectResponse(response_id, user_id);
         Optional<Movie> movie = movieservice.SelectMovie(threadList.getMovie_id());
-        
+
         model.addAttribute("list", Comment);
         model.addAttribute("movie", movie.get());
-        model.addAttribute("response", response);
+        model.addAttribute("obj", response.get());
         model.addAttribute("thread", thread);
-        model.addAttribute("url",url);
-        model.addAttribute("login_user",sessionData.getUser_id());
-        model.addAttribute("response_id",response_id);
-        model.addAttribute("response_creater",user_id);
-        
+        model.addAttribute("send_url", url);
+        model.addAttribute("login_user", sessionData.getUser_id());
+        model.addAttribute("response_id", response_id);
+        model.addAttribute("response_creater", user_id);
+        model.addAttribute("check_follow", checkFollow.get());
+        model.addAttribute("login_user", login_user);
+
         Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
         model.addAttribute("recommend", recommend);
 
-        
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
 
@@ -247,19 +253,19 @@ public class HirobaController {
     }
 
     /*
-     * レスポンス詳細　いいね数の登録
+     * レスポンス詳細 いいね数の登録
      * 
      */
     @GetMapping("RessDetail/update_like")
-    public String updateLike(@RequestParam("response_id") String response_id, @RequestParam("response_creater") String response_creater, @RequestParam("like") String like) {
+    public String updateLike(@RequestParam("response_id") String response_id,
+            @RequestParam("response_creater") String response_creater, @RequestParam("like") String like) {
         String view_user = sessionData.getUser_id();
 
         View_response view_response = new View_response(
-            response_id,
-            response_creater,
-            view_user,
-            like
-        );
+                response_id,
+                response_creater,
+                view_user,
+                like);
 
         view_responseService.updateLike(view_response);
 
@@ -280,19 +286,16 @@ public class HirobaController {
         model.addAttribute("list", list);
         model.addAttribute("checkFollow", threadFollow);
 
-        //thread_name は投稿がないと表示されない
-        //外部結合に直してね
+        // thread_name は投稿がないと表示されない
+        // 外部結合に直してね
         model.addAttribute("thread_name", thread.get().getThread_name());
         model.addAttribute("genres", jenreService.selectAll());
         model.addAttribute("thread_id", thread_id);
         model.addAttribute("user_id", sessionData.getUser_id());
 
-
-        
         Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
         model.addAttribute("recommend", recommend);
 
-        
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
 
@@ -306,19 +309,18 @@ public class HirobaController {
     @SendTo("/response/posting")
     public ThreadDetail posting(@Validated ResponseCreateForm responseCreateForm) throws Exception {
         ThreadDetail detail = collection.response_create(responseCreateForm);
-        
+
         return detail;
     }
-
 
     /*
      * スレッド作成機能
      */
     @PostMapping("thread_create")
     public String threadCreate(@Validated ThreadCreateForm threadCreateForm, BindingResult result, Model model) {
-        
+
         String thread_creater = sessionData.getUser_id();
-        String MaxThread_id = collection.createId(threadService.selectMaxThread_id()); 
+        String MaxThread_id = collection.createId(threadService.selectMaxThread_id());
         Thread thread = new Thread();
         thread.setThread_id(MaxThread_id);
         thread.setThread_name(threadCreateForm.getThread_name());
@@ -326,19 +328,18 @@ public class HirobaController {
         thread.setJenre_id(threadCreateForm.getGenre_id());
 
         threadService.insertThread(thread);
-        
+
         Iterable<ThreadDetail> list_popular3 = threadDetailService.selectThreadDetail_Popular3(MaxThread_id);
         Iterable<ThreadDetail> list = threadDetailService.selectThreadDetailAll(MaxThread_id);
 
-
         model.addAttribute("list_popular3", list_popular3);
         model.addAttribute("list", list);
-        model.addAttribute("thread_name",threadCreateForm.getThread_name());
+        model.addAttribute("thread_name", threadCreateForm.getThread_name());
         model.addAttribute("jenre_name", threadService.findThreadJenre_name(MaxThread_id));
         model.addAttribute("thread_id", MaxThread_id);
-        
+
         return "redirect:/Hiroba/ThreadDetail?thread_id=" + MaxThread_id;
-        
+
     }
 
     /*
@@ -351,18 +352,17 @@ public class HirobaController {
         Comment comment = new Comment();
         String view_user = commentCreateForm.getUser_id();
         String comment_id = commentservice.maxCommentId(view_user);
-        if(comment_id != null){
+        if (comment_id != null) {
             comment_id = collection.createId(commentservice.maxCommentId(view_user));
-        }
-        else{
+        } else {
             comment_id = "C00001";
         }
-        
+
         comment.setResponse_id(commentCreateForm.getResponse_id());
         comment.setView_user(view_user);
         comment.setComment_id(comment_id);
         comment.setComment(commentCreateForm.getComment());
-        comment.setResponse_creater(commentCreateForm.getResponse_creater());        
+        comment.setResponse_creater(commentCreateForm.getResponse_creater());
         commentservice.insertComment(comment);
 
         Optional<User> user = userService.selectUser(view_user);
@@ -388,31 +388,29 @@ public class HirobaController {
 
         String genre_id = sessionData.getJenre_id();
 
-        switch(modeThread) {
+        switch (modeThread) {
             case "myThread":
                 title = "自作スレッド一覧";
 
-                //登録順の一覧
+                // 登録順の一覧
                 list = threadListService.selectMyThread_OrderByRegist(sessionData.getUser_id());
-
-    
 
                 model.addAttribute("myThread_OrderByRegist", list);
 
-                //更新順の一覧
+                // 更新順の一覧
                 list = threadListService.selectMyThread_OrderByUpdate(sessionData.getUser_id());
                 model.addAttribute("myThread_OrderByUpdate", list);
-                
+
                 break;
 
             case "followThread":
                 title = "フォロースレッド一覧";
 
-                //登録順の一覧
+                // 登録順の一覧
                 list = threadListService.selectFollowThread_OrderByRegist(sessionData.getUser_id());
                 model.addAttribute("followThread_OrderByRegist", list);
 
-                //更新順の一覧
+                // 更新順の一覧
                 list = threadListService.selectFollowThread_OrderByUpdate(sessionData.getUser_id());
                 model.addAttribute("followThread_OrderByUpdate", list);
 
@@ -421,11 +419,11 @@ public class HirobaController {
             case "genreThread":
                 title = "ジャンルスレッド一覧";
 
-                //人気順の一覧
+                // 人気順の一覧
                 list = threadListService.selectGenreThread_OrderByPopular(genre_id);
                 model.addAttribute("genreThread_OrderByPopular", list);
 
-                //新着順の一覧
+                // 新着順の一覧
                 list = threadListService.selectGenreThread_OrderByRegist(genre_id);
                 model.addAttribute("genreThread_OrderByRegist", list);
 
@@ -443,11 +441,9 @@ public class HirobaController {
         model.addAttribute("modeThread", modeThread);
         model.addAttribute("title", title);
 
-        
         Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
         model.addAttribute("recommend", recommend);
 
-        
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
 
@@ -455,19 +451,19 @@ public class HirobaController {
     }
 
     @GetMapping("follow_thread")
-    public String followThread(Model model, @RequestParam("user_id") String user_id, @RequestParam("thread_id") String thread_id, @RequestParam("check") Integer check) {
+    public String followThread(Model model, @RequestParam("user_id") String user_id,
+            @RequestParam("thread_id") String thread_id, @RequestParam("check") Integer check) {
 
-        if(check == 0) {
+        if (check == 0) {
 
             threadService.insertFollowThread(user_id, thread_id);
 
-        }else {
+        } else {
 
             threadService.deleteFollowThread(user_id, thread_id);
 
         }
 
-        
         return "redirect:/Hiroba/ThreadDetail?thread_id=" + thread_id;
     }
 
@@ -475,18 +471,34 @@ public class HirobaController {
      * response 削除
      */
     @GetMapping("delete_response/{scene}")
-    public String deleteResponse(Model model, 
-                                 @PathVariable("scene") String scene,
-                                 @RequestParam("response_creater") String response_creater,
-                                 @RequestParam("response_id") String response_id,
-                                 @RequestParam("thread_id") String thread_id) { 
-        
+    public String deleteResponse(Model model,
+            @PathVariable("scene") String scene,
+            @RequestParam("response_creater") String response_creater,
+            @RequestParam("response_id") String response_id,
+            @RequestParam("thread_id") String thread_id) {
+
         responseService.deleteResponse(response_creater, response_id);
-        
-        if(scene.equals("ThreadDetail")){
-            //.equals(msg2)
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+
+        if (scene.equals("ThreadDetail")) {
+            // .equals(msg2)
             return "redirect:/Hiroba/" + scene + "?thread_id=" + thread_id;
-        }else{
+        } else {
             return "redirect:/" + scene;
         }
     }
@@ -495,19 +507,26 @@ public class HirobaController {
      * thread 削除
      */
     @GetMapping("delete_thread")
-    public String deleteThread(Model model,@RequestParam("thread_id") String thread_id){
+    public String deleteThread(Model model, @RequestParam("thread_id") String thread_id) {
         threadService.deleteThread(thread_id);
         return "redirect:/Hiroba";
     }
 
-    /*共有するとき*/
+    /* 共有するとき */
     @GetMapping("share_response")
-    public String ShareResponse(Model model, @RequestParam("response_creater") String response_creater, @RequestParam("response_id") String response_id, @RequestParam("url") String url) {
+    public String ShareResponse(Model model, @RequestParam("response_creater") String response_creater,
+            @RequestParam("response_id") String response_id, @RequestParam("url") String url) {
         String login_user_id = sessionData.getUser_id();
-        String login_user_response = collection.createId(responseService.selectMaxResponseId(login_user_id));
+        String new_response_id = "R000000";
+        Optional<SubmitResponse> count = submitResponseService.findSubmitResponse(login_user_id);
+        Integer response_count = count.get().getSubmitcount();
+        if (response_count != 0) {
+            new_response_id = responseService.selectMaxResponseId(login_user_id);
+        }
+        String login_user_response = collection.createId(new_response_id);
 
         responseService.ShareResponse(login_user_id, login_user_response, response_creater, response_id);
-        
+
         return "redirect:/Hiroba/RessDetail/" + url + "?user_id=" + response_creater + "&response_id=" + response_id;
     }
 
@@ -519,7 +538,7 @@ public class HirobaController {
         Iterable<ThreadList> searchThread = threadListService.selectSearchThread(search_word);
         model.addAttribute("searchThread", searchThread);
 
-        //スレッド一覧へ
+        // スレッド一覧へ
         return showThreadList(model, "searchThread");
     }
 
@@ -529,5 +548,23 @@ public class HirobaController {
         return "redirect:/Hiroba";
     }
 
-    
+    // 2023-02-01追加(阿部)
+    @GetMapping("ress_follow")
+    public String showFollow(Model model,
+            @RequestParam("url") String url,
+            @RequestParam("user_id") String user_id,
+            @RequestParam("response_id") String response_id,
+            @RequestParam("check_follow") Integer check_follow,
+            RedirectAttributes redirectAttributes) {
+
+        if (check_follow == 0) {
+            followerService.FollowInsert(sessionData.getUser_id(), user_id);
+        } else {
+            followerService.FollowDelete(sessionData.getUser_id(), user_id);
+
+        }
+        return "redirect:/Hiroba/RessDetail/" + url + "?user_id=" + user_id + "&response_id=" + response_id;
+
+    }
+
 }

@@ -713,6 +713,13 @@ ul {
   color: white;
 }
 
+<<<<<<< HEAD
+
+
+.video-form{
+  
+}
+=======
 .fjg{
   /* position: fixed; */
   /* z-index: 9999; */
@@ -814,3 +821,4 @@ opacity: 0;
   transform: translateY(-6px) rotate(45deg);
   width: 30%;
 }
+>>>>>>> 48e148cbb2f7f4955667b2a943c4258562c751fa
