@@ -36,15 +36,17 @@
     <div class="side" th:fragment="side">
 
         <!-- ユーザ検索 -->
-        <p>ユーザ検索</p>
-        <!-- 検索フォーム -->
-        <form id="search_form" th:action="@{/Hiroba/search_user}">
-            <input type="text" id="search_word" name="search_word">
-            <input type="submit" value="検索">
-        </form>
+        <div id="search_user">
+            <p>ユーザ検索</p>
+            <!-- 検索フォーム -->
+            <form id="search_form" th:action="@{/Hiroba/search_user}">
+                <input type="text" id="search_word" name="search_word" placeholder="ユーザ名を入力">
+                <input type="submit" value="検索">
+            </form>
 
-        <div id="result">
-            <th:block th:replace="~{commons/layout :: search_user}"></th:block>
+            <div id="result">
+                <th:block th:replace="~{commons/layout :: result_user}"></th:block>
+            </div>
         </div>
         
 
@@ -62,7 +64,7 @@
 
     
     <!-- ユーザ検索 -->
-    <th:block th:fragment="search_user">
+    <th:block th:fragment="result_user">
         <div class="light1">
             <ul class="osusu">
                 <li th:each="obj:${user}" th:object="${obj}">

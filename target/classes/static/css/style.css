@@ -465,30 +465,33 @@ display: block;
 .side {
   background-color: rgb(225 225 225);
   width: 25%;
+  position: sticky;
+  height: 1000px;
+  top: 0px;
 }
 
-/*おすすめユーザー*/
-.light1 {
+#search_user {
   text-align: center;
-  padding: 5%;
-  margin: 5%;
+  padding: 0.5em;
+  margin: 1em;
   background-color: #ffffff;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 10px;
   height: 280px;
-  border-radius: 15px 15px 0px 0px;
+  border-radius: 15px;
 }
+
+#search_form input {
+  border: 1px solid;
+  background: white;
+  border-radius: 5px;
+}
+
 
 /*通知*/
 .light2 {
   text-align: center;
-  padding: 10%;
-  margin: 5%;
+  padding: 0.5em;
+  margin: 1em;
   background-color: #ffffff;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 300px;
   height: 600px;
   border-radius: 15px;
   overflow-y: scroll;
@@ -663,6 +666,3 @@ ul {
   background-color: #ff7519;
   color: white;
 }
-
-
-
