@@ -77,7 +77,7 @@ main {
 /*今の画面　上の*/
 .head {
   text-align: center;
-  background-color: #ababab;
+  background-color: #9c9c9c;
   color: #ffffff;
   height: 40px;
   padding: 0.5em 0.5em;
@@ -302,7 +302,7 @@ display: block;
 */
 /***************右側       「右」　　　　**************************************/
 .side {
-  background-color: rgb(225 225 225);
+  background-color: rgb(223, 223, 223);
   width: 25%;
 }
 
@@ -456,53 +456,3 @@ display: block;
   transition-duration: 0.5s;
   z-index: 1;
 } /*# sourceMappingURL=style.css.map *//*# sourceMappingURL=style.css.map */
-
-
-
-
-
-.janru{
-  width: 100%;
-  margin-top: 10px;
-  /* background-color: rgb(233, 213, 252); */
-  /* flex-wrap: wrap; */
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  /* float: left; */
-}
-
-.Tabs {
-  display: flex;
-  /* flex-wrap: wrap; */
-}
-.Tabs li{
-  /* float:left; */
-}
-
-.Tabs-tab {
-  background: #e5e5e5;
-  border-radius: 4px;
-  color: #666;
-  cursor: pointer;
-  flex-basis: 1px;
-  flex-grow: 1;
-  font-size: 13px;
-  font-weight: 600;
-  height: 40px;
-  line-height: 40px;
-  margin-right: 8px;
-  position: relative;
-  text-align: center;
-  /* width: 10%; */
-}
-
-.Tabs-tab:hover{
-  background-color: #ff7519;
-  color: white;
-}
-
-
-

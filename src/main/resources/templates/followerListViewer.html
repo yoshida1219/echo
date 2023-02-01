@@ -54,21 +54,37 @@
                         <li>Follower</li>
                     </ul>
                     <div>
-                        <div class="list" th:each="obj:${FollowList}">
-                            <img th:src="${obj.icon}">
-                            <div>
-                                <p th:text="${obj.user_name}"></p>
-                                <p th:text="${obj.introduction}"></p> 
-                            </div>
-                        </div>   
+                        <div th:each="obj:${FollowList}">
+                            <div class="list">
+                                <img th:src="${obj.icon}">
+                                <div class="user">
+                                    <p th:text="${obj.user_name}"></p>
+                                    <p th:text="${obj.introduction}"></p> 
+                                </div>
+                                <div id="follow-btn">
+                                    <button th:id="${obj.user_id}" th:value="${obj.user_id}" onclick="runProgram(this)">
+                                        <th:block th:uless="">
+                                        フォローする
+                                        </th:block>
+                                    </button>
+                                </div>
+                            </div>   
+                        </div>
                     </div>
 
                     <div>
-                        <div class="list" th:each="obj:${FollowerList}">
-                            <img th:src="${obj.icon}">
-                            <div>
-                                <p th:text="${obj.user_name}"></p>
-                                <p th:text="${obj.introduction}"></p>
+                        <div th:each="obj:${FollowerList}">
+                            <div class="list">
+                                <img th:src="${obj.icon}">
+                                <div class="user">
+                                    <p th:text="${obj.user_name}"></p>
+                                    <p th:text="${obj.introduction}"></p>
+                                </div>
+                                <div>
+                                    <button th:id="${obj.user_id}" th:value="${obj.user_id}" onclick="runProgram(this)">
+                                        フォローする
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -148,6 +164,19 @@
     $(document).ready( function() {
         tabify( '#tabs' );
     });
+
+    function runProgram(event){
+        const url = 'insertfollow'
+        const user_id = event.value;
+        $.ajax({
+            url: url,
+            type:'POST',
+            data: { user_id: user_id},
+            success: function(result){
+                document.getElementById(user_id).innerText = 'フォロー中'
+            }
+        });
+    }
     </script>
 </body>
 
