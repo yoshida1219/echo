@@ -469,19 +469,24 @@ display: block;
 .side {
   background-color: rgb(225 225 225);
   width: 25%;
+  position: sticky;
+  height: 1000px;
+  top: 0px;
 }
 
-/*おすすめユーザー*/
-.light1 {
+#search_user {
   text-align: center;
-  padding: 5%;
-  margin: 5%;
+  padding: 0.5em;
+  margin: 1em;
   background-color: #ffffff;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 10px;
-  height: 280px;
-  border-radius: 15px 15px 0px 0px;
+  height: 420px;
+  border-radius: 15px;
+}
+
+#search_form input {
+  border: 1px solid;
+  background: white;
+  border-radius: 5px;
 }
 
 /*通知*/
@@ -515,6 +520,27 @@ display: block;
   background-color: #00a149;
   height: 50px;
   margin: 5px;
+  position: relative;
+}
+
+.osusu li button {
+  display: flex;
+  width: 100%;
+}
+
+.osusu li button img{
+  max-width: 100%;
+}
+
+#user_icon {
+  width: 13%;
+  position: relative;
+  margin: 0 10%;
+}
+
+#user_details {
+  width: 60%;
+  text-align: start;
 }
 
 .foot0 {

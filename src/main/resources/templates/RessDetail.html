@@ -18,7 +18,9 @@
 
     <link rel="stylesheet" th:href="@{/reset/ress.min.css}" />
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
-    <!-- /111 -->
+
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 </head>
 
 <body>
@@ -157,13 +159,13 @@
                                 </th:block>
                             </div>
 
-                            <form method="post" th:action="@{/Hiroba/comment_create/{url} (url=${url})}"
-                                th:object="${commentCreateForm}">
+                            <form method="get" th:object="${commentCreateForm}">
 
                                 <input type="text" id="CommentText" placeholder="投稿にコメントしよう" name="comment"></input>
                                 <input type="submit" id="CommentButton" value="コメント投稿">
                                 <input type="hidden" name="response_id" th:value="${response_id}">
                                 <input type="hidden" name="response_creater" th:value="${response_creater}">
+
                             </form>
 
                         </div>
@@ -224,6 +226,7 @@
     <script th:src="@{/js/favCount_movieTime.js}"></script>
     <script th:src="@{https://www.youtube.com/iframe_api}"></script>
     <script th:src="@{/js/ajax.js}"></script>
+    <script th:src="@{/js/ressDetail-web-socket.js}"></script>
 
 
 </body>

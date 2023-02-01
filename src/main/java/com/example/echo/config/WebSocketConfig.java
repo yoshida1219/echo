@@ -12,7 +12,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
         //受け取り口の設定
-        config.enableSimpleBroker("/response");
+        config.enableSimpleBroker("/response", "/comment");
         //送付先
         config.setApplicationDestinationPrefixes("/app");
     }
