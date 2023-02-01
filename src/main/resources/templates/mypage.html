@@ -96,8 +96,11 @@
 
                                 <!-- 登録ジャンル -->
                                 <div class="mypage-janru">
-                                    <a href="">音楽</a>
-                                    <a href="">芸術</a>
+                                    <th:block th:unless="${#lists.isEmpty(jenreAll)}">
+                                        <th:block th:each="obj:${jenreAll}">
+                                            <a href="" th:text="${obj.jenre_name}"></a>
+                                        </th:block>
+                                    </th:block>
                                 </div>
 
                                 <!-- 一言コメント -->
