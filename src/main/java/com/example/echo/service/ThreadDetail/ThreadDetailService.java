@@ -11,4 +11,6 @@ public interface ThreadDetailService {
 
     Iterable<ThreadList> selectThreadOneByWord(String search_word);
 
+    
+
 }
