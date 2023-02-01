@@ -52,10 +52,18 @@
 
         <!-- 通知エリア -->
         <div class="light2">
+            <p>表示された人にフォローされました</p>
             <ul class="osusu">
                 <li th:each="obj:${follow_notice}" th:object="${obj}">
-                    <a th:href="@{/notice?user_id={user_id} (user_id=*{user_id})}"
-                        class="">[[*{user_name}]]</a>
+                    <button th:attr="onClick='location.href=\''+@{/notice?user_id={user_id} (user_id=*{user_id})}+'\''">
+                        <div id="user_icon">
+                            <img th:src="*{icon}" alt="">
+                        </div>
+                        <div id="user_details">
+                            <p th:text="*{user_name}"></p>
+                            <p th:text="*{search_name}"></p>
+                        </div>
+                    </button>
                 </li>
             </ul>
         </div>
@@ -69,8 +77,13 @@
             <ul class="osusu">
                 <li th:each="obj:${user}" th:object="${obj}">
                     <button th:attr="onClick='location.href=\''+@{/mypage?user_id={user_id} (user_id=*{user_id})}+'\''">
-                        <p th:text="*{user_name}"></p>
-                        <p th:text="*{search_name}"></p>
+                        <div id="user_icon">
+                            <img th:src="*{icon}" alt="">
+                        </div>
+                        <div id="user_details">
+                            <p th:text="*{user_name}"></p>
+                            <p th:text="*{search_name}"></p>
+                        </div>
                     </button>
                 </li>
         </div>

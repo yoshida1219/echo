@@ -314,7 +314,7 @@ display: block;
   padding: 0.5em;
   margin: 1em;
   background-color: #ffffff;
-  height: 280px;
+  height: 420px;
   border-radius: 15px;
 }
 
@@ -331,7 +331,7 @@ display: block;
   padding: 0.5em;
   margin: 1em;
   background-color: #ffffff;
-  height: 600px;
+  height: 500px;
   border-radius: 15px;
   overflow-y: scroll;
 }
@@ -354,7 +354,35 @@ display: block;
   background-color: #00a149;
   height: 50px;
   margin: 5px;
+  /* position: relative; */
 }
+
+.osusu li button {
+  display: flex;
+  width: 100%;
+  /* vertical-align: baseline; */
+  /* text-align: center; */
+}
+
+.osusu li button img{
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+}
+
+#user_icon {
+  width: 15%;
+  position: relative;
+}
+
+#user_details {
+  width: 60%;
+  text-align: start;
+}
+
+
 
 .foot0 {
   position: relative;
