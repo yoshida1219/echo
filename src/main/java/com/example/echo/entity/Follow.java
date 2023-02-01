@@ -1,16 +1,18 @@
-package com.example.echo.entity.select;
+package com.example.echo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nonapi.io.github.classgraph.json.Id;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FollowUserName {
+public class Follow {
+    @Id
     private String user_name;
 
-    private String user_name_follow;
+    private String introduction;
 
-    
+    private String icon;
 }

@@ -14,12 +14,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.echo.entity.User;
 import com.example.echo.api.Saved_thumbnail;
+import com.example.echo.entity.Follow;
 import com.example.echo.entity.Jenre;
 import com.example.echo.entity.select.FavoriteMovie;
 import com.example.echo.entity.select.Follower;
 import com.example.echo.entity.select.MypageResponse;
 import com.example.echo.entity.select.SubmitResponse;
 import com.example.echo.service.FavoriteMovie.FavoriteMovieService;
+import com.example.echo.service.Follow.FollowUserService;
 import com.example.echo.service.Follower.FollowerService;
 import com.example.echo.service.MypageResponse.MypageResponseService;
 import com.example.echo.service.Recommend.RecommendService;
@@ -39,6 +41,7 @@ import com.example.echo.service.Jenre.JenreService;
 @RequestMapping("")
 public class MypageController {
     private final UserService userService;
+    private final FollowUserService followUserService;
     private final FollowerService followerService;
     private final SubmitResponseService submitResponseService;
     private final FavoriteMovieService favoriteMovieService;
@@ -51,6 +54,7 @@ public class MypageController {
     @Autowired
     public MypageController(
         UserService userService,
+        FollowUserService followUserService,
         FollowerService followerService,
         SubmitResponseService submitResponseService,
         FavoriteMovieService favoriteMovieService,
@@ -61,6 +65,7 @@ public class MypageController {
         SessionData sessionData
     ) {
         this.userService = userService;
+        this.followUserService = followUserService;
         this.followerService = followerService;
         this.submitResponseService = submitResponseService;
         this.favoriteMovieService = favoriteMovieService;
@@ -182,4 +187,15 @@ public class MypageController {
         return "redirect:/mypage?user_id=" + user_id;
     }
 
+    @GetMapping("/followerListViewer")
+    public String showFollowerList(Model model){
+        
+        Iterable<Follow> FollowList = followUserService.selectFollow("U00000002");
+        Iterable<Follower> FollowerList = followerService.OrderFollowerList("U00000002");
+        
+        model.addAttribute("FollowList", FollowList);
+        model.addAttribute("FollowerList", FollowerList);
+        
+        return "followerListViewer";
+    }
 }
