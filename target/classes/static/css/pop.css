@@ -49,6 +49,8 @@ button{
   cursor: pointer;
   border: none;
   outline: none;
+  /* display: flex; */
+  /* justify-content: center; */
 }
 
 img{

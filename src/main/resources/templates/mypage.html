@@ -90,8 +90,17 @@
 
                                 <!-- 数字 -->
                                 <div class="mypage-suji">
-                                    <p>フォロー：[[${follow.follower}]]</p>
-                                    <p id="foorowa2">フォロワー：[[${follower.follower}]]</p>
+                                    <p>
+                                        <a th:href="@{/followerListViewer}">
+                                            フォロー：[[${follow.follower}]]
+                                        </a>
+                                    </p>
+                                    
+                                    <p id="foorowa2">
+                                        <a th:href="@{/followerListViewer}">
+                                            フォロワー：[[${follower.follower}]]
+                                        </a>                                        
+                                    </p>
                                 </div>
 
                                 <!-- 登録ジャンル -->
@@ -189,9 +198,10 @@
                                     </th:block>
 
                                     
-                                    
+                                    <th:block th:if="${login}==${list.user_id}">
                                     <a th:href="@{/Hiroba/delete_response/Hiroba?response_creater={user_id}&response_id={response_id}&thread_id=null (user_id=${loop.user_id},response_id=${loop.response_id})}"
                                     class="example">投稿を削除</a>
+                                    </th:block>
                                     
 
                                     <div class="image-wrapper">

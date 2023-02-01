@@ -153,7 +153,6 @@
                                         title="YouTube video player" frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe> -->
-                            <input type="hidden" id="movieID_html" th:value="${url}">
                             <div id="player"></div>
                         </div>
 
@@ -163,10 +162,7 @@
 
                             <div class="kyouyu-datail">
                                 <th:block th:unless="${login_user}==${response_creater}">
-                                    <a
-                                        th:href="@{/Hiroba/share_response?response_creater={response_creater}&response_id={response_id}&url={url} (response_creater=*{response_creater},response_id=*{response_id},url=*{url})}">
-                                        <p>共有</p>
-                                    </a>
+                                    <button id="tt1" onclick="share_response()">共有</button>
                                 </th:block>
                             </div>
 
@@ -175,8 +171,9 @@
 
                                 <input type="text" id="CommentText" placeholder="投稿にコメントしよう" name="comment"></input>
                                 <input type="submit" id="CommentButton" value="コメント投稿">
-                                <input type="hidden" name="response_id" th:value="${response_id}">
-                                <input type="hidden" name="response_creater" th:value="${response_creater}">
+                                <input type="hidden" name="response_id" th:value="${response_id}" id="response_id">
+                                <input type="hidden" name="response_creater" th:value="${response_creater}" id="response_creater">
+                                <input type="hidden" id="movieID_html" th:value="${url}" >
                             </form>
 
                         </div>
@@ -237,6 +234,8 @@
     <script th:src="@{/js/favCount_movieTime.js}"></script>
     <script th:src="@{https://www.youtube.com/iframe_api}"></script>
     <script th:src="@{/js/ajax.js}"></script>
+    <script th:src="@{/js/share_response.js}"></script>
+
 
 
 </body>
