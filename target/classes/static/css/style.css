@@ -304,31 +304,34 @@ display: block;
 .side {
   background-color: rgb(223, 223, 223);
   width: 25%;
+  position: sticky;
+  height: 1000px;
+  top: 0px;
 }
 
-/*おすすめユーザー*/
-.light1 {
+#search_user {
   text-align: center;
-  padding: 5%;
-  margin: 5%;
+  padding: 0.5em;
+  margin: 1em;
   background-color: #ffffff;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 10px;
-  height: 280px;
-  border-radius: 15px 15px 0px 0px;
+  height: 420px;
+  border-radius: 15px;
 }
+
+#search_form input {
+  border: 1px solid;
+  background: white;
+  border-radius: 5px;
+}
+
 
 /*通知*/
 .light2 {
   text-align: center;
-  padding: 10%;
-  margin: 5%;
+  padding: 0.5em;
+  margin: 1em;
   background-color: #ffffff;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 300px;
-  height: 600px;
+  height: 500px;
   border-radius: 15px;
   overflow-y: scroll;
 }
@@ -351,7 +354,35 @@ display: block;
   background-color: #00a149;
   height: 50px;
   margin: 5px;
+  /* position: relative; */
 }
+
+.osusu li button {
+  display: flex;
+  width: 100%;
+  /* vertical-align: baseline; */
+  /* text-align: center; */
+}
+
+.osusu li button img{
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+}
+
+#user_icon {
+  width: 15%;
+  position: relative;
+}
+
+#user_details {
+  width: 60%;
+  text-align: start;
+}
+
+
 
 .foot0 {
   position: relative;
@@ -456,3 +487,50 @@ display: block;
   transition-duration: 0.5s;
   z-index: 1;
 } /*# sourceMappingURL=style.css.map *//*# sourceMappingURL=style.css.map */
+
+
+
+
+
+.janru{
+  width: 100%;
+  margin-top: 10px;
+  /* background-color: rgb(233, 213, 252); */
+  /* flex-wrap: wrap; */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  /* float: left; */
+}
+
+.Tabs {
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+.Tabs li{
+  /* float:left; */
+}
+
+.Tabs-tab {
+  background: #e5e5e5;
+  border-radius: 4px;
+  color: #666;
+  cursor: pointer;
+  flex-basis: 1px;
+  flex-grow: 1;
+  font-size: 13px;
+  font-weight: 600;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 8px;
+  position: relative;
+  text-align: center;
+  /* width: 10%; */
+}
+
+.Tabs-tab:hover{
+  background-color: #ff7519;
+  color: white;
+}
