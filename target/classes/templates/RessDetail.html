@@ -38,6 +38,7 @@
             投稿日時：yyyymmddhh
             コメントした人のプロフィール画像
             コメント未入力で投稿できなくする
+            コメントの日付書式
          -->
 
         <!-- <div class="head">
@@ -57,7 +58,7 @@
                     <div class="">
 
                         <div class="main-title-Datail">
-                            <h1>ここにmovie_nameいれてね♡</h1>
+                            <h1>[[${obj.movie_name}]]</h1>
 
                             <th:block th:unless="${login_user}!=${response_creater}">
                                 <a class="remove-detail"
@@ -68,7 +69,7 @@
                         </div>
 
                         <!-- サブタイトル-->
-                        <div th:each="obj:${response}" class="d2-2-2-2">
+                        <div class="d2-2-2-2">
                             説明
                             <p th:text="${obj.response_name}"></p>
                         </div>
@@ -76,8 +77,8 @@
                         <!-- 動画情報 -->
                         <div class="sub-title-Datail">
                             <p>共有スレッド数:<span>0</span></p>
-                            <p>所属スレッド名:<span>テストテストテスト</span></p>
-                            <p>投稿日時：<span>2021-01-31-10：15</span></p>
+                            <p>所属スレッド名:<span>[[${obj.thread_name}]]</span></p>
+                            <p>投稿日時：<span>[[${obj.response_submit}]]</span></p>
                         </div>
 
 
@@ -87,7 +88,7 @@
                     <!-- 動画詳細情報 -->
                     <div class="d2-2">
                         <!-- 投稿主 -->
-                        <div th:each="obj:${response}" class="d2-2-1">
+                        <div class="d2-2-1">
 
 
                             <button class="clickshow toukounusi"
@@ -99,29 +100,41 @@
                                 <p th:text="${obj.user_name}"></p>
                             </div>
                             <!-- フォローボタン -->
-                            <div class="follow-detail">
-                                <p>フォローする</p>
-                                <!-- 解除もよろしく！ -->
 
-                            </div>
+                            <th:block th:unless="${login_user}==${obj.user_id}">
+                                <th:block th:if="${check_follow}==0">
+                                    <div class="follow-detail">
+                                        <button id="tt1"
+                                        th:attr="onClick='location.href=\''+ @{/Hiroba/ress_follow?url={url}&user_id={user_id}&response_id={response_id}&check_follow=0 (url=${send_url},user_id=${obj.user_id},response_id=${response_id})} +'\''">フォロー</button>
+                                    </div>
+                                </th:block>
+                                <th:block th:if="${check_follow}==1">
+                                    <div class="follow-detail">
+                                        <button id="tt1"
+                                            th:attr="onClick='location.href=\''+ @{/Hiroba/ress_follow?url={url}&user_id={user_id}&response_id={response_id}&check_follow=1 (url=${send_url},user_id=${obj.user_id},response_id=${response_id})} +'\''">フォロー解除</button>
+                                    </div>
+                                </th:block>
+                            </th:block>
 
                         </div>
 
-                            <!-- いいね　共有 投稿削除-->
-                            <div th:each="obj:${response}" class="d2-2-2-1">
+                        <!-- いいね　共有 投稿削除-->
+                        <div class="d2-2-2-1">
 
-                                <div class="kazu-datail iine6">
-                                    <p>いいね</p><p th:text="${obj.like}" id="fav_count"></p>
-                                    <input type="hidden" id="regacy_fav_count" th:value="${obj.like}">
+                            <div class="kazu-datail iine6">
+                                <p>いいね</p>
+                                <p th:text="${obj.like}" id="fav_count"></p>
+                                <input type="hidden" id="regacy_fav_count" th:value="${obj.like}">
 
-                                </div>
-                                <div class="kazu-datail kyo6">
-                                    <p>共有など</p><p th:text="${obj.share}"></p>
-                                    <input type="hidden" id="response_id" th:value="*{response_id}">
-                                    <input type="hidden" id="response_creater" th:value="*{response_creater}">
-                                    <input type="hidden" id="view_user" th:value="${session.sessionData.user_id}">
-                                </div>
                             </div>
+                            <div class="kazu-datail kyo6">
+                                <p>共有など</p>
+                                <p th:text="${obj.share}"></p>
+                                <input type="hidden" id="response_id" th:value="*{response_id}">
+                                <input type="hidden" id="response_creater" th:value="*{response_creater}">
+                                <input type="hidden" id="view_user" th:value="${session.sessionData.user_id}">
+                            </div>
+                        </div>
 
 
                     </div>
@@ -151,7 +164,7 @@
                             <div class="kyouyu-datail">
                                 <th:block th:unless="${login_user}==${response_creater}">
                                     <a
-                                        th:href="@{/Hiroba/share_response?response_creater={response_creater}&response_id={response_id} (response_creater=*{response_creater},response_id=*{response_id})}">
+                                        th:href="@{/Hiroba/share_response?response_creater={response_creater}&response_id={response_id}&url={url} (response_creater=*{response_creater},response_id=*{response_id},url=*{url})}">
                                         <p>共有</p>
                                     </a>
                                 </th:block>

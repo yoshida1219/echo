@@ -1,5 +1,7 @@
 package com.example.echo.service.SelectResponse;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +16,7 @@ public class SelectResponseServiceImpl implements SelectResponseService{
     SelectResponseRepository repository;
 
     @Override
-    public Iterable<SelectResponse> SelectResponse(String resposne_id,String user_id){
+    public Optional<SelectResponse> SelectResponse(String resposne_id,String user_id){
         return repository.SelectResponse(resposne_id,user_id);
     }
 

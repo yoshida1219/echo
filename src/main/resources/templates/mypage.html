@@ -187,7 +187,13 @@
                                             <a th:href="@{/favoriteMovie?user_id={user_id}&movie_id={movie_id}&check=0 (user_id=${loop.user_id}, movie_id=${loop.movie_id})}"
                                                 class="example">お気に入り登録</a>
                                     </th:block>
+
                                     
+                                    
+                                    <a th:href="@{/Hiroba/delete_response/Hiroba?response_creater={user_id}&response_id={response_id}&thread_id=null (user_id=${loop.user_id},response_id=${loop.response_id})}"
+                                    class="example">投稿を削除</a>
+                                    
+
                                     <div class="image-wrapper">
                                         <img th:src="${loop.thumbnail}" alt="">
                                     </div>

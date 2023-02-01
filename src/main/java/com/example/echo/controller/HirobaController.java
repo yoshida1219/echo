@@ -39,6 +39,7 @@ import com.example.echo.entity.Jenre;
 import com.example.echo.entity.Movie;
 import com.example.echo.service.Comment.CommentService;
 import com.example.echo.service.FollowThread.FollowThreadService;
+import com.example.echo.service.Follower.FollowerService;
 import com.example.echo.service.Jenre.JenreService;
 import com.example.echo.service.Movie.MovieService;
 import com.example.echo.service.MyThread.MyThreadService;
@@ -100,6 +101,9 @@ public class HirobaController {
 
     @Autowired
     SpikeUpMovieService spikeUpMovieService;
+
+    @Autowired
+    FollowerService followerService;
 
     @Autowired
     NoticeService noticeService;
@@ -200,9 +204,13 @@ public class HirobaController {
                                 RedirectAttributes redirectAttributes) {
         
             Response threadList = new Response();
+            String login_user = sessionData.getUser_id();
             threadList.setThread_id(selectResponseService.SelectThread_id(response_id, user_id));
             threadList.setMovie_id(selectResponseService.SelectMovie_id(response_id, user_id));
             Iterable<SharedThread> thread = sharedThreadService.selectThread(threadList);
+            
+            //2023-02-01追加(阿部)
+            Optional<Integer> checkFollow = followerService.FindCheckFollow(login_user, user_id);
             
             
             //view_response ここの処理をressdetailに遷移したときに行う
@@ -219,17 +227,19 @@ public class HirobaController {
         }
         
         Iterable<Comment> Comment = commentservice.SelectComment(user_id, response_id);
-        Iterable<SelectResponse> response = selectResponseService.SelectResponse(response_id,user_id);
+        Optional<SelectResponse> response = selectResponseService.SelectResponse(response_id,user_id);
         Optional<Movie> movie = movieservice.SelectMovie(threadList.getMovie_id());
         
         model.addAttribute("list", Comment);
         model.addAttribute("movie", movie.get());
-        model.addAttribute("response", response);
+        model.addAttribute("obj", response.get());
         model.addAttribute("thread", thread);
-        model.addAttribute("url",url);
+        model.addAttribute("send_url",url);
         model.addAttribute("login_user",sessionData.getUser_id());
         model.addAttribute("response_id",response_id);
         model.addAttribute("response_creater",user_id);
+        model.addAttribute("check_follow", checkFollow.get());
+        model.addAttribute("login_user", login_user);
         
         Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
         model.addAttribute("recommend", recommend);
@@ -468,6 +478,22 @@ public class HirobaController {
                                  @RequestParam("thread_id") String thread_id) { 
         
         responseService.deleteResponse(response_creater, response_id);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
+        System.out.println(scene);
         
         if(scene.equals("ThreadDetail")){
             //.equals(msg2)
@@ -513,6 +539,25 @@ public class HirobaController {
     public String showJenre_change(Model model, @RequestParam("jenre_id") String jenre_id) {
         sessionData.setJenre_id(jenre_id);
         return "redirect:/Hiroba";
+    }
+
+    //2023-02-01追加(阿部)
+    @GetMapping("ress_follow")
+    public String showFollow(Model model,  
+    @RequestParam("url") String url,
+    @RequestParam("user_id") String user_id,
+    @RequestParam("response_id") String response_id, 
+    @RequestParam("check_follow") Integer check_follow, 
+    RedirectAttributes redirectAttributes) {
+    
+        if(check_follow == 0) {
+            followerService.FollowInsert(sessionData.getUser_id(), user_id);
+        }else {
+            followerService.FollowDelete(sessionData.getUser_id(), user_id);
+
+        }
+        return "redirect:/Hiroba/RessDetail/" + url + "?user_id=" + user_id + "&response_id=" + response_id;
+
     }
 
     
