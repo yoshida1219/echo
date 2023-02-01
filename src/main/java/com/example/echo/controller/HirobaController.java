@@ -220,10 +220,10 @@ public class HirobaController {
         
         Iterable<Comment> Comment = commentservice.SelectComment(user_id, response_id);
         Iterable<SelectResponse> response = selectResponseService.SelectResponse(response_id,user_id);
-        Iterable<Movie> movie = movieservice.SelectMovie();
+        Optional<Movie> movie = movieservice.SelectMovie(threadList.getMovie_id());
         
         model.addAttribute("list", Comment);
-        model.addAttribute("movie", movie);
+        model.addAttribute("movie", movie.get());
         model.addAttribute("response", response);
         model.addAttribute("thread", thread);
         model.addAttribute("url",url);
@@ -488,13 +488,13 @@ public class HirobaController {
 
     /*共有するとき*/
     @GetMapping("share_response")
-    public String ShareResponse(Model model, @RequestParam("response_creater") String response_creater, @RequestParam("response_id") String response_id) {
+    public String ShareResponse(Model model, @RequestParam("response_creater") String response_creater, @RequestParam("response_id") String response_id, @RequestParam("url") String url) {
         String login_user_id = sessionData.getUser_id();
         String login_user_response = collection.createId(responseService.selectMaxResponseId(login_user_id));
 
         responseService.ShareResponse(login_user_id, login_user_response, response_creater, response_id);
         
-        return "RessDetail";
+        return "redirect:/Hiroba/RessDetail/" + url + "?user_id=" + response_creater + "&response_id=" + response_id;
     }
 
     /*

@@ -15,8 +15,13 @@ var player;
 function onYouTubeIframeAPIReady() {
   count = document.getElementById('regacy_fav_count').value;
   player = new YT.Player('player', {
-    height: '630',
-    width: '1120',
+    height: '100%',
+    width: '100%',
+
+    // height: '630',
+    // width: '1120',
+
+    
     videoId: document.getElementById('movieID_html').value,
     events: {
       'onReady': onPlayerReady,

@@ -10,8 +10,8 @@ import org.springframework.data.repository.query.Param;
 import com.example.echo.entity.Movie;
 
 public interface MovieRepository extends CrudRepository<Movie,String>{
-    @Query("SELECT * FROM movie where MOVIE_ID = 'M00000000001';")
-    Iterable<Movie> selectMovie();
+    @Query("SELECT * FROM movie where MOVIE_ID = :movie_id;")
+    Optional<Movie> selectMovie(@Param("movie_id") String movie_id);
 
     @Query("SELECT movie_id FROM movie ORDER BY movie_id desc limit 1;")
     String findMaxMovieId();
@@ -30,4 +30,11 @@ public interface MovieRepository extends CrudRepository<Movie,String>{
 
     @Query("select url from echo_sns.movie where url = :url;")
     Optional<Movie> existsUrl(@Param("url") String url);
+
+    @Modifying
+    @Query("UPDATE echo_sns.movie SET thumbnail = :thumbnail where url = :url;")
+    void updateThumbnail(
+        @Param("url") String url,
+        @Param("thumbnail") String thumbnail
+    );
 }

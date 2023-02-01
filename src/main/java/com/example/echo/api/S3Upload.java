@@ -1,15 +1,10 @@
 package com.example.echo.api;
 
 import com.amazonaws.auth.AWSCredentials;
-import com.example.echo.api.key;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;

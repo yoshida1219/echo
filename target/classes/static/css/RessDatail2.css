@@ -157,7 +157,7 @@ blockquote cite {
 
 .container-item-img img {
   display: block;
-  height: 225px;
+  /* height: 225px; */
   object-fit: cover;
   width: 100%;
 }
@@ -378,7 +378,7 @@ blockquote cite {
 .container-item{
   background-color: rgb(247, 247, 247);
   margin: 10px;
-  width: 31%;
+  width: 29.7vh;
   padding: 10px;
   transition: 0.2s;
 }
@@ -400,10 +400,11 @@ blockquote cite {
 }
 
 
-.ribbon15-wrapper {  
+.ribbon15-wrapper {
   display: block;
   position: relative;
   box-sizing: border-box;
+  /* height: 70%; */
   }
 
 .ribbon15 {  
@@ -525,6 +526,7 @@ blockquote cite {
   -webkit-line-clamp: 2;
   overflow: hidden;
   font-weight: bold;
+  /* height: 53px; */
 }
 
 .hoOLxL {
@@ -543,6 +545,7 @@ blockquote cite {
 .rankup{
   width: 100%;
   display:flex;
+  /* position: absolute; */
 }
 .marking{
   padding: 5px;

@@ -16,8 +16,8 @@ public class MovieServiceImpl implements MovieService{
     MovieRepository repository;
 
     @Override
-    public Iterable<Movie> SelectMovie(){
-        return repository.selectMovie();
+    public Optional<Movie> SelectMovie(String movie_id){
+        return repository.selectMovie(movie_id);
     }
 
     @Override
@@ -37,4 +37,9 @@ public class MovieServiceImpl implements MovieService{
         public Optional<Movie> existsMovie(String url){
             return repository.existsUrl(url);
         }
+    
+    @Override
+    public void updateThumbnail(String url, String thumbnail) {
+        repository.updateThumbnail(url, thumbnail);
+    }
 }
