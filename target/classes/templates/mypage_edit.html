@@ -13,6 +13,7 @@
 
 
     <link rel="stylesheet" th:href="@{css/mypage.css}" />
+    <link rel="stylesheet" th:href="@{css/mypage_edit.css}" />
     
 
     <link rel="stylesheet" th:href="@{reset/ress.min.css}" />
@@ -63,7 +64,7 @@
 
                         </div>
                         <div class="up-2">
-                            <form th:action="@{/edit_change?user_id={user_id} (user_id=${list.user_id})}" method="post" enctype="multipart/form-data">
+                            <form th:action="@{/edit_change?user_id={user_id} (user_id=${list.user_id})}" method="post" enctype="multipart/form-data" onsubmit="return checkDuplicates()">
                                 <div class="mypage-name">
                                     <input type="text" name="user_name" th:value="${list.user_name}">
 
@@ -75,6 +76,38 @@
                                 <div class="mypage-name">
                                     <input type="text" name="introduction" th:value="${list.introduction}">
                                 </div>
+
+                                <div class="mypage-name">
+                                <select class="formelem maxwidth" id="genre1" name ="genre1" required>
+                                    <option value="a">ジャンルを選択してください</option>
+                                        <th:block th:each="obj:${jenreList}">
+                                            <th:block th:if="${jenre1}==${obj.jenre_id}">
+                                            <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}" selected></option>
+                                            </th:block>
+                                            <th:block th:unless="${jenre1}==${obj.jenre_id}">
+                                            <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}"></option>
+                                            </th:block>
+                                        </th:block>
+                                </select>
+
+                                <select  class="formelem maxwidth" id="genre2" name ="genre2" required>
+                                    <option value="b">ジャンルを選択してください</option>
+
+                                    <th:block th:each="obj:${jenreList}">
+                                        <th:block th:if="${jenre2}==${obj.jenre_id}">
+                                        <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}" selected></option>
+                                        </th:block>
+                                        <th:block th:unless="${jenre2}==${obj.jenre_id}">
+                                        <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}"></option>
+                                        </th:block>
+                                    </th:block>
+                                </select>
+                            </div>
+
+                             <!-- <div id="imageContainer">
+                                <img th:src="*{list.icon}" id="targetImage">
+                                <div id="resizeHandle"></div>
+                              </div>  -->
 
                             
 
@@ -91,9 +124,15 @@
                                 <!-- <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
                                     wrap="off" th:field="*{response_name}" maxlength="200" required></textarea> -->
 
-                            
+                                <div class="mypage-name"></div>
                                 <input type="file" id="fileInput" name="file" onchange="previewImage()">
-                                <input type="submit" value="アップロード">
+                                <div class="prev_img">
+                                    <img id="preview" src="" alt="Preview"/>
+                                </div>
+                            </div>
+                                <div class="a">
+                                <input type="submit" value="編集完了">
+                                </div>
                             </form>
                             
                             <th:block th:unless="${#lists.isEmpty(jenre)}">
@@ -102,9 +141,7 @@
                                 </th:block>
                             </th:block>
                             </div>
-                            <div class="prev_img">
-                                <img id="preview" src="" alt="Preview"/>
-                            </div>
+                            
                         
                         </div>
 
@@ -343,6 +380,7 @@
     <script src="js/scroll.js"></script>
     <script th:src="@{/js/icon_pop.js}"></script>
     <script th:src="@{/js/edit_icon.js}"></script>
+    <script th:src="@{/js/imageResize.js}"></script>
 </body>
 
 </html>
