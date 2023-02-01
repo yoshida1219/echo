@@ -13,8 +13,19 @@ li {
   background-color: #008037 !important;
   color: white;
   border-radius: 5px;
+  width: 650px;
+  height: 60px;
 }
 li:hover {
   background-color: white !important;
   color: black;
+}
+
+.user {
+  background-color: #fff;
+}
+
+.list button {
+  width: 150%;
+  background-color: aqua;
 }/*# sourceMappingURL=followerList.css.map */

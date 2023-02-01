@@ -1,6 +1,8 @@
 package com.example.echo.controller;
 
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -28,7 +31,9 @@ import com.example.echo.service.Recommend.RecommendService;
 import com.example.echo.service.SubmitResponse.SubmitResponseService;
 import com.example.echo.service.User.UserService;
 import com.example.echo.session.SessionData;
+import com.google.common.collect.Iterables;
 
+import jakarta.validation.constraints.Future;
 import jakarta.websocket.Session;
 
 import com.example.echo.service.Jenre.JenreService;
@@ -92,7 +97,9 @@ public class MypageController {
         Optional<SubmitResponse> responseCount = submitResponseService.findSubmitResponse(user_id);
         Iterable<FavoriteMovie> favoriteMovies = favoriteMovieService.OrderFavoriteMovie(user_id);
         Iterable<MypageResponse> mypageResponse = mypageResponseService.orderMypageResponse(user_id);
+        Iterable<Jenre> jenreAll = jenreService.findJenreNames(user_id);
 
+        model.addAttribute("jenreAll", jenreAll);
         model.addAttribute("login", login_user);
         model.addAttribute("checkFollow", checkFollow.get());
         model.addAttribute("list", list.get());
@@ -122,12 +129,34 @@ public class MypageController {
         //String login_user = sessionData.getUser_id();
 
         Iterable<Jenre> jenre = jenreService.findJenre(user_id);
+        Iterable<Jenre> jenreList = jenreService.allJenre();
         Optional<User> list = userService.selectMypageUser(user_id);
 
-        //System.out.println("mypage：" + user_id + "　login：" + login_user);
-        
 
-        model.addAttribute("jenre", jenre);
+        //System.out.println("mypage：" + user_id + "　login：" + login_user);
+        String[] idList = new String[2];
+        int cnt = 0;
+        for (Jenre e : jenre) {
+            idList[cnt] = e.getJenre_id();
+            //System.out.println(cnt + "は" + idList[cnt]);
+            cnt++;
+            
+        }
+        try{
+            String id1 = idList[0];
+            model.addAttribute("jenre1", id1);
+        }catch(Exception e){
+
+        }
+        try{
+            String id2 = idList[1];
+            model.addAttribute("jenre2", id2);
+        }catch(Exception e){
+            
+        }
+        
+        
+        model.addAttribute("jenreList", jenreList);
         model.addAttribute("list", list.get());
         
 
@@ -136,12 +165,21 @@ public class MypageController {
 
     //プロフィールを編集する
     @PostMapping("/edit_change")
-    public String changeEdit(Model model, @RequestParam("user_id") String user_id, @RequestParam("file") MultipartFile file, @RequestParam("user_name") String user_name, @RequestParam("search_name") String search_name, @RequestParam("introduction") String introduction) {
+    public String changeEdit(Model model, @RequestParam("user_id") String user_id, @RequestParam("file") MultipartFile file, @RequestParam("user_name") String user_name, @RequestParam("search_name") String search_name, @RequestParam("introduction") String introduction ,@RequestParam("genre1") String genre1, @RequestParam("genre2") String genre2) {
 
         //String login_user = sessionData.getUser_id();
         Saved_thumbnail saved_thumbnail = new Saved_thumbnail();
 
-
+        jenreService.deleteJenre(user_id);
+        if(!(genre1.equals("a")) && !(genre2.equals("b"))){
+            jenreService.insertJenre(user_id, genre1);
+            jenreService.insertJenre(user_id, genre2);
+        }else if(!(genre1.equals("a")) && (genre2.equals("b"))){
+            jenreService.insertJenre(user_id, genre1);
+        }else if((genre1.equals("a")) && !(genre2.equals("b"))){
+            jenreService.insertJenre(user_id, genre2);
+        }
+        
 
         String icon = "https://skpacket.s3.ap-northeast-1.amazonaws.com/icon/" + user_id + ".jpg";
         saved_thumbnail.saved_icon(file, user_id);
@@ -190,12 +228,23 @@ public class MypageController {
     @GetMapping("/followerListViewer")
     public String showFollowerList(Model model){
         
-        Iterable<Follow> FollowList = followUserService.selectFollow("U00000002");
-        Iterable<Follower> FollowerList = followerService.OrderFollowerList("U00000002");
-        
+        Iterable<Follow> FollowList = followUserService.selectFollow(sessionData.getUser_id());
+        Iterable<Follower> FollowerList = followerService.OrderFollowerList(sessionData.getUser_id());
         model.addAttribute("FollowList", FollowList);
         model.addAttribute("FollowerList", FollowerList);
-        
+        model.addAttribute("", FollowerList);
         return "followerListViewer";
+    }
+
+    @PostMapping("/insertfollow")
+    @ResponseBody
+    public void insertFollow(@RequestParam("user_id") String user_id){
+        
+        if(followUserService.follow_judgement(user_id, sessionData.getUser_id())){
+            followUserService.deleteFollow(user_id, sessionData.getUser_id());
+        }else{
+            followUserService.insertFollow(user_id, sessionData.getUser_id());
+        }
+
     }
 }

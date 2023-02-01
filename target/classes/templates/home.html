@@ -12,25 +12,40 @@
     <link rel="stylesheet" th:href="@{/reset/ress.min.css}" />
 
     <link rel="stylesheet" th:href="@{/css/pop.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+
 
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
 </head>
 
 <body>
 
-    <header th:replace="~{commons/layout :: header}"></header>
+
+    <div th:replace="~{commons/layout :: header}"></div>
+
+
+    <!-- <div class="openbtn"><span></span><span></span><span></span></div>
+     -->
+    <nav id="g-nav2">
+        <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
+            <ul>
+                <li><a href="#">Top</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Service</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
 
     <main>
-        
-        <!-- <div class="head">
-            <p>Echo</p>
-        </div> -->
         <div class="moto">
+
+
+
             <div class="center">
 
-                <div class="head">
-                    <p>Echo</p>
-                </div>
+                <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
 
                 <div>
                     <button class="create-sa" id="open-modal2">投稿作成</button>
@@ -43,7 +58,7 @@
                 <div class="cent-1" th:unless="${#lists.isEmpty(timeline)}">
                     <div th:each="obj:${timeline}" class="TimeLine">
                         <div class="flec">
-                            
+
                             <!-- ユーザのアイコン画像 -->
                             <div class="Frame2">
                                 <button class="clickshow"
@@ -58,8 +73,8 @@
                                 <!-- <button type="button" class="clickshow" onclick="buttonClick()"> -->
                                 <button class="clickshow"
                                     th:attr="onClick='location.href=\''+ @{/Hiroba/RessDetail/{url}?user_id={user_id}&response_id={response_id} (url=${obj.url},user_id=${obj.user_id},response_id=${obj.response_id})} +'\''">
-                                    
-                                    
+
+
 
 
                                     <div class="coment">
@@ -67,9 +82,9 @@
                                             <p th:text="${obj.response_name}"></p>
                                         </div>
                                     </div>
-                                    
-                                    
-                                    
+
+
+
                                     <div class="Content">
                                         <div class="douga">
 
@@ -109,7 +124,7 @@
                                             </div>
 
                                         </div>
-                                        
+
                                     </div>
                                 </button>
                             </div>
@@ -147,7 +162,8 @@
                                                     cols="50" wrap="off" th:field="*{response_name}" maxlength="200"
                                                     required></textarea>
 
-                                                <input type="hidden" name="user_id" th:value="${session.sessionData.user_id}">
+                                                <input type="hidden" name="user_id"
+                                                    th:value="${session.sessionData.user_id}">
 
                                                 <button id="send" class="submitbtn tweebtn" type="submit">書き込む</button>
                                             </p>
@@ -178,6 +194,8 @@
 
                 <!-- タイムライン終わり -->
             </div>
+
+
             <!-- 通知エリア（右） -->
             <div class="side" th:replace="~{commons/layout :: side}"></div>
         </div>
@@ -187,6 +205,10 @@
     <script th:src="@{/js/scroll.js}"></script>
     <script th:src="@{/js/hover1.js}"></script>
     <script th:src="@{/js/ajax.js}"></script>
+
+    <script src="js/hum.js"></script>
+
+
 </body>
 
 </html>

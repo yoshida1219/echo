@@ -10,9 +10,13 @@ import nonapi.io.github.classgraph.json.Id;
 @AllArgsConstructor
 public class Follow {
     @Id
+    private String user_id;
+
     private String user_name;
 
     private String introduction;
 
     private String icon;
+
+    private int follow_judgement;
 }

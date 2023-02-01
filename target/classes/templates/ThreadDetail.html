@@ -284,7 +284,7 @@
                                         <form th:object="${responseCreateForm}">
                                             <p>
                                                 <!-- 動画URLの入力 -->
-                                                <input class="formelem maxwidth" placeholder="動画URL" size="70"
+                                                <input class="formelem maxwidth" oninput="removeFeatureShare(this)" placeholder="動画URL" size="70"
                                                     th:field="*{url}" minlength="11" required>
 
                                                 <!-- コメントの入力 -->
@@ -354,7 +354,8 @@
 
     <script th:src="@{/js/pop.js}"></script>
     <script th:src="@{/js/scroll.js}"></script>
-    <script th:src="@{/js/web-socket.js}"></script>
+    <script th:src="@{/js/moviePlay.js}"></script>
+    <script th:src="@{/js/threadDetail-web-socket.js}"></script>
 </body>
 
 </html>
