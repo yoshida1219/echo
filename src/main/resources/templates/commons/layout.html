@@ -100,9 +100,6 @@
             <p>表示された人にフォローされました</p>
             <ul class="osusu">
                 <li th:each="obj:${follow_notice}" th:object="${obj}">
-<<<<<<< HEAD
-                    <a th:href="@{/notice?user_id={user_id} (user_id=*{user_id})}" class="">[[*{user_name}]]</a>
-=======
                     <button th:attr="onClick='location.href=\''+@{/notice?user_id={user_id} (user_id=*{user_id})}+'\''">
                         <div id="user_icon">
                             <img th:src="*{icon}" alt="">
@@ -112,7 +109,6 @@
                             <p th:text="*{search_name}"></p>
                         </div>
                     </button>
->>>>>>> 97403249b41047917494f46373f8749c7743eeef
                 </li>
             </ul>
         </div>

@@ -1,5 +1,9 @@
 package com.example.echo.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +35,7 @@ import com.example.echo.entity.select.ThreadDetail;
 import com.example.echo.entity.select.ThreadList;
 import com.example.echo.form.AlertFrom;
 import com.example.echo.form.CommentCreateForm;
+import com.example.echo.form.CommentPosting;
 import com.example.echo.form.ResponseCreateForm;
 import com.example.echo.form.ThreadCreateForm;
 import com.example.echo.Collection;
@@ -341,12 +346,10 @@ public class HirobaController {
      */
     @MessageMapping("/comment")
     @SendTo("/comment/posting")
-    public void comment_create(CommentCreateForm commentCreateForm){
-
-        System.out.println(commentCreateForm);
+    public CommentPosting comment_create(CommentCreateForm commentCreateForm){
 
         Comment comment = new Comment();
-        String view_user = sessionData.getUser_id();
+        String view_user = commentCreateForm.getUser_id();
         String comment_id = commentservice.maxCommentId(view_user);
         if(comment_id != null){
             comment_id = collection.createId(commentservice.maxCommentId(view_user));
@@ -362,7 +365,16 @@ public class HirobaController {
         comment.setResponse_creater(commentCreateForm.getResponse_creater());        
         commentservice.insertComment(comment);
 
-        //return "redirect:/Hiroba/RessDetail/" + url + "?response_id="+ commentCreateForm.getResponse_id() +"&user_id=" + commentCreateForm.getResponse_creater();
+        Optional<User> user = userService.selectUser(view_user);
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+
+        CommentPosting posting = new CommentPosting();
+        posting.setComment(comment.getComment());
+        posting.setUser_name(user.get().getUser_name());
+        posting.setSubmit_time(sdf.format(date));
+
+        return posting;
     }
 
 
