@@ -54,7 +54,7 @@
                         <div class="janru">
                             <ul class="Tabs" id="NicoNewsContainer-tabs">
                                 <li class="Tabs-tab ttab" data-tab="エンターテインメント"><span
-                                        th:text="${jenre_name}"></span>janru</li>
+                                        th:text="${thread_data.jenre_name}"></span></li>
                             </ul>
                         </div>
 
@@ -330,14 +330,14 @@
 
 
 
+ <!-- 通知エリア（右） -->
 
+            <div class="side" th:replace="~{commons/layout :: side}"></div>
 
 
             </div>
 
-            <!-- 通知エリア（右） -->
-
-            <div class="side" th:replace="~{commons/layout :: side}"></div>
+           
 
             <!-- /*通知エリア*/ -->
         </div>

@@ -25,9 +25,9 @@ function previewImage() {
             var canvas = document.createElement("canvas");
             var ctx = canvas.getContext("2d");
 
-            canvas.width = 100;
-            canvas.height = 100;
-            ctx.drawImage(image, 0, 0, 100, 100);
+            canvas.width = 300;
+            canvas.height = 300;
+            ctx.drawImage(image, 0, 0, 300, 300);
 
             preview.src = canvas.toDataURL();
         }
