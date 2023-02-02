@@ -91,13 +91,13 @@
                                 <!-- 数字 -->
                                 <div class="mypage-suji">
                                     <p>
-                                        <a th:href="@{/followerListViewer}">
+                                        <a th:href="@{/followerListViewer?user_id={user_id} (user_id=${user_id})}">
                                             フォロー：[[${follow.follower}]]
                                         </a>
                                     </p>
                                     
                                     <p id="foorowa2">
-                                        <a th:href="@{/followerListViewer}">
+                                        <a th:href="@{/followerListViewer?user_id={user_id} (user_id=${user_id})}">
                                             フォロワー：[[${follower.follower}]]
                                         </a>                                        
                                     </p>

@@ -108,7 +108,8 @@ public class MypageController {
         model.addAttribute("responseCount", responseCount.get());
         model.addAttribute("favoriteMovieList", favoriteMovies);
         model.addAttribute("myResponseList",mypageResponse);
-        
+        model.addAttribute("user_id",user_id);
+
         Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
         model.addAttribute("recommend", recommend);
         
@@ -226,10 +227,9 @@ public class MypageController {
     }
 
     @GetMapping("/followerListViewer")
-    public String showFollowerList(Model model){
-        
-        Iterable<Follow> FollowList = followUserService.selectFollow(sessionData.getUser_id());
-        Iterable<Follower> FollowerList = followerService.OrderFollowerList(sessionData.getUser_id());
+    public String showFollowerList(Model model, @RequestParam("user_id") String user_id){
+        Iterable<Follow> FollowList = followUserService.selectFollow(user_id);
+        Iterable<Follower> FollowerList = followerService.OrderFollowerList(user_id);
         model.addAttribute("FollowList", FollowList);
         model.addAttribute("FollowerList", FollowerList);
         model.addAttribute("", FollowerList);
