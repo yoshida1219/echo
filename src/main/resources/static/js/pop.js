@@ -1,3 +1,31 @@
+
+
+// スマホ投稿
+$(".j1").click(() => {
+    $(".sure_kyouyu").css({
+        "display":"block"
+    })
+    $(".sure_sesaku").css({
+        "display":"none"
+    })
+})
+$(".j2").click(() => {
+    $(".sure_sesaku").css({
+        "display":"block"
+    })
+    $(".sure_kyouyu").css({
+        "display":"none"
+    })
+})
+
+
+
+
+
+
+
+
+
 /*=============== SHOW MODAL ===============*/
 
 /*
@@ -24,6 +52,8 @@ const showModal = (openButton, modalContent) =>{
 showModal('open-modal','modal-container')
 
 showModal('open-modal2','modal-container')
+
+
 
 
 //投稿のポップアップの削除
