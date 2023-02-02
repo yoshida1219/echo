@@ -183,6 +183,9 @@ public class MypageController {
 
         String icon = "https://skpacket.s3.ap-northeast-1.amazonaws.com/icon/" + user_id + ".jpg";
         saved_thumbnail.saved_icon(file, user_id);
+        if (!search_name.startsWith("@")) {
+            search_name = "@" + search_name;
+          }
 
         // userService.updateIcon(user_id, icon);
 

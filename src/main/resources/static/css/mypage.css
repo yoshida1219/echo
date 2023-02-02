@@ -52,10 +52,10 @@
 
 /* ***上部************************************************************************/
 .search-up {
-    
+    display: flex;
     border-bottom: 8px solid #4c6250;
     border-top: 8px solid #4c6250;
-    display: flex;
+    /* display: flex; */
     padding: 10px;
 }
 
