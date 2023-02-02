@@ -149,7 +149,7 @@
             <ul class="osusu">
                 <li th:each="obj:${follow_notice}" th:object="${obj}">
                     <button th:attr="onClick='location.href=\''+@{/notice?user_id={user_id} (user_id=*{user_id})}+'\''">
-                        <div id="user_icon">
+                        <div id="notice_user">
                             <img th:src="*{icon}" alt="">
                         </div>
                         <div id="user_details">

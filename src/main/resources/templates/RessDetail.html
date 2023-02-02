@@ -180,7 +180,7 @@
                             <!-- コメント入力フォーム -->
                             <form method="get" th:object="${commentCreateForm}">
 
-                                <input type="text" id="CommentText" placeholder="投稿にコメントしよう" name="comment" pattern=".*\S+.*" required>
+                                <input type="text" id="CommentText" placeholder="投稿にコメントしよう" name="comment" pattern=".*\S+.*" maxlength="48" required>
                                 <input type="submit" id="CommentButton" value="コメント投稿">
                                 <input type="hidden" id="user_id" th:value="${session.sessionData.user_id}">
 
@@ -218,9 +218,21 @@
                             <div class="d3-1">
                                 <th:block th:unless="${#lists.isEmpty(list)}">
                                     <div th:each="obj:${list}" class="tuiti">
-                                        <p th:text="${obj.user_name}"></p>
-                                        <p th:text="${obj.comment}"></p>
-                                        <p th:text="${obj.submit_time}"></p>
+                                        <!-- アイコン画像 -->
+                                        <div id="user_left">
+                                            <button class="clickshow"
+                                                th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
+                                                <div id="user_icon">
+                                                    <img th:src="${obj.icon}" alt="">
+                                                </div>
+                                                <p th:text="${obj.user_name}"></p>
+                                            </button>
+                                        </div>
+
+                                        <div id="user">
+                                            <p th:text="${obj.comment}"></p>
+                                            <p id="time" th:text="${obj.submit_time}"></p>
+                                        </div>                                        
                                     </div>
                                 </th:block>
                             </div>

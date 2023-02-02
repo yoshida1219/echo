@@ -422,7 +422,7 @@ iframe {
 } */
 
 .clickshow {
-  width: 100%;
+  /* width: 60%; */
 }
 
 .con23 {
@@ -527,11 +527,19 @@ display: block;
 }
 
 .tuiti {
-  text-align: center;
-  padding: 10%;
-  margin: 5%;
+  /* text-align: center; */
+  padding: 0.7em;
+  margin: 1em;
   background-color: #ffffff;
   color: #b73300;
+  /* width: 100%; */
+  /* max-width: 100%; */
+  display: flex;
+  /* width: 100%; */
+  /* text-align: center; */
+  justify-content: center;
+  height: 12vh;
+  border-radius: 15px;
 }
 
 .osusu {
@@ -541,29 +549,27 @@ display: block;
 
 .osusu li {
   background-color: #00a149;
-  height: 50px;
+  height: 6.5vh;
   margin: 5px;
-  position: relative;
+  padding: 0.3em;
 }
 
 .osusu li button {
   display: flex;
   width: 100%;
+  justify-content: center;
 }
 
-.osusu li button img{
-  max-width: 100%;
-}
-
-#user_icon {
-  width: 13%;
+#notice_user {
+  width: 16%;
   position: relative;
-  margin: 0 10%;
+  /* text-align: center; */
+  margin: auto;
 }
 
 #user_details {
   width: 60%;
-  text-align: start;
+  text-align: center;
 }
 
 .foot0 {

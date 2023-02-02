@@ -13,4 +13,8 @@ public class CommentPosting {
     private String comment;
 
     private String submit_time;
+
+    private String icon;
+
+    private String user_id;
 }
