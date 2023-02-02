@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" th:href="@{css/mypage.css}" />
     <link rel="stylesheet" th:href="@{css/mypage_edit.css}" />
-    
+
 
     <link rel="stylesheet" th:href="@{reset/ress.min.css}" />
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
@@ -48,275 +48,177 @@
 
 
                 <div class="search-up">
-                    
-                        <div class="up-1">
-                            
-                            <div class="follw-my-icon">
-                                <img th:src="*{list.icon}" alt="ないぞ" >
-                            </div>
-                            
-                            <!-- <th:block th:if="${login}==${list.user_id}">
+
+                    <div class="up-1">
+
+                        <div class="follw-my-icon">
+                            <img th:src="*{list.icon}" alt="ないぞ">
+                        </div>
+
+                        <!-- <th:block th:if="${login}==${list.user_id}">
                                 <button th:attr="onClick='location.href=\''+ @{/edit_change?user_id={user_id} (user_id=${list.user_id})} +'\''">プロフィール編集</button>
                             </th:block> -->
 
-                            
 
 
-                        </div>
-                        <div class="up-2">
-                            <form th:action="@{/edit_change?user_id={user_id} (user_id=${list.user_id})}" method="post" enctype="multipart/form-data" onsubmit="return checkDuplicates()">
-                                <div class="mypage-name">
-                                    <input type="text" name="user_name" th:value="${list.user_name}">
 
-                                </div>
-                                <div class="mypage-name">
-                                    <input type="text" name="search_name" th:value="${list.search_name}">
+                    </div>
+                    <div class="up-2">
+                        <form th:action="@{/edit_change?user_id={user_id} (user_id=${list.user_id})}" method="post"
+                            enctype="multipart/form-data" onsubmit="return checkDuplicates()">
+                            <div class="mypage-name">
+                                <input type="text" name="user_name" th:value="${list.user_name}">
 
-                                </div>
-                                <div class="mypage-name">
-                                    <input type="text" name="introduction" th:value="${list.introduction}">
-                                </div>
+                            </div>
+                            <div class="mypage-name">
+                                <input type="text" name="search_name" th:value="${list.search_name}">
 
-                                <div class="mypage-name">
-                                <select class="formelem maxwidth" id="genre1" name ="genre1" required>
+                            </div>
+                            <div class="mypage-name">
+                                <input type="text" name="introduction" th:value="${list.introduction}">
+                            </div>
+
+                            <div class="mypage-name">
+                                <select class="formelem maxwidth" id="genre1" name="genre1" required>
                                     <option value="a">ジャンルを選択してください</option>
-                                        <th:block th:each="obj:${jenreList}">
-                                            <th:block th:if="${jenre1}==${obj.jenre_id}">
-                                            <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}" selected></option>
-                                            </th:block>
-                                            <th:block th:unless="${jenre1}==${obj.jenre_id}">
-                                            <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}"></option>
-                                            </th:block>
+                                    <th:block th:each="obj:${jenreList}">
+                                        <th:block th:if="${jenre1}==${obj.jenre_id}">
+                                            <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}" selected>
+                                            </option>
                                         </th:block>
+                                        <th:block th:unless="${jenre1}==${obj.jenre_id}">
+                                            <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}"></option>
+                                        </th:block>
+                                    </th:block>
                                 </select>
 
-                                <select  class="formelem maxwidth" id="genre2" name ="genre2" required>
+                                <select class="formelem maxwidth" id="genre2" name="genre2" required>
                                     <option value="b">ジャンルを選択してください</option>
 
                                     <th:block th:each="obj:${jenreList}">
                                         <th:block th:if="${jenre2}==${obj.jenre_id}">
-                                        <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}" selected></option>
+                                            <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}" selected>
+                                            </option>
                                         </th:block>
                                         <th:block th:unless="${jenre2}==${obj.jenre_id}">
-                                        <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}"></option>
+                                            <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}"></option>
                                         </th:block>
                                     </th:block>
                                 </select>
                             </div>
 
-                             <!-- <div id="imageContainer">
+                            <!-- <div id="imageContainer">
                                 <img th:src="*{list.icon}" id="targetImage">
                                 <div id="resizeHandle"></div>
                               </div>  -->
 
-                            
+
 
                             <!-- <form th:action="@{/home/result/save}" method="post" enctype="multipart/form-data" >
                                 <input type="hidden" name="file" id="file" th:value="${file}">
                                 <input type="submit" th:attr="onClick='location.href=\''+ @{/edit_change?user_id={user_id} (user_id=${list.user_id})} +'\''">
                             </form> -->
 
-                            
-                                
-                                <!-- 動画URLの入力 -->
-                                
-                                <!-- コメントの入力 -->                                            
-                                <!-- <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
+
+
+                            <!-- 動画URLの入力 -->
+
+                            <!-- コメントの入力 -->
+                            <!-- <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
                                     wrap="off" th:field="*{response_name}" maxlength="200" required></textarea> -->
 
-                                <div class="mypage-name"></div>
-                                <input type="file" id="fileInput" name="file" onchange="previewImage()">
-                                <div class="prev_img">
-                                    <img id="preview" src="" alt="Preview"/>
-                                </div>
+                            <div class="mypage-name"></div>
+                            <input type="file" id="fileInput" name="file" onchange="previewImage()">
+                            <div class="prev_img">
+                                <img id="preview" src="" alt="Preview" />
                             </div>
-                                <div class="a">
-                                <input type="submit" value="編集完了">
-                                </div>
-                            </form>
-                            
-                            <th:block th:unless="${#lists.isEmpty(jenre)}">
-                                <th:block th:each="obj:${jenre}">
-                                    <p th:text="${obj.jenre_name}"></p>
-                                </th:block>
-                            </th:block>
-                            </div>
-                            
-                        
-                        </div>
-
-                    
-
-<!-- 
-                        <div class="dwon-2">
-
-                        <div class="img-list">
-                            <img src="img/sample-vvv/URanime - All David usage of Sandevistan Cyberpunk Edgerunners [xoLBt2vayAc - 1176x664 - 1m00s].png"
-                                alt="">
-                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m08s].png"
-                                alt="">
-                            <img src="img/sample-vvv/URanime - All David usage of Sandevistan Cyberpunk Edgerunners [xoLBt2vayAc - 1176x664 - 1m13s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m34s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 1m00s].png"
-                                alt="">
-                            <img src="img/sample-vvv/URanime - All David usage of Sandevistan Cyberpunk Edgerunners [xoLBt2vayAc - 1176x664 - 1m51s].png"
-                                alt="">
-                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 1m05s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m30s] (1).png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m58s].png"
-                                alt="">
-                            <img src="img/sample-vvv/URanime - All David usage of Sandevistan Cyberpunk Edgerunners [xoLBt2vayAc - 1176x664 - 2m02s].png"
-                                alt="">
-                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m38s].png"
-                                alt="">
-                            <img src="img/sample-vvv/URanime - All David usage of Sandevistan Cyberpunk Edgerunners [xoLBt2vayAc - 1176x664 - 2m25s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m30s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m23s].png"
-                                alt="">
-                            <img src="img/sample-vvv/URanime - All David usage of Sandevistan Cyberpunk Edgerunners [xoLBt2vayAc - 1276x721 - 0m32s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m59s].png"
-                                alt="">
-                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m01s].png"
-                                alt="">
-                            <img src="img/sample-vvv/URanime - All David usage of Sandevistan Cyberpunk Edgerunners [xoLBt2vayAc - 1176x664 - 4m36s].png"
-                                alt="">
-                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m19s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m37s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m36s].png"
-                                alt="">
-                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 0m45s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m26s].png"
-                                alt="">
-                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m47s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m29s] (1).png"
-                                alt="">
-                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m57s].png"
-                                alt="">
-                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 0m17s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m34s] (1).png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m29s].png"
-                                alt="">
-                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 0m26s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m32s].png"
-                                alt="">
-                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 1m00s].png"
-                                alt="">
-                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 0m38s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m28s].png"
-                                alt="">
-                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 1m00s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m27s].png"
-                                alt="">
-                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m29s].png"
-                                alt="">
-                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 1m22s].png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m36s] (1).png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 0m31s].png"
-                                alt="">
-                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m15s].png"
-                                alt="">
-                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 1m27s].png"
-                                alt="">
-                            <img src="img/sample-vvv/あたりさわりないかも - パリピ後藤【後藤ひとり cv 青山吉能】ぼっち・ざ・ろっく第4話 [j4aV8cjJSPI - 1180x664 - 0m20s].png"
-                                alt="">
-                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1180x664 - 1m36s].png"
-                                alt="">
-                            <img src="img/sample-vvv/Netflix - Cyberpunk Edgerunners Opening Credits Netflix [OifiVCnFKzM - 1280x720 - 0m02s].png"
-                                alt="">
-
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 1m00s] (1).png"
-                                alt="">
-                            <img src="img/samplepo/ポケモン公式YouTubeチャンネル - 【Official】Pokémon Special Music Video 「GOTCHA！」 BUMP OF CHICKEN - Acacia [BoZ0Zwab6Oc - 1180x664 - 1m01s].png"
-                                alt="">
-
-                        </div>
                     </div>
- -->
+                    <div class="a">
+                        <input type="submit" value="編集完了">
+                    </div>
+                    </form>
 
-
+                    <th:block th:unless="${#lists.isEmpty(jenre)}">
+                        <th:block th:each="obj:${jenre}">
+                            <p th:text="${obj.jenre_name}"></p>
+                        </th:block>
+                    </th:block>
                 </div>
 
 
-
             </div>
-
-            <!--  -->
-
-
-
 
 
             <!--通知エリア（右） -->
-            <div class="side">
-                <div class="light1">
-                    <p>おすすめ</p>
-                    <ul class="osusu">
-                        <li>user</li>
-                        <li>user</li>
-                        <li>user</li>
-                    </ul>
-                    <p>もっと見る</p>
+        <div class="side">
+            <div class="light1">
+                <p>おすすめ</p>
+                <ul class="osusu">
+                    <li>user</li>
+                    <li>user</li>
+                    <li>user</li>
+                </ul>
+                <p>もっと見る</p>
 
+            </div>
+            <div class="light2">
+                <p>通知</p>
+                <div class="tuiti">
+                    <p>aiueo</p>
                 </div>
-                <div class="light2">
-                    <p>通知</p>
-                    <div class="tuiti">
-                        <p>aiueo</p>
-                    </div>
-                    <div class="tuiti">
-                        <p>aiueo</p>
-                    </div>
-                    <div class="tuiti">
-                        <p>aiueo</p>
-                    </div>
-                    <div class="tuiti">
-                        <p>aiueo</p>
-                    </div>
-                    <div class="tuiti">
-                        <p>aiueo</p>
-                    </div>
-                    <div class="tuiti">
-                        <p>aiueo</p>
-                    </div>
-                    <div class="tuiti">
-                        <p>aiueo</p>
-                    </div>
-                    <div class="tuiti">
-                        <p>aiueo</p>
-                    </div>
-                    <div class="tuiti">
-                        <p>aiueo</p>
-                    </div>
-                    <div class="tuiti">
-                        <p>aiueo</p>
-                    </div>
-                    <div class="tuiti">
-                        <p>aiueo</p>
-                    </div>
-                    <div class="tuiti">
-                        <p>aiueo</p>
-                    </div>
+                <div class="tuiti">
+                    <p>aiueo</p>
+                </div>
+                <div class="tuiti">
+                    <p>aiueo</p>
+                </div>
+                <div class="tuiti">
+                    <p>aiueo</p>
+                </div>
+                <div class="tuiti">
+                    <p>aiueo</p>
+                </div>
+                <div class="tuiti">
+                    <p>aiueo</p>
+                </div>
+                <div class="tuiti">
+                    <p>aiueo</p>
+                </div>
+                <div class="tuiti">
+                    <p>aiueo</p>
+                </div>
+                <div class="tuiti">
+                    <p>aiueo</p>
+                </div>
+                <div class="tuiti">
+                    <p>aiueo</p>
+                </div>
+                <div class="tuiti">
+                    <p>aiueo</p>
+                </div>
+                <div class="tuiti">
+                    <p>aiueo</p>
                 </div>
             </div>
-            <!-- /*通知エリア*/ -->
+        </div>
+
+
+
+
+        </div>
+
+
+
+        </div>
+
+        <!--  -->
+
+
+
+
+
+        
+        <!-- /*通知エリア*/ -->
         </div>
 
 
