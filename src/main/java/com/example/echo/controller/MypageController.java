@@ -1,8 +1,6 @@
 package com.example.echo.controller;
 
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,10 +29,6 @@ import com.example.echo.service.Recommend.RecommendService;
 import com.example.echo.service.SubmitResponse.SubmitResponseService;
 import com.example.echo.service.User.UserService;
 import com.example.echo.session.SessionData;
-import com.google.common.collect.Iterables;
-
-import jakarta.validation.constraints.Future;
-import jakarta.websocket.Session;
 
 import com.example.echo.service.Jenre.JenreService;
 
@@ -108,8 +102,11 @@ public class MypageController {
         model.addAttribute("responseCount", responseCount.get());
         model.addAttribute("favoriteMovieList", favoriteMovies);
         model.addAttribute("myResponseList",mypageResponse);
-        model.addAttribute("user_id",user_id);
 
+
+        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+        model.addAttribute("side_user", side_user.get());
+        
         Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
         model.addAttribute("recommend", recommend);
         
@@ -126,6 +123,10 @@ public class MypageController {
 
     @GetMapping("/edit")
     public String showEdit(Model model, @RequestParam("user_id") String user_id) {
+
+        
+        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+        model.addAttribute("side_user", side_user.get());
 
         //String login_user = sessionData.getUser_id();
 
@@ -233,6 +234,10 @@ public class MypageController {
         model.addAttribute("FollowList", FollowList);
         model.addAttribute("FollowerList", FollowerList);
         model.addAttribute("", FollowerList);
+
+        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+        model.addAttribute("side_user", side_user.get());
+
         return "followerListViewer";
     }
 

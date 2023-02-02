@@ -1,5 +1,7 @@
 package com.example.echo.entity;
 
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
 
 import lombok.AllArgsConstructor;
@@ -18,4 +20,6 @@ public class View_response {
     private String view_user;
 
     private String view_like;
+
+    private Date view_time;
 }

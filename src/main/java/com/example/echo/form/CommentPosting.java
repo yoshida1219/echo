@@ -1,7 +1,5 @@
 package com.example.echo.form;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

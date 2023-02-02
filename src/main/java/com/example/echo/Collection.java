@@ -1,8 +1,6 @@
 package com.example.echo;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,28 +51,6 @@ public class Collection {
         id = id_head + id;
 
         return id;
-    }
-
-    /*
-     * ログイン処理
-     * 
-     * 正常にログインできるとき -> true
-     * ログインできないとき -> false
-     */
-    public boolean login(String search_name, String pass) {
-		Optional<User> user = userService.selectUserOne(search_name);
-
-        //ユーザが見つからない
-		if (!user.isPresent()) {
-			return false;
-		}
-
-        //パスワードが違う
-		if (!user.get().getPassword().equals(pass)) {
-			return false;
-		}
-
-        return true;
     }
 
     /*
