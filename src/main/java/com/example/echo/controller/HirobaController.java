@@ -26,6 +26,7 @@ import com.example.echo.entity.Thread;
 import com.example.echo.entity.User;
 import com.example.echo.entity.View_response;
 import com.example.echo.entity.select.FollowThread;
+import com.example.echo.entity.select.JenreThread;
 import com.example.echo.entity.select.MyThread;
 import com.example.echo.entity.select.PopularThread;
 import com.example.echo.entity.select.SelectResponse;
@@ -132,6 +133,7 @@ public class HirobaController {
 
     @Autowired
     View_responseService view_responseService;
+
 
     @ModelAttribute
     public ThreadCreateForm setUpForm() {
@@ -287,11 +289,13 @@ public class HirobaController {
     public String showThreadFil(Model model, @RequestParam String thread_id) {
         Iterable<ThreadDetail> list_popular3 = threadDetailService.selectThreadDetail_Popular3(thread_id);
         Iterable<ThreadDetail> list = threadDetailService.selectThreadDetailAll(thread_id);
+        Optional<JenreThread> thread_data = threadService.findJenreThread(thread_id);
         Optional<Thread> thread = threadService.selectThread(thread_id);
         Integer threadFollow = threadService.findFollowCheck(sessionData.getUser_id(), thread_id);
 
         model.addAttribute("list_popular3", list_popular3);
         model.addAttribute("list", list);
+        model.addAttribute("thread_data", thread_data.get());
         model.addAttribute("checkFollow", threadFollow);
 
         // thread_name は投稿がないと表示されない

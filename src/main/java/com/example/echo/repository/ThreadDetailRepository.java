@@ -1,11 +1,14 @@
 package com.example.echo.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.example.echo.entity.select.ThreadDetail;
 import com.example.echo.entity.select.ThreadList;
+import com.example.echo.entity.select.JenreThread;
 
 public interface ThreadDetailRepository extends CrudRepository<ThreadDetail,String>{
     //投稿　いいね順で３つ
@@ -48,11 +51,14 @@ public interface ThreadDetailRepository extends CrudRepository<ThreadDetail,Stri
     @Query("with like_count as ( select response_creater, response_id, sum(view_like) as 'like_count' from view_response tmp1 group by response_creater, response_id ), "
         + " share_count as ( select count(*) as 'share_count', origin_creater as response_creater, origin_id as response_id from response tmp2 group by origin_creater, origin_id)"
 
-        + " select thread.thread_id, thread.thread_name, response.response_id, response.response_creater, response.response_name, movie.movie_name, movie.url, coalesce(movie.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, user.user_id, user.user_name, user.icon "
+        + " select thread.thread_id, thread.thread_name, response.response_id, response.response_creater, response.response_name, movie.movie_name, movie.url, coalesce(movie.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, user.user_id, user.user_name, user.icon, jenre.jenre_name "
 
         + " , coalesce(like_count.like_count, 0) as 'like', coalesce(share_count.share_count, 0) as 'share'"
         
         + " from thread "
+
+        + " inner join jenre on jenre.jenre_id = thread.jenre_id"
+
         + " inner join response on response.thread_id = thread.thread_id"
         + " inner join movie on movie.movie_id = response.movie_id"
         + " inner join user on user.user_id = response.response_creater"
@@ -98,5 +104,15 @@ public interface ThreadDetailRepository extends CrudRepository<ThreadDetail,Stri
         + " select user_id, user_name, thread_id, thread_name, jenre_name, thread_submit, icon, coalesce(p.thumbnail, '/img/のーいめーじ.jpg') as thumbnail from pickUp_movie as p order by p.thread_id, p.rank;")
     Iterable<ThreadList> findThreadOneByWord(
         @Param("word") String word
+    );
+
+    @Query("""
+             select * 
+             from thread
+             inner join jenre using(jenre_id)
+             where thread_id =:thread_id 
+            """)
+    Optional<JenreThread> OrderJenreThread(
+        @Param("thread_id") String thread_id
     );
 }
