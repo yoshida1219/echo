@@ -53,6 +53,11 @@ $(".rogo1").click(function () {//ボタンがクリックされたら
 });
 
 
+$("#schbtn11").click(function () {//ボタンがクリックされたら
+	$(this).toggleClass('active');//ボタン自身に activeクラスを付与し
+    $(".side").toggleClass('rig');//ナビゲーションにpanelactiveクラスを付与
+});
+
 
 
 

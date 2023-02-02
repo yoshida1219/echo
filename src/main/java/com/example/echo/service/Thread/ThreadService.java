@@ -3,6 +3,7 @@ package com.example.echo.service.Thread;
 import java.util.Optional;
 
 import com.example.echo.entity.Thread;
+import com.example.echo.entity.select.JenreThread;
 
 public interface ThreadService {
 
@@ -21,5 +22,7 @@ public interface ThreadService {
     void deleteFollowThread(String user_id, String thread_id);
 
     Integer findFollowCheck(String user_id, String thread_id);
+
+    Optional<JenreThread> findJenreThread(String thread_id);
 
 }

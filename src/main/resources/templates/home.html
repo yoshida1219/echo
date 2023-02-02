@@ -4,16 +4,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>卒業テスト</title>
+    <title>Echo</title>
     <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
     <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
     <link rel="icon" th:href="@{/img/ファビコン/favicon.ico}">
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
     <link rel="stylesheet" th:href="@{/reset/ress.min.css}" />
 
-    <link rel="stylesheet" th:href="@{/css/pop.css}">
-    <link rel="stylesheet" th:href="@{/css/home.css}">
 
+    <link rel="stylesheet" th:href="@{/css/style.css}" media="screen and (min-width: 767px)" />
+    <link rel="stylesheet" th:href="@{/css/pop.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/home.css}" media="screen and (min-width: 767px)">
+
+    <link rel="stylesheet" th:href="@{css/mobile/m-style.css}" media="screen and (max-width: 768px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-pop.css}" media="screen and (max-width: 768px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-pop2.css}" media="screen and (max-width: 768px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-home.css}" media="screen and (max-width: 768px)">
 
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
 </head>
@@ -24,22 +29,11 @@
     <div th:replace="~{commons/layout :: header}"></div>
 
 
-    <!-- <div class="openbtn"><span></span><span></span><span></span></div>
-     -->
-    <nav id="g-nav2">
-        <div class="tit2"><img th:src="@{/img/ham-menu-image01.png}" class="rogo1 rogo333"></div>
-        <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
-            <ul>
-                <li><button th:attr="onClick='location.href=\''+@{/home}+'\''"><a>ホーム</a></button></li>
-                <li><button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''"><a>広場</a></button></li>
-                <li><button th:attr="onClick='location.href=\''+@{/mediate}+'\''"><a>マイページ</a></button></li>
-                <li><button th:attr="onClick='location.href=\''+@{/logout}+'\''"><a>ログアウト</a></button></li>
-            </ul>
-        </div>
-    </nav>
+
 
 
     <main>
+        
         <div class="moto">
 
 
@@ -48,9 +42,16 @@
 
                 <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
 
+
+
+
+                
+
+
                 <div>
-                    <button class="create-sa" id="open-modal2">投稿作成</button>
+                    <button class="create-sa" id="open-modal2">投稿</button>
                 </div>
+
 
                 <!--
                     画像URLは後で実装 12/9

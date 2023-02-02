@@ -1,8 +1,6 @@
 package com.example.echo.controller;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -26,6 +24,7 @@ import com.example.echo.entity.Thread;
 import com.example.echo.entity.User;
 import com.example.echo.entity.View_response;
 import com.example.echo.entity.select.FollowThread;
+import com.example.echo.entity.select.JenreThread;
 import com.example.echo.entity.select.MyThread;
 import com.example.echo.entity.select.PopularThread;
 import com.example.echo.entity.select.SelectResponse;
@@ -133,6 +132,7 @@ public class HirobaController {
     @Autowired
     View_responseService view_responseService;
 
+
     @ModelAttribute
     public ThreadCreateForm setUpForm() {
         return new ThreadCreateForm();
@@ -174,6 +174,10 @@ public class HirobaController {
 
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
+
+        
+        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+        model.addAttribute("side_user", side_user.get());
 
         return "Hiroba";
     }
@@ -249,6 +253,10 @@ public class HirobaController {
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
 
+        
+        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+        model.addAttribute("side_user", side_user.get());
+
         return "RessDetail";
     }
 
@@ -260,12 +268,14 @@ public class HirobaController {
     public String updateLike(@RequestParam("response_id") String response_id,
             @RequestParam("response_creater") String response_creater, @RequestParam("like") String like) {
         String view_user = sessionData.getUser_id();
+        Date date = new Date();
 
         View_response view_response = new View_response(
                 response_id,
                 response_creater,
                 view_user,
-                like);
+                like,
+                date);
 
         view_responseService.updateLike(view_response);
 
@@ -279,11 +289,13 @@ public class HirobaController {
     public String showThreadFil(Model model, @RequestParam String thread_id) {
         Iterable<ThreadDetail> list_popular3 = threadDetailService.selectThreadDetail_Popular3(thread_id);
         Iterable<ThreadDetail> list = threadDetailService.selectThreadDetailAll(thread_id);
+        Optional<JenreThread> thread_data = threadService.findJenreThread(thread_id);
         Optional<Thread> thread = threadService.selectThread(thread_id);
         Integer threadFollow = threadService.findFollowCheck(sessionData.getUser_id(), thread_id);
 
         model.addAttribute("list_popular3", list_popular3);
         model.addAttribute("list", list);
+        model.addAttribute("thread_data", thread_data.get());
         model.addAttribute("checkFollow", threadFollow);
 
         // thread_name は投稿がないと表示されない
@@ -298,6 +310,11 @@ public class HirobaController {
 
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
+
+        
+        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+        model.addAttribute("side_user", side_user.get());
+
 
         return "ThreadDetail";
     }
@@ -447,6 +464,10 @@ public class HirobaController {
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
 
+        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+        model.addAttribute("side_user", side_user.get());
+
+
         return "ThreadList";
     }
 
@@ -478,22 +499,6 @@ public class HirobaController {
             @RequestParam("thread_id") String thread_id) {
 
         responseService.deleteResponse(response_creater, response_id);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
 
         if (scene.equals("ThreadDetail")) {
             // .equals(msg2)

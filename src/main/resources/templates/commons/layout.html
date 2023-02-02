@@ -11,11 +11,10 @@
     <!-- ヘッダー -->
     <th:block th:fragment="header">
 
-         <!-- <div class="openbtn"><span></span><span></span><span></span></div> -->
+        <!-- <div class="openbtn"><span></span><span></span><span></span></div> -->
 
         <div class="header">
             <div class="tit">
-
                 <img th:src="@{/img/ham-menu-image01.png}" class="rogo1">
             </div>
 
@@ -23,31 +22,92 @@
                 <button th:attr="onClick='location.href=\''+@{/home}+'\''">ホーム</button>
             </div>
 
-
             <div class="btn1">
                 <button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''">広場</button>
             </div>
+
             <div class="btn1 login-user">
-                <button th:attr="onClick='location.href=\''+@{/mediate}+'\''"><div class="userr-iconnn"><img th:src="@{/img/icon/user.png}" class="rogo2"></div>
-                <p>情報　太郎</p>
-                <p>ログイン中</p></button>
+                <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">
+                    <div class="userr-iconnn"><img th:src="${side_user.icon}" class="rogo2"></div>
+                    <p>[[${side_user.user_name}]]</p>
+                    <p>[[${side_user.search_name}]]</p>
+                </button>
             </div>
 
             <div class="btn1">
                 <button th:attr="onClick='location.href=\''+@{/logout}+'\''">ログアウト</button>
             </div>
         </div>
+
+
+        <!-- <div class="openbtn"><span></span><span></span><span></span></div>
+     -->
+        <nav id="g-nav2">
+            <div class="tit2"><img th:src="@{/img/ham-menu-image01.png}" class="rogo1 rogo333"></div>
+            <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
+                <ul>
+                    <li><button th:attr="onClick='location.href=\''+@{/home}+'\''"><a>ホーム</a></button></li>
+                    <li><button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''"><a>広場</a></button></li>
+                    <li><button th:attr="onClick='location.href=\''+@{/mediate}+'\''"><a>マイページ</a></button></li>
+                    <li><button th:attr="onClick='location.href=\''+@{/logout}+'\''"><a>ログアウト</a></button></li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <!-- スマホ上ヘッド -->
+        <div class="m-head">
+            <div class="m-tit">
+                <h1 class="grandt  pch">Echo</h1>
+            </div>
+            <div class="c-list">
+                <div class="m-c1" id="schbtn11">
+                    <button><a>検索</a></button>
+                </div>
+                <div class="m-c2">
+                    <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">
+                        <div class="m-userr-iconnn"><img th:src="${side_user.icon}" class="rogo3"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
     </th:block>
 
 
-    <!-- kari -->
+    <!-- スマホ下ヘッド -->
     <th:block th:fragment="humber-nemu">
         <div id="header">
-            <h1 id="grandt">Echo</h1>
+            <h1 id="grandt" class="gf">Echo</h1>
             <nav id="g-navi">
                 <ul>
                     <li><button th:attr="onClick='location.href=\''+@{/home}+'\''"><a>ホーム</a></button></li>
                     <li><button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''"><a>広場</a></button></li>
+                    <li><button class="" id="open-modal2"><a>投稿</a></button></li>
+
+
+                    <li>
+
+                        <div class="popupModal1">
+                            <input type="radio" name="modalPop" id="pop11" />
+                            <label for="pop11" class="m-tweet"><a>投稿</a></label>
+                            <input type="radio" name="modalPop" id="pop12" />
+                            <label for="pop12">CLOSE</label>
+                            <input type="radio" name="modalPop" id="pop13" />
+                            <label for="pop13">×</label>
+                            <div class="modalPopup2">
+                                <div class="modalPopup3">
+                                    <h2 class="modalTitle">CSSだけのポップアップモーダル</h2>
+                                    <div class="modalMain">
+                                        <p>こちらに移し替える予定</p>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+
+
                     <li><button th:attr="onClick='location.href=\''+@{/mediate}+'\''"><a>マイページ</a></button></li>
                     <li><button th:attr="onClick='location.href=\''+@{/logout}+'\''"><a>ログアウト</a></button></li>
                     <li><!-- ハンバーガーメニュー -->

@@ -19,7 +19,7 @@
 
 /*枠組み*/
 body {
-  display: flex;
+  /* display: flex; */
   font-family: "M PLUS 1p";
 }
 
@@ -499,10 +499,10 @@ display: block;
 
 #search_user {
   text-align: center;
-  padding: 0.5em;
+  padding: 1.5em;
   margin: 1em;
   background-color: #ffffff;
-  height: 420px;
+  height: 44vh;
   border-radius: 15px;
 }
 
@@ -515,13 +515,13 @@ display: block;
 /*通知*/
 .light2 {
   text-align: center;
-  padding: 10%;
-  margin: 5%;
+  padding: 1.5em;
+  margin: 1em;
   background-color: #ffffff;
   position: -webkit-sticky;
   position: sticky;
   top: 300px;
-  height: 600px;
+  height: 50vh;
   border-radius: 15px;
   overflow-y: scroll;
 }
@@ -685,6 +685,8 @@ ul {
   list-style: none;
   padding: 0;
   /* float: left; */
+  overflow-y: scroll;
+  height: 33vh;
 }
 
 .Tabs {
@@ -736,7 +738,7 @@ ul {
   height: 100vh;/*ナビの高さ*/
   background:rgb(80, 97, 77);
   /*動き*/
-  transition: all 0.6s;
+  transition: all 0.4s;
 }
 
 /*アクティブクラスがついたら位置を0に*/
@@ -817,4 +819,17 @@ opacity: 0;
   left: 18px;
   transform: translateY(-6px) rotate(45deg);
   width: 30%;
+}
+
+
+
+
+
+/* スマホ */
+#g-navi{
+  display: none;
+}
+
+.m-head{
+  display: none;
 }

@@ -1,5 +1,7 @@
 package com.example.echo.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -25,6 +27,7 @@ public interface ThreadRepository extends CrudRepository<Thread, String>{
     String findThreadJenre_name(
         @Param("thread_id") String thread_id
     );
+
 
 
     @Modifying

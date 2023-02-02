@@ -1,5 +1,7 @@
 package com.example.echo.controller;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,7 +97,7 @@ public class LoginController {
      * 登録できなかった -> アカウント作成画面を表示
      */
     @PostMapping("/createUser/complete")
-    public String createUser(@Validated CreateUserForm form, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+    public String createUser(@Validated CreateUserForm form, BindingResult result, Model model, RedirectAttributes redirectAttributes) throws Exception{
         if(result.hasErrors()) {
             return "loginNew";
         }
@@ -109,6 +111,9 @@ public class LoginController {
             model.addAttribute("searchNameError", "このIDはすでに使われています");
             return "loginNew";
         }
+
+        //パスワードのハッシュ化
+        form.setPass(this.makeHashPass(form.getPass()));
 
         User user = collection.makeUser(form);
         userService.insertUser(user);
@@ -128,15 +133,15 @@ public class LoginController {
     }
 
     @PostMapping("/login/complete")
-    public String login(@Validated LoginForm form, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+    public String login(@Validated LoginForm form, BindingResult result, Model model, RedirectAttributes redirectAttributes) throws Exception{
         String search_name = "@" + form.getSearch_name();
-        String pass = form.getPass();
+        String pass = this.makeHashPass(form.getPass());
 
         if(result.hasErrors()) {
             return "login2";
         }
 
-        if(!collection.login(search_name, pass)) {
+        if(!this.login(search_name, pass)) {
             model.addAttribute("error", "ログインに失敗しました");
             return "login2";
         }
@@ -162,6 +167,40 @@ public class LoginController {
 
         return "login";
         
+    }
+
+    /*
+     * ログイン処理
+     * 
+     * 正常にログインできるとき -> true
+     * ログインできないとき -> false
+     */
+    public boolean login(String search_name, String pass) {
+		Optional<User> user = userService.selectUserOne(search_name);
+
+        //ユーザが見つからない
+		if (!user.isPresent()) {
+			return false;
+		}
+
+        //パスワードが違う
+		if (!user.get().getPassword().equals(pass)) {
+			return false;
+		}
+
+        return true;
+    }
+
+    /*
+     * パスワードをハッシュ化する (SHA-256) -> 64文字
+     */
+    public String makeHashPass(String password) throws Exception{
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] result = digest.digest(password.getBytes());
+        
+        String ret = String.format("%064x", new BigInteger(1, result));
+
+        return ret;
     }
     
 }
