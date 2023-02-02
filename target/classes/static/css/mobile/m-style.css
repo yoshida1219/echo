@@ -19,7 +19,7 @@
 
 /*枠組み*/
 body {
-  display: flex;
+  /* display: flex; */
   font-family: "M PLUS 1p";
 }
 
@@ -178,12 +178,18 @@ main {
 
 /***************真ん中************************************/
 .center {
-/* background-color: rgb(255, 255, 255); */
-background-image: url('../img/white_00007.jpg');
-background-repeat: initial;
-background-size: contain;
-width: 100%;
-min-height: 100vh;
+
+/* background-color: rgb(255, 255, 255); */
+
+background-image: url('../img/white_00007.jpg');
+
+background-repeat: initial;
+
+background-size: contain;
+
+width: 100%;
+
+min-height: 100vh;
 }
 
 /***************コンテンツ       「中身」　　　　**************************************/
@@ -207,7 +213,7 @@ main {
 }
 
 .flec {
-  display: flex;
+  /* display: flex; */
 }
 
 /*
@@ -221,13 +227,13 @@ main {
 }
 
 .Frame2 {
-  width: 10%;
+  width: 25%;
   text-align: center;
-  /* display: flex; */
+  display: flex;
 }
 
 .Frame2 img {
-  max-width: 50%;
+  max-width: 100%;
 }
 
 .Frame3 {
@@ -254,7 +260,7 @@ main {
 .cent-1 {
   margin: 0 3%;
   /* background-color: rgb(177, 255, 255); */
-  padding: 30px 0 0 0;
+  padding: 50px 0 0 0;
 }
 
 .douga {/*  background-color: #ececec;
@@ -286,7 +292,7 @@ iframe {
 }
 
 .balloon1-left {
-  position: relative;
+  /* position: relative; */
   display: inline-block;
   padding: 7px 10px;
   min-width: 120px;
@@ -295,6 +301,7 @@ iframe {
   font-size: 16px;
   background-color: #d1d1d1e0;
   border-radius: 5px;
+  width: 100%;
 }
 
 .balloon1-left:before {
@@ -351,6 +358,7 @@ iframe {
   /* margin: 0 0px 0 10px; */
   border-radius: 0 10px 10px 0;
   display: flex;
+  width: 100%;
 }
 
 
@@ -362,8 +370,9 @@ iframe {
 }
 
 .come{
+  width: 33.3%;
   height: 33.3%;
-  padding: 15px;
+  /* padding: 15px; */
   background-color: white;
 }
 .iine {
@@ -821,3 +830,128 @@ opacity: 0;
   transform: translateY(-6px) rotate(45deg);
   width: 30%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* スマホ */
+
+#schbtn11{
+  display:block;
+  width: 20%;
+}
+.rig{
+  right: 0;
+}
+
+.m-head{position: fixed;background-color: #838383;display: flex;width: 100%;height: 50px;}
+.m-ull{width: 70%;display: flex;margin: auto;justify-content: end;color: white;/* height: 100px; */}
+.pch{
+  color: white;
+  text-align: center;
+}
+.m-tit{
+  
+width: 30%;
+  
+margin: auto;
+}
+.gf{
+  display: none;
+}
+.m-userr-iconnn{
+  
+width: 85%;
+  
+margin: auto;
+}
+.rogo3{
+  
+max-width: 100%;
+  
+border-radius: 50%;
+}
+.c-list{
+  width: 70%;
+  display: flex;
+  justify-content: end;
+}
+.m-c1{
+
+width: 20%;
+
+text-align: center;
+
+margin: auto 0;
+
+color: white;
+
+font-weight: 600;
+
+background-color: #0e2e19;
+
+padding: 5px;
+}
+.m-c2{
+  
+width: 20%;
+}
+.m-tweet{
+  background-color: #bb7878;
+  /* width: 10%; */
+  font-size: 15px;
+  /* padding: 0px; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

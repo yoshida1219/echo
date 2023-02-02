@@ -104,8 +104,8 @@ img{
   position: relative;
   background-color: var(--container-color);
   text-align: center;
-  padding: 1rem 2rem 2rem;
-  border-radius: 1rem 1rem 0 0;
+  padding: 1rem 2rem 1rem;
+  /* border-radius: 1rem 1rem 0 0; */
   transition: all .3s;
 
   /*=== Effect 1 ===*/
@@ -117,7 +117,9 @@ img{
   /*=== Effect 3 ===*/
   /* transform: rotateX(65deg) scale(.75) translateY(10%);
   transform-origin: 50% 100%; */
-  width: 80%;
+  /* width: 80%; */
+  /* height: 46px; */
+  top: 0;
 }
 
 .modal__img{
@@ -197,7 +199,7 @@ img{
 
 .tweet-1 {
   background-color: cornsilk;
-  display: flex;
+  /* display: flex; */
 }
 
 .preview {
@@ -224,6 +226,7 @@ img{
   max-width: 800px;
   text-align: center;
   color: aliceblue;
+  /* height: 100px; */
 }
 
 .maxwidth {

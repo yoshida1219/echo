@@ -110,7 +110,7 @@
     animation-fill-mode: forwards;
     opacity: 0;
     display: block;
-    /* display: none; */
+    display: none;
   }
   @keyframes fadeDownAnime {
     from {
@@ -244,10 +244,3 @@
 
 /*モバイル後*/
 
-
-#schbtn11{
-  display:block;
-}
-.rig{
-  right: 0;
-}
