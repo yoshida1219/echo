@@ -685,6 +685,8 @@ ul {
   list-style: none;
   padding: 0;
   /* float: left; */
+  overflow-y: scroll;
+  height: 10vh;
 }
 
 .Tabs {

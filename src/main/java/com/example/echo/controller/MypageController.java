@@ -1,8 +1,6 @@
 package com.example.echo.controller;
 
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,10 +29,6 @@ import com.example.echo.service.Recommend.RecommendService;
 import com.example.echo.service.SubmitResponse.SubmitResponseService;
 import com.example.echo.service.User.UserService;
 import com.example.echo.session.SessionData;
-import com.google.common.collect.Iterables;
-
-import jakarta.validation.constraints.Future;
-import jakarta.websocket.Session;
 
 import com.example.echo.service.Jenre.JenreService;
 
