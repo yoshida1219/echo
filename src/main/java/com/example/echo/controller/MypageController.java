@@ -102,7 +102,7 @@ public class MypageController {
         model.addAttribute("responseCount", responseCount.get());
         model.addAttribute("favoriteMovieList", favoriteMovies);
         model.addAttribute("myResponseList",mypageResponse);
-
+        model.addAttribute("user_id",user_id);
 
         Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
         model.addAttribute("side_user", side_user.get());
