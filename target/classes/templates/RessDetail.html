@@ -46,10 +46,10 @@
             共有スレッド数
             所属スレッド名
             ジャンル名
-            投稿日時：yyyymmddhh
-            コメントした人のプロフィール画像
-            コメント未入力で投稿できなくする
-            コメントの日付書式
+            ○ 投稿日時：yyyymmddhh
+            - コメントした人のプロフィール画像
+            - コメント未入力で投稿できなくする
+            ○ コメントの日付書式
          -->
 
         <!-- <div class="head">
@@ -177,9 +177,10 @@
                                 </th:block>
                             </div>
 
+                            <!-- コメント入力フォーム -->
                             <form method="get" th:object="${commentCreateForm}">
 
-                                <input type="text" id="CommentText" placeholder="投稿にコメントしよう" name="comment" required>
+                                <input type="text" id="CommentText" placeholder="投稿にコメントしよう" name="comment" pattern=".*\S+.*" required>
                                 <input type="submit" id="CommentButton" value="コメント投稿">
                                 <input type="hidden" id="user_id" th:value="${session.sessionData.user_id}">
 
@@ -211,14 +212,17 @@
                     </div>
 
                     <div class="retu2">
+                        
                         <!-- コメント -->
                         <div class="d3">
-                            <div th:unless="${#lists.isEmpty(list)}" class="d3-1">
-                                <div th:each="obj:${list}" class="tuiti">
-                                    <p th:text="${obj.user_name}"></p>
-                                    <p th:text="${obj.comment}"></p>
-                                    <p th:text="${obj.submit_time}"></p>
-                                </div>
+                            <div class="d3-1">
+                                <th:block th:unless="${#lists.isEmpty(list)}">
+                                    <div th:each="obj:${list}" class="tuiti">
+                                        <p th:text="${obj.user_name}"></p>
+                                        <p th:text="${obj.comment}"></p>
+                                        <p th:text="${obj.submit_time}"></p>
+                                    </div>
+                                </th:block>
                             </div>
 
 

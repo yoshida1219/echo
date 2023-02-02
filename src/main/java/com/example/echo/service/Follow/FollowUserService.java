@@ -1,7 +1,5 @@
 package com.example.echo.service.Follow;
 
-import java.util.concurrent.CompletableFuture;
-
 import com.example.echo.entity.Follow;
 
 public interface FollowUserService {

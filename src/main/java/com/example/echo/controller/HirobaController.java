@@ -1,8 +1,6 @@
 package com.example.echo.controller;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -270,12 +268,14 @@ public class HirobaController {
     public String updateLike(@RequestParam("response_id") String response_id,
             @RequestParam("response_creater") String response_creater, @RequestParam("like") String like) {
         String view_user = sessionData.getUser_id();
+        Date date = new Date();
 
         View_response view_response = new View_response(
                 response_id,
                 response_creater,
                 view_user,
-                like);
+                like,
+                date);
 
         view_responseService.updateLike(view_response);
 
