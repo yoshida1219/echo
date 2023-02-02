@@ -1,0 +1,126 @@
+@charset "utf-8";
+@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2? family=小杉+丸& display=swap');
+
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+main {
+    background-color: rgb(214, 212, 213);
+    height: 100vh;
+    /* 全画面表示 */
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-image: url("/img/bocchi.jpg");
+}
+main::after {
+  content: '';
+  background-color: rgba(0,0,0,.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+.backing {
+    /* background-color: aqua; */
+    top: 50%;
+    left: 50%;
+    margin: 3% 25% 25% 25%;
+    width: auto;
+    
+}
+
+
+.cent{
+  width: 35%;
+  margin: auto;
+  background-color: rgb(124, 209, 181);
+  position: relative;
+  z-index: 1;
+}
+
+.ino{
+}
+
+.rogo1{
+  width: 100%;
+  display: block;
+  padding: 10px;
+  object-fit: cover;
+}
+
+
+.hehe {
+  background-color: aliceblue;
+    padding: 10px;
+}
+.ni{
+    background-color: aliceblue;
+    
+}
+
+
+
+.Form1{
+    background-color: aliceblue;
+}
+
+
+.contact-form {
+  padding: 10px 10px 10px 10px;
+    font-size: 13px;
+    font-family: sans-serif;
+  }
+  .contact-form .item {
+    display: block;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .contact-form .item .label {
+    padding: 5px;
+    margin:0;
+  }
+  .contact-form .item .radio-group{
+    padding: 5px 0px 5px 60px;
+  }
+  .contact-form .item input[type=text],
+  .contact-form .item input[type=email],
+  .contact-form .item textarea {
+    display: block;
+    width: 100%;
+    padding: 5px 10px 5px 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 13px;
+  }
+  .contact-form .item ::placeholder {
+    color: #ccc;
+  }
+  .contact-form .item textarea {
+    outline: none;
+    border: 1px solid #ccc;
+    resize: vertical;
+  }
+  input[type=submit] {
+    
+    text-align: center;
+    font-size: 13px;
+    color: #fff;
+    background-color: rgb(40, 66, 150);
+    padding: 10px;
+    width: 100%;
+  }
+  .no-label{
+  }

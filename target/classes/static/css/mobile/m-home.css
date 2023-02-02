@@ -138,12 +138,14 @@
     text-align: center;
     padding: 20px;
     font-size: 10px;
-    /* position: fixed; */
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
   }
 
   /*.doneクラスがついたヘッダー*/
   #header.dnone {
-    opacity: 0; /*透過0にして非表示に*/
+    /* opacity: 0; */ /*透過0にして非表示に*/
   }
   
   /*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたら*/
@@ -175,21 +177,21 @@
   /*.doneクラスがついたヘッダーのテキストナビゲーションの形状*/
   #header.dnone #g-navi {
     /*固定位置にして最背面に*/
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
+    /* position: fixed; */
+    /* top: 0; */
+    /* left: 0; */
+    /* z-index: -1; */
     /*高さと幅*/
-    width: 100%;
-    height: 100vh;
+    /* width: 100%; */
+    /* height: 100vh; */
     /*天地中央＆テキスト中央揃え*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* text-align: center; */
     /*はじめは透過0に*/
-    opacity: 0;
-    transition: all 0.4s;
+    /* opacity: 0; */
+    /* transition: all 0.4s; */
   }
   
   /*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたナビゲーションの形状*/
@@ -202,7 +204,7 @@
   #header.dnone.panelactive #g-navi ul {
     display: block; /*flexの横並びをblockにして縦並びに*/
   }
-  
+
 
 
 
@@ -244,5 +246,8 @@
 
 
 #schbtn11{
-  display:none;
+  display:block;
+}
+.rig{
+  right: 0;
 }
