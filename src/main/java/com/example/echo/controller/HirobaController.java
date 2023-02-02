@@ -175,6 +175,10 @@ public class HirobaController {
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
 
+        
+        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+        model.addAttribute("side_user", side_user.get());
+
         return "Hiroba";
     }
 
@@ -249,6 +253,10 @@ public class HirobaController {
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
 
+        
+        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+        model.addAttribute("side_user", side_user.get());
+
         return "RessDetail";
     }
 
@@ -298,6 +306,11 @@ public class HirobaController {
 
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
+
+        
+        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+        model.addAttribute("side_user", side_user.get());
+
 
         return "ThreadDetail";
     }
@@ -447,6 +460,10 @@ public class HirobaController {
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
 
+        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+        model.addAttribute("side_user", side_user.get());
+
+
         return "ThreadList";
     }
 
@@ -478,22 +495,6 @@ public class HirobaController {
             @RequestParam("thread_id") String thread_id) {
 
         responseService.deleteResponse(response_creater, response_id);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
-        System.out.println(scene);
 
         if (scene.equals("ThreadDetail")) {
             // .equals(msg2)
