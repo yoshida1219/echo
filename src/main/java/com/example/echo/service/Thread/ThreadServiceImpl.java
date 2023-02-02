@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.echo.entity.Thread;
+import com.example.echo.entity.select.JenreThread;
+import com.example.echo.repository.ThreadDetailRepository;
 import com.example.echo.repository.ThreadRepository;
 
 @Service
@@ -14,6 +16,10 @@ import com.example.echo.repository.ThreadRepository;
 public class ThreadServiceImpl implements ThreadService {
     @Autowired
     ThreadRepository repository;
+
+    @Autowired
+    ThreadDetailRepository repository2;
+
 
     @Override
     public String selectMaxThread_id() {
@@ -58,5 +64,10 @@ public class ThreadServiceImpl implements ThreadService {
     @Override
     public Integer findFollowCheck(String user_id, String thread_id) {
         return repository.followCheck(user_id, thread_id);
+    }
+
+    @Override
+    public Optional<JenreThread> findJenreThread(String thread_id) {
+        return repository2.OrderJenreThread(thread_id);
     }
 }

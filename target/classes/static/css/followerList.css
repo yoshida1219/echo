@@ -4,6 +4,11 @@
   padding: 5px;
   margin: 5px;
 }
+.list button {
+  width: 150%;
+  background-color: aqua;
+  right: 0px;
+}
 
 .list img {
   width: 10%;
@@ -14,18 +19,12 @@ li {
   color: white;
   border-radius: 5px;
   width: 650px;
-  height: 60px;
-}
-li:hover {
-  background-color: white !important;
-  color: black;
+  height: 30px;
 }
 
 .user {
   background-color: #fff;
-}
-
-.list button {
-  width: 150%;
-  background-color: aqua;
+  width: 950px;
+  max-width: 1000px;
+  margin: 5px;
 }/*# sourceMappingURL=followerList.css.map */
