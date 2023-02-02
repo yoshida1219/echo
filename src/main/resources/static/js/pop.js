@@ -6,7 +6,10 @@ window.onload = function(){
 }
 */
 
-
+$('.message a').click(function(){
+    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+ });
+ 
 
 const showModal = (openButton, modalContent) =>{
     const openBtn = document.getElementById(openButton),
