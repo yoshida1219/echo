@@ -19,7 +19,7 @@
 
 /*枠組み*/
 body {
-  display: flex;
+  /* display: flex; */
   font-family: "M PLUS 1p";
 }
 
@@ -824,4 +824,17 @@ opacity: 0;
   left: 18px;
   transform: translateY(-6px) rotate(45deg);
   width: 30%;
+}
+
+
+
+
+
+/* スマホ */
+#g-navi{
+  display: none;
+}
+
+.m-head{
+  display: none;
 }

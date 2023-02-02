@@ -102,7 +102,7 @@ public class MypageController {
         model.addAttribute("responseCount", responseCount.get());
         model.addAttribute("favoriteMovieList", favoriteMovies);
         model.addAttribute("myResponseList",mypageResponse);
-
+        model.addAttribute("user_id",user_id);
 
         Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
         model.addAttribute("side_user", side_user.get());
@@ -185,6 +185,9 @@ public class MypageController {
 
         String icon = "https://skpacket.s3.ap-northeast-1.amazonaws.com/icon/" + user_id + ".jpg";
         saved_thumbnail.saved_icon(file, user_id);
+        if (!search_name.startsWith("@")) {
+            search_name = "@" + search_name;
+          }
 
         // userService.updateIcon(user_id, icon);
 
@@ -240,7 +243,7 @@ public class MypageController {
 
         return "followerListViewer";
     }
-
+    
     @PostMapping("/insertfollow")
     @ResponseBody
     public void insertFollow(@RequestParam("user_id") String user_id){
