@@ -1,5 +1,8 @@
 package com.example.echo;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.echo.service.Follower.FollowerService;
@@ -10,21 +13,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 @Order(1)
 public class Test implements CommandLineRunner{
 
-    @Autowired
-    FollowerService inst;
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    SessionData sessionData;
-
     @Override
     public void run(String... args) throws Exception {
-        //sessionData.setUser_id("U00000002");
+
     }
 }

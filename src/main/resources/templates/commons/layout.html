@@ -11,12 +11,12 @@
     <!-- ヘッダー -->
     <th:block th:fragment="header">
 
-        <div class="openbtn"><span></span><span></span><span></span></div>
+         <!-- <div class="openbtn"><span></span><span></span><span></span></div> -->
 
         <div class="header">
             <div class="tit">
 
-                <!-- <img th:src="@{/img/block.png}" class="rogo1"> -->
+                <img th:src="@{/img/ham-menu-image01.png}" class="rogo1">
             </div>
 
             <div class="btn1" id="d">
@@ -27,19 +27,10 @@
             <div class="btn1">
                 <button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''">広場</button>
             </div>
-
-
-
-
-            <div class="btn1">
-                <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">マイページ</button>
-            </div>
-
-
             <div class="btn1 login-user">
-                <div class="userr-iconnn"><img th:src="@{/img/icon/user.png}" class="rogo2"></div>
+                <button th:attr="onClick='location.href=\''+@{/mediate}+'\''"><div class="userr-iconnn"><img th:src="@{/img/icon/user.png}" class="rogo2"></div>
                 <p>情報　太郎</p>
-                <p>ログイン中</p>
+                <p>ログイン中</p></button>
             </div>
 
             <div class="btn1">
@@ -100,9 +91,6 @@
             <p>表示された人にフォローされました</p>
             <ul class="osusu">
                 <li th:each="obj:${follow_notice}" th:object="${obj}">
-<<<<<<< HEAD
-                    <a th:href="@{/notice?user_id={user_id} (user_id=*{user_id})}" class="">[[*{user_name}]]</a>
-=======
                     <button th:attr="onClick='location.href=\''+@{/notice?user_id={user_id} (user_id=*{user_id})}+'\''">
                         <div id="user_icon">
                             <img th:src="*{icon}" alt="">
@@ -112,7 +100,6 @@
                             <p th:text="*{search_name}"></p>
                         </div>
                     </button>
->>>>>>> 97403249b41047917494f46373f8749c7743eeef
                 </li>
             </ul>
         </div>

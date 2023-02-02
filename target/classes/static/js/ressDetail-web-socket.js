@@ -21,7 +21,13 @@ function disconnect() {
 
 
 function showResponse(response) {
-    $(".cent-1").prepend();
+    $(".d3-1").prepend(`
+    <div class="tuiti">
+        <p>` + response.user_name + `</p>
+        <p>` + response.comment + `</p>
+        <p>` + response.submit_time + `</p>
+    </div>
+    `)
 }
 
 function sendResponse() {
@@ -29,19 +35,18 @@ function sendResponse() {
     stompClient.send("/app/comment", {}, JSON.stringify({
         'comment':$("#CommentText").val(),
         'response_id':$("#response_id").val(), 
-        "response_creater":$("#response_creater").val()
+        "response_creater":$("#response_creater").val(),
+        "user_id":$("#user_id").val()
     }));
 }
 
 
 $(function () {
     $("form").on('submit', function (e) {
-        $("#CommentText").val("");
-        console.log("ok");
-        console.log($("#CommentText").val());
-
         e.preventDefault();
         sendResponse();
+
+        $("#CommentText").val("");
     });
 });
 

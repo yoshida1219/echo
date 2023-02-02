@@ -47,6 +47,10 @@ $("#g-nav2 a").click(function () {//ナビゲーションのリンクがクリ�
     $("#g-nav2").removeClass('panelactive');//ナビゲーションのpanelactiveクラスも除去
 });
 
+$(".rogo1").click(function () {//ボタンがクリックされたら
+	$(this).toggleClass('active');//ボタン自身に activeクラスを付与し
+    $("#g-nav2").toggleClass('panelactive');//ナビゲーションにpanelactiveクラスを付与
+});
 
 
 

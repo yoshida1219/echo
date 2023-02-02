@@ -4,6 +4,8 @@ import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+    import java.util.Optional;
+
 import com.example.echo.entity.select.SelectResponse;
 
 public interface SelectResponseRepository extends CrudRepository<SelectResponse,String>{
@@ -12,15 +14,18 @@ public interface SelectResponseRepository extends CrudRepository<SelectResponse,
         + "share_count as ( select count(*) as 'share_count', origin_creater as response_creater, origin_id as response_id from response tmp2 group by origin_creater, origin_id) "
 
         + "select user.user_name, user.user_id, user.icon, response.response_name "
-        + " , coalesce(like_count.like_count, 0) as 'like', coalesce(share_count.share_count, 0) as 'share' " 
+        + " , coalesce(like_count.like_count, 0) as 'like', coalesce(share_count.share_count, 0) as 'share', movie.movie_name, coalesce(thread.thread_name, '存在しないか、既に削除された場合があります') as thread_name " 
+        + " , response.response_submit "
         + "from response " 
-        + "inner join user on user.user_id = response.response_creater " 
+        + "inner join user on user.user_id = response.response_creater "
+        + "inner join movie on movie.movie_id = response.movie_id " 
         
         + "left outer join like_count on like_count.response_creater = response.response_creater and like_count.response_id = response.response_id "
         + "left outer join share_count on share_count.response_creater = response.response_creater and share_count.response_id = response.response_id "
+        + "left outer join thread on thread.thread_id = response.thread_id "
 
         + "where response.response_id = :response_id and response.response_creater = :user_id;")
-    Iterable<SelectResponse> SelectResponse(
+    Optional<SelectResponse> SelectResponse(
         @Param("response_id") String response_id,
         @Param("user_id") String user_Id
     );

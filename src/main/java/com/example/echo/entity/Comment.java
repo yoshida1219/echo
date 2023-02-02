@@ -1,7 +1,5 @@
 package com.example.echo.entity;
 
-import java.util.Date;
-
 import org.springframework.data.annotation.Id;
 
 import lombok.AllArgsConstructor;
@@ -25,6 +23,6 @@ public class Comment {
 
     private String response_creater;
 
-    private Date submit_time;
+    private String submit_time;
 
 }
