@@ -137,6 +137,8 @@
     color: #fff;
     text-align: center;
     padding: 20px;
+    font-size: 10px;
+    /* position: fixed; */
   }
 
   /*.doneクラスがついたヘッダー*/
@@ -201,3 +203,46 @@
     display: block; /*flexの横並びをblockにして縦並びに*/
   }
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*モバイル後*/
+
+
+#schbtn11{
+  display:none;
+}

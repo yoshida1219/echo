@@ -738,7 +738,7 @@ ul {
   height: 100vh;/*ナビの高さ*/
   background:rgb(80, 97, 77);
   /*動き*/
-  transition: all 0.6s;
+  transition: all 0.4s;
 }
 
 /*アクティブクラスがついたら位置を0に*/

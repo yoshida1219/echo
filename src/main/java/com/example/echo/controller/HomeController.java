@@ -1,5 +1,7 @@
 package com.example.echo.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import com.example.echo.form.ResponseCreateForm;
 import com.example.echo.service.Home.HomeService;
 import com.example.echo.service.Notice.NoticeService;
 import com.example.echo.service.Recommend.RecommendService;
+import com.example.echo.service.User.UserService;
 import com.example.echo.session.SessionData;
 
 /*
@@ -28,6 +31,7 @@ public class HomeController {
 	private final HomeService homeService;
     private final NoticeService noticeService;
     private final RecommendService recommendService;
+    private final UserService userService;
 
     private final SessionData sessionData;
     private final Collection collection;
@@ -37,6 +41,7 @@ public class HomeController {
         HomeService homeService,
         NoticeService noticeService,
         RecommendService recommendService,
+        UserService userService,
 
         SessionData sessionData,
         Collection collection
@@ -45,6 +50,7 @@ public class HomeController {
         this.homeService = homeService;
         this.noticeService = noticeService;
         this.recommendService = recommendService;
+        this.userService = userService;
 
         this.sessionData = sessionData;
         this.collection = collection;
@@ -79,6 +85,10 @@ public class HomeController {
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
 
         model.addAttribute("follow_notice", followNotice);
+
+        
+        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+        model.addAttribute("side_user", side_user.get());
 
         return "home";
     }

@@ -28,9 +28,9 @@
                 <button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''">広場</button>
             </div>
             <div class="btn1 login-user">
-                <button th:attr="onClick='location.href=\''+@{/mediate}+'\''"><div class="userr-iconnn"><img th:src="@{/img/icon/user.png}" class="rogo2"></div>
-                <p>情報　太郎</p>
-                <p>ログイン中</p></button>
+                <button th:attr="onClick='location.href=\''+@{/mediate}+'\''"><div class="userr-iconnn"><img th:src="${side_user.icon}" class="rogo2"></div>
+                <p>[[${side_user.user_name}]]</p>
+                <p>[[${side_user.search_name}]]</p></button>
             </div>
 
             <div class="btn1">
@@ -48,6 +48,7 @@
                 <ul>
                     <li><button th:attr="onClick='location.href=\''+@{/home}+'\''"><a>ホーム</a></button></li>
                     <li><button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''"><a>広場</a></button></li>
+                    <li id="schbtn11"><button><a>検索</a></button></li>
                     <li><button th:attr="onClick='location.href=\''+@{/mediate}+'\''"><a>マイページ</a></button></li>
                     <li><button th:attr="onClick='location.href=\''+@{/logout}+'\''"><a>ログアウト</a></button></li>
                     <li><!-- ハンバーガーメニュー -->
