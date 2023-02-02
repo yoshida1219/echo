@@ -9,9 +9,9 @@ import com.example.echo.entity.select.Follower;
 public interface FollowerListRpository extends CrudRepository<Follower,String>{
     
     @Query("select user.user_id, user.user_name, introduction, icon "
-     + "from follow "
-     + "inner join user on user.user_id = follow.followuser_id "
-     + "where follow.user_id = :user_id;")
+         + "from follow "
+         + " inner join user on user.user_id = follow.user_id "
+         + "where follow.followuser_id = :user_id;")
     Iterable<Follower> OederFollowerList(@Param("user_id") String user_id);
 
 }

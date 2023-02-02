@@ -9,7 +9,7 @@ import com.example.echo.entity.View_response;
 
 public interface ViewResponseRepository extends CrudRepository<View_response, String>{
     @Modifying
-    @Query("INSERT INTO view_response VALUES(:response_id, :response_creater, :view_user, :view_like)")
+    @Query("INSERT INTO view_response VALUES(:response_id, :response_creater, :view_user, :view_like, now())")
     void insertView_Response(
         @Param("response_id") String response_id,
         @Param("response_creater") String response_creater,

@@ -99,7 +99,7 @@ public interface ResponseRepository extends CrudRepository<Response,String>{
     );
     
     @Modifying
-    @Query("insert into view_response value(:response_id,:response_creater,:view_user,0);")
+    @Query("insert into view_response value(:response_id,:response_creater,:view_user,0, now());")
     void insertView_Response(
         @Param("response_id") String response_id,
         @Param("response_creater") String response_creater,
