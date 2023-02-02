@@ -9,7 +9,7 @@ import com.example.echo.entity.Comment;
 
 public interface CommentRepository extends CrudRepository<Comment,String>{
     @Query("""
-        select comment.comment_id, comment_user.user_name, comment.comment, DATE_FORMAT(comment.submit_time, '%Y/%m/%d %H:%i') as submit_time
+        select comment.comment_id, comment_user.user_name, comment.comment, DATE_FORMAT(comment.submit_time, '%Y/%m/%d %H:%i') as submit_time, comment_user.icon, comment_user.user_id
          from response
          inner join movie on movie.movie_id = response.movie_id 
          inner join view_response on view_response.response_id = response.response_id and view_response.response_creater = response.response_creater 

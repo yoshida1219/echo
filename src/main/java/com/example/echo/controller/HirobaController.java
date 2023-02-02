@@ -390,6 +390,8 @@ public class HirobaController {
         posting.setComment(comment.getComment());
         posting.setUser_name(user.get().getUser_name());
         posting.setSubmit_time(sdf.format(date));
+        posting.setIcon(user.get().getIcon());
+        posting.setUser_id(user.get().getUser_id());
 
         return posting;
     }

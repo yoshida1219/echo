@@ -116,7 +116,7 @@ img{
 .d3{
     background-color: rgb(253, 255, 115);
     /* padding: 10px; */
-    /* width: 30%; */
+    width: 100%;
 }
 .d3-1{
     background-color: #90bba2;
@@ -127,11 +127,27 @@ img{
 .d3-2{
     background-color: #dfdedf;
     height: 6%;
-    display: flex;
     padding: 0.5%;
+    display: flex;
 }
 
+#user_left {
+    width: 30%;
+}
 
+#user {
+    width: 70%;
+    position: relative;
+    padding: 0.3em 1.5em;
+}
+
+#time {
+    text-align: end;
+    position: absolute;
+    bottom: -0.4em;
+    right: 0;
+    font-size: 15px;
+}
 /************共有スレッド**********************************************************/
 
 
