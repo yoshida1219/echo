@@ -40,9 +40,6 @@
                 </div>
                 <!-- タイトル -->
 
-                <div class="mypage-back">
-                    画像
-                </div>
 
 
 
@@ -73,6 +70,7 @@
                                 
                                 <div id="mypage_edit">
                                     <h2>プロフィール編集</h2>
+                                    
                                     <div class="mypage-name">
                                         <p>名前</p>
                                         <input type="text" class="edit" size="50" name="user_name" th:value="${list.user_name}">
@@ -85,7 +83,7 @@
                                     </div>
                                     <div class="mypage-name">
                                         <p>自己紹介文</p>
-                                        <textarea class="edit"  name="introduction" th:value="${list.introduction}" cols="50" rows="3"></textarea>
+                                        <textarea class="edit"  name="introduction" cols="50" rows="3">[[${list.introduction}]]</textarea>
                                     </div>
 
                                     <div class="mypage-jenre">
