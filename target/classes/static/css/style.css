@@ -499,10 +499,10 @@ display: block;
 
 #search_user {
   text-align: center;
-  padding: 0.5em;
+  padding: 1.5em;
   margin: 1em;
   background-color: #ffffff;
-  height: 420px;
+  height: 44vh;
   border-radius: 15px;
 }
 
@@ -515,13 +515,13 @@ display: block;
 /*通知*/
 .light2 {
   text-align: center;
-  padding: 10%;
-  margin: 5%;
+  padding: 1.5em;
+  margin: 1em;
   background-color: #ffffff;
   position: -webkit-sticky;
   position: sticky;
   top: 300px;
-  height: 600px;
+  height: 50vh;
   border-radius: 15px;
   overflow-y: scroll;
 }
@@ -686,7 +686,7 @@ ul {
   padding: 0;
   /* float: left; */
   overflow-y: scroll;
-  height: 10vh;
+  height: 33vh;
 }
 
 .Tabs {
