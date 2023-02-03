@@ -8,11 +8,12 @@
 
 <body>
 
-    <!-- ヘッダー -->
+    <!-- ヘッダー 　＆スマホ上ヘッド-->
     <th:block th:fragment="header">
 
         <!-- <div class="openbtn"><span></span><span></span><span></span></div> -->
 
+        <!-- PC画面左ヘッダー -->
         <div class="header">
             <div class="tit">
                 <img th:src="@{/img/ham-menu-image01.png}" class="rogo1">
@@ -38,10 +39,10 @@
                 <button th:attr="onClick='location.href=\''+@{/logout}+'\''">ログアウト</button>
             </div>
         </div>
-
-
-        <!-- <div class="openbtn"><span></span><span></span><span></span></div>
-     -->
+        
+        <!-- <div class="openbtn"><span></span><span></span><span></span></div>-->
+        
+        <!-- PC画面ハンバーガーメニュー -->
         <nav id="g-nav2">
             <div class="tit2"><img th:src="@{/img/ham-menu-image01.png}" class="rogo1 rogo333"></div>
             <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
@@ -53,7 +54,6 @@
                 </ul>
             </div>
         </nav>
-
 
         <!-- スマホ上ヘッド -->
         <div class="m-head">
@@ -71,22 +71,21 @@
                 </div>
             </div>
         </div>
+
     </th:block>
 
-    <!-- スマホ下ヘッド -->
+    <!-- スマホ下フッド 　＆　　投稿ボタンpopup内容　　-->
     <th:block th:fragment="humber-nemu">
         <div id="header">
             <h1 id="grandt" class="gf">Echo</h1>
+            
             <nav id="g-navi">
                 <ul>
                     <li><button th:attr="onClick='location.href=\''+@{/home}+'\''"><a>ホーム</a></button></li>
                     <li><button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''"><a>広場</a></button></li>
-
                     <!-- <li><button class="" id="open-modal2"><a>投稿</a></button></li> -->
-
-
+                    <!-- 投稿ボタン -->
                     <li>
-
                         <div class="popupModal1">
                             <input type="radio" name="modalPop" id="pop11" />
                             <label for="pop11" class="m-tweet"><a>投稿</a></label>
@@ -158,31 +157,29 @@
                                             <div class="formbody">
                                                 <form method="post">
                                                     <p>
-    
-                                                        <select class="formelem maxwidth"required>
+
+                                                        <select class="formelem maxwidth" required>
                                                             <option value="">ジャンルを選択してください</option>
-    
-                                                            
-                                                                    <option 
-                                                                        ></option>
-                                                                
+
+
+                                                            <option></option>
+
                                                         </select>
-    
+
                                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
-                                                            cols="70" wrap="off"  maxlength="200"
-                                                            required></textarea>
-    
+                                                            cols="70" wrap="off" maxlength="200" required></textarea>
+
                                                         <input class="submitbtn tweebtn" type="submit" value="スレッド作成"
                                                             name="submit">
                                                     </p>
                                                 </form>
                                             </div>
                                         </div>
-                                    
-                                    
+
+
                                     </div>
 
-                                
+
 
 
 
@@ -197,7 +194,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </li>
                     <li><button th:attr="onClick='location.href=\''+@{/logout}+'\''"><a>ログアウト</a></button></li>
                     <li><!-- ハンバーガーメニュー -->
@@ -205,7 +201,6 @@
                             <span></span><span></span><span></span>
                         </div> -->
                     </li>
-
                 </ul>
             </nav>
         </div>
@@ -215,10 +210,7 @@
 
     </th:block>
 
-
-
-
-    <!-- 右 -->
+    <!-- PC＆スマホ　右 -->
     <div class="side" th:fragment="side">
 
         <!-- ユーザ検索 -->
@@ -256,7 +248,6 @@
 
     </div>
 
-
     <!-- ユーザ検索 -->
     <th:block th:fragment="result_user">
         <div class="light1">
@@ -275,7 +266,8 @@
         </div>
     </th:block>
 
-    <!-- 投稿フォーム -->
+
+    <!-- スレッド所属の投稿フォーム -->
     <div th:fragment="response_form" class="modal container">
         <div class="modal__container " id="modal-container">
 
@@ -322,8 +314,6 @@
             </div>
         </div>
     </div>
-
-
 
     <!-- スレッド一覧のテンプレート表示 -->
     <th:block th:fragment="thread_content">
@@ -437,7 +427,7 @@
         </div>
     </th:block>
 
-
+    
     <!-- フッター -->
     <footer th:fragment="footer">
         <div class="foot0">
