@@ -67,9 +67,10 @@ closeBtn.forEach(c => c.addEventListener('click', closeModal))
 
 
 //動画URLの自動切り出し
-$("#url").on("input", () => {
-    let input_url = $("#url").val();
-    let url = "https://www.youtube.com/embed/"
+$(".url").on("input", (event) => {
+    let id = event.target.id;
+    let input_url = $("#" + id).val();
+    let url = "https://www.youtube.com/embed/";
 
     if(input_url.length < 11) {
         return
@@ -77,5 +78,5 @@ $("#url").on("input", () => {
 
     url += input_url.substr(-11)
 
-    $("#video-player").attr("src", url)  
+    $(".video-player").attr("src", url)  
 })

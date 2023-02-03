@@ -116,7 +116,7 @@
                                                     th:action="@{/response_creater}">
                                                     <p>
                                                         <!-- 動画URLの入力 -->
-                                                        <input class="formelem maxwidth" placeholder="動画URL" size="70"
+                                                        <input class="formelem maxwidth url" id="url-phone" placeholder="動画URL" size="70"
                                                             th:field="*{url}" minlength="11" required>
 
                                                         <!-- コメントの入力 -->
@@ -140,7 +140,7 @@
                                             <div class="stronger">動画プレビュー</div>
                                             <div class="formbody preview">
                                                 <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
-                                                <iframe id="video-player" class="b" width="560" height="315" src=""
+                                                <iframe class="video-player" width="560" height="315" src=""
                                                     title="YouTube video player" frameborder="0"
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                     allowfullscreen>
