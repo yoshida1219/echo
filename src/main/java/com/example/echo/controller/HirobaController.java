@@ -538,7 +538,7 @@ public class HirobaController {
     }
 
     /*
-     * スレッド検索
+     * スレッド検索(昔)
      */
     @GetMapping("search_result")
     public String showSearch_result(Model model, @RequestParam("search_word") String search_word) {
@@ -547,6 +547,29 @@ public class HirobaController {
 
         // スレッド一覧へ
         return showThreadList(model, "searchThread");
+    }
+
+    /*スレッド検索(今)*/
+    @GetMapping("SearchThread")
+    public String showSearch_thread(Model model, @RequestParam("search_word") String search_word) {
+        Iterable<ThreadList> searchThread = threadListService.selectSearchThread(search_word);
+        model.addAttribute("searchThread", searchThread);
+
+        System.out.println("検索画面");
+        System.out.println("検索画面");
+        System.out.println("検索画面");
+        System.out.println("検索画面");
+        System.out.println("検索画面");
+        System.out.println("検索画面");
+        System.out.println("検索画面");
+
+        
+
+        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+        model.addAttribute("side_user", side_user.get());
+
+        // スレッド検索結果へ
+        return "SearchThread";
     }
 
     @GetMapping("jenre_change")
