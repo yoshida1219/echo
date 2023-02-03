@@ -153,6 +153,11 @@ public class HirobaController {
      */
     @GetMapping
     public String showHiroba(Model model) {
+
+        String return_word = "redirect:/";
+
+        if (sessionData.getUser_id() != null) {
+
         Iterable<SelectResponse> popularmovie = selectResponseService.OrderPopular();
         Iterable<SelectResponse> newthread = selectResponseService.OrderNewThread(sessionData.getJenre_id());
         Iterable<PopularThread> popularthread = popularThreadservice.OrderPopularThread(sessionData.getJenre_id());
@@ -179,7 +184,10 @@ public class HirobaController {
         Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
         model.addAttribute("side_user", side_user.get());
 
-        return "Hiroba";
+        return_word = "Hiroba";
+        }
+
+        return return_word;
     }
 
     /*
@@ -210,6 +218,11 @@ public class HirobaController {
             @RequestParam("user_id") String user_id,
             @RequestParam("response_id") String response_id,
             RedirectAttributes redirectAttributes) {
+
+                String return_word = "redirect:/";
+
+                if (sessionData.getUser_id() != null) {
+        
 
         Response threadList = new Response();
         String login_user = sessionData.getUser_id();
@@ -256,8 +269,10 @@ public class HirobaController {
         
         Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
         model.addAttribute("side_user", side_user.get());
+return_word = "RessDetail";
+    }
 
-        return "RessDetail";
+        return return_word;
     }
 
     /*
@@ -287,6 +302,13 @@ public class HirobaController {
      */
     @GetMapping("ThreadDetail")
     public String showThreadFil(Model model, @RequestParam String thread_id) {
+
+        
+        String return_word = "redirect:/";
+
+        if (sessionData.getUser_id() != null) {
+
+
         Iterable<ThreadDetail> list_popular3 = threadDetailService.selectThreadDetail_Popular3(thread_id);
         Iterable<ThreadDetail> list = threadDetailService.selectThreadDetailAll(thread_id);
         Optional<JenreThread> thread_data = threadService.findJenreThread(thread_id);
@@ -314,9 +336,11 @@ public class HirobaController {
         
         Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
         model.addAttribute("side_user", side_user.get());
+        return_word = "ThreadDetail";
+        }
 
 
-        return "ThreadDetail";
+        return return_word;
     }
 
     /*
@@ -402,6 +426,8 @@ public class HirobaController {
      */
     @GetMapping("ThreadList/{modeThread}")
     public String showThreadList(Model model, @PathVariable("modeThread") String modeThread) {
+
+        
         String title = "";
         Iterable<ThreadList> list = null;
 
