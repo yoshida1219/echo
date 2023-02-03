@@ -12,7 +12,11 @@
 
 
   <link rel="stylesheet" th:href="@{/reset/ress.min.css}" />
-  <link rel="stylesheet" th:href="@{/css/login.css}" />
+
+  <link rel="stylesheet" th:href="@{/css/login.css}" media="screen and (min-width: 767px)"/>
+  <link rel="stylesheet" th:href="@{/css/mobile/m-login.css}" media="screen and (max-width: 768px)" />
+
+
   <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
   <!-- /111 -->
 </head>
@@ -24,7 +28,8 @@
 
     <!-- head -->
     <div class="hedf">
-      <p>　<p>
+      <p>　
+      <p>
     </div>
 
 
@@ -33,14 +38,69 @@
     <div class="backing">
 
 
-      <div class="cent">
-
+      <!-- 
         <div class="ino">
           <img th:src="@{/img/block_copy.png}" class="rogo1">
+        </div> -->
+
+
+
+
+
+      <div class="login-page">
+        <div class="echoo">
+          <p>Echoにようこそ！</p>
+        </div>
+
+
+        <div class="form">
+
+
+
+
+          <form class="register-form" th:action="@{/createUser/complete}" method="post" th:object="${createUserForm}">
+            <input type="text" placeholder="ID" th:field="*{search_name}" />
+            <input type="password" placeholder="password" th:field="*{pass}" />
+            <input type="text" placeholder="email address" />
+
+            <button>create</button>
+            <p class="message">すでに登録されていますか？ <a href="#">サインイン</a></p>
+          </form>
+
+
+
+
+          <form class="login-form" th:action="@{/login/complete}" method="post" th:object="${loginForm}">
+
+            <input type="text" placeholder="username" th:field="*{search_name}" />
+            <input type="password" placeholder="password" th:field="*{pass}" />
+
+
+            <p class="error" th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}"></p>
+            <p class="error" th:if="${#fields.hasErrors('search_name')}" th:errors="*{search_name}"></p>
+            <p class="error" th:if="${error}" th:text="${error}"></p>
+
+            <button type="submit" value="login">login</button>
+            <p class="message">まだ登録されていませんか? <a href="#">新規登録はこちら！</a></p>
+
+
+          </form>
+
+
+
+
         </div>
 
 
 
+      </div>
+
+
+
+
+
+
+      <!-- 昔の
         <div class="Form1">
           <form class="contact-form" id="form" th:action="@{/login/complete}" method="post" th:object="${loginForm}">
               <p>ログイン情報をご記載下さい。</p>
@@ -72,10 +132,14 @@
               <input type="submit" value="アカウント作成">
             </form>
           </div>
-        </div>
-      </div>
+        </div>  
+-->
 
-      
+
+
+
+
+
 
 
     </div>
@@ -85,12 +149,15 @@
 
 </body>
 <script>
-    const text = document.getElementById('alert').value;
-    if(text == 'sessionError'){
-      setTimeout(function(){
-      alert("再度、ログインしなおしてください");},350);
-    }
+  const text = document.getElementById('alert').value;
+  if (text == 'sessionError') {
+    setTimeout(function () {
+      alert("再度、ログインしなおしてください");
+    }, 350);
+  }
 </script>
+<script th:src="@{/js/pop.js}"></script>
+
 </html>
 
 
