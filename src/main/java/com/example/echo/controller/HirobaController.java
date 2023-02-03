@@ -427,6 +427,11 @@ return_word = "RessDetail";
     @GetMapping("ThreadList/{modeThread}")
     public String showThreadList(Model model, @PathVariable("modeThread") String modeThread) {
 
+        String return_word = "redirect:/";
+
+        if (sessionData.getUser_id() != null) {
+
+
         
         String title = "";
         Iterable<ThreadList> list = null;
@@ -494,9 +499,11 @@ return_word = "RessDetail";
 
         Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
         model.addAttribute("side_user", side_user.get());
+return_word = "ThreadList";
+    }
 
 
-        return "ThreadList";
+        return return_word;
     }
 
     @GetMapping("follow_thread")
@@ -578,6 +585,10 @@ return_word = "RessDetail";
     /*スレッド検索(今)*/
     @GetMapping("SearchThread")
     public String showSearch_thread(Model model, @RequestParam("search_word") String search_word) {
+        String return_word = "redirect:/";
+
+        if (sessionData.getUser_id() != null) {
+
         Iterable<ThreadList> searchThread = threadListService.selectSearchThread(search_word);
         model.addAttribute("searchThread", searchThread);
 
@@ -594,8 +605,12 @@ return_word = "RessDetail";
         Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
         model.addAttribute("side_user", side_user.get());
 
+        return_word = "SearchThread";
+        }
+
+
         // スレッド検索結果へ
-        return "SearchThread";
+        return return_word;
     }
 
     @GetMapping("jenre_change")
