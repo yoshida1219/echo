@@ -29,7 +29,15 @@
     <div th:replace="~{commons/layout :: header}"></div>
 
 
+<!-- 
 
+ｐｃ版の投稿できなくなっちゃったデス。
+誰か助けてー
+
+削除ボタンホームに出ません
+
+
+-->
 
 
     <main>
@@ -167,7 +175,7 @@
                                                 <input type="hidden" name="user_id"
                                                     th:value="${session.sessionData.user_id}">
 
-                                                <button id="send" class="submitbtn tweebtn" type="submit">書き込む</button>
+                                                <button id="send" class="submitbtn tweebtn" type="submit">投稿</button>
                                             </p>
                                         </form>
 
@@ -178,7 +186,7 @@
                                     <div class="stronger">動画プレビュー</div>
                                     <div class="formbody preview">
                                         <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
-                                        <iframe id="video-player" class="b" width="560" height="315" src=""
+                                        <iframe id="video-player" class="b video-player" width="560" height="315" src=""
                                             title="YouTube video player" frameborder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                             allowfullscreen>

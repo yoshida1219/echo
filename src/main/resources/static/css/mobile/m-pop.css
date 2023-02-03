@@ -236,8 +236,10 @@ img{
 
 .stronger {
   color: #48526a;
-  font-size: 24px;
+  font-size: 14px;
   font-weight: 700;
+  text-align: initial;
+  padding: 0% 1%;
 }
 
 .stronger2 {
@@ -274,9 +276,13 @@ img{
   font-weight: 400;
   text-align: center;
   border: 1px solid transparent;
-  padding: 10px;
+  padding: 5px 12px;
   font-size: 15px;
   border-radius: 4px;
+  position: absolute;
+  bottom: 3%;
+  left: 32%;
+  right: 32%;
 }
 
 

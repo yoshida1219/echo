@@ -539,6 +539,7 @@ display: block;
   /* text-align: center; */
   justify-content: center;
   height: 12vh;
+  border-radius: 15px;
 }
 
 .osusu {
@@ -559,8 +560,8 @@ display: block;
   justify-content: center;
 }
 
-#user_icon {
-  width: 50%;
+#notice_user {
+  width: 16%;
   position: relative;
   /* text-align: center; */
   margin: auto;

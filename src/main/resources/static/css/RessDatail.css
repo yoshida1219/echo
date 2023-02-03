@@ -148,6 +148,13 @@ img{
     right: 0;
     font-size: 15px;
 }
+
+#user_icon {
+    width: 50%;
+    position: relative;
+    /* text-align: center; */
+    margin: auto;
+  }
 /************共有スレッド**********************************************************/
 
 
