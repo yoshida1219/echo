@@ -232,11 +232,10 @@ public class MypageController {
 
     @GetMapping("/followerListViewer")
     public String showFollowerList(Model model, @RequestParam("user_id") String user_id){
-        Iterable<Follow> FollowList = followUserService.selectFollow(user_id);
+        Iterable<Follow> FollowList = followUserService.selectFollow(user_id,sessionData.getUser_id());
         Iterable<Follower> FollowerList = followerService.OrderFollowerList(user_id);
         model.addAttribute("FollowList", FollowList);
         model.addAttribute("FollowerList", FollowerList);
-        model.addAttribute("", FollowerList);
 
         Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
         model.addAttribute("side_user", side_user.get());
