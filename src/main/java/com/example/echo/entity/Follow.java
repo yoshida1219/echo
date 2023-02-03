@@ -19,4 +19,8 @@ public class Follow {
     private String icon;
 
     private int follow_judgement;
+
+    private String follow_login_user;
+
+    private String  check_follow;
 }

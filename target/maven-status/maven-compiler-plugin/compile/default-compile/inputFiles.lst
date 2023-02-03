@@ -49,6 +49,7 @@ c:\Users\202127\Desktop\echo_sns\src\main\java\com\example\echo\service\ThreadDe
 c:\Users\202127\Desktop\echo_sns\src\main\java\com\example\echo\api\Saved_fav.java
 c:\Users\202127\Desktop\echo_sns\src\main\java\com\example\echo\entity\select\FollowUserName.java
 c:\Users\202127\Desktop\echo_sns\src\main\java\com\example\echo\repository\RecommendRepository.java
+c:\Users\202127\Desktop\echo_sns\src\main\java\com\example\echo\entity\select\JenreThread.java
 c:\Users\202127\Desktop\echo_sns\src\main\java\com\example\echo\service\Follower\FollowerServiceImpl.java
 c:\Users\202127\Desktop\echo_sns\src\main\java\com\example\echo\repository\PopularThreadRepository.java
 c:\Users\202127\Desktop\echo_sns\src\main\java\com\example\echo\repository\FollowRepository.java

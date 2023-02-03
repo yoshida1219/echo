@@ -15,8 +15,8 @@ public class FollowUserServiceImpl implements FollowUserService{
     FollowRepository Follow;
 
     @Override
-    public Iterable<Follow> selectFollow(String user_id) {
-        return Follow.selectFollow(user_id);
+    public Iterable<Follow> selectFollow(String user_id,String session_user_id) {
+        return Follow.selectFollow(user_id,session_user_id);
     }
 
     @Override

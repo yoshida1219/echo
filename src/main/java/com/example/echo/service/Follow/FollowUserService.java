@@ -4,7 +4,7 @@ import com.example.echo.entity.Follow;
 
 public interface FollowUserService {
 
-    Iterable<Follow> selectFollow(String user_id);
+    Iterable<Follow> selectFollow(String user_id,String session_user_id);
 
     void insertFollow(String user_id,
                       String folowuser_id);
