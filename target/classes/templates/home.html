@@ -2,59 +2,21 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Echo</title>
-    <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
-    <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
-    <link rel="icon" th:href="@{/img/ファビコン/favicon.ico}">
-    <link rel="stylesheet" th:href="@{/reset/ress.min.css}" />
+    <th:block th:replace="~{commons/layout :: cssjs}"></th:block>
 
-
-    <link rel="stylesheet" th:href="@{/css/style.css}" media="screen and (min-width: 767px)" />
-    <link rel="stylesheet" th:href="@{/css/pop.css}" media="screen and (min-width: 767px)">
     <link rel="stylesheet" th:href="@{/css/home.css}" media="screen and (min-width: 767px)">
-
-    <link rel="stylesheet" th:href="@{css/mobile/m-style.css}" media="screen and (max-width: 768px)">
-    <link rel="stylesheet" th:href="@{/css/mobile/m-pop.css}" media="screen and (max-width: 768px)">
-    <link rel="stylesheet" th:href="@{/css/mobile/m-pop2.css}" media="screen and (max-width: 768px)">
     <link rel="stylesheet" th:href="@{/css/mobile/m-home.css}" media="screen and (max-width: 768px)">
-
-    <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
 </head>
 
 <body>
-
-
     <div th:replace="~{commons/layout :: header}"></div>
 
-
-<!-- 
-
-ｐｃ版の投稿できなくなっちゃったデス。
-誰か助けてー
-
-削除ボタンホームに出ません
-
-
--->
-
-
     <main>
-        
         <div class="moto">
-
-
-
             <div class="center">
 
+
                 <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
-
-
-
-
-                
-
 
                 <div>
                     <button class="create-sa" id="open-modal2">投稿</button>
@@ -218,7 +180,6 @@
     <script th:src="@{/js/ajax.js}"></script>
 
     <script src="js/hum.js"></script>
-
 
 </body>
 

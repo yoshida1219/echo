@@ -7,6 +7,31 @@
 </head>
 
 <body>
+    <!-- 全画面必要 -->
+    <th:block th:fragment="cssjs">
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Echo</title>
+        <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+        <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
+        <link rel="icon" th:href="@{/img/ファビコン/favicon.ico}">
+        <link rel="stylesheet" th:href="@{/reset/ress.min.css}" />
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
+
+        <link rel="stylesheet" th:href="@{/css/style.css}" media="screen and (min-width: 767px)" />
+        <link rel="stylesheet" th:href="@{css/mobile/m-style.css}" media="screen and (max-width: 768px)">
+
+        <link rel="stylesheet" th:href="@{/css/icon.css}" media="screen and (min-width: 767px)">
+        <link rel="stylesheet" th:href="@{/css/mobile/m-icon.css}" media="screen and (max-width: 768px)">
+
+        <link rel="stylesheet" th:href="@{/css/pop.css}" media="screen and (min-width: 767px)">
+
+        <link rel="stylesheet" th:href="@{/css/mobile/m-pop.css}" media="screen and (max-width: 768px)">
+        <link rel="stylesheet" th:href="@{/css/mobile/m-pop2.css}" media="screen and (max-width: 768px)">
+
+    </th:block>
+
 
     <!-- ヘッダー 　＆スマホ上ヘッド-->
     <th:block th:fragment="header">
@@ -15,33 +40,79 @@
 
         <!-- PC画面左ヘッダー -->
         <div class="header">
-            <div class="tit">
-                <img th:src="@{/img/ham-menu-image01.png}" class="rogo1">
+            <div class="tit icon-home-lin1">
+                <!-- <img th:src="@{/img/ham-menu-image01.png}" class="rogo1"> -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" class="rogo1">
+                    <path d="M6 36v-3h36v3Zm0-10.5v-3h36v3ZM6 15v-3h36v3Z" />
+                </svg>
+                <p class="side-name1"></p>
             </div>
 
-            <div class="btn1" id="d">
-                <button th:attr="onClick='location.href=\''+@{/home}+'\''">ホーム</button>
+            <div class="nemu-sideing">
+
+
+                <div class="btn1" id="d">
+                    <button th:attr="onClick='location.href=\''+@{/home}+'\''">
+                        <div class="icon-home-lin1">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+                                <path
+                                    d="M11 39h7.5V26.5h11V39H37V19.5L24 9.75 11 19.5Zm-3 3V18L24 6l16 12v24H26.5V29.5h-5V42Zm16-17.65Z"
+                                    class="html-icon1" />
+                            </svg>
+                            <p class="side-name1">ホーム</p>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="btn1">
+                    <button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''">
+                        <div class="icon-home-lin1">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+                                <path
+                                    d="M0 36v-2.65q0-1.95 2.1-3.15T7.5 29q.65 0 1.2.025.55.025 1.1.125-.4.85-.6 1.725-.2.875-.2 1.875V36Zm12 0v-3.25q0-3.25 3.325-5.25t8.675-2q5.4 0 8.7 2 3.3 2 3.3 5.25V36Zm27 0v-3.25q0-1-.175-1.875t-.575-1.725q.55-.1 1.1-.125Q39.9 29 40.5 29q3.4 0 5.45 1.2Q48 31.4 48 33.35V36Zm-15-7.5q-4 0-6.5 1.2T15 32.75V33h18v-.3q0-1.8-2.475-3T24 28.5Zm-16.5-1q-1.45 0-2.475-1.025Q4 25.45 4 24q0-1.45 1.025-2.475Q6.05 20.5 7.5 20.5q1.45 0 2.475 1.025Q11 22.55 11 24q0 1.45-1.025 2.475Q8.95 27.5 7.5 27.5Zm33 0q-1.45 0-2.475-1.025Q37 25.45 37 24q0-1.45 1.025-2.475Q39.05 20.5 40.5 20.5q1.45 0 2.475 1.025Q44 22.55 44 24q0 1.45-1.025 2.475Q41.95 27.5 40.5 27.5ZM24 24q-2.5 0-4.25-1.75T18 18q0-2.55 1.75-4.275Q21.5 12 24 12q2.55 0 4.275 1.725Q30 15.45 30 18q0 2.5-1.725 4.25T24 24Zm0-9q-1.25 0-2.125.85T21 18q0 1.25.875 2.125T24 21q1.3 0 2.15-.875Q27 19.25 27 18q0-1.3-.85-2.15Q25.3 15 24 15Zm0 18Zm0-15Z" />
+                            </svg>
+                            <p class="side-name1">広場</p>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="btn1">
+                    <button>
+                        <div class="icon-home-lin1">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+                                <path
+                                    d="M10.75 42.15q-1.7 0-3.35-.575Q5.75 41 4.5 39.7q1.75-.6 2.5-1.75t.75-3.1q0-2.2 1.525-3.725T13 29.6q2.2 0 3.725 1.525t1.525 3.725q0 3.2-2.175 5.25t-5.325 2.05Zm0-3q1.75 0 3.125-1.25t1.375-3.05q0-1-.625-1.625T13 32.6q-1 0-1.625.625t-.625 1.625q0 1.95-.425 2.875T8.75 38.85q.3.05 1 .175.7.125 1 .125Zm11.5-8.85-4.5-4.75 18.8-18.8q.7-.7 1.55-.725.85-.025 1.6.725l1.45 1.45q.75.75.725 1.625-.025.875-.725 1.575ZM13 34.85Z" />
+                            </svg>
+                            <p class="side-name1">投稿</p>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="btn1 login-user">
+                    <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">
+                        <div class="icon-home-lin1 userr-iconnn">
+                            <img th:src="${side_user.icon}" class="rogo2">
+                            <p class="side-name1 origin-my">マイページ</p>
+                        </div>
+                        <!--                     <p>[[${side_user.user_name}]]</p>
+                        <p>[[${side_user.search_name}]]</p> -->
+                    </button>
+                </div>
+
+
+
+                <div class="btn1 last-log">
+                    <button th:attr="onClick='location.href=\''+@{/logout}+'\''">
+                        <p class="side-name1 second-log">ログアウト</p>
+                    </button>
+                </div>
+
             </div>
 
-            <div class="btn1">
-                <button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''">広場</button>
-            </div>
-
-            <div class="btn1 login-user">
-                <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">
-                    <div class="userr-iconnn"><img th:src="${side_user.icon}" class="rogo2"></div>
-                    <p>[[${side_user.user_name}]]</p>
-                    <p>[[${side_user.search_name}]]</p>
-                </button>
-            </div>
-
-            <div class="btn1">
-                <button th:attr="onClick='location.href=\''+@{/logout}+'\''">ログアウト</button>
-            </div>
         </div>
-        
+
         <!-- <div class="openbtn"><span></span><span></span><span></span></div>-->
-        
+
         <!-- PC画面ハンバーガーメニュー -->
         <nav id="g-nav2">
             <div class="tit2"><img th:src="@{/img/ham-menu-image01.png}" class="rogo1 rogo333"></div>
@@ -78,7 +149,7 @@
     <th:block th:fragment="humber-nemu">
         <div id="header">
             <h1 id="grandt" class="gf">Echo</h1>
-            
+
             <nav id="g-navi">
                 <ul>
                     <li><button th:attr="onClick='location.href=\''+@{/home}+'\''"><a>ホーム</a></button></li>
@@ -115,8 +186,9 @@
                                                     th:action="@{/response_creater}">
                                                     <p>
                                                         <!-- 動画URLの入力 -->
-                                                        <input class="formelem maxwidth url" id="url-phone" placeholder="動画URL" size="70"
-                                                            th:field="*{url}" minlength="11" required>
+                                                        <input class="formelem maxwidth url" id="url-phone"
+                                                            placeholder="動画URL" size="70" th:field="*{url}"
+                                                            minlength="11" required>
 
                                                         <!-- コメントの入力 -->
                                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="2"
@@ -427,7 +499,7 @@
         </div>
     </th:block>
 
-    
+
     <!-- フッター -->
     <footer th:fragment="footer">
         <div class="foot0">
