@@ -18,11 +18,6 @@
 
                 <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
 
-                <div>
-                    <button class="create-sa" id="open-modal2">投稿</button>
-                </div>
-
-
                 <!--
                     画像URLは後で実装 12/9
                 -->
@@ -117,9 +112,17 @@
                             <div class="fka"><button class="modal__button modal__button-width close-modal">X</button>
                             </div>
 
-                            <div class="tweet-1">
-
-
+                            <!-- 中身 -->
+                            <div class="modalTitle nunu">
+                                <h2 class="">投稿するものを選択してください</h2>
+                            </div>
+                            <div class="modalTitle nunu">
+                                <h2 class="h2come j3">動画共有</h2>
+                                <h2 class="h2come j4">スレッド作成</h2>
+                            </div>
+                            <div class="modalMain tweet-1 sure_kyouyu">
+            
+                                <!-- 内容 -->
                                 <div class="formbox">
                                     <div class="stronger">投稿画面</div>
                                     <div class="formbody">
@@ -127,8 +130,9 @@
                                         <form th:object="${responseCreateForm}" th:action="@{/response_creater}">
                                             <p>
                                                 <!-- 動画URLの入力 -->
-                                                <input type="text" class="formelem maxwidth url" id="url-pc" placeholder="動画URL" size="70"
-                                                    th:field="*{url}" minlength="11" required>
+                                                <input type="text" class="formelem maxwidth url" id="url-pc"
+                                                    placeholder="動画URL" size="70" th:field="*{url}" minlength="11"
+                                                    required>
 
                                                 <!-- コメントの入力 -->
                                                 <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
@@ -138,14 +142,14 @@
                                                 <input type="hidden" name="user_id"
                                                     th:value="${session.sessionData.user_id}">
 
-                                                <button id="send" class="submitbtn tweebtn" type="submit">投稿</button>
+                                                <input id="send" class="submitbtn tweebtn" type="submit"></input>
                                             </p>
                                         </form>
 
                                     </div>
                                 </div>
 
-                                <div class="formbox ">
+                                <div class="formbox">
                                     <div class="stronger">動画プレビュー</div>
                                     <div class="formbody preview">
                                         <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
@@ -156,8 +160,33 @@
                                         </iframe>
                                     </div>
                                 </div>
-
-
+                            </div>
+            
+                            <div class="modelMain sure_sesaku">
+            
+            
+                                <div class="formbox">
+                                    <div class="stronger">スレッド作成画面</div>
+                                    <div class="formbody">
+                                        <form method="post">
+                                            <p>
+            
+                                                <select class="formelem maxwidth" required>
+                                                    <option value="">ジャンルを選択してください</option>
+            
+            
+                                                    <option></option>
+            
+                                                </select>
+            
+                                                <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="70" wrap="off"
+                                                    maxlength="200" required></textarea>
+            
+                                                <input class="submitbtn tweebtn" type="submit" value="スレッド作成" name="submit">
+                                            </p>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -179,8 +208,7 @@
     <script th:src="@{/js/hover1.js}"></script>
     <script th:src="@{/js/ajax.js}"></script>
 
-    <script src="js/hum.js"></script>
-
+    <script th:src="@{/js/hum.js}"></script>
 </body>
 
 </html>
