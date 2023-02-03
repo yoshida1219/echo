@@ -74,6 +74,7 @@ public class HomeController {
      */
     @GetMapping("/home")
     public String showHome(Model model) {
+
         Iterable<SelectFollowerMovie> list = homeService.selectFollowerMovie(sessionData.getUser_id());
 
         model.addAttribute("timeline", list);
@@ -90,7 +91,11 @@ public class HomeController {
         Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
         model.addAttribute("side_user", side_user.get());
 
-        return "home";
+     
+            
+            return "home";
+        
+
     }
 
     /*
