@@ -8,7 +8,7 @@
 
 /*スクロールバー色*/
 ::-webkit-scrollbar-thumb {
-  background: #ff6ab0;
+  background: #045f22;
 }
 
 /*今のところつかっていない*/
@@ -901,8 +901,10 @@ width: 85%;
 margin: auto;
 }
 .rogo3{
-  max-width: 100%;
-  border-radius: 50%;
+  
+max-width: 100%;
+  
+border-radius: 50%;
 }
 .c-list{
   width: 70%;
@@ -930,10 +932,14 @@ padding: 5px;
 width: 20%;
 }
 .m-tweet{
-  background-color: #bb7878;
-  /* width: 10%; */
-  font-size: 15px;
-  /* padding: 0px; */
+  
+background-color: #bb7878;
+  
+/* width: 10%; */
+  
+font-size: 15px;
+  
+/* padding: 0px; */
 }
 
 
