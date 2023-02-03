@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.echo.Collection;
 import com.example.echo.entity.User;
-import com.example.echo.form.AlertFrom;
 import com.example.echo.form.CreateUserForm;
 import com.example.echo.form.LoginForm;
 import com.example.echo.service.User.UserService;
@@ -71,21 +70,16 @@ public class LoginController {
     /*
      * URL : /
      * 
-     * 初期画面
+     * ログイン画面
      */
     @GetMapping("/")
     public String start() {
-        return "index";
+        return "redirect:/login";
     }
 
-    /*
-     * URL : /createUser
-     * 
-     * アカウント作成画面
-     */
-    @GetMapping("/createUser")
-    public String showcCreateUser() {
-        return "loginNew";
+    @GetMapping("/login")
+    public String showLogin() {
+        return "login";
     }
 
     /*
@@ -97,19 +91,15 @@ public class LoginController {
      * 登録できなかった -> アカウント作成画面を表示
      */
     @PostMapping("/createUser/complete")
-    public String createUser(@Validated CreateUserForm form, BindingResult result, Model model, RedirectAttributes redirectAttributes) throws Exception{
-        if(result.hasErrors()) {
-            return "loginNew";
-        }
-
+    public String createUser(CreateUserForm form, Model model, RedirectAttributes redirectAttributes) throws Exception{
         if(!collection.checkMail(form.getMail())) {
             model.addAttribute("mailError", "メールアドレスはすでに使われています");
-            return "loginNew";
+            return "login";
         }
 
         if(!collection.checkSearchName(form.getSearch_name())) {;
             model.addAttribute("searchNameError", "このIDはすでに使われています");
-            return "loginNew";
+            return "login";
         }
 
         //パスワードのハッシュ化
@@ -122,28 +112,18 @@ public class LoginController {
         return "redirect:/";
     }
 
-    /*
-     * URL : /login
-     * 
-     * ログイン画面
-     */
-    @GetMapping("/login")
-    public String showLogin(Model model,AlertFrom alertFrom) {
-        return "login";
-    }
 
+    /*
+     * ログイン処理の制御
+     */
     @PostMapping("/login/complete")
-    public String login(@Validated LoginForm form, BindingResult result, Model model, RedirectAttributes redirectAttributes) throws Exception{
+    public String login(LoginForm form, Model model) throws Exception{
         String search_name = "@" + form.getSearch_name();
         String pass = this.makeHashPass(form.getPass());
 
-        if(result.hasErrors()) {
-            return "login2";
-        }
-
         if(!this.login(search_name, pass)) {
             model.addAttribute("error", "ログインに失敗しました");
-            return "login2";
+            return "login";
         }
 
         //sessionに格納
