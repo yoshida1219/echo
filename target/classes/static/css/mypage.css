@@ -6,7 +6,7 @@
 
 
 .mypage-back {
-    padding: 10px 110px;
+    padding: 10px 45px;
 }
 
 .prof {
@@ -106,10 +106,11 @@
 
 
 .mypage-janru {
-    padding: 3px 10px;
+    /* padding: 3px 10px; */
     display: flex;
     /* border-bottom: 2px dashed #000; */
     /* width: 90%; */
+    width: 80%;
 }
 
 .mypage-janru a {
@@ -127,6 +128,7 @@
     padding: 10px;
     /* border-bottom: 2px dashed #000; */
     height: 30%;
+    /* font-weight: 100; */
 }
 
 .my-page-coment p {
@@ -143,7 +145,7 @@
 .follow-btn1 {
     border-bottom: 2px dashed #000;
     /* width: 90%; */
-    display: flex;
+    /* display: flex; */
     height: 20%;
 }
 
