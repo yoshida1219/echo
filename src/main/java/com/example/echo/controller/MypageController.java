@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ import com.example.echo.entity.select.FavoriteMovie;
 import com.example.echo.entity.select.Follower;
 import com.example.echo.entity.select.MypageResponse;
 import com.example.echo.entity.select.SubmitResponse;
+import com.example.echo.form.ResponseCreateForm;
 import com.example.echo.service.FavoriteMovie.FavoriteMovieService;
 import com.example.echo.service.Follow.FollowUserService;
 import com.example.echo.service.Follower.FollowerService;
@@ -73,6 +75,13 @@ public class MypageController {
         this.jenreService = jenreService;
 
         this.sessionData = sessionData;
+    }
+
+    //2023-02-04、これ追加しただけでとりあえずマイページにはいけるようにしました。
+    //レイアウトはバグってる？みたいですけど(阿部)
+    @ModelAttribute
+    public ResponseCreateForm setUpResponseCreateForm() {
+        return new ResponseCreateForm();
     }
 
 
