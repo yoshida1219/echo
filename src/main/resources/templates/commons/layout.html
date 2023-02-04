@@ -242,7 +242,7 @@
 
     <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
     <th:block th:fragment="humber-nemu">
-        <div id="header"class="dnone">
+        <div id="header" class="dnone">
             <h1 id="grandt" class="gf">Echo</h1>
 
             <nav id="g-navi">
@@ -592,6 +592,33 @@
                 <div class="title" th:text="*{introduction}"></div>
             </div>
         </div>
+    </th:block>
+
+
+    <!-- 広場　動画フレーム -->
+    <th:block th:fragment="vi-frame">
+
+    <!-- 1セット -->
+    <a class="Frame-card"
+    th:attr="onClick='location.href=\''+@{/Hiroba/ThreadDetail?thread_id={thread_id} (thread_id=*{thread_id})}+'\''"
+    title="カーソル合わせると出るやつ">
+    <div class="Frame-cardMedia">
+        <div class="ContentsDigestFrame-contentThumbnail" data-type="">
+            <div class="Thumbnail ContentThumbnail-background">
+                <div class="Thumbnail-image" data-thumbnail="" data-lazy-load=""
+                    data-background-image="画像" alt="動画タイトル" data-loaded="true"
+                    th:style="|background-image: url(*{thumbnail});|">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ContentsDigestFrame-cardMeta">
+        <p class="ContentsDigestFrame-cardMetaTitle" th:text="*{thread_name}">
+            タイトル
+        </p>
+    </div>
+</a>
+        
     </th:block>
 
 

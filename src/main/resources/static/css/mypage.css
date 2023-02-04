@@ -226,7 +226,7 @@ width: 90%;
     padding: 0px 1%;
     color: #FFF;
     text-decoration: none;
-    text-align: center;
+    text-align: end;
 }
 
 .example:hover {
@@ -256,15 +256,14 @@ width: 90%;
     width: 100%;
     flex-wrap: wrap;
     -webkit-box-pack: justify;
-    justify-content: space-between;
+    justify-content: space-evenly;
     opacity: 1;
     transition: opacity 0.2s ease-out 0s;
-
     border: solid 6px #ffb03f;
-  padding: 0.5em;
-  position: relative;
-  margin-top: 2em;
-  background-color: white;
+    padding: 0.5em;
+    position: relative;
+    margin-top: 2em;
+    background-color: white;
 }
 .down{
     border: solid 6px #4da0ff;
@@ -281,16 +280,4 @@ width: 90%;
     padding: 1px 7px;
     content: "　投稿動画　";/*タブの文字*/
     letter-spacing: 0.05em;/*字間*/
-}
-
-.retui{
-    background-color: #2ecd96;
-    border-radius: 10px;
-    color: white;
-}
-
-
-.mypage-suji a{
-    color:aliceblue;
-    /* text-decoration: none; */
 }

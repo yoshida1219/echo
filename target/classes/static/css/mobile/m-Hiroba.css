@@ -518,11 +518,10 @@ a {
     width: 80%;
 }
 .heading-2{
-    
-    width: 150px;
-    margin: 0 0 0 auto;
-    /* background-color: rgb(212, 214, 214); */
-    text-align: center;
+    /* width: 150px; */
+    margin: 0 0 0 auto;
+    /* background-color: rgb(212, 214, 214); */
+    text-align: center;
 }
 
 .btn-flat-simple {

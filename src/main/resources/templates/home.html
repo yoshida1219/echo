@@ -45,7 +45,7 @@
 
                                     <div class="coment">
                                         <div class="user">
-                                            <p th:text="${obj.response_name}"></p>
+                                            <p th:text="${obj.response_name}"class="text-overflow"></p>
                                         </div>
                                     </div>
 
@@ -64,7 +64,7 @@
 
                                             <div class="con23">
                                                 <div class="content2">
-                                                    <p class="titl" th:text="${obj.movie_name}"></p>
+                                                    <p class="titl text-overflow" th:text="${obj.movie_name}"></p>
                                                 </div>
                                                 <!-- <button th:attr="onClick='location.href=\' '+ @{/Hiroba/delete_response?response_creater={response_creater}&response_id={response_id} (response_creater=${obj.user_id},response_id=${obj.response_id})} + '\''">
                                                     投稿削除
