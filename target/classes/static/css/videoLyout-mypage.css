@@ -69,11 +69,6 @@
 }
 
 
-
-.news-item-container{
-    
-}
-
 .retui{
     position: absolute;
     background-color: #2ecd96;
@@ -85,7 +80,7 @@
 
 
 .mypage-suji a{
-    color:aliceblue;
+    color: black;
     /* text-decoration: none; */
 }
 

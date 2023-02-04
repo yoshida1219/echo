@@ -80,85 +80,91 @@
     text-align: center;
 }
 #tt1{
+    width: 30%;
     background-color: rgb(255 0 106 / 81%);
 }
 #tt2{
     background-color: rgb(184, 204, 0);
+    width: 30%;
 }
 
 
 .up-2 {
     /* background-color: #bfcdb4; */
     width: 70%;
+    position: relative;
 }
 
 .up-2 button {
     background-color: rgb(16 83 255 / 81%);
     color: #FFF;
     font-weight: 600;
-    padding: 10px;
-    margin: 3px 10px;
+    padding: 3px 5px;
+    margin: 3px 0px;
+    border-radius: 6px;
 }
 
 
 .mypage-janru {
     padding: 3px 10px;
     display: flex;
-    
-border-bottom: 2px dashed #000;
-width: 90%;
+    /* border-bottom: 2px dashed #000; */
+    /* width: 90%; */
 }
 
 .mypage-janru a {
-    background-color: #2ecd96;
-    padding: 5px;
+    background-color: #f36a00;
+    padding: 3px;
     margin-right: 5px;
+    margin: 5px;
     color: black;
-    width: 150px;
-    color: #FFF;
-
+    width: 115px;
+    color: #fff;
     text-align: center;
 }
 
 .my-page-coment {
     padding: 10px;
+    /* border-bottom: 2px dashed #000; */
+    height: 30%;
 }
 
 .my-page-coment p {
     width: 90%;
     font-size: 14px;
+    font-weight: 600;
 }
 
 .my-page-coment-2{
-    width: 90%;
-    border-top: 2px dashed #000;
-
+    /* width: 90%; */
+    /* border-top: 2px dashed #000; */
 }
 
 .follow-btn1 {
     border-bottom: 2px dashed #000;
-    width: 90%;
+    /* width: 90%; */
     display: flex;
-
+    height: 20%;
 }
 
 .mypage-suji {
     display: flex;
     padding: 3px 10px;
-    border-bottom: 2px dashed #000;
-    width: 90%;
+    border-top: 2px dashed #000;
+    /* width: 90%; */
+    height: 50%;
 }
 
 .mypage-suji p {
-    background-color: rgb(21, 73, 41);
-    padding: 10px;
+    /* background-color: rgb(21, 73, 41); */
+    padding: 10px 2px;
     margin-right: 3px;
     text-align: center;
-    color: #FFF;
+    color: #fff;
 }
 
 .mypage-suji p:first-child {
-    background-color: rgb(35, 180, 91);
+    /* background-color: rgb(35, 180, 91); */
 }
 
 
@@ -280,4 +286,27 @@ width: 90%;
     padding: 1px 7px;
     content: "　投稿動画　";/*タブの文字*/
     letter-spacing: 0.05em;/*字間*/
+}
+
+.tt3{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.sa1{
+
+width: 30%;
+
+font-size: 24px;
+}
+.sa2{
+    width: 30%;
+    font-size: 24px;
+}
+
+.folo{
+    font-size: 14px;
+    font-weight: 600;
+    background: #20a549;
 }

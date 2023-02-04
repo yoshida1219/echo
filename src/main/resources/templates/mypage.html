@@ -29,7 +29,7 @@
                         <div class="warlpa">
 
                             <div class="prof">
-                                <p>---------　　MY PROFILE　　---------</p>
+                                <p>--------　　MY PROFILE　　--------</p>
                             </div>
 
                             <div class="search-up">
@@ -52,8 +52,57 @@
                                 <!-- 文章 -->
                                 <div class="up-2">
 
+
+
                                     <!-- フォロー　プロフィール編集 -->
                                     <div class="follow-btn1">
+
+
+                                        <!-- 登録ジャンル -->
+                                        <div class="mypage-janru">
+                                            <th:block th:unless="${#lists.isEmpty(jenreAll)}">
+                                                <th:block th:each="obj:${jenreAll}">
+                                                    <a href="" th:text="${obj.jenre_name}"></a>
+                                                </th:block>
+                                            </th:block>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <!-- 一言コメント -->
+                                    <div class="my-page-coment">
+                                        <p th:text="${list.introduction}"></p>
+                                    </div>
+
+                                    <!-- 上点線 -->
+                                    <!-- <div class="my-page-coment-2">
+                                        <p>　</p>
+                                    </div> -->
+
+                                    <!-- 数字 -->
+                                    <div class="mypage-suji">
+
+                                        <div class="sa1">
+                                            <p class="folo">フォロー</p>
+                                            <p><a
+                                                    th:href="@{/followerListViewer?user_id={user_id} (user_id=${user_id})}">
+                                                    [[${follow.follower}]]
+                                                </a></p>
+
+                                        </div>
+                                        <div class="sa2">
+                                            <p class="folo">フォロワー</p>
+                                            <p><a th:href="@{/followerListViewer?user_id={user_id} (user_id=${user_id})}">
+                                                [[${follower.follower}]]
+                                            </a></p>
+                                        </div>
+
+
+                                        <p id="foorowa2">
+                                            
+                                        </p>
                                         <th:block th:unless="${login}==${list.user_id}">
                                             <th:block th:if="${checkFollow}==0">
                                                 <button id="tt1"
@@ -64,43 +113,15 @@
                                                     th:attr="onClick='location.href=\''+ @{/follow?user_id={user_id}&check_follow=1 (user_id=${list.user_id})} +'\''">フォロー解除</button>
                                             </th:block>
                                         </th:block>
-                                        <th:block th:if="${login}==${list.user_id}">
-                                            <button class="tt3"
-                                                th:attr="onClick='location.href=\''+ @{/edit?user_id={user_id} (user_id=${list.user_id})} +'\''">プロフィール編集</button>
-                                        </th:block>
                                     </div>
+                                    <th:block th:if="${login}==${list.user_id}">
+                                        <button class="tt3"
+                                            th:attr="onClick='location.href=\''+ @{/edit?user_id={user_id} (user_id=${list.user_id})} +'\''">編集</button>
+                                    </th:block>
 
-                                    <!-- 数字 -->
-                                    <div class="mypage-suji">
-                                        <p>
-                                            <a th:href="@{/followerListViewer?user_id={user_id} (user_id=${user_id})}">
-                                                フォロー：[[${follow.follower}]]
-                                            </a>
-                                        </p>
 
-                                        <p id="foorowa2">
-                                            <a th:href="@{/followerListViewer?user_id={user_id} (user_id=${user_id})}">
-                                                フォロワー：[[${follower.follower}]]
-                                            </a>
-                                        </p>
-                                    </div>
 
-                                    <!-- 登録ジャンル -->
-                                    <div class="mypage-janru">
-                                        <th:block th:unless="${#lists.isEmpty(jenreAll)}">
-                                            <th:block th:each="obj:${jenreAll}">
-                                                <a href="" th:text="${obj.jenre_name}"></a>
-                                            </th:block>
-                                        </th:block>
-                                    </div>
 
-                                    <!-- 一言コメント -->
-                                    <div class="my-page-coment">
-                                        <p th:text="${list.introduction}"></p>
-                                    </div>
-                                    <div class="my-page-coment-2">
-                                        <p>　</p>
-                                    </div>
                                 </div>
                             </div>
 

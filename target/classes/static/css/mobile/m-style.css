@@ -518,6 +518,7 @@ display: block;
   background-color: #ffffff;
   height: 90vh;
   border-radius: 15px;
+  /* z-index: 1; */
 }
 
 #search_form input {
