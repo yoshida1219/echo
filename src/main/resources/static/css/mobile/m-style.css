@@ -259,9 +259,9 @@ min-height: 100vh;
   width: 87%;
 }
 .cent-1 {
-  margin: 0 3%;
+  margin: 3px 3%;
   /* background-color: rgb(177, 255, 255); */
-  padding: 50px 0 0 0;
+  padding: 15vw 0;
 }
 
 .douga {/*  background-color: #ececec;
@@ -506,7 +506,8 @@ display: block;
   /* display: none; */
   /* right: -10px; */
   position: fixed;
-  right: -430px;
+  right: -600px;
+  margin: 6vh 0px;
   transition: all 0.4s;
 }
 
@@ -703,7 +704,7 @@ ul {
 
 .Tabs {
   display: flex;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
 }
 .Tabs li{
   /* float:left; */
@@ -714,8 +715,8 @@ ul {
   border-radius: 4px;
   color: #666;
   cursor: pointer;
-  flex-basis: 1px;
-  flex-grow: 1;
+  /* flex-basis: 1px; */
+  /* flex-grow: 1; */
   font-size: 13px;
   font-weight: 600;
   height: 40px;
@@ -723,7 +724,7 @@ ul {
   margin-right: 8px;
   position: relative;
   text-align: center;
-  /* width: 10%; */
+  width: 20%;
 }
 
 .Tabs-tab:hover{
@@ -879,7 +880,7 @@ opacity: 0;
   right: 0;
 }
 
-.m-head{position: fixed;background-color: #b8cbb8;display: flex;width: 100%;height: 50px;}
+.m-head{position: fixed;background-color: #b8cbb8;display: flex;width: 100%;/* height: 50px; */z-index: 999;}
 .m-ull{width: 70%;display: flex;margin: auto;justify-content: end;color: white;/* height: 100px; */}
 .pch{
   color: #008d38;
@@ -895,13 +896,13 @@ margin: auto;
   display: none;
 }
 .m-userr-iconnn{
-  
-width: 85%;
-  
-margin: auto;
+  width: 80%;
+  margin: auto;
+  /* object-fit: cover; */
 }
 .rogo3{
   max-width: 100%;
+  max-height: 100%;
   border-radius: 50%;
 }
 .c-list{
@@ -910,31 +911,274 @@ margin: auto;
   justify-content: end;
 }
 .m-c1{
-
-width: 20%;
-
-text-align: center;
-
-margin: auto 0;
-
-color: white;
-
-font-weight: 600;
-
-background-color: #0e2e19;
-
-padding: 5px;
+width: 20%;
+text-align: center;
+margin: auto 0;
+color: white;
+font-weight: 600;
+background-color: #0e2e19;
+padding: 5px;
 }
 .m-c2{
-  
-width: 20%;
+  width: 20%;
 }
 .m-tweet{
-  background-color: #bb7878;
-  /* width: 10%; */
-  font-size: 15px;
-  /* padding: 0px; */
+  
+background-color: #bb7878;
+  
+/* width: 10%; */
+  
+font-size: 15px;
+  
+/* padding: 0px; */
 }
+
+
+  /*==ヘッダーの形状*/
+  #header {
+    /* height: 50px; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #999;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 10px;
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+  }
+
+  /*.doneクラスがついたヘッダー*/
+  #header.dnone {
+    /* opacity: 0; */ /*透過0にして非表示に*/
+  }
+  
+  /*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたら*/
+  #header.dnone.panelactive {
+    opacity: 1; /*不透明にして出現*/
+  }
+  
+  /*==ヘッダーのテキストナビゲーションの形状*/
+  
+  #g-navi ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  #g-navi ul li a {
+    display: block;
+    text-decoration: none;
+    color: #332e2e;
+    font-weight: bold;
+    padding: 10px;
+  }
+  
+  #g-navi ul li.current a,
+  #g-navi ul li a:hover {
+    color: #fff;
+  }
+  
+  /*.doneクラスがついたヘッダーのテキストナビゲーションの形状*/
+  #header.dnone #g-navi {
+    /*固定位置にして最背面に*/
+    /* position: fixed; */
+    /* top: 0; */
+    /* left: 0; */
+    /* z-index: -1; */
+    /*高さと幅*/
+    width: 100%;
+    /* height: 100vh; */
+    /*天地中央＆テキスト中央揃え*/
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* text-align: center; */
+    /*はじめは透過0に*/
+    /* opacity: 0; */
+    /* transition: all 0.4s; */
+  }
+  
+  /*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたナビゲーションの形状*/
+  #header.dnone.panelactive #g-navi {
+    opacity: 1; /*不透明に*/
+    z-index: 3; /*最前面に*/
+    background: #eee;
+  }
+  
+  #header.dnone.panelactive #g-navi ul {
+    display: block; /*flexの横並びをblockにして縦並びに*/
+  }
+
+  #title {
+    color: blue;
+}
+
+.head{
+    display: flex;
+}
+
+
+/*リストの形状*/
+
+#header.dnone.panelactive #g-navi li a {
+    color: #333;
+    text-decoration: none;
+    padding: 30px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    transition: all 0.3s;
+    border: solid;
+    margin-bottom: 5px;
+    width: 20em;
+  }
+  
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+
+/*========= ボタンのためのCSS ===============*/
+
+/*ボタン全体の形状*/
+.openbtn1 {
+    /*ここでnoneとかblockで調整*/
+    display: none;
+    /*ボタンの位置*/
+    position: relative;
+    z-index: 999;
+    /*ボタンの形状*/
+    background: #666;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+  }
+  
+  .nume{
+    display: block;
+  }
+  
+  /*ボタンのアイコン設定*/
+  .openbtn1 span {
+    display: inline-block;
+    transition: all 0.4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #fff;
+    width: 45%;
+  }
+  
+  .openbtn1 span:nth-of-type(1) {
+    top: 15px;
+  }
+  
+  .openbtn1 span:nth-of-type(2) {
+    top: 23px;
+  }
+  
+  .openbtn1 span:nth-of-type(3) {
+    top: 31px;
+  }
+  
+  /*activeクラスが付与された後のボタンのアイコン設定*/
+  .openbtn1.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+  }
+  
+  .openbtn1.active span:nth-of-type(2) {
+    opacity: 0;
+  }
+  
+  .openbtn1.active span:nth-of-type(3) {
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+  }
+
+
+  
+  .fix{
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
+  
+
+  
+/*fadeDownクラスが付与された後のボタンの出現アニメーション設定*/
+.fadeDown {
+    animation-name: fadeDownAnime;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    display: block;
+    display: none;
+  }
+  @keyframes fadeDownAnime {
+    from {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /*========= ヘッダーナビゲーションのためのCSS ===============*/
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*モバイル後*/
+
+
+
+
+
+
 
 
 

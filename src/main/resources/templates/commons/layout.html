@@ -36,7 +36,7 @@
     </th:block>
 
 
-    <!-- ヘッダー 　＆スマホ上ヘッド-->
+    <!-- pc左バー 　　　＆スマホ上ヘッド＆　　PC版popup内容　　-->
     <th:block th:fragment="header">
 
         <!-- <div class="openbtn"><span></span><span></span><span></span></div> -->
@@ -150,7 +150,6 @@
 
         <!-- PC投稿作成画面　　ポップアップ -->
 
-        <!-- これとるとマイぺ行ける -->
         <div class="modal container">
             <div class="modal__container" id="modal-container">
 
@@ -241,9 +240,9 @@
 
     </th:block>
 
-    <!-- スマホ下フッド 　＆　　投稿ボタンpopup内容　　-->
+    <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
     <th:block th:fragment="humber-nemu">
-        <div id="header">
+        <div id="header"class="dnone">
             <h1 id="grandt" class="gf">Echo</h1>
 
             <nav id="g-navi">
@@ -378,7 +377,7 @@
 
     </th:block>
 
-    <!-- PC＆スマホ　右 -->
+    <!-- PC＆スマホ　右バー -->
     <div class="side" th:fragment="side">
 
         <!-- ユーザ検索 -->

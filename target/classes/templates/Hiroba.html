@@ -2,60 +2,41 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <!-- コピペ111 -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>卒業テスト</title>
-    <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
-    <link rel="icon" th:href="@{/img/ファビコン/favicon.ico}">
-    <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <th:block th:replace="~{commons/layout :: cssjs}"></th:block>
 
-    <link rel="stylesheet" th:href="@{/css/Hiroba.css}" />
-    <link rel="stylesheet" th:href="@{/css/pop.css}">
-
+    <link rel="stylesheet" th:href="@{/css/Hiroba.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-Hiroba.css}" media="screen and (max-width: 768px)">
 
     <link rel="stylesheet" href="./Responsive Modal Popup_files/boxicons.min.css">
-
-
-
-
-
-    <link rel="stylesheet" th:href="@{/reset/ress.min.css}" />
-    <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
-    <!-- /111 -->
 </head>
 
 <body>
 
-    <header th:replace="~{commons/layout :: header}"></header>
-
+    <!-- pc左バー 　　　＆スマホ上ヘッド＆　　PC版popup内容　　-->
+    <div th:replace="~{commons/layout :: header}"></div>
 
     <main>
-
-
-        <!-- <div class="head">
-            <p>Echo</p>
-        </div> -->
         <div class="moto">
             <div class="center">
 
 
-                <div class="head">
-                    <p>Echo</p>
-                </div>
+                <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
+                <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
 
-                <div id="search_thread">
-                    <form th:action="@{/Hiroba/SearchThread}">
-                        <input id="bar" type="text" name="search_word" placeholder="スレッドの検索" required>
-                        <input id="search-button" type="submit" value="検索">
-                    </form>
-                </div>
+                
 
-                <div class="kari">
+                <!-- 中央 -->
+                <div class="kari cent-1">
+
+                    <!-- 検索 -->
+                    <div id="search_thread">
+                        <form th:action="@{/Hiroba/SearchThread}">
+                            <input id="bar" type="text" name="search_word" placeholder="スレッドの検索" required>
+                            <input id="search-button" type="submit" value="検索">
+                        </form>
+                    </div>
 
                     <!-- 急上昇 -->
-
                     <div class="trend">
 
 
@@ -114,14 +95,8 @@
                     </div>
 
 
-
-
-
-
-
-
-                    
-                    <!-- スレッド作成画面　　ポップアップ -->
+                    <!-- 削除予定 2/4 -->
+                    <!-- 旧スレッド作成画面　ポップアップ -->
                     <div class="modal container">
 
                         <div class="modal__container " id="modal-container">
@@ -171,8 +146,6 @@
                         </div>
                     </div>
 
-                    
-                    
 
                     <div class="gh">
                         <!-- 自作スレ -->
@@ -185,7 +158,7 @@
                                 <!-- タイトル頭 -->
                                 <div class="Frame-header">
 
-                                    
+
                                     <!-- もっと見る　リンク -->
                                     <div class="heading-2">
                                         <a class="btn-flat-simple"
@@ -198,7 +171,7 @@
                                 <!-- 動画 -->
                                 <div class="Frame-cards">
 
-                                    <div th:each="obj:${mythread}" th:object="${obj}" class="">
+                                    <div th:each="obj:${mythread}" th:object="${obj}" class="bbg">
 
                                         <!-- 1セット -->
                                         <a class="Frame-card"
@@ -239,7 +212,7 @@
 
                                         </a>
                                         <!-- ちっちゃい文字 -->
-                                        
+
                                     </div>
                                     <!-- もっと見る　リンク -->
                                     <div class="heading-2">
@@ -256,7 +229,7 @@
                                 <!-- 動画 -->
                                 <div class="Frame-cards">
 
-                                    <div th:each="obj:${followthread}" th:object="${obj}">
+                                    <div th:each="obj:${followthread}" th:object="${obj}"class="bbg">
 
                                         <!-- 1セット -->
                                         <a class="Frame-card"
@@ -322,7 +295,7 @@
                                                     人気スレッド
                                                 </div>
                                             </a>
-                                            
+
                                         </div>
 
                                     </div>
@@ -333,7 +306,7 @@
                                     <!-- 動画 -->
                                     <div class="Frame-cards">
 
-                                        <div th:each="obj:${popularthread}" th:object="${obj}">
+                                        <div th:each="obj:${popularthread}" th:object="${obj}"class="bbg">
 
                                             <!-- 1セット -->
                                             <a class="Frame-card"
@@ -361,7 +334,6 @@
                                     </div>
                                 </div>
 
-
                                 <!-- 新着スレッド -->
                                 <div class="ContentsDigestFrame ThemeContainer-contentsDigestFrame"
                                     data-gtm-imp="nicovideo_imp_nicotop-theme" data-gtm-label-detail="ボカロ曲プレイリストを公開中！"
@@ -377,7 +349,7 @@
                                                     新着スレッド
                                                 </div>
                                             </a>
-                                            
+
                                         </div>
 
                                         <!-- もっと見る　リンク -->
@@ -395,7 +367,7 @@
                                     <!-- 動画 -->
                                     <div class="Frame-cards">
 
-                                        <div th:each="obj:${newthread}" th:object="${obj}">
+                                        <div th:each="obj:${newthread}" th:object="${obj}"class="bbg">
 
                                             <!-- 1セット -->
                                             <a class="Frame-card"
@@ -424,18 +396,11 @@
                                     </div>
                                 </div>
 
-
-
-
                             </div>
                         </div>
 
 
 
-                    </div>
-
-                    <div class="">
-                        <button class="create-sa" id="open-modal2">スレッド作成</button>
                     </div>
 
                 </div>
@@ -444,14 +409,14 @@
             <!-- 通知エリア（右） -->
             <th:block th:replace="~{commons/layout :: side}"></th:block>
 
-            
+
         </div>
-        <footer th:replace="~{commons/layout :: footer}"></footer>
+        <!-- <footer th:replace="~{commons/layout :: footer}"></footer> -->
     </main>
-    
+
     <script th:src="@{/js/pop.js}"></script>
     <script th:src="@{/js/ajax.js}"></script>
-    
+    <script th:src="@{/js/hum.js}"></script>
 
 </body>
 

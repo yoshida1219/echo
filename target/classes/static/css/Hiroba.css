@@ -13,8 +13,9 @@ img{
 /* 検索バー */
 #search_thread {
     background-color: aquamarine;
-    height: 3em;
+    height: 2em;
     position: relative;
+    margin-top: 26px;
 }
 
 #search_thread form {
@@ -434,7 +435,7 @@ img{
 
 
 a {
-    color: #3b3b3b;
+    /* color: #3b3b3b; */
     text-decoration: none;
     background-color: transparent;
 }

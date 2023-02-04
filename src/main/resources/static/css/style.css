@@ -698,13 +698,13 @@ ul {
   list-style: none;
   padding: 0;
   /* float: left; */
-  overflow-y: scroll;
-  height: 33vh;
+  /* overflow-y: scroll; */
+  /* height: 33vh; */
 }
 
 .Tabs {
   display: flex;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
 }
 .Tabs li{
   /* float:left; */
@@ -715,8 +715,8 @@ ul {
   border-radius: 4px;
   color: #666;
   cursor: pointer;
-  flex-basis: 1px;
-  flex-grow: 1;
+  /* flex-basis: 1px; */
+  /* flex-grow: 0; */
   font-size: 13px;
   font-weight: 600;
   height: 40px;
@@ -725,6 +725,7 @@ ul {
   position: relative;
   text-align: center;
   /* width: 10%; */
+  width: 10%;
 }
 
 .Tabs-tab:hover{
@@ -846,3 +847,88 @@ opacity: 0;
 .m-head{
   display: none;
 }
+
+  
+  /*========= ヘッダーナビゲーションのためのCSS ===============*/
+  
+  /*==ヘッダーの形状*/
+  #header {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #9e9e9e;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 10px;
+    /* position: fixed; */
+  }
+
+  /*.doneクラスがついたヘッダー*/
+  #header.dnone {
+    /* opacity: 0; */ /*透過0にして非表示に*/
+  }
+  
+  /*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたら*/
+  #header.dnone.panelactive {
+    opacity: 1; /*不透明にして出現*/
+  }
+  
+  /*==ヘッダーのテキストナビゲーションの形状*/
+  
+  #g-navi ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  #g-navi ul li a {
+    display: block;
+    text-decoration: none;
+    color: #332e2e;
+    font-weight: bold;
+    padding: 10px;
+  }
+  
+  #g-navi ul li.current a,
+  #g-navi ul li a:hover {
+    color: #fff;
+  }
+  
+  /*.doneクラスがついたヘッダーのテキストナビゲーションの形状*/
+  #header.dnone #g-navi {
+    /*固定位置にして最背面に*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /*高さと幅*/
+    width: 100%;
+    height: 100vh;
+    /*天地中央＆テキスト中央揃え*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /*はじめは透過0に*/
+    opacity: 0;
+    transition: all 0.4s;
+  }
+  
+  /*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたナビゲーションの形状*/
+  #header.dnone.panelactive #g-navi {
+    opacity: 1; /*不透明に*/
+    z-index: 3; /*最前面に*/
+    background: #eee;
+  }
+  
+  #header.dnone.panelactive #g-navi ul {
+    display: block; /*flexの横並びをblockにして縦並びに*/
+  }
+  
+
+
+
+
