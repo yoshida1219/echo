@@ -45,9 +45,9 @@ img{
 /* 急上昇 */
 .trend{
     display: flex;
-     flex-wrap: wrap;
+    flex-wrap: wrap;
     /* background-color: rgb(255 204 138); */
-    padding: 0 8%;
+    padding: 0 5%;
 }
 .trend_tit{
     background-color: #58ad5a;
