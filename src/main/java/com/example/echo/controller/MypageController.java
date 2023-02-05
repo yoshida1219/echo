@@ -280,6 +280,5 @@ public class MypageController {
         }else{
             followUserService.insertFollow(user_id, sessionData.getUser_id());
         }
-
     }
 }

@@ -52,9 +52,8 @@
 
                                         </div>
 
-                                        <div class="fl-btn" id="follow-btn">
-                                            <button th:id="${obj.user_id}" th:value="${obj.user_id}"
-                                                onclick="follow(this)">
+                                        <div class="fl-btn">
+                                            <button th:id="${obj.user_id}" th:value="${obj.user_id}" onclick="follow(this)">
                                                 <th:block th:if="${obj.check_follow}=='0'">
                                                     フォロー
                                                 </th:block>
@@ -62,7 +61,7 @@
                                                     フォロー中
                                                 </th:block>
                                             </button>
-                                            <input type="hidden" th:id="${obj.user_id} + h" value="1">
+                                            <input type="hidden" th:id="${obj.user_id} + h" th:value="${obj.check_follow}">
                                         </div>
 
                                     </div>
@@ -122,8 +121,6 @@
             let hidden = document.getElementById(user_id + 'h');
             let flag = hidden.value;
 
-            console.log(flag);
-
             $.ajax({
                 url: url,
                 type: 'POST',
@@ -131,12 +128,12 @@
                 success: function (result) {
                     console.log(flag);
 
-                    if (flag == 1) {
+                    if (flag == 0) {
                         button.innerText = 'フォロー中';
-                        hidden.value = 0;
+                        hidden.value = 1;
                     } else {
                         button.innerText = 'フォロー';
-                        hidden.value = 1;
+                        hidden.value = 0;
                     }
                 }
             });
