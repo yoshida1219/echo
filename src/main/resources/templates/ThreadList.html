@@ -52,6 +52,14 @@
                                 </ul>
                             </div>
 
+                        </div>
+
+                    </div>
+
+                    <!-- スレ一覧 -->
+                    <div class="motto-list">
+                        <li class="fptit">
+                            
                             <!-- なんとか順 -->
                             <div class="List_ja">
 
@@ -102,13 +110,8 @@
 
                                 </th:block>
                             </div>
-                        </div>
 
-                    </div>
-
-                    <!-- スレ一覧 -->
-                    <div class="motto-list">
-
+                        </li>
                         <!-- スレッド検索の一覧 -->
                         <th:block th:unless="${#lists.isEmpty(searchThread)}">
                             <li class="content_ja" th:each="obj:${searchThread}" th:object="${obj}">

@@ -259,7 +259,7 @@ min-height: 100vh;
   width: 87%;
 }
 .cent-1 {
-  margin: 3px 3%;
+  /* margin: 3px 3%; */
   /* background-color: rgb(177, 255, 255); */
   padding: 15vw 0;
 }
@@ -272,7 +272,7 @@ min-height: 100vh;
 
 iframe {
   max-width: 100%;
-  padding: 5px;
+  /* padding: 5px; */
   height: auto;
 }
 

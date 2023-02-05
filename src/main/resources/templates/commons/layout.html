@@ -504,7 +504,7 @@
                     <div class="container-item-date">
 
 
-                        
+
                         <!-- スレッド名 -->
                         <div class="List-title">
                             <div class="text-t2 text-overflow">
@@ -518,7 +518,7 @@
                                 <p th:text="*{user_name}"></p>
                             </div>
 
-                            
+
                             <div class="janruuuuu">
                                 <p th:text="*{jenre_name}"></p>
                             </div>
@@ -527,13 +527,15 @@
                         <div class="List-come">
 
                             <div class="List-suji">
-                                <span>投稿数</span>
-                                <p>[[*{res_count}]]</p>
-                            </div>
+                                <div class="ujf">
+                                    <span>投稿</span>
+                                    <p>[[*{res_count}]]</p>
+                                </div>
+                                <div class="ujf">
+                                    <span>フォロー</span>
+                                    <p>[[*{follow_count}]]</p>
+                                </div>
 
-                            <div class="List-suji">
-                                <span>フォロー数</span>
-                                <p>[[*{follow_count}]]</p>
                             </div>
                             <div class="timeeeeee">
                                 <!-- <p th:text="*{thread_submit}"></p> -->
