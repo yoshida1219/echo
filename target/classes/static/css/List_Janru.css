@@ -10,7 +10,7 @@
 }
 
 .motto-list {
-  margin: 0 10%;
+  margin: 0 5%;
   padding: 5px;
   background-color: rgb(221, 221, 221);
 }
@@ -69,7 +69,7 @@
 
 .motto-list li {
   list-style: none;
-  margin: 5px 10px;
+  margin: 5px;
 }
 
 .motto-frame {
@@ -87,15 +87,14 @@
 .container-item {
   display: flex;
   /* background-color: rgb(205, 243, 144); */
-
-  padding: 0px 10px;
+  padding: 10px;
   width: 100%;
 }
 
 .container-item-img {
   background-color: white;
-
-  width: 30%;
+  width: 40%;
+  /* padding: 10px; */
 }
 
 .container-item-img img {
@@ -105,7 +104,7 @@
 }
 
 .container-item-date {
-  width: 70%;
+  width: 60%;
   margin: 0px 0px 0px 15px;
 }
 
@@ -121,12 +120,12 @@
 
 /* アイコン　ユーザ名 */
 .List-user {
-  background-color: #b5b5d1;
-  width: 50%;
-  margin: 3px 10px;
-  border-radius: 5px;
+  background-color: #a4a4d7;
+  width: 61%;
+  /* margin: 3px 10px; */
+  /* border-radius: 5px; */
   display: flex;
-
+  height: 25%;
 }
 
 .List-user img {
@@ -146,6 +145,7 @@
   width: 80%;
   text-align: left;
   margin: auto;
+  background-color: cadetblue;
 }
 
 
@@ -162,8 +162,8 @@
 
 /* タイトル */
 .List-title {
-  /* background-color: rgb(224, 224, 224); */
-  height: 70%;
+  background-color: rgb(245 201 201);
+  height: 50%;
   font-size: 20px;
   text-align: left;
 }
@@ -172,11 +172,12 @@
 /* 数 */
 .List-come {
   display: flex;
-  background-color: rgb(221, 221, 221);
-  width: 50%;
-  margin: 3px 10px;
-  border-radius: 10px;
+  background-color: rgb(173 173 173);
+  /* width: 50%; */
+  /* margin: 3px 10px; */
+  /* border-radius: 10px; */
   font-size: 15px;
+  height: 25%;
 }
 
 .List-sita {
@@ -187,10 +188,9 @@
 .janruuuuu {
   background-color: #62626a;
   color: white;
-  border-radius: 0px 10px 10px 0px;
-  width: 130px;
-  margin: 0px 30px 0px 15px;
   text-align: center;
+  width: 30%;
+  margin: auto;
 }
 
 .timeeeeee {
@@ -199,7 +199,7 @@
 
 .List-up1 {
   background-color: rgb(255, 255, 255);
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 .List-time {
