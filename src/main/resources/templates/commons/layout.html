@@ -21,7 +21,7 @@
 
         <!-- style -->
         <link rel="stylesheet" th:href="@{/css/style.css}" media="screen and (min-width: 767px)" />
-        <link rel="stylesheet" th:href="@{css/mobile/m-style.css}" media="screen and (max-width: 768px)">
+        <link rel="stylesheet" th:href="@{/css/mobile/m-style.css}" media="screen and (max-width: 768px)">
         <!-- icon -->
         <link rel="stylesheet" th:href="@{/css/icon.css}" media="screen and (min-width: 767px)">
         <link rel="stylesheet" th:href="@{/css/mobile/m-icon.css}" media="screen and (max-width: 768px)">
@@ -490,17 +490,6 @@
 
             <div class="List-up1">
 
-                <!-- 時間 -->
-                <div class="List-time">
-                    <div class="timeeeeee">
-                        <p th:text="*{thread_submit}"></p>
-                    </div>
-                    <div class="janruuuuu">
-                        <p th:text="*{jenre_name}"></p>
-                    </div>
-                </div>
-
-
                 <div class="container-item">
 
                     <!-- 左　サムネ -->
@@ -514,6 +503,8 @@
                     <!-- 右　文章 -->
                     <div class="container-item-date">
 
+
+
                         <!-- スレッド名 -->
                         <div class="List-title">
                             <div class="text-t2 text-overflow">
@@ -521,44 +512,39 @@
                             </div>
                         </div>
 
+                        <!-- user 　 ジャンル -->
+                        <div class="List-user">
+                            <div class="List-user-name">
+                                <p th:text="*{user_name}"></p>
+                            </div>
 
-                        <div class="List-sita">
 
+                            <div class="janruuuuu">
+                                <p th:text="*{jenre_name}"></p>
+                            </div>
+                        </div>
+                        <!-- 数字 -->
+                        <div class="List-come">
 
-
-                            <!-- 数字 -->
-                            <div class="List-come">
-
-                                <div class="List-suji">
-                                    <span>投稿数</span>
+                            <div class="List-suji">
+                                <div class="ujf">
+                                    <span>投稿</span>
                                     <p>[[*{res_count}]]</p>
                                 </div>
-
-                                <div class="List-suji">
-                                    <span>フォロー数</span>
+                                <div class="ujf">
+                                    <span>フォロー</span>
                                     <p>[[*{follow_count}]]</p>
                                 </div>
 
                             </div>
-
-
-
-                            <!-- user -->
-                            <div class="List-user">
-
-                                <div class="List-user-icon">
-                                    <!--<button th:attr="onClick='location.href=\''+@{/mypage?user_id={user_id} (user_id=*{user_id})} +'\''">-->
-                                    <img th:src="*{icon}" alt="">
-                                    <!--</button>-->
-                                </div>
-
-                                <div class="List-user-name">
-                                    <p th:text="*{user_name}"></p>
-                                </div>
-
+                            <div class="timeeeeee">
+                                <!-- <p th:text="*{thread_submit}"></p> -->
+                                <p>2023/02/11</p>
                             </div>
-
                         </div>
+
+
+
 
                     </div>
 
@@ -598,27 +584,26 @@
     <!-- 広場　動画フレーム -->
     <th:block th:fragment="vi-frame">
 
-    <!-- 1セット -->
-    <a class="Frame-card"
-    th:attr="onClick='location.href=\''+@{/Hiroba/ThreadDetail?thread_id={thread_id} (thread_id=*{thread_id})}+'\''"
-    title="カーソル合わせると出るやつ">
-    <div class="Frame-cardMedia">
-        <div class="ContentsDigestFrame-contentThumbnail" data-type="">
-            <div class="Thumbnail ContentThumbnail-background">
-                <div class="Thumbnail-image" data-thumbnail="" data-lazy-load=""
-                    data-background-image="画像" alt="動画タイトル" data-loaded="true"
-                    th:style="|background-image: url(*{thumbnail});|">
+        <!-- 1セット -->
+        <a class="Frame-card"
+            th:attr="onClick='location.href=\''+@{/Hiroba/ThreadDetail?thread_id={thread_id} (thread_id=*{thread_id})}+'\''"
+            title="カーソル合わせると出るやつ">
+            <div class="Frame-cardMedia">
+                <div class="ContentsDigestFrame-contentThumbnail" data-type="">
+                    <div class="Thumbnail ContentThumbnail-background">
+                        <div class="Thumbnail-image" data-thumbnail="" data-lazy-load="" data-background-image="画像"
+                            alt="動画タイトル" data-loaded="true" th:style="|background-image: url(*{thumbnail});|">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="ContentsDigestFrame-cardMeta">
-        <p class="ContentsDigestFrame-cardMetaTitle" th:text="*{thread_name}">
-            タイトル
-        </p>
-    </div>
-</a>
-        
+            <div class="ContentsDigestFrame-cardMeta">
+                <p class="ContentsDigestFrame-cardMetaTitle" th:text="*{thread_name}">
+                    タイトル
+                </p>
+            </div>
+        </a>
+
     </th:block>
 
 

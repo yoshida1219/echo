@@ -236,7 +236,7 @@ main {
 }
 
 .Frame2 img {
-  max-width: 50%;
+  /* max-width: 50%; */
 }
 
 .Frame3 {
@@ -748,6 +748,7 @@ ul {
   text-align: center;
   /* width: 10%; */
   width: 10%;
+  margin-bottom: 8px;
 }
 
 .Tabs-tab:hover {
