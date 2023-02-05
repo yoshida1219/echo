@@ -14,15 +14,16 @@ img{
 #search_thread {
     background-color: aquamarine;
     height: 2em;
-    position: relative;
-    margin-top: 26px;
+    /* position: relative; */
+    margin-bottom: 13px;
+    text-align: center;
 }
 
 #search_thread form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
 }
 
 #bar {
@@ -186,6 +187,7 @@ img{
     background: #f1ebe0e0;
     border-radius: 15px;
     overflow-x: auto;
+    margin-top: 10px;
   }
   .container-item{
     background-color: rgb(247, 247, 247);

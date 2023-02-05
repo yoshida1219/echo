@@ -14,15 +14,18 @@ img{
 #search_thread {
     background-color: aquamarine;
     height: 2em;
-    position: relative;
-    margin-top: 26px;
+    /* position: relative; */
+    /* margin-top: 26px; */
+    /* padding: 11px; */
+    /* padding: 10px; */
 }
 
 #search_thread form {
-    position: absolute;
+    /* position: absolute; */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
+    text-align: center;
 }
 
 #bar {

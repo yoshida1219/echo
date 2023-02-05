@@ -62,10 +62,9 @@
 }
 
 .content_ja {
-  background-color: rgb(131, 97, 104);
-  padding: 0 100px 0 100px;
-  margin-top: 20px;
-
+  /* background-color: rgb(131, 97, 104); */
+  /* padding: 0 100px 0 100px; */
+  /* margin-top: 20px; */
 }
 
 .motto-list li {
@@ -225,7 +224,7 @@
 
 .crtl-box {
   background-color: #ffffff;
-  padding: 10px 25px;
+  /* padding: 10px 25px; */
 }
 
 .fptit{
@@ -241,4 +240,15 @@ display: flex;
 .List-come p{
   font-weight: 600;
   /* font-size: 15px; */
+}
+
+
+#search_thread{
+  margin: auto;
+}
+
+.ofrmsertch{
+  display: flex;
+  justify-content: center;
+  padding: 2%;
 }

@@ -40,7 +40,7 @@
 }
 
 .waku1 {
-  font-size: 26px;
+  font-size: 20px;
   display: flex;
 }
 
@@ -62,10 +62,9 @@
 }
 
 .content_ja {
-  background-color: rgb(131, 97, 104);
-  padding: 0 100px 0 100px;
-  margin-top: 20px;
-
+  /* background-color: rgb(131, 97, 104); */
+  /* padding: 0 100px 0 100px; */
+  /* margin-top: 20px; */
 }
 
 .motto-list li {
@@ -245,4 +244,12 @@ display: flex;
 .List-come p{
   font-weight: 600;
   /* font-size: 15px; */
+}
+
+
+
+.ofrmsertch{
+  display: flex;
+  justify-content: center;
+  padding: 2%;
 }
