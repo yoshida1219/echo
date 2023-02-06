@@ -38,6 +38,8 @@
     /* height: 350px; */
     list-style: none;
     padding: 5px;
+    margin: 20px 0;
+    /* border-bottom: 1px solid; */
 }
 .tag-wrapper{
     margin: 0.7rem 0px;

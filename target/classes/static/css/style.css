@@ -517,6 +517,22 @@ display: block;
   position: sticky;
   height: 1000px;
   top: 0px;
+  font-size: 13px;
+}
+
+#search_form {
+  
+/* display: flex; */
+  
+/* text-align: center; */
+  
+/* margin: 0 auto; */
+  
+justify-content: center;
+  
+margin: 1vh;
+  
+/* width: 100%; */
 }
 
 #search_user {
@@ -532,6 +548,29 @@ display: block;
   border: 1px solid;
   background: white;
   border-radius: 5px;
+}
+
+#search_form #search_word {
+
+width: 55%;
+
+/* margin: 10px; */
+}
+
+#search_form #search_button {
+  
+width: 20%;
+  
+margin: 10px;
+}
+
+.light1 {
+  height: 30vh;
+  overflow-y: scroll;
+}
+
+.result_user {
+margin: 0.3em;
 }
 
 /*通知*/
@@ -566,11 +605,12 @@ display: block;
 
 .osusu {
   list-style: none;
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  /* overflow-y: scroll; */
 }
 
 .osusu li {
-  background-color: #00a149;
+  background-color: #8ae1cd;
   /* height: 6.5vh; */
   /* margin: 5px; */
   padding: 0.3em;
@@ -580,6 +620,11 @@ display: block;
   display: flex;
   width: 100%;
   justify-content: center;
+}
+
+#user_icon {
+  width: 30%;
+  /* max-width: 50px; */
 }
 
 #notice_user {

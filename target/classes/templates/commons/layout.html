@@ -388,7 +388,7 @@
             <!-- 検索フォーム -->
             <form id="search_form" th:action="@{/Hiroba/search_user}">
                 <input type="text" id="search_word" name="search_word" placeholder="ユーザ名を入力">
-                <input type="submit" value="検索">
+                <input type="submit" id="search_button" value="検索">
             </form>
 
             <div id="result">
@@ -401,7 +401,7 @@
         <div class="light2">
             <p>表示された人にフォローされました</p>
             <ul class="osusu">
-                <li th:each="obj:${follow_notice}" th:object="${obj}">
+                <li th:each="obj:${follow_notice}" th:object="${obj}" class="result_user">
                     <button th:attr="onClick='location.href=\''+@{/notice?user_id={user_id} (user_id=*{user_id})}+'\''">
                         <div id="notice_user">
                             <img th:src="*{icon}" alt="">
@@ -421,7 +421,7 @@
     <th:block th:fragment="result_user">
         <div class="light1">
             <ul class="osusu">
-                <li th:each="obj:${user}" th:object="${obj}">
+                <li th:each="obj:${user}" th:object="${obj}" class="result_user">
                     <button th:attr="onClick='location.href=\''+@{/mypage?user_id={user_id} (user_id=*{user_id})}+'\''">
                         <div id="user_icon">
                             <img th:src="*{icon}" alt="">
