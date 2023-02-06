@@ -6,7 +6,7 @@
 
 /* **タイトル********************************************************* */
 .tit-1 {
-  padding: 30px;
+  padding: 6px;
 }
 
 .tit-2 {
@@ -76,7 +76,7 @@ blockquote {
   position: relative;
   padding: 15px 10px 5px;
   box-sizing: border-box;
-  margin: 15px;
+  /* margin: 15px; */
   font-style: italic;
   background: #f3f3f3;
   box-shadow: 0 3px 4px rgb(0 0 0 / 15%);
@@ -232,7 +232,7 @@ blockquote cite {
 
 .last-come {
   background-color: rgb(227, 238, 238);
-  margin: 0 0 1% 0;
+  margin: 10px 0px 1% 0;
   text-align: center;
 }
 
@@ -365,22 +365,24 @@ blockquote cite {
 
 
 .container2{
-  margin-left: 1rem;
-  margin-right: 1rem;
+  /* margin-left: 1rem; */
+  /* margin-right: 1rem; */
   margin-top: 25px;
   border: dashed 2px rgba(155, 155, 155, 0.5);
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   background: #f1ebe0e0;
   border-radius: 15px;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  overflow-x: auto;
 }
 .container-item{
   background-color: rgb(247, 247, 247);
   margin: 10px;
-  width: 29.7vh;
+  width: 34.7vh;
   padding: 10px;
   transition: 0.2s;
+  flex-shrink: 0;
 }
 .container-item-img img{
   display: block;
@@ -552,7 +554,7 @@ blockquote cite {
 }
 
 .ttab{
-  max-width: 15%;
+  /* max-width: 15%; */
 }
 
 
