@@ -31,26 +31,19 @@
 
                         <div class="crtl-box">
 
-                            <p>コントロールパネル</p>
                             <!-- ジャンル -->
+                            <th:block th:unless="${jenre==null}">
+                                <p>コントロールパネル</p>
                             <div class="janru itirannja">
                                 <ul class="Tabs" id="NicoNewsContainer-tabs">
-                                    <li class="Tabs-tab" data-tab="エンターテインメント">エンタメ</li>
-                                    <li class="Tabs-tab" data-tab="音楽">音楽</li>
-                                    <li class="Tabs-tab" data-tab="スポーツ">スポーツ</li>
-                                    <li class="Tabs-tab" data-tab="ゲーム">ゲーム</li>
-                                    <li class="Tabs-tab" data-tab="動物">動物</li>
-                                    <li class="Tabs-tab" data-tab="美容・健康">美容・健康</li>
-                                    <li class="Tabs-tab" data-tab="美術">美術</li>
-                                    <li class="Tabs-tab" data-tab="ビジネス・教育">ビジ・教育</li>
-                                    <li class="Tabs-tab" data-tab="料理">料理</li>
-                                    <li class="Tabs-tab" data-tab="商品紹介">商品紹介</li>
-                                    <li class="Tabs-tab" data-tab="Vlog">Vlog</li>
-                                    <li class="Tabs-tab" data-tab="自然">自然</li>
-                                    <li class="Tabs-tab" data-tab="機械">機械</li>
-                                    <li class="Tabs-tab is-active" data-tab="その他">その他</li>
+                                    <th:block th:each="obj:${jenre}" th:object="${obj}">
+                                        <li th:attr="onClick='location.href=\''+@{/Hiroba/genre_change_detail?genre_id={jenre_id} (jenre_id=*{jenre_id})}+'\''"
+                                            class="Tabs-tab" data-tab="エンターテインメント" th:text="*{jenre_name}">
+                                        </li>
+                                    </th:block>
                                 </ul>
                             </div>
+                            </th:block>
 
                         </div>
 

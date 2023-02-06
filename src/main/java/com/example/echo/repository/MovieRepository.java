@@ -17,7 +17,7 @@ public interface MovieRepository extends CrudRepository<Movie,String>{
     String findMaxMovieId();
 
     @Modifying
-    @Query("INSERT INTO movie VALUES(:movie_id, :movie_name, :url, :thumnail)")
+    @Query("INSERT INTO movie VALUES(:movie_id, :movie_name, :url, :thumnail, null)")
     void insert(
         @Param("movie_id") String movie_id,
         @Param("movie_name") String movie_name,

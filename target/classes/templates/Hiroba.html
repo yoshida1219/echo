@@ -166,7 +166,8 @@
                                         <th:block th:unless="${#lists.isEmpty(jenre)}">
                                             <th:block th:each="obj:${jenre}" th:object="${obj}">
                                                 <li th:attr="onClick='location.href=\''+@{/Hiroba/jenre_change?jenre_id={jenre_id} (jenre_id=*{jenre_id})}+'\''"
-                                                    class="Tabs-tab" th:text="*{jenre_name}"></li>
+                                                    class="Tabs-tab" th:text="*{jenre_name}">
+                                                </li>
                                             </th:block>
                                         </th:block>
 
