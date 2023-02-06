@@ -22,23 +22,22 @@ public class FollowUserServiceImpl implements FollowUserService{
     @Override
     public void insertFollow(String user_id,
                              String followuser_id){
-        Follow.insertFollow(user_id, followuser_id);
+            System.out.println("insert");
+            Follow.insertFollow(user_id, followuser_id);
     }
 
     @Override
     public void deleteFollow(String user_id,
                              String followuser_id){
+        System.out.println("delete");
         Follow.deleteFollow(user_id, followuser_id);
     }
 
     @Override
     public Boolean follow_judgement(String user_id,
                                     String followuser_id){
+        System.out.println("judgment");
         int judgment = Follow.follow_judgement(user_id, followuser_id);
-        if(judgment > 0){
-            return true;
-        }else{
-            return false;
-        }
+        if(judgment > 0){return true;}else{return false;}
     }
 }

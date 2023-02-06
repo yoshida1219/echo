@@ -273,12 +273,15 @@ public class MypageController {
     
     @PostMapping("/insertfollow")
     @ResponseBody
-    public void insertFollow(@RequestParam("user_id") String user_id){
-        
-        if(followUserService.follow_judgement(user_id, sessionData.getUser_id())){
-            followUserService.deleteFollow(user_id, sessionData.getUser_id());
-        }else{
-            followUserService.insertFollow(user_id, sessionData.getUser_id());
+    public void showFollow(Model model,  @RequestParam("user_id") String user_id, @RequestParam("check_follow") Integer check_follow) {
+    
+        if(check_follow == 0) {
+            followerService.FollowInsert(sessionData.getUser_id(), user_id);
+        }else {
+            followerService.FollowDelete(sessionData.getUser_id(), user_id);
+
         }
     }
+
+
 }
