@@ -53,7 +53,8 @@
                                         </div>
 
                                         <div class="fl-btn">
-                                            <button th:id="${obj.user_id}" th:value="${obj.user_id}" onclick="follow(this)">
+                                            <button th:class="follow-btn" th:id="${obj.user_id}" th:name="${obj.check_follow}"
+                                                th:value="${obj.user_id}" onclick="follow(this)">
                                                 <th:block th:if="${obj.check_follow}=='0'">
                                                     フォロー
                                                 </th:block>
@@ -61,7 +62,8 @@
                                                     フォロー中
                                                 </th:block>
                                             </button>
-                                            <input type="hidden" th:id="${obj.user_id} + h" th:value="${obj.check_follow}">
+                                            <input type="hidden" th:id="${obj.user_id} + h"
+                                                th:value="${obj.check_follow}">
                                         </div>
 
                                     </div>
@@ -70,24 +72,39 @@
                         </div>
                         <div>
                             <div th:each="obj:${FollowerList}">
-                                <div class="list">
-                                    <div class="fl-img">
-                                        <img th:src="${obj.icon}">
+                                <th:block th:if="${obj.check_follow}!='-1'">
+                                    <div class="list">
+
+                                        <div class="fl-img">
+                                            <img th:src="${obj.icon}">
+                                        </div>
+
+                                        <div class="fl-user user">
+                                            <div>
+                                                <p id="name" th:text="${obj.user_name}"></p>
+                                            </div>
+                                            <div>
+                                                <p th:text="${obj.introduction}"></p>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="fl-btn">
+                                            <button th:class="follower-btn" th:id="${obj.user_id}" th:name="${obj.check_follow}"
+                                                th:value="${obj.user_id}" onclick="follow(this)">
+                                                <th:block th:if="${obj.check_follow}=='0'">
+                                                    フォロー
+                                                </th:block>
+                                                <th:block th:if="${obj.check_follow}=='1'">
+                                                    フォロー中
+                                                </th:block>
+                                            </button>
+                                            <input type="hidden" th:id="${obj.user_id} + h"
+                                                th:value="${obj.check_follow}">
+                                        </div>
 
                                     </div>
-                                    <div class="fl-user user">
-                                        <p id="name" th:text="${obj.user_name}"></p>
-                                        <p th:text="${obj.introduction}"></p>
-
-
-                                    </div>
-                                    <div class="fl-btn">
-                                        <button th:id="${obj.user_id}" th:value="${obj.user_id}" onclick="follow(this)">
-                                            フォロー
-                                        </button>
-                                        <input type="hidden" th:id="${obj.user_id} + h" value="1">
-                                    </div>
-                                </div>
+                                </th:block>
                             </div>
                         </div>
                     </div>
@@ -117,22 +134,33 @@
         function follow(event) {
             let url = 'insertfollow';
             let user_id = event.value;
-            let button = document.getElementById(user_id);
             let hidden = document.getElementById(user_id + 'h');
             let flag = hidden.value;
 
+            let btn = "#" + user_id + "." + event.getAttribute("class");
+            console.log(btn);
+            let button = document.querySelector(btn);
+            console.log(button);
             $.ajax({
                 url: url,
                 type: 'POST',
-                data: { user_id: user_id },
+                data: {
+                    user_id: user_id,
+                    check_follow: flag
+                },
                 success: function (result) {
-                    console.log(flag);
-
                     if (flag == 0) {
-                        button.innerText = 'フォロー中';
+                        // $(btnClass).css({
+                        //     "background-color": "black"
+                        // })
+                        button.innerHTML = "フォロー中";
                         hidden.value = 1;
                     } else {
-                        button.innerText = 'フォロー';
+                        // $(btnClass).css({
+                        //     "background-color": "red"
+                        // })
+                        console.log("success");
+                        button.innerHTML = "フォロー";
                         hidden.value = 0;
                     }
                 }

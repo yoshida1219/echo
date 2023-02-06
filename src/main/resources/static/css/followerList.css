@@ -23,6 +23,16 @@
   /* transform: translate(0, 100%); */
 }
 
+/* .list button[name="1"]{
+  background-color: #ff6818;
+  color: #fff;
+}
+
+.list button[name="0"]{
+  background-color: #f0f8ff;
+  color: #ff6818;
+} */
+
 .list img {
   max-width: 100%;
   max-height: 100%;

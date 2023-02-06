@@ -9,7 +9,7 @@ public interface FollowerService {
 
     Optional<Follower> OrderFollowerPeople(String user_id);
 
-    Iterable<Follower> OrderFollowerList(String user_id);
+    Iterable<Follower> OrderFollowerList(String user_id,String session_user_id);
 
     void FollowInsert(String user_id, String follow_user_id);
     
