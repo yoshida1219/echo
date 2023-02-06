@@ -1,5 +1,6 @@
 package com.example.echo.controller;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ import com.example.echo.service.User.UserService;
 import com.example.echo.session.SessionData;
 
 import com.example.echo.service.Jenre.JenreService;
+import com.example.echo.service.Movie.MovieService;
 
 
 /*
@@ -47,6 +49,7 @@ public class MypageController {
     private final MypageResponseService mypageResponseService;
     private final RecommendService recommendService;
     private final JenreService jenreService;
+    private final MovieService movieService;
 
     private final SessionData sessionData;
 
@@ -60,6 +63,7 @@ public class MypageController {
         MypageResponseService mypageResponseService,
         RecommendService recommendService,
         JenreService jenreService,
+        MovieService movieService,
 
         SessionData sessionData
     ) {
@@ -71,6 +75,7 @@ public class MypageController {
         this.mypageResponseService = mypageResponseService;
         this.recommendService = recommendService;
         this.jenreService = jenreService;
+        this.movieService = movieService;
 
         this.sessionData = sessionData;
     }
@@ -184,7 +189,12 @@ public class MypageController {
         
 
         String icon = "https://skpacket.s3.ap-northeast-1.amazonaws.com/icon/" + user_id + ".jpg";
-        saved_thumbnail.saved_icon(file, user_id);
+        try {
+            saved_thumbnail.saved_icon(file, user_id, movieService);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         if (!search_name.startsWith("@")) {
             search_name = "@" + search_name;
           }

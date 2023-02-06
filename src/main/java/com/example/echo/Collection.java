@@ -133,7 +133,7 @@ public class Collection {
         
         Optional<Movie> user = movieService.existsMovie(url);
 
-        String movie_name = api.savedThumbnail(url, user);
+        String[] movie_return = api.savedThumbnail(url, user);
         
 
         String thumbnail = "https://skpacket.s3.ap-northeast-1.amazonaws.com/thumbnail/" + url + ".jpg";
@@ -143,9 +143,11 @@ public class Collection {
         this.movie_id = movie_id;
 
         movie.setMovie_id(movie_id);
-        movie.setMovie_name(movie_name);
+        movie.setMovie_name(movie_return[0]);
         movie.setThumbnail(thumbnail);
         movie.setUrl(url);
+        movie.setMovie_time(movie_return[1]);
+
 
         return movie;
     }

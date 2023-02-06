@@ -6,11 +6,14 @@ import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import org.joda.time.format.ISODateTimeFormat;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.YouTube.Videos;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.example.echo.config.Youtube_key;
@@ -21,10 +24,16 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
+import com.google.api.services.youtube.model.Video;
+import com.google.api.services.youtube.model.VideoListResponse;
+
+import java.time.Duration;
 
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
+
 import javax.imageio.ImageIO;
 
 
@@ -37,18 +46,21 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.awt.Color;
     import com.example.echo.entity.Movie;
+    import java.time.format.DateTimeFormatter;
 
+    import com.example.echo.service.Movie.MovieService;
 
 
 import java.util.concurrent.ExecutorService;
 
 @Service
 @Transactional
-
 public class Saved_thumbnail{
+
+    @Autowired
+    MovieService movieService;
     
-    //@Autowired
-    
+
 
     public List<String> getYoutubeInf(String str, String url) throws IOException{
         
@@ -178,7 +190,7 @@ public class Saved_thumbnail{
             return null;
     }
 
-    public String savedThumbnail(String url, Optional<Movie> user) throws IOException{
+    public String[] savedThumbnail(String url, Optional<Movie> user) throws IOException{
         
             // YouTube APIのクライアントを作成
             YouTube youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
@@ -221,9 +233,13 @@ public class Saved_thumbnail{
 
 
             String title = "";
+            String time = "";
+            String return_time = "";
             long start = 0L;
             long stop = 0L;
             int imageQualityJudge = 0;
+
+            String[] movie_return = new String[2];
 
                 
     
@@ -242,6 +258,33 @@ public class Saved_thumbnail{
 
                 title = ifSearchResult.getSnippet().getTitle();
                 start =  System.currentTimeMillis();
+
+                // 動画情報を取得するリクエストを作成する
+                Videos.List videoRequest = youtube.videos().list("snippet,contentDetails");
+                videoRequest.setKey(key);
+                // 動画IDを設定する
+                videoRequest.setId(ifSearchResult.getId().getVideoId());
+
+                // 動画情報を取得する
+                VideoListResponse videoResponse = videoRequest.execute();
+
+                // 動画情報を取得する
+                Video video = videoResponse.getItems().get(0);
+
+                // 動画の再生時間を取得する
+                String duration = video.getContentDetails().getDuration();
+
+
+                // ISO 8601形式の再生時間を取得する
+                Duration d = Duration.parse(duration) ;
+
+                long seconds = d.getSeconds();
+                long minutes = seconds / 60;
+                seconds = seconds % 60;
+
+                // 再生時間をmm:ss形式に変換する
+                String durationStr = String.format("%d:%02d", minutes, seconds);
+                return_time = durationStr;
 
                 
 
@@ -362,10 +405,89 @@ public class Saved_thumbnail{
             /* 時間計測 */
             stop = System.currentTimeMillis();
             System.out.println("try終了" + (stop - start) + " ms");
-            return title;
+            movie_return[0] = title;
+            movie_return[1] = return_time;
+            return movie_return;
 
         }
-        public void saved_icon(MultipartFile file, String user_id){
+        public void saved_icon(MultipartFile file, String user_id, MovieService movieService) throws IOException{
+
+            Iterable<Movie> movie_line = movieService.selectMovies();
+
+            // YouTube APIのクライアントを作成
+            YouTube youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
+                public void initialize(HttpRequest request) throws IOException {}
+            }).setApplicationName("youtube-api-example").build();
+    
+            // 検索した際に、APIから受け取る値をlistに入れる
+            YouTube.Search.List searchRequest = youtube.search().list("id,snippet");
+            
+            Youtube_key access = new Youtube_key();
+
+            String key = access.get_access();
+            //youtube apiのアクセスキー
+            searchRequest.setKey(key);
+
+            // 動画情報を取得するリクエストを作成する
+            Videos.List videoRequest = youtube.videos().list("snippet,contentDetails");
+            videoRequest.setKey(key);
+            
+
+            for (Movie element : movie_line) {
+                    // 処理
+                
+
+                String postUrl = element.getUrl();
+                
+            
+
+                    
+                    // 動画IDを設定する
+                    videoRequest.setId(postUrl);
+
+                    // 動画情報を取得する
+                    VideoListResponse videoResponse = videoRequest.execute();
+                    if (videoResponse.size() > 0) {
+
+                        // 動画情報を取得する
+                        Video video = videoResponse.getItems().get(0);
+
+                        // 動画の再生時間を取得する
+                        String duration = video.getContentDetails().getDuration();
+
+
+                        // ISO 8601形式の再生時間を取得する
+                        Duration d = Duration.parse(duration) ;
+                        System.out.println(d);
+                        long seconds = d.getSeconds();
+                        long minutes = seconds / 60;
+                        long hour = 0L;
+                        if(minutes > 60){
+                            hour = minutes / 60;
+                            minutes = minutes % 60;
+                        }
+                        seconds = seconds % 60;
+
+                        // 再生時間をmm:ss形式に変換する
+                        String durationStr = String.format("%02d:%02d:%02d", hour, minutes, seconds);
+                        movieService.updateMovie_time(element.getMovie_id(), durationStr);
+                    }
+                }
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
             if (!file.isEmpty()) {

@@ -17,12 +17,13 @@ public interface MovieRepository extends CrudRepository<Movie,String>{
     String findMaxMovieId();
 
     @Modifying
-    @Query("INSERT INTO movie VALUES(:movie_id, :movie_name, :url, :thumnail)")
+    @Query("INSERT INTO movie VALUES(:movie_id, :movie_name, :url, STR_TO_DATE(:movie_time, '%H:%i'))")
     void insert(
         @Param("movie_id") String movie_id,
         @Param("movie_name") String movie_name,
         @Param("url") String url,
-        @Param("thumnail") String thumnail
+        @Param("thumnail") String thumnail,
+        @Param("movie_time") String movie_time
     );
 
     @Query("SELECT * FROM movie WHERE url = :url")
@@ -36,5 +37,15 @@ public interface MovieRepository extends CrudRepository<Movie,String>{
     void updateThumbnail(
         @Param("url") String url,
         @Param("thumbnail") String thumbnail
+    );
+
+    @Query("select * from echo_sns.movie;")
+    Iterable<Movie> selectMovies();
+
+    @Modifying
+    @Query("UPDATE echo_sns.movie SET movie_time = STR_TO_DATE(:movie_time, '%H:%i:%s') where movie_id = :movie_id;")
+    void updateMovie_time(
+        @Param("movie_id") String movie_id,
+        @Param("movie_time") String movie_time
     );
 }

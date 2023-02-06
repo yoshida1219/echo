@@ -27,7 +27,7 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public void insert(Movie movie) {
-        repository.insert(movie.getMovie_id(), movie.getMovie_name(), movie.getUrl(), movie.getThumbnail());
+        repository.insert(movie.getMovie_id(), movie.getMovie_name(), movie.getUrl(), movie.getThumbnail(), movie.getMovie_time());
     }
 
         @Override
@@ -41,5 +41,14 @@ public class MovieServiceImpl implements MovieService{
     @Override
     public void updateThumbnail(String url, String thumbnail) {
         repository.updateThumbnail(url, thumbnail);
+    }
+    @Override
+    public Iterable<Movie> selectMovies() {
+        return repository.selectMovies();
+    }
+
+    @Override
+    public void updateMovie_time(String movie_id, String movie_time) {
+        repository.updateMovie_time(movie_id, movie_time);
     }
 }
