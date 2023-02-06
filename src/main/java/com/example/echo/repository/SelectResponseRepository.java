@@ -15,7 +15,7 @@ public interface SelectResponseRepository extends CrudRepository<SelectResponse,
 
         + "select user.user_name, user.user_id, user.icon, response.response_name "
         + " , coalesce(like_count.like_count, 0) as 'like', coalesce(share_count.share_count, 0) as 'share', movie.movie_name, coalesce(thread.thread_name, '存在しないか、既に削除された場合があります') as thread_name " 
-        + " , response.response_submit "
+        + " , DATE_FORMAT(response.response_submit, '%Y/%m/%d %H:%i') as response_submit "
         + "from response " 
         + "inner join user on user.user_id = response.response_creater "
         + "inner join movie on movie.movie_id = response.movie_id " 
