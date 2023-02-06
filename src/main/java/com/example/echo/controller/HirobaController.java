@@ -132,7 +132,6 @@ public class HirobaController {
     @Autowired
     View_responseService view_responseService;
 
-
     @ModelAttribute
     public ThreadCreateForm setUpForm() {
         return new ThreadCreateForm();
@@ -158,33 +157,32 @@ public class HirobaController {
 
         if (sessionData.getUser_id() != null) {
 
-        Iterable<SelectResponse> popularmovie = selectResponseService.OrderPopular();
-        Iterable<SelectResponse> newthread = selectResponseService.OrderNewThread(sessionData.getJenre_id());
-        Iterable<PopularThread> popularthread = popularThreadservice.OrderPopularThread(sessionData.getJenre_id());
-        Iterable<FollowThread> followthread = followthreadservice.OrderFollowThread(sessionData.getUser_id());
-        Iterable<MyThread> mythread = mythreadservice.OrderMyThread(sessionData.getUser_id());
-        Iterable<Jenre> jenre = jenreService.selectAll();
-        Iterable<SpikeUpMovie> spikeUpMovie = spikeUpMovieService.FindSpikeUpMovie();
+            Iterable<SelectResponse> popularmovie = selectResponseService.OrderPopular();
+            Iterable<SelectResponse> newthread = selectResponseService.OrderNewThread(sessionData.getJenre_id());
+            Iterable<PopularThread> popularthread = popularThreadservice.OrderPopularThread(sessionData.getJenre_id());
+            Iterable<FollowThread> followthread = followthreadservice.OrderFollowThread(sessionData.getUser_id());
+            Iterable<MyThread> mythread = mythreadservice.OrderMyThread(sessionData.getUser_id());
+            Iterable<Jenre> jenre = jenreService.selectAll();
+            Iterable<SpikeUpMovie> spikeUpMovie = spikeUpMovieService.FindSpikeUpMovie();
 
-        model.addAttribute("popularmovie", popularmovie);
-        model.addAttribute("followthread", followthread);
-        model.addAttribute("popularthread", popularthread);
-        model.addAttribute("newthread", newthread);
-        model.addAttribute("mythread", mythread);
-        model.addAttribute("jenre", jenre);
-        model.addAttribute("spikeupmovie", spikeUpMovie);
+            model.addAttribute("popularmovie", popularmovie);
+            model.addAttribute("followthread", followthread);
+            model.addAttribute("popularthread", popularthread);
+            model.addAttribute("newthread", newthread);
+            model.addAttribute("mythread", mythread);
+            model.addAttribute("jenre", jenre);
+            model.addAttribute("spikeupmovie", spikeUpMovie);
 
-        Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
-        model.addAttribute("recommend", recommend);
+            Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
+            model.addAttribute("recommend", recommend);
 
-        Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
-        model.addAttribute("follow_notice", followNotice);
+            Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+            model.addAttribute("follow_notice", followNotice);
 
-        
-        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
-        model.addAttribute("side_user", side_user.get());
+            Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+            model.addAttribute("side_user", side_user.get());
 
-        return_word = "Hiroba";
+            return_word = "Hiroba";
         }
 
         return return_word;
@@ -219,58 +217,56 @@ public class HirobaController {
             @RequestParam("response_id") String response_id,
             RedirectAttributes redirectAttributes) {
 
-                String return_word = "redirect:/";
+        String return_word = "redirect:/";
 
-                if (sessionData.getUser_id() != null) {
-        
+        if (sessionData.getUser_id() != null) {
 
-        Response threadList = new Response();
-        String login_user = sessionData.getUser_id();
-        threadList.setThread_id(selectResponseService.SelectThread_id(response_id, user_id));
-        threadList.setMovie_id(selectResponseService.SelectMovie_id(response_id, user_id));
-        Iterable<SharedThread> thread = sharedThreadService.selectThread(threadList);
+            Response threadList = new Response();
+            String login_user = sessionData.getUser_id();
+            threadList.setThread_id(selectResponseService.SelectThread_id(response_id, user_id));
+            threadList.setMovie_id(selectResponseService.SelectMovie_id(response_id, user_id));
+            Iterable<SharedThread> thread = sharedThreadService.selectThread(threadList);
 
-        // 2023-02-01追加(阿部)
-        Optional<Integer> checkFollow = followerService.FindCheckFollow(login_user, user_id);
+            // 2023-02-01追加(阿部)
+            Optional<Integer> checkFollow = followerService.FindCheckFollow(login_user, user_id);
 
-        // view_response ここの処理をressdetailに遷移したときに行う
-        Response view_response = new Response();
-        view_response.setResponse_id(response_id);
-        view_response.setResponse_creater(user_id);
-        view_response.setView_user(sessionData.getUser_id());
+            // view_response ここの処理をressdetailに遷移したときに行う
+            Response view_response = new Response();
+            view_response.setResponse_id(response_id);
+            view_response.setResponse_creater(user_id);
+            view_response.setView_user(sessionData.getUser_id());
 
-        Boolean FirstTimeView = responseService.FirstTimeView(view_response);
+            Boolean FirstTimeView = responseService.FirstTimeView(view_response);
 
-        if (FirstTimeView == false) {
-            responseService.insertView_Response(view_response);
+            if (FirstTimeView == false) {
+                responseService.insertView_Response(view_response);
+            }
+
+            Iterable<Comment> Comment = commentservice.SelectComment(user_id, response_id);
+            Optional<SelectResponse> response = selectResponseService.SelectResponse(response_id, user_id);
+            Optional<Movie> movie = movieservice.SelectMovie(threadList.getMovie_id());
+
+            model.addAttribute("list", Comment);
+            model.addAttribute("movie", movie.get());
+            model.addAttribute("obj", response.get());
+            model.addAttribute("thread", thread);
+            model.addAttribute("send_url", url);
+            model.addAttribute("login_user", sessionData.getUser_id());
+            model.addAttribute("response_id", response_id);
+            model.addAttribute("response_creater", user_id);
+            model.addAttribute("check_follow", checkFollow.get());
+            model.addAttribute("login_user", login_user);
+
+            Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
+            model.addAttribute("recommend", recommend);
+
+            Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+            model.addAttribute("follow_notice", followNotice);
+
+            Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+            model.addAttribute("side_user", side_user.get());
+            return_word = "RessDetail";
         }
-
-        Iterable<Comment> Comment = commentservice.SelectComment(user_id, response_id);
-        Optional<SelectResponse> response = selectResponseService.SelectResponse(response_id, user_id);
-        Optional<Movie> movie = movieservice.SelectMovie(threadList.getMovie_id());
-
-        model.addAttribute("list", Comment);
-        model.addAttribute("movie", movie.get());
-        model.addAttribute("obj", response.get());
-        model.addAttribute("thread", thread);
-        model.addAttribute("send_url", url);
-        model.addAttribute("login_user", sessionData.getUser_id());
-        model.addAttribute("response_id", response_id);
-        model.addAttribute("response_creater", user_id);
-        model.addAttribute("check_follow", checkFollow.get());
-        model.addAttribute("login_user", login_user);
-
-        Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
-        model.addAttribute("recommend", recommend);
-
-        Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
-        model.addAttribute("follow_notice", followNotice);
-
-        
-        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
-        model.addAttribute("side_user", side_user.get());
-return_word = "RessDetail";
-    }
 
         return return_word;
     }
@@ -303,42 +299,38 @@ return_word = "RessDetail";
     @GetMapping("ThreadDetail")
     public String showThreadFil(Model model, @RequestParam String thread_id) {
 
-        
         String return_word = "redirect:/";
 
         if (sessionData.getUser_id() != null) {
 
+            Iterable<ThreadDetail> list_popular3 = threadDetailService.selectThreadDetail_Popular3(thread_id);
+            Iterable<ThreadDetail> list = threadDetailService.selectThreadDetailAll(thread_id);
+            Optional<JenreThread> thread_data = threadService.findJenreThread(thread_id);
+            Optional<Thread> thread = threadService.selectThread(thread_id);
+            Integer threadFollow = threadService.findFollowCheck(sessionData.getUser_id(), thread_id);
 
-        Iterable<ThreadDetail> list_popular3 = threadDetailService.selectThreadDetail_Popular3(thread_id);
-        Iterable<ThreadDetail> list = threadDetailService.selectThreadDetailAll(thread_id);
-        Optional<JenreThread> thread_data = threadService.findJenreThread(thread_id);
-        Optional<Thread> thread = threadService.selectThread(thread_id);
-        Integer threadFollow = threadService.findFollowCheck(sessionData.getUser_id(), thread_id);
+            model.addAttribute("list_popular3", list_popular3);
+            model.addAttribute("list", list);
+            model.addAttribute("thread_data", thread_data.get());
+            model.addAttribute("checkFollow", threadFollow);
 
-        model.addAttribute("list_popular3", list_popular3);
-        model.addAttribute("list", list);
-        model.addAttribute("thread_data", thread_data.get());
-        model.addAttribute("checkFollow", threadFollow);
+            // thread_name は投稿がないと表示されない
+            // 外部結合に直してね
+            model.addAttribute("thread_name", thread.get().getThread_name());
+            model.addAttribute("genres", jenreService.selectAll());
+            model.addAttribute("thread_id", thread_id);
+            model.addAttribute("user_id", sessionData.getUser_id());
 
-        // thread_name は投稿がないと表示されない
-        // 外部結合に直してね
-        model.addAttribute("thread_name", thread.get().getThread_name());
-        model.addAttribute("genres", jenreService.selectAll());
-        model.addAttribute("thread_id", thread_id);
-        model.addAttribute("user_id", sessionData.getUser_id());
+            Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
+            model.addAttribute("recommend", recommend);
 
-        Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
-        model.addAttribute("recommend", recommend);
+            Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+            model.addAttribute("follow_notice", followNotice);
 
-        Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
-        model.addAttribute("follow_notice", followNotice);
-
-        
-        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
-        model.addAttribute("side_user", side_user.get());
-        return_word = "ThreadDetail";
+            Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+            model.addAttribute("side_user", side_user.get());
+            return_word = "ThreadDetail";
         }
-
 
         return return_word;
     }
@@ -388,7 +380,7 @@ return_word = "RessDetail";
      */
     @MessageMapping("/comment")
     @SendTo("/comment/posting")
-    public CommentPosting comment_create(CommentCreateForm commentCreateForm){
+    public CommentPosting comment_create(CommentCreateForm commentCreateForm) {
 
         Comment comment = new Comment();
         String view_user = commentCreateForm.getUser_id();
@@ -420,7 +412,6 @@ return_word = "RessDetail";
         return posting;
     }
 
-
     /*
      * スレッド一覧画面
      */
@@ -431,77 +422,77 @@ return_word = "RessDetail";
 
         if (sessionData.getUser_id() != null) {
 
+            String title = "";
+            Iterable<ThreadList> list = null;
 
-        
-        String title = "";
-        Iterable<ThreadList> list = null;
+            String genre_id = sessionData.getJenre_id();
 
-        String genre_id = sessionData.getJenre_id();
+            switch (modeThread) {
+                case "myThread":
+                    title = "自作スレッド一覧";
 
-        switch (modeThread) {
-            case "myThread":
-                title = "自作スレッド一覧";
+                    // 登録順の一覧
+                    list = threadListService.selectMyThread_OrderByRegist(sessionData.getUser_id());
 
-                // 登録順の一覧
-                list = threadListService.selectMyThread_OrderByRegist(sessionData.getUser_id());
+                    model.addAttribute("myThread_OrderByRegist", list);
 
-                model.addAttribute("myThread_OrderByRegist", list);
+                    // 更新順の一覧
+                    list = threadListService.selectMyThread_OrderByUpdate(sessionData.getUser_id());
+                    model.addAttribute("myThread_OrderByUpdate", list);
 
-                // 更新順の一覧
-                list = threadListService.selectMyThread_OrderByUpdate(sessionData.getUser_id());
-                model.addAttribute("myThread_OrderByUpdate", list);
+                    break;
 
-                break;
+                case "followThread":
+                    title = "フォロースレッド一覧";
 
-            case "followThread":
-                title = "フォロースレッド一覧";
+                    // 登録順の一覧
+                    list = threadListService.selectFollowThread_OrderByRegist(sessionData.getUser_id());
+                    model.addAttribute("followThread_OrderByRegist", list);
 
-                // 登録順の一覧
-                list = threadListService.selectFollowThread_OrderByRegist(sessionData.getUser_id());
-                model.addAttribute("followThread_OrderByRegist", list);
+                    // 更新順の一覧
+                    list = threadListService.selectFollowThread_OrderByUpdate(sessionData.getUser_id());
+                    model.addAttribute("followThread_OrderByUpdate", list);
 
-                // 更新順の一覧
-                list = threadListService.selectFollowThread_OrderByUpdate(sessionData.getUser_id());
-                model.addAttribute("followThread_OrderByUpdate", list);
+                    break;
 
-                break;
+                case "genreThread":
+                    title = "ジャンルスレッド一覧";
+                    Iterable<Jenre> jenre = jenreService.selectAll();
 
-            case "genreThread":
-                title = "ジャンルスレッド一覧";
+                    // 人気順の一覧
+                    list = threadListService.selectGenreThread_OrderByPopular(genre_id);
+                    model.addAttribute("genreThread_OrderByPopular", list);
 
-                // 人気順の一覧
-                list = threadListService.selectGenreThread_OrderByPopular(genre_id);
-                model.addAttribute("genreThread_OrderByPopular", list);
+                    // 新着順の一覧
+                    list = threadListService.selectGenreThread_OrderByRegist(genre_id);
+                    model.addAttribute("genreThread_OrderByRegist", list);
 
-                // 新着順の一覧
-                list = threadListService.selectGenreThread_OrderByRegist(genre_id);
-                model.addAttribute("genreThread_OrderByRegist", list);
+                    model.addAttribute("jenre", jenre);
 
-                break;
+                    break;
 
-            case "popularThread":
-                title = "急上昇スレッド一覧";
-                break;
+                case "popularThread":
+                    title = "急上昇スレッド一覧";
+                    break;
 
-            case "searchThread":
-                title = "スレッド検索";
-                break;
+                case "searchThread":
+                    title = "スレッド検索";
+                    break;
+            }
+
+            model.addAttribute("modeThread", modeThread);
+            model.addAttribute("title", title);
+
+            Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
+            model.addAttribute("recommend", recommend);
+
+            Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+            model.addAttribute("follow_notice", followNotice);
+
+            Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+            model.addAttribute("side_user", side_user.get());
+            return_word = "ThreadList";
         }
-
-        model.addAttribute("modeThread", modeThread);
-        model.addAttribute("title", title);
-
-        Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
-        model.addAttribute("recommend", recommend);
-
-        Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
-        model.addAttribute("follow_notice", followNotice);
-
-        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
-        model.addAttribute("side_user", side_user.get());
-return_word = "ThreadList";
-    }
-
 
         return return_word;
     }
@@ -538,6 +529,8 @@ return_word = "ThreadList";
         if (scene.equals("ThreadDetail")) {
             // .equals(msg2)
             return "redirect:/Hiroba/" + scene + "?thread_id=" + thread_id;
+        }else if(scene.equals("mypage")) {
+            return "redirect:/mypage?user_id=" + response_creater;
         } else {
             return "redirect:/" + scene;
         }
@@ -582,32 +575,21 @@ return_word = "ThreadList";
         return showThreadList(model, "searchThread");
     }
 
-    /*スレッド検索(今)*/
+    /* スレッド検索(今) */
     @GetMapping("SearchThread")
     public String showSearch_thread(Model model, @RequestParam("search_word") String search_word) {
         String return_word = "redirect:/";
 
         if (sessionData.getUser_id() != null) {
 
-        Iterable<ThreadList> searchThread = threadListService.selectSearchThread(search_word);
-        model.addAttribute("searchThread", searchThread);
+            Iterable<ThreadList> searchThread = threadListService.selectSearchThread(search_word);
+            model.addAttribute("searchThread", searchThread);
 
-        System.out.println("検索画面");
-        System.out.println("検索画面");
-        System.out.println("検索画面");
-        System.out.println("検索画面");
-        System.out.println("検索画面");
-        System.out.println("検索画面");
-        System.out.println("検索画面");
+            Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+            model.addAttribute("side_user", side_user.get());
 
-        
-
-        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
-        model.addAttribute("side_user", side_user.get());
-
-        return_word = "SearchThread";
+            return_word = "SearchThread";
         }
-
 
         // スレッド検索結果へ
         return return_word;
@@ -617,6 +599,25 @@ return_word = "ThreadList";
     public String showJenre_change(Model model, @RequestParam("jenre_id") String jenre_id) {
         sessionData.setJenre_id(jenre_id);
         return "redirect:/Hiroba";
+    }
+
+    @GetMapping("genre_change_detail") 
+    public String showJenre_change_detail(Model model, @RequestParam("genre_id") String genre_id) {
+        
+        String return_word = "redirect:/";
+
+        if (sessionData.getUser_id() != null) {
+        sessionData.setJenre_id(genre_id);
+        Iterable<ThreadList> list = threadListService.selectGenreThread_OrderByPopular(genre_id);
+        model.addAttribute("genreThread_OrderByPopular", list);
+
+        // 新着順の一覧
+        list = threadListService.selectGenreThread_OrderByRegist(genre_id);
+        model.addAttribute("genreThread_OrderByRegist", list);
+        return_word = "redirect:/Hiroba/ThreadList/genreThread";
+        }
+
+        return return_word;
     }
 
     // 2023-02-01追加(阿部)

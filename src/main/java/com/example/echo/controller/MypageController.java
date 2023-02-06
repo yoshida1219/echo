@@ -27,6 +27,7 @@ import com.example.echo.service.FavoriteMovie.FavoriteMovieService;
 import com.example.echo.service.Follow.FollowUserService;
 import com.example.echo.service.Follower.FollowerService;
 import com.example.echo.service.MypageResponse.MypageResponseService;
+import com.example.echo.service.Notice.NoticeService;
 import com.example.echo.service.Recommend.RecommendService;
 import com.example.echo.service.SubmitResponse.SubmitResponseService;
 import com.example.echo.service.User.UserService;
@@ -49,6 +50,7 @@ public class MypageController {
     private final MypageResponseService mypageResponseService;
     private final RecommendService recommendService;
     private final JenreService jenreService;
+    private final NoticeService noticeService;
 
     private final SessionData sessionData;
 
@@ -62,6 +64,7 @@ public class MypageController {
         MypageResponseService mypageResponseService,
         RecommendService recommendService,
         JenreService jenreService,
+        NoticeService noticeService, 
 
         SessionData sessionData
     ) {
@@ -73,6 +76,7 @@ public class MypageController {
         this.mypageResponseService = mypageResponseService;
         this.recommendService = recommendService;
         this.jenreService = jenreService;
+        this.noticeService = noticeService;
 
         this.sessionData = sessionData;
     }
@@ -122,6 +126,10 @@ public class MypageController {
         
         Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
         model.addAttribute("recommend", recommend);
+
+        
+        Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+        model.addAttribute("follow_notice", followNotice);
 
         return_word = "mypage";
         }
@@ -180,6 +188,11 @@ public class MypageController {
         
         model.addAttribute("jenreList", jenreList);
         model.addAttribute("list", list.get());
+
+        
+        Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+        model.addAttribute("follow_notice", followNotice);
+
         return_word="mypage_edit";
     }
 
@@ -213,6 +226,8 @@ public class MypageController {
         // userService.updateIcon(user_id, icon);
 
         mypageResponseService.updateUser(user_name, search_name, introduction, icon, user_id);
+
+        
         
         
 
@@ -264,6 +279,10 @@ public class MypageController {
 
         Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
         model.addAttribute("side_user", side_user.get());
+
+        
+        Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+        model.addAttribute("follow_notice", followNotice);
 
         return_word="followerListViewer";
         }

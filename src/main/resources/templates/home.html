@@ -85,8 +85,15 @@
                                                 <span th:text="${obj.share}"></span>
                                             </div>
 
+
                                             <div class="come">
-                                                <!-- 削除？ -->
+                                                <th:block
+                                                    th:if="${side_user.user_id}==${obj.user_id}">
+                                                    <a
+                                                        th:href="@{/Hiroba/delete_response/home?response_creater={response_creater}&response_id={response_id}&thread_id=null (response_creater=${obj.user_id},response_id=${obj.response_id})}">
+                                                        <span class="jaf">削除する</span>
+                                                    </a>
+                                                </th:block>
                                             </div>
 
                                         </div>
@@ -97,6 +104,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
             <!-- 通知エリア（右） -->
             <div class="side" th:replace="~{commons/layout :: side}"></div>
