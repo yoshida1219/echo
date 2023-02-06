@@ -61,10 +61,8 @@
   color: white;
 }
 
-.content_ja {
-  /* background-color: rgb(131, 97, 104); */
-  /* padding: 0 100px 0 100px; */
-  /* margin-top: 20px; */
+.registList {
+  display: none;
 }
 
 .motto-list li {
@@ -244,7 +242,8 @@ display: flex;
 
 
 #search_thread{
-  margin: auto;
+  
+margin: auto;
 }
 
 .ofrmsertch{

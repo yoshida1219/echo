@@ -133,7 +133,9 @@
         <!-- スマホ上ヘッド -->
         <div class="m-head">
             <div class="m-tit">
-                <h1 class="grandt  pch">Echo</h1>
+                <h1 class="grandt  pch">
+                    <button th:attr="onClick='location.href=\''+@{/home}+'\''">Echo</button>
+                </h1>
             </div>
             <div class="c-list">
                 <div class="m-c1" id="schbtn11">
@@ -245,7 +247,9 @@
     <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
     <th:block th:fragment="humber-nemu">
         <div id="header" class="dnone">
-            <h1 id="grandt" class="gf">Echo</h1>
+            <h1 id="grandt" class="gf">
+                <button th:attr="onClick='location.href=\''+@{/home}+'\''">Echo</button>
+            </h1>
 
             <nav id="g-navi">
                 <ul>
