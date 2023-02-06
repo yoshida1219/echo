@@ -258,8 +258,8 @@ public class MypageController {
         if (sessionData.getUser_id() != null) {
 
         Iterable<Follow> FollowList = followUserService.selectFollow(user_id,sessionData.getUser_id());
-        Iterable<Follower> FollowerList = followerService.OrderFollowerList(user_id);
-        model.addAttribute("FollowList", FollowList);
+        Iterable<Follower> FollowerList = followerService.OrderFollowerList(user_id,sessionData.getUser_id());
+        model.addAttribute("FollowList", FollowList); 
         model.addAttribute("FollowerList", FollowerList);
 
         Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
@@ -274,12 +274,10 @@ public class MypageController {
     @PostMapping("/insertfollow")
     @ResponseBody
     public void showFollow(Model model,  @RequestParam("user_id") String user_id, @RequestParam("check_follow") Integer check_follow) {
-    
         if(check_follow == 0) {
             followerService.FollowInsert(sessionData.getUser_id(), user_id);
         }else {
             followerService.FollowDelete(sessionData.getUser_id(), user_id);
-
         }
     }
 

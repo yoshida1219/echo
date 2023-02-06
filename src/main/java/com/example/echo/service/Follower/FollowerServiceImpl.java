@@ -31,8 +31,8 @@ public class FollowerServiceImpl implements FollowerService {
     }
 
     @Override
-    public Iterable<Follower> OrderFollowerList(String user_id){
-        return List.OederFollowerList(user_id);
+    public Iterable<Follower> OrderFollowerList(String user_id,String session_user_id){
+        return List.OederFollowerList(user_id,session_user_id);
     }
 
     @Override
