@@ -281,7 +281,7 @@ iframe {
    */
   background-color: white;
   text-align: left;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   /* padding: 10px; */
 }
 
@@ -373,9 +373,10 @@ iframe {
 
 .come{
   width: 33.3%;
-  height: 33.3%;
+  /* height: 33.3%; */
   /* padding: 15px; */
   background-color: white;
+  margin: auto;
 }
 .iine {
   font-size: 16px;
@@ -695,6 +696,7 @@ display: block;
   margin-top: 10px;
   /* background-color: rgb(233, 213, 252); */
   /* flex-wrap: wrap; */
+  /* font-size: 10px; */
 }
 
 ul {

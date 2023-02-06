@@ -8,6 +8,9 @@ $(".j1").click(() => {
     $(".sure_sesaku").css({
         "display":"none"
     })
+    $(".sure_toukou").css({
+        "display":"none"
+    })
 })
 $(".j2").click(() => {
     $(".sure_sesaku").css({
@@ -16,7 +19,25 @@ $(".j2").click(() => {
     $(".sure_kyouyu").css({
         "display":"none"
     })
+    $(".sure_toukou").css({
+        "display":"none"
+    })
 })
+$(".j6").click(() => {
+    $(".sure_sesaku").css({
+        "display":"none"
+    })
+    $(".sure_kyouyu").css({
+        "display":"none"
+    })
+    $(".sure_toukou").css({
+        "display":"block"
+    })
+    
+})
+
+
+
 
 
 
@@ -28,6 +49,9 @@ $(".j3").click(() => {
     $(".sure_sesaku").css({
         "display":"none"
     })
+    $(".sure_toukou").css({
+        "display":"none"
+    })
 })
 $(".j4").click(() => {
     $(".sure_sesaku").css({
@@ -36,7 +60,24 @@ $(".j4").click(() => {
     $(".sure_kyouyu").css({
         "display":"none"
     })
+    $(".sure_toukou").css({
+        "display":"none"
+    })
 })
+
+$(".j5").click(() => {
+    $(".sure_sesaku").css({
+        "display":"none"
+    })
+    $(".sure_kyouyu").css({
+        "display":"none"
+    })
+    $(".sure_toukou").css({
+        "display":"flex"
+    })
+    
+})
+
 
 
 
