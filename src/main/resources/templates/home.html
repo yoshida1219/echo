@@ -81,14 +81,15 @@
                                             </div>
 
                                             <div class="come kyou">
+                                                <th:block th:unless="${obj.response_name}==この投稿は共有されたものです">
                                                 <p class="iine2">共有</p>
                                                 <span th:text="${obj.share}"></span>
+                                                </th:block>
                                             </div>
 
 
                                             <div class="come">
-                                                <th:block
-                                                    th:if="${side_user.user_id}==${obj.user_id}">
+                                                <th:block th:if="${side_user.user_id}==${obj.user_id}">
                                                     <a
                                                         th:href="@{/Hiroba/delete_response/home?response_creater={response_creater}&response_id={response_id}&thread_id=null (response_creater=${obj.user_id},response_id=${obj.response_id})}">
                                                         <span class="jaf">削除する</span>
