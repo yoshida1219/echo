@@ -21,4 +21,10 @@ public class Follower {
     private String introduction;
 
     private String icon;
+
+    private int follow_judgement;
+
+    private String follow_login_user;
+
+    private String check_follow;
 }
