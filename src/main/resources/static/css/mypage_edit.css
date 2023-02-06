@@ -17,9 +17,12 @@
     z-index: 2;
   }
   #editext{
-    padding: 0;
-    font-size: 15px;
-    font-weight: 100;
+    
+padding: 0;
+    
+font-size: 15px;
+    
+font-weight: 100;
   }
   .prev_img {
     border-radius: 30px;
@@ -71,6 +74,11 @@
 .mypage-name p{
     text-align: left;
     font-size: 18px;
+}
+
+.mypage-name #id{
+        background-color: #cccccc;
+    
 }
 
 .edit{

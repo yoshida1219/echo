@@ -17,4 +17,8 @@ public interface MovieService {
     Optional<Movie> existsMovie(String url);
 
     void updateThumbnail(String url, String thumbnail);
+
+    Iterable<Movie> selectMovies();
+
+    void updateMovie_time(String movie_id, String movie_time);
 }

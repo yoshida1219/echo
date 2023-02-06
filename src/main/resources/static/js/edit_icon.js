@@ -39,12 +39,46 @@ function previewImage() {
 }
 
 function checkDuplicates() {
-    var genre1 = document.getElementById("genre1").value;
-    var genre2 = document.getElementById("genre2").value;
-    if (genre1 === genre2 && genre1 !== "") {
-      alert("同じジャンルは選択できません");
-      return false;
-    }
+  var genre1 = document.getElementById("genre1").value;
+  var genre2 = document.getElementById("genre2").value;
+  var user_name = document.getElementById('user_name').value;
+  var introduction = document.getElementById('introduction').value;
+  
+  var flag = true;
+  if (genre1 === genre2 && genre1 !== "") {
+    alert("同じジャンルは選択できません");
+    flag = false;
+  }
+  if (user_name.length > 20) {
+    alert("ユーザー名は 20 文字以内で入力してください");
+    flag = false;
+  }
+  if (introduction.length > 100) {
+    alert("自己紹介文は 100 文字以内で入力してください");
+    flag = false;
+  }
+  
+  if (flag) {
     return true;
+  } else {
+    return false;
+  }
+  
+    
   }
 
+
+document.getElementById('genre1').addEventListener('change', checkLists);
+document.getElementById('genre2').addEventListener('change', checkLists);
+
+function checkLists() {
+  var list1 = document.getElementById('genre1').value;
+  var list2 = document.getElementById('genre2').value;
+  var message = document.getElementById('message');
+
+  if (!list1 && !list2) {
+    message.innerHTML = '値が入っていません';
+  } else {
+    message.innerHTML = '';
+  }
+}

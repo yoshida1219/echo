@@ -44,7 +44,7 @@
                                 <div class="search-up">
                                     <!-- 顔 -->
                                     <div class="up-1">
-
+                                    <!--  -->
 
 
 
@@ -62,12 +62,14 @@
                                         <div class="mypage-name">
                                             <p>名前</p>
                                             <input type="text" class="edit" size="auto" name="user_name"
-                                                th:value="${list.user_name}">
+                                                th:value="${list.user_name}" >
 
 
                                             <p>ID</p>
-                                            <input type="text" class="edit" size="auto" name="search_name"
-                                                th:value="${list.search_name}">
+                                            <input type="text" class="edit" id="id" size="auto" name="search_name"
+                                                th:value="${list.search_name}" disabled>
+                                            
+                                            <input type="hidden" name="search_name" th:value="${list.search_name}">
 
                                         </div>
 
@@ -120,6 +122,7 @@
                                                         </th:block>
                                                     </th:block>
                                                 </select>
+                                                <p id="message"></p>
 
                                             </div>
 
