@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.example.echo.EchoApplicationTests
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.503 s - in com.example.echo.EchoApplicationTests
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.392 s - in com.example.echo.EchoApplicationTests
->>>>>>> f1443c568c90b48d560f87d0012829ef0c2321fb
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.22 s - in com.example.echo.EchoApplicationTests

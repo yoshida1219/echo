@@ -2,354 +2,259 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <!-- コピペ111 -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>卒業テスト</title>
-    <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
-    <link rel="icon" th:href="@{/img/ファビコン/favicon.ico}">
-    <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <th:block th:replace="~{commons/layout :: cssjs}"></th:block>
 
 
-    <link rel="stylesheet" th:href="@{/css/RessDatail2.css}" />
-    <link rel="stylesheet" th:href="@{/css/pop.css}">
+    <link rel="stylesheet" th:href="@{/css/RessDatail2.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-RessDatail2.css}" media="screen and (max-width: 768px)">
 
+
+    <link rel="stylesheet" th:href="@{/css/pop.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-pop.css}" media="screen and (max-width: 768px)">
+    
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-
-
-    <link rel="stylesheet" th:href="@{/reset/ress.min.css}" />
-    <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
-    <!-- /111 -->
 </head>
 
 <body>
-
-    <header th:replace="~{commons/layout :: header}"></header>
+    <!-- pc左バー 　　　＆スマホ上ヘッド＆　　PC版popup内容　　-->
+    <div th:replace="~{commons/layout :: header}"></div>
 
     <main>
-
-
-        <!-- <div class="head">
-            <p>Echo</p>
-        </div> -->
         <div class="moto">
             <div class="center">
+                <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
+                <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
 
-                <div class="head">
-                    <p>Echo</p>
-                </div>
+                <!-- 中央 -->
+                <div class="kari cent-1">
 
+                    
 
-
-
-
-                <!-- タイトル -->
-                <div class="tit-1">
-
-
-                    <div class="box25">
-                        <!-- ジャンル -->
-                        <div class="janru">
-                            <ul class="Tabs" id="NicoNewsContainer-tabs">
-                                <li class="Tabs-tab ttab" data-tab="エンターテインメント"><span
-                                        th:text="${thread_data.jenre_name}"></span></li>
-                            </ul>
-                        </div>
-
-                        <p th:text="${thread_name}"></p>
+                    <!-- タイトル -->
+                    <div class="tit-1">
 
 
-                        <div class="tit-2-button">
+                        <div class="box25">
+                            <!-- ジャンル -->
+                            <div class="janru">
+                                <ul class="Tabs" id="NicoNewsContainer-tabs">
+                                    <li class="Tabs-tab ttab" data-tab="エンターテインメント"><span
+                                            th:text="${thread_data.jenre_name}"></span></li>
+                                </ul>
+                            </div>
 
-                            <th:block th:if="${checkFollow}==0">
-                                <button class="da-1 firstban">
-                                    <a th:href="@{/Hiroba/follow_thread?user_id={user_id}&thread_id={thread_id}&check=0 (user_id=${user_id}, thread_id=${thread_id})}"
-                                        class="example btn-flat-simple">スレッドをフォロー</a>
-                                </button>
-                            </th:block>
+                            <p th:text="${thread_name}"></p>
 
-                            <th:block th:if="${checkFollow}==1">
-                                <button class="da-1 nibanme">
-                                    <a th:href="@{/Hiroba/follow_thread?user_id={user_id}&thread_id={thread_id}&check=1 (user_id=${user_id}, thread_id=${thread_id})}"
-                                        class="example btn-flat-simple kaijo">フォローを解除</a>
-                            </th:block>
 
-                            <th:block th:unless="${login_user}==${thread_creater}">
-                                <button class="da-1 sanbababa">
-                                    <a th:href="@{delete_thread?thread_id={thread_id} (thread_id=${thread_id})} "
-                                        class="delll btn-flat-simple">
-                                        スレッド削除
-                                    </a>
-                                </button>
-                            </th:block>
+                            <div class="tit-2-button">
 
+                                <th:block th:if="${checkFollow}==0">
+                                    <button class="da-1 firstban">
+                                        <a th:href="@{/Hiroba/follow_thread?user_id={user_id}&thread_id={thread_id}&check=0 (user_id=${user_id}, thread_id=${thread_id})}"
+                                            class="example btn-flat-simple">スレッドをフォロー</a>
+                                    </button>
+                                </th:block>
+
+                                <th:block th:if="${checkFollow}==1">
+                                    <button class="da-1 nibanme">
+                                        <a th:href="@{/Hiroba/follow_thread?user_id={user_id}&thread_id={thread_id}&check=1 (user_id=${user_id}, thread_id=${thread_id})}"
+                                            class="example btn-flat-simple kaijo">フォローを解除</a>
+                                </th:block>
+
+                                <th:block th:unless="${login_user}==${thread_creater}">
+                                    <button class="da-1 sanbababa">
+                                        <a th:href="@{delete_thread?thread_id={thread_id} (thread_id=${thread_id})} "
+                                            class="delll btn-flat-simple">
+                                            スレッド削除
+                                        </a>
+                                    </button>
+                                </th:block>
+
+
+                            </div>
 
                         </div>
 
                     </div>
 
-                </div>
+                    <!-- ランキング -->
+                    <blockquote>
+                        <div class="container2">
 
 
+                            <th:block th:unless="${#lists.isEmpty(list_popular3)}">
+                                <li class="news-item container-item rank" th:each="response, s:${list_popular3}"
+                                    th:object="${response}">
+
+                                    <button type="button" class="clickshow" onclick="buttonClick()"
+                                        th:attr="onClick='location.href=\''+@{/Hiroba/RessDetail/{url}?response_id={response_id}&user_id={user_id} (user_id=*{response_creater}, url=*{url}, response_id=*{response_id})} +'\''">
+
+                                        <div class="ribbon15-wrapper">
 
 
-
-
-
-
-                <!-- ランキング -->
-                <blockquote>
-                    <div class="container2">
-
-
-                        <th:block th:unless="${#lists.isEmpty(list_popular3)}">
-                            <li class="news-item container-item rank" th:each="response, s:${list_popular3}"
-                                th:object="${response}">
-
-                                <button type="button" class="clickshow" onclick="buttonClick()"
-                                    th:attr="onClick='location.href=\''+@{/Hiroba/RessDetail/{url}?response_id={response_id}&user_id={user_id} (user_id=*{response_creater}, url=*{url}, response_id=*{response_id})} +'\''">
-
-                                    <div class="ribbon15-wrapper">
-
-
-                                        <span class="ribbon15">[[${s.count}]]位</span>
-                                        <div class="news-item-container">
-                                            <!-- 画像 -->
-                                            <div class="container-item-img">
-                                                <img class="text text-overflow takasa" th:src="*{thumbnail}" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="fifif">
-
-                                            <!-- タイトル -->
-                                            <div class="text">
-                                                <span class="text  text-overflow" th:text="*{movie_name}"></span>
-
-                                            </div>
-                                            <!-- iine 共有 -->
-                                            <div class="content3 rankup">
-                                                <p class="rankiine marking">いいね:<span th:text="*{like}"></span></p>
-                                                <p class="rankiine2 marking">共有:<span th:text="*{share}"></span></p>
-                                            </div>
-
-
-
-
-                                        </div>
-
-
-                                    </div>
-
-                                </button>
-                            </li>
-                        </th:block>
-
-
-
-
-
-                    </div>
-                </blockquote>
-
-
-                <div class="kari">
-                    <!-- 真ん中　スレ -->
-                    <div class="cent-1">
-
-                        <!-- 一覧表示　上が最新 -->
-                        <th:block th:unless="${#lists.isEmpty(list)}">
-
-                            <!-- 投稿の表示 -->
-                            <div class="TimeLine" th:each="response,s:${list}" th:object="${response}">
-                                <div class="flec">
-
-                                    <div class="Frame2">
-                                        <!-- ユーザのアイコン画像 -->
-                                        <button class="clickshow"
-                                            th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=*{user_id}) } + '\''">
-                                            <img th:src="*{icon}" class="rogo2">
-                                        </button>
-                                        <p th:text="*{user_name}"></p>
-                                        <p th:text="${s.count}"></p>
-                                    </div>
-
-
-
-                                    <div class="Frame3 balloon1-left">
-                                        <button type="button" class="clickshow" onclick="buttonClick()"
-                                            th:attr="onClick='location.href=\''+@{/Hiroba/RessDetail/{url}?response_id={response_id}&user_id={user_id} (user_id=*{response_creater}, url=*{url}, response_id=*{response_id})} +'\''">
-
-                                            <div class="coment">
-                                                <p>コメント</p>
-                                                <div class="user">
-                                                    <p th:text="*{response_name}"></p>
+                                            <span class="ribbon15">[[${s.count}]]位</span>
+                                            <div class="news-item-container">
+                                                <!-- 画像 -->
+                                                <div class="container-item-img">
+                                                    <img class="text text-overflow takasa" th:src="*{thumbnail}" alt="">
                                                 </div>
                                             </div>
+                                            <div class="fifif">
+
+                                                <!-- タイトル -->
+                                                <div class="text">
+                                                    <span class="text  text-overflow" th:text="*{movie_name}"></span>
+
+                                                </div>
+                                                <!-- iine 共有 -->
+                                                <div class="content3 rankup">
+                                                    <p class="rankiine marking">いいね:<span th:text="*{like}"></span></p>
+                                                    <p class="rankiine2 marking">共有:<span th:text="*{share}"></span></p>
+                                                </div>
 
 
 
-                                            <div class="Content">
-                                                <div class="douga">
 
-                                                    <div class="samneiru">
-                                                        <!-- 動画のサムネ画像 -->
-                                                        <img th:src="*{thumbnail}" alt="">
+                                            </div>
+
+
+                                        </div>
+
+                                    </button>
+                                </li>
+                            </th:block>
+
+
+
+
+
+                        </div>
+                    </blockquote>
+
+                    <!-- 中身 -->
+                    <div class="kari">
+                        <!-- 真ん中　スレ -->
+                        <div class="">
+                            <div class="last-come">
+                                <div class="count-ress">
+                                    <p>＜コメント数＞コメント</p>
+                                </div>
+                                <div class="new-ress j3">
+                                    <button>レスに投稿</button>
+                                </div>
+                            </div>
+
+                            <!-- 一覧表示　上が最新 -->
+                            <th:block th:unless="${#lists.isEmpty(list)}">
+
+                                <!-- 投稿の表示 -->
+                                <div class="TimeLine" th:each="response,s:${list}" th:object="${response}">
+                                    <div class="flec">
+
+                                        <div class="Frame2">
+                                            <!-- ユーザのアイコン画像 -->
+                                            <button class="clickshow"
+                                                th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=*{user_id}) } + '\''">
+                                                <img th:src="*{icon}" class="rogo2">
+                                            </button>
+                                            <p th:text="*{user_name}"></p>
+                                            <p th:text="${s.count}"></p>
+                                        </div>
+
+
+
+                                        <div class="Frame3 balloon1-left">
+                                            <button type="button" class="clickshow" onclick="buttonClick()"
+                                                th:attr="onClick='location.href=\''+@{/Hiroba/RessDetail/{url}?response_id={response_id}&user_id={user_id} (user_id=*{response_creater}, url=*{url}, response_id=*{response_id})} +'\''">
+
+                                                <div class="coment">
+                                                    <p>コメント</p>
+                                                    <div class="user">
+                                                        <p th:text="*{response_name}"></p>
                                                     </div>
+                                                </div>
 
 
 
-                                                    <div class="con23">
-                                                        <div class="content2">
-                                                            <p class="titl" th:text="*{movie_name}"></p>
+                                                <div class="Content">
+                                                    <div class="douga">
 
+                                                        <div class="samneiru">
+                                                            <!-- 動画のサムネ画像 -->
+                                                            <img th:src="*{thumbnail}" alt="">
+                                                        </div>
+
+
+
+                                                        <div class="con23">
+                                                            <div class="content2">
+                                                                <p class="titl" th:text="*{movie_name}"></p>
+
+
+                                                            </div>
 
                                                         </div>
 
                                                     </div>
+                                                    <div class="content3">
+                                                        <div class="come ine">
+                                                            <p class="iine">いいね</p>
+                                                            <span th:text="*{like}"></span>
+                                                        </div>
 
-                                                </div>
-                                                <div class="content3">
-                                                    <div class="come ine">
-                                                        <p class="iine">いいね</p>
-                                                        <span th:text="*{like}"></span>
+                                                        <div class="come kyou">
+                                                            <p class="iine2">共有</p>
+                                                            <span th:text="*{share}"></span>
+                                                        </div>
+
+                                                        <div class="come">
+                                                            <th:block
+                                                                th:if="${session.sessionData.user_id}==*{response_creater}">
+                                                                <a
+                                                                    th:href="@{/Hiroba/delete_response/ThreadDetail?response_creater={response_creater}&response_id={response_id}&thread_id={thread_id} (response_creater=*{response_creater},response_id=*{response_id},thread_id=${thread_id})}">
+                                                                    <span class="jaf">削除する</span>
+                                                                </a>
+                                                            </th:block>
+                                                        </div>
+
+
                                                     </div>
+                                            </button>
+                                        </div>
 
-                                                    <div class="come kyou">
-                                                        <p class="iine2">共有</p>
-                                                        <span th:text="*{share}"></span>
-                                                    </div>
-
-                                                    <div class="come">
-                                                        <th:block
-                                                            th:if="${session.sessionData.user_id}==*{response_creater}">
-                                                            <a
-                                                                th:href="@{/Hiroba/delete_response/ThreadDetail?response_creater={response_creater}&response_id={response_id}&thread_id={thread_id} (response_creater=*{response_creater},response_id=*{response_id},thread_id=${thread_id})}">
-                                                                <span class="jaf">削除する</span>
-                                                            </a>
-                                                        </th:block>
-                                                    </div>
-
-
-                                                </div>
-                                        </button>
                                     </div>
 
                                 </div>
 
-                            </div>
-
-                        </th:block>
+                            </th:block>
 
 
 
-                    </div>
-
-
-
-
-
-
-                </div>
-                <div class="last-come">
-                    <div class="count-ress">
-                        <p>＜コメント数＞コメント</p>
-                    </div>
-                    <div class="new-ress">
-                        <button>新着レスを表示</button>
-                    </div>
-                </div>
-
-
-
-                <th:block></th:block>
-
-
-                <!-- 投稿作成画面　　ポップアップ -->
-                <div class="modal container">
-                    <div class="modal__container " id="modal-container">
-
-                        <div class="modal__content">
-
-
-                            <!-- 中身 -->
-                            <div class="fka"><button class="modal__button modal__button-width close-modal">X</button>
-                            </div>
-
-                            <div class="tweet-1">
-
-
-                                <div class="formbox">
-                                    <div class="stronger">投稿画面</div>
-                                    <div class="formbody">
-
-                                        <form th:object="${responseCreateForm}">
-                                            <p>
-                                                <!-- 動画URLの入力 -->
-                                                <input class="formelem maxwidth" oninput="removeFeatureShare(this)"
-                                                    placeholder="動画URL" size="70" th:field="*{url}" minlength="11"
-                                                    required>
-
-                                                <!-- コメントの入力 -->
-                                                <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
-                                                    cols="50" wrap="off" th:field="*{response_name}" maxlength="200"
-                                                    required></textarea>
-
-                                                <!-- 投稿するスレッドID -->
-                                                <input type="hidden" id="thread_id" th:value="${thread_id}">
-
-                                                <input type="hidden" id="user_id"
-                                                    th:value="${session.sessionData.user_id}">
-
-                                                <button id="send" class="submitbtn tweebtn" type="submit">書き込む</button>
-                                            </p>
-                                        </form>
-
-                                    </div>
-                                </div>
-
-                                <div class="formbox ">
-                                    <div class="stronger">動画プレビュー</div>
-                                    <div class="formbody preview">
-                                        <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
-                                        <iframe id="video-player" class="b" width="560" height="315" src=""
-                                            title="YouTube video player" frameborder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen>
-                                        </iframe>
-                                    </div>
-                                </div>
-
-
-                            </div>
                         </div>
+
+
+
+
+
+
                     </div>
+
+
                 </div>
 
 
-                <div class="">
+                <!-- <div class="">
                     <button class=" create-sa" id="open-modal2">投稿作成</button>
-                </div>
-
-
-
-               
-
+                </div> -->
 
             </div>
-             <!-- 通知エリア（右） -->
-
-             <div class="side" th:replace="~{commons/layout :: side}"></div>
-
-
-
-            <!-- /*通知エリア*/ -->
+            <!-- 通知エリア（右） -->
+            <th:block th:replace="~{commons/layout :: side}"></th:block>
         </div>
-
-
-        <footer th:replace="~{commons/layout :: footer}"></footer>
-
+        <footer>
+            <p id="lasrrt">Copyright © 2023 -- 一般社団法人阿部情報大臣湯沢支部 All Rights Reserved </p>
+        </footer>
 
         <!-- <button class="modal__button create-sa" id="open-modal">投稿</button> -->
         <button id="scroll-to-top-btn">↑</button>
@@ -357,6 +262,7 @@
     </main>
 
 
+    <script th:src="@{/js/hum.js}"></script>
     <script th:src="@{/js/pop.js}"></script>
     <script th:src="@{/js/scroll.js}"></script>
     <script th:src="@{/js/moviePlay.js}"></script>

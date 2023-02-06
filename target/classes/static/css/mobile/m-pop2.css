@@ -168,7 +168,6 @@
 }
 
 .j2 {
-
 background-color: #6a8091;
 }
 
@@ -181,5 +180,8 @@ background-color: #6a8091;
   display: block;
 }
 .sure_sesaku{
+  display: none;
+}
+.sure_toukou{
   display: none;
 }
