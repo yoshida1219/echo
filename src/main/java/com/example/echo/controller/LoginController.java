@@ -92,10 +92,12 @@ public class LoginController {
      */
     @PostMapping("/createUser/complete")
     public String createUser(CreateUserForm form, Model model, RedirectAttributes redirectAttributes) throws Exception{
+        /*
         if(!collection.checkMail(form.getMail())) {
             model.addAttribute("mailError", "メールアドレスはすでに使われています");
             return "login";
         }
+        */
 
         if(!collection.checkSearchName(form.getSearch_name())) {;
             model.addAttribute("searchNameError", "このIDはすでに使われています");

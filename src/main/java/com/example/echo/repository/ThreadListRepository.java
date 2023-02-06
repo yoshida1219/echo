@@ -8,7 +8,7 @@ import com.example.echo.entity.select.ThreadList;
 
 public interface ThreadListRepository extends CrudRepository<ThreadList, String>{
 
-    //自作スレッドの登録順
+    //自作スレッドの登録順 DATE_FORMAT(response.response_submit, '%Y/%m/%d %H:%i') as response_submit 
     @Query("with pickup_movie as ("
         + " select *, case when response.response_id is null then 1 else row_number() over(partition by response.thread_id order by like_count desc) end as 'rank' "
         + " from thread inner join jenre using(jenre_id)"
@@ -21,7 +21,7 @@ public interface ThreadListRepository extends CrudRepository<ThreadList, String>
         + " where thread.thread_creater = :user_id"
         + " order by thread.thread_submit desc)"
 
-        + " select p.user_name, p.icon, p.thread_id, p.thread_name, p.jenre_name, p.thread_submit, coalesce(p.thumbnail, '/img/のーいめーじ.jpg') as thumbnail "
+        + " select p.user_name, p.icon, p.thread_id, p.thread_name, p.jenre_name, DATE_FORMAT(p.thread_submit, '%Y/%m/%d %H:%i') as thread_submit , coalesce(p.thumbnail, '/img/のーいめーじ.jpg') as thumbnail "
         + " , coalesce(p.res_count, 0) as res_count, coalesce(p.follow_count, 0) as follow_count"
         + " from pickup_movie as p where p.rank = 1;")
     Iterable<ThreadList> findMyThread_OrderByRegist(
@@ -50,7 +50,7 @@ public interface ThreadListRepository extends CrudRepository<ThreadList, String>
         + " where thread.thread_creater = :user_id "
         + " order by response.response_submit desc, thread.thread_submit desc) "
 
-        + "select n.thread_name, n.thread_id, user.user_id, user.user_name, user.icon, p.thumbnail, p.thread_submit, p.jenre_name, n.new, p.rank "
+        + "select n.thread_name, n.thread_id, user.user_id, user.user_name, user.icon, p.thumbnail,  DATE_FORMAT(p.thread_submit, '%Y/%m/%d %H:%i') as thread_submit, p.jenre_name, n.new, p.rank "
         + " , coalesce(p.res_count, 0) as res_count, coalesce(p.follow_count, 0) as follow_count "
         + "from thread "
         + "inner join new_movie as n on n.thread_id = thread.thread_id "
@@ -76,7 +76,7 @@ public interface ThreadListRepository extends CrudRepository<ThreadList, String>
         + " left outer join ( select response_creater, response_id, sum(view_like) as 'like_count' from view_response tmp1 group by response_creater, response_id ) like_count using(response_creater, response_id)"
         + " )"
 
-        + " select p.thread_id, p.thread_creater, p.thread_name, p.url, coalesce(p.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, p.thread_submit, user.user_id, user.user_name, user.icon, p.jenre_id, p.jenre_name "
+        + " select p.thread_id, p.thread_creater, p.thread_name, p.url, coalesce(p.thumbnail, '/img/のーいめーじ.jpg') as thumbnail,  DATE_FORMAT(p.thread_submit, '%Y/%m/%d %H:%i') as thread_submit, user.user_id, user.user_name, user.icon, p.jenre_id, p.jenre_name "
         + " , coalesce(p.res_count, 0) as res_count, coalesce(p.follow_count, 0) as follow_count "
         + " from pickup_movie as p"
         + " inner join user on user.user_id = p.thread_creater"
@@ -111,7 +111,7 @@ public interface ThreadListRepository extends CrudRepository<ThreadList, String>
         + " ) as temp where temp.new = 1)"
         
         + " select thread.thread_id, thread.thread_name, thread.thread_creater, p.response_creater, p.response_id, p.response_name, p.movie_id, p.url, coalesce(p.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, new_movie.response_submit, "
-        + " user.user_id, user.user_name, user.icon, thread.thread_submit, jenre.jenre_name "
+        + " user.user_id, user.user_name, user.icon,  DATE_FORMAT(p.thread_submit, '%Y/%m/%d %H:%i') as thread_submit, jenre.jenre_name "
         + " , coalesce(p.res_count, 0) as res_count, coalesce(p.follow_count, 0) as follow_count "
         + " from thread " 
         + " inner join user on user.user_id = thread.thread_creater"
@@ -144,7 +144,7 @@ public interface ThreadListRepository extends CrudRepository<ThreadList, String>
 	    + " ) as temp"
 	    + " where temp.rank = 1"
         + " )"
-        + " select pop.thread_id, pop.thread_name, user.user_id, user.user_name, pop.icon, pop.user_name, pop.thread_submit, pop.response_id, pop.response_name, pop.movie_id, pop.movie_name, coalesce(pop.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, pop.jenre_id, pop.jenre_name"
+        + " select pop.thread_id, pop.thread_name, user.user_id, user.user_name, pop.icon, pop.user_name,  DATE_FORMAT(pop.thread_submit, '%Y/%m/%d %H:%i') as thread_submit, pop.response_id, pop.response_name, pop.movie_id, pop.movie_name, coalesce(pop.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, pop.jenre_id, pop.jenre_name"
         + " , coalesce(pop.res_count, 0) as res_count, coalesce(pop.follow_count, 0) as follow_count "
         + " from pop_thread pop"
         + " inner join user on user.user_id = pop.thread_creater"
@@ -173,7 +173,7 @@ public interface ThreadListRepository extends CrudRepository<ThreadList, String>
         + "  as temp where temp.rank = 1"
         + " )"
 
-        + " select p.jenre_id, p.jenre_name, user.user_id, user.user_name, user.icon, thread.thread_id, thread.thread_submit, thread.thread_name, thread.thread_creater, p.response_creater, p.response_id, p.response_name, p.movie_id, p.url, coalesce(p.thumbnail, '/img/のーいめーじ.jpg') as thumbnail "
+        + " select p.jenre_id, p.jenre_name, user.user_id, user.user_name, user.icon, thread.thread_id,  DATE_FORMAT(p.thread_submit, '%Y/%m/%d %H:%i') as thread_submit, thread.thread_name, thread.thread_creater, p.response_creater, p.response_id, p.response_name, p.movie_id, p.url, coalesce(p.thumbnail, '/img/のーいめーじ.jpg') as thumbnail "
         + " , coalesce(p.res_count, 0) as res_count, coalesce(p.follow_count, 0) as follow_count "
         + " from thread "
         + " inner join user on user.user_id = thread.thread_creater"
@@ -199,7 +199,7 @@ public interface ThreadListRepository extends CrudRepository<ThreadList, String>
         + " where case when :word != '' then thread_name like concat('%', :word, '%') else 1=0 end"
         + " order by response.response_submit desc"
         + " ) as temp where temp.rank = 1)"
-        + " select p.user_id, p.user_name, p.icon, p.thread_id, p.thread_name, p.jenre_name, p.thread_submit, coalesce(p.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, "
+        + " select p.user_id, p.user_name, p.icon, p.thread_id, p.thread_name, p.jenre_name,  DATE_FORMAT(p.thread_submit, '%Y/%m/%d %H:%i') as thread_submit, coalesce(p.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, "
         + " coalesce(p.res_count, 0) as res_count, coalesce(p.follow_count, 0) as follow_count from pickUp_movie as p order by p.thread_id, p.rank;")
     Iterable<ThreadList> findSearchThread(
         @Param("word") String search_word

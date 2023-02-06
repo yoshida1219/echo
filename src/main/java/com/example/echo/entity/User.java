@@ -19,7 +19,7 @@ public class User {
 
     private String password;
 
-    private String mail;
+    //private String mail;
 
     //2023-1-11追加(阿部)
     private String introduction;

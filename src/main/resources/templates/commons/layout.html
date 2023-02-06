@@ -167,11 +167,55 @@
                         <h2 class="">投稿するものを選択してください</h2>
                     </div>
                     <div class="modalTitle nunu">
-                        <h2 class="h2come j5">スレッドに投稿</h2>
-                        <h2 class="h2come j3">動画共有</h2>
-                        <h2 class="h2come j4">スレッド作成</h2>
+                        <h2 class="h2come j5 opbtn1">スレッドに投稿</h2>
+                        <h2 class="h2come j3 opbtn2">ホーム共有</h2>
+                        <h2 class="h2come j4 opbtn3">スレッド作成</h2>
                     </div>
-                    <div class="modalMain tweet-1 sure_kyouyu">
+                    <div class="modelMain sure_toukou tweet-01">
+
+                        <div class="formbox">
+                            <div class="stronger">投稿画面</div>
+                            <div class="formbody">
+
+                                <form th:object="${responseCreateForm}">
+                                    <p>
+                                        <!-- 動画URLの入力 -->
+                                        <input class="formelem maxwidth" oninput="removeFeatureShare(this)"
+                                            placeholder="動画URL" size="70" th:field="*{url}" minlength="11"
+                                            required>
+
+                                        <!-- コメントの入力 -->
+                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
+                                            cols="50" wrap="off" th:field="*{response_name}" maxlength="200"
+                                            required></textarea>
+
+                                        <!-- 投稿するスレッドID -->
+                                        <input type="hidden" id="thread_id" th:value="${thread_id}">
+
+                                        <input type="hidden" id="user_id"
+                                            th:value="${session.sessionData.user_id}">
+
+                                        <button id="send" class="submitbtn tweebtn" type="submit">書き込む</button>
+                                    </p>
+                                </form>
+
+                            </div>
+                        </div>
+
+                        <div class="formbox ">
+                            <div class="stronger">動画プレビュー</div>
+                            <div class="formbody preview">
+                                <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
+                                <iframe id="video-player" class="b" width="560" height="315" src=""
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modalMain sure_kyouyu tweet-02">
 
                         <!-- 内容 -->
                         <div class="formbox">
@@ -210,7 +254,7 @@
                         </div>
                     </div>
 
-                    <div class="modelMain sure_sesaku">
+                    <div class="modelMain sure_sesaku tweet-03">
 
 
                         <div class="formbox">
@@ -273,11 +317,56 @@
                                         <h2 class="">投稿するものを選択してください</h2>
                                     </div>
                                     <div class="modalTitle nunu">
-                                        <h2 class="h2come j1">動画共有</h2>
-                                        <h2 class="h2come j2">スレッド作成</h2>
+                                        
+                                        <h2 class="h2come j6 opbtn1">スレッドに投稿</h2>
+                                        <h2 class="h2come j1 opbtn2">動画共有</h2>
+                                        <h2 class="h2come j2 opbtn3">スレッド作成</h2>
                                     </div>
 
-                                    <div class="modalMain sure_kyouyu">
+                                    <div class="modelMain sure_toukou tweet-01">
+
+                                        <div class="formbox">
+                                            <div class="stronger">投稿画面</div>
+                                            <div class="formbody">
+                
+                                                <form th:object="${responseCreateForm}">
+                                                    <p>
+                                                        <!-- 動画URLの入力 -->
+                                                        <input class="formelem maxwidth" oninput="removeFeatureShare(this)"
+                                                            placeholder="動画URL" size="70" th:field="*{url}" minlength="11"
+                                                            required>
+                
+                                                        <!-- コメントの入力 -->
+                                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
+                                                            cols="50" wrap="off" th:field="*{response_name}" maxlength="200"
+                                                            required></textarea>
+                
+                                                        <!-- 投稿するスレッドID -->
+                                                        <input type="hidden" id="thread_id" th:value="${thread_id}">
+                
+                                                        <input type="hidden" id="user_id"
+                                                            th:value="${session.sessionData.user_id}">
+                
+                                                        <button id="send" class="submitbtn tweebtn" type="submit">書き込む</button>
+                                                    </p>
+                                                </form>
+                
+                                            </div>
+                                        </div>
+                
+                                        <div class="formbox ">
+                                            <div class="stronger">動画プレビュー</div>
+                                            <div class="formbody preview">
+                                                <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
+                                                <iframe id="video-player" class="b" width="560" height="315" src=""
+                                                    title="YouTube video player" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen>
+                                                </iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modalMain sure_kyouyu tweet-02">
 
                                         <!-- 内容 -->
                                         <div class="formbox">
@@ -321,8 +410,7 @@
                                         </div>
 
                                     </div>
-
-                                    <div class="modelMain sure_sesaku">
+                                    <div class="modelMain sure_sesaku tweet-03">
 
 
                                         <div class="formbox">

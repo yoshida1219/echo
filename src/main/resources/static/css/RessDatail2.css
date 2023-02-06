@@ -264,10 +264,16 @@ blockquote cite {
 
 
 /* ********投稿画面*************************************************** */
-.tweet-1 {
-  background-color: cornsilk;
+
+.tweet-01{
   display: flex;
 }
+.tweet-02{
+  display: none;
+}
+
+
+
 
 .preview {
   background-color: rgb(186, 233, 245);
@@ -595,4 +601,8 @@ blockquote cite {
 .kaijo:hover{
   color: #ffffff;
   background-color: #c4b81b;
+}
+
+.opbtn1{
+  display: block;
 }

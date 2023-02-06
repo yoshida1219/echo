@@ -62,7 +62,7 @@
                                         <div class="mypage-janru">
                                             <th:block th:unless="${#lists.isEmpty(jenreAll)}">
                                                 <th:block th:each="obj:${jenreAll}">
-                                                    <a href="" th:text="${obj.jenre_name}"></a>
+                                                    <a th:href="@{/Hiroba/genre_change_detail?genre_id={genre_id} (genre_id=${obj.jenre_id})}" th:text="${obj.jenre_name}"></a>
                                                 </th:block>
                                             </th:block>
                                         </div>
@@ -218,7 +218,7 @@
 
                                             <!-- 削除 -->
                                             <th:block th:if="${login}==${list.user_id}">
-                                                <a th:href="@{/Hiroba/delete_response/Hiroba?response_creater={user_id}&response_id={response_id}&thread_id=null (user_id=${loop.user_id},response_id=${loop.response_id})}"
+                                                <a th:href="@{/Hiroba/delete_response/mypage?response_creater={user_id}&response_id={response_id}&thread_id=null (user_id=${loop.user_id},response_id=${loop.response_id})}"
                                                     class="example">投稿を削除</a>
                                             </th:block>
 

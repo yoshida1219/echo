@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService{
             user.getUser_id(),
             user.getUser_name(),
             user.getPassword(),
-            user.getMail(),
             user.getSearch_name()
         );
     }
@@ -34,11 +33,6 @@ public class UserServiceImpl implements UserService{
     @Override
     public String selectUserIdMax() {
         return repository.findUserIdMax();
-    }
-
-    @Override
-    public Optional<String> selectMail(String mail) {
-        return repository.findMail(mail);
     }
 
     @Override

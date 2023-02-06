@@ -61,7 +61,6 @@ public class Collection {
 
         user.setSearch_name("@" + form.getSearch_name());
         user.setUser_name(form.getUser_name());
-        user.setMail(form.getMail());
         user.setPassword(form.getPass());
 
         String user_id = userService.selectUserIdMax();
@@ -76,13 +75,14 @@ public class Collection {
      * していない -> true
      * 重複している -> false
      */
-    public boolean checkMail(String mail) {
+    /*public boolean checkMail(String mail) {
         Optional<String> mailOpt = userService.selectMail(mail);
         if(mailOpt.isPresent()) {
             return false; 
         }
         return true;
     }
+    */
 
     /*
      * search_name の重複チェック

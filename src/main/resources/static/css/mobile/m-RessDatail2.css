@@ -598,3 +598,16 @@ blockquote cite {
   color: #ffffff;
   background-color: #c4b81b;
 }
+
+.opbtn1{
+  display: block;
+}
+.sure_kyouyu{
+  display: none;
+}
+.sure_sesaku{
+  display: none;
+}
+.sure_toukou{
+  display: block;
+}
