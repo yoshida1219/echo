@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ import com.example.echo.entity.select.FavoriteMovie;
 import com.example.echo.entity.select.Follower;
 import com.example.echo.entity.select.MypageResponse;
 import com.example.echo.entity.select.SubmitResponse;
+import com.example.echo.form.ResponseCreateForm;
 import com.example.echo.service.FavoriteMovie.FavoriteMovieService;
 import com.example.echo.service.Follow.FollowUserService;
 import com.example.echo.service.Follower.FollowerService;
@@ -75,12 +77,23 @@ public class MypageController {
         this.sessionData = sessionData;
     }
 
+    //2023-02-04、これ追加しただけでとりあえずマイページにはいけるようにしました。
+    //レイアウトはバグってる？みたいですけど(阿部)
+    @ModelAttribute
+    public ResponseCreateForm setUpResponseCreateForm() {
+        return new ResponseCreateForm();
+    }
+
 
     /*
      * マイページを表示
      */
     @GetMapping("/mypage")
     public String showMypage(Model model, @RequestParam("user_id") String user_id) {
+        String return_word = "redirect:/";
+
+        if (sessionData.getUser_id() != null) {
+
 
         String login_user = sessionData.getUser_id();
 
@@ -109,9 +122,12 @@ public class MypageController {
         
         Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
         model.addAttribute("recommend", recommend);
+
+        return_word = "mypage";
+        }
         
 
-        return "mypage";
+        return return_word;
     }
 
 
@@ -123,6 +139,10 @@ public class MypageController {
 
     @GetMapping("/edit")
     public String showEdit(Model model, @RequestParam("user_id") String user_id) {
+        String return_word = "redirect:/";
+
+        if (sessionData.getUser_id() != null) {
+
 
         
         Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
@@ -160,9 +180,10 @@ public class MypageController {
         
         model.addAttribute("jenreList", jenreList);
         model.addAttribute("list", list.get());
-        
+        return_word="mypage_edit";
+    }
 
-        return "mypage_edit";
+        return return_word;
     }
 
     //プロフィールを編集する
@@ -232,6 +253,10 @@ public class MypageController {
 
     @GetMapping("/followerListViewer")
     public String showFollowerList(Model model, @RequestParam("user_id") String user_id){
+        String return_word = "redirect:/";
+
+        if (sessionData.getUser_id() != null) {
+
         Iterable<Follow> FollowList = followUserService.selectFollow(user_id,sessionData.getUser_id());
         Iterable<Follower> FollowerList = followerService.OrderFollowerList(user_id);
         model.addAttribute("FollowList", FollowList);
@@ -240,7 +265,10 @@ public class MypageController {
         Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
         model.addAttribute("side_user", side_user.get());
 
-        return "followerListViewer";
+        return_word="followerListViewer";
+        }
+
+        return return_word;
     }
     
     @PostMapping("/insertfollow")
@@ -252,6 +280,5 @@ public class MypageController {
         }else{
             followUserService.insertFollow(user_id, sessionData.getUser_id());
         }
-
     }
 }

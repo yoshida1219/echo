@@ -8,6 +8,13 @@
 .image-wrapper img{
     border-radius: 10px;
 }
+.image-wrapper{
+    position: relative;
+    /* justify-content: center; */
+    /* margin: auto; */
+    /* text-align: center; */
+}
+
 .dwon-ex2 {
     width: 100%;
     flex-wrap: wrap;
@@ -25,10 +32,12 @@
 }
 
 .news-item{
-    width: 30%;
+    width: 31%;
     max-width: 350px;
-    margin-bottom: 76px;
+    /* margin-bottom: 76px; */
+    /* height: 350px; */
     list-style: none;
+    padding: 5px;
 }
 .tag-wrapper{
     margin: 0.7rem 0px;
@@ -57,4 +66,33 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
+}
+
+
+.retui{
+    position: absolute;
+    background-color: #2ecd96;
+    /* border-radius: 10px; */
+    color: white;
+    width: 25%;
+    /* z-index: 1; */
+}
+
+
+.mypage-suji a{
+    color: black;
+    /* text-decoration: none; */
+}
+
+.video-time-labe{
+    position: absolute;
+    right: 0;
+    bottom: 5%;
+    z-index: 1;
+    background-color: black;
+    color: #eee;
+    font-size: 14px;
+    width: auto;
+    padding: 0 1%;
+    border-radius: 0 0 5px 0;
 }

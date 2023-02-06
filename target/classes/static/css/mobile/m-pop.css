@@ -3,15 +3,21 @@
 :root {
   /*========== Colors ==========*/
   --hue: 240;
-  --first-color: hsl(var(--hue), 16%, 18%);
-  --first-color-alt: hsl(var(--hue), 16%, 12%);
-  --title-color: hsl(var(--hue), 8%, 15%);
-  --text-color: hsl(var(--hue), 8%, 35%);
-  --body-color: hsl(var(--hue), 100%, 99%);
+  --first-color:
+  hsl(var(--hue), 16%, 18%);
+  --first-color-alt:
+  hsl(var(--hue), 16%, 12%);
+  --title-color:
+  hsl(var(--hue), 8%, 15%);
+  --text-color:
+  hsl(var(--hue), 8%, 35%);
+  --body-color:
+  hsl(var(--hue), 100%, 99%);
   --container-color: #FFF;
 
   /*========== Font and typography ==========*/
-  --body-font: 'Poppins', sans-serif;
+  --body-font:
+  'Poppins', sans-serif;
   --big-font-size: 1.5rem;
   --normal-font-size: .938rem;
 
@@ -58,8 +64,8 @@ img{
 
 /*=============== MODAL ===============*/
 .container{
-  margin-left: 1rem;
-  margin-right: 1rem;
+  /* margin-left: 1rem; */
+  /* margin-right: 1rem; */
 }
 
 .modal{

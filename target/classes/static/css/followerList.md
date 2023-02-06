@@ -1,3 +1,5 @@
+<!-- scssファイルでしたが、開発のため.mdにしてます -->
+
 .list {
     display: flex;
     background-color: #FFCC33;
@@ -24,14 +26,14 @@
 }
 
 li {
-    background-color: #008037 !important;
-    color: white;
-    border-radius: 5px;
-    width: 650px;
-    height: 60px;
-    text-align: center;
-    font-weight: bold;
-    font-size:20px;
+    // background-color: #008037 !important;
+    // color: white;
+    // border-radius: 5px;
+    // width: 650px;
+    // height: 60px;
+    // text-align: center;
+    // font-weight: bold;
+    // font-size:20px;
 }
 
 
@@ -47,6 +49,17 @@ li {
     & #name{
         background-color: #CCFF99;
         font-weight: bold;
-        font-size:18px;
+        font-size:20px;
     }
+}
+
+.follow-tab li{
+    background-color: #008037 !important;
+    color: white;
+    border-radius: 5px;
+    width: 650px;
+    height: 60px;
+    text-align: center;
+    font-weight: bold;
+    font-size:20px;
 }

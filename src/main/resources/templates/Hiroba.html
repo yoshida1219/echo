@@ -2,69 +2,45 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <!-- コピペ111 -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>卒業テスト</title>
-    <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
-    <link rel="icon" th:href="@{/img/ファビコン/favicon.ico}">
-    <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
-
-    <link rel="stylesheet" th:href="@{/css/Hiroba.css}" />
-    <link rel="stylesheet" th:href="@{/css/pop.css}">
-
-
+    <th:block th:replace="~{commons/layout :: cssjs}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/Hiroba.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-Hiroba.css}" media="screen and (max-width: 768px)">
     <link rel="stylesheet" href="./Responsive Modal Popup_files/boxicons.min.css">
-
-
-
-
-
-    <link rel="stylesheet" th:href="@{/reset/ress.min.css}" />
-    <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
-    <!-- /111 -->
 </head>
 
 <body>
-
-    <header th:replace="~{commons/layout :: header}"></header>
-
-
+    <!-- pc左バー 　　　＆スマホ上ヘッド＆　　PC版popup内容　　-->
+    <div th:replace="~{commons/layout :: header}"></div>
     <main>
-
-
-        <!-- <div class="head">
-            <p>Echo</p>
-        </div> -->
         <div class="moto">
             <div class="center">
 
+                <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
+                <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
 
-                <div class="head">
-                    <p>Echo</p>
-                </div>
+                <!-- 中央 -->
+                <div class="kari cent-1">
 
-                <div id="search_thread">
-                    <form th:action="@{/Hiroba/SearchThread}">
-                        <input id="bar" type="text" name="search_word" placeholder="スレッドの検索" required>
-                        <input id="search-button" type="submit" value="検索">
-                    </form>
-                </div>
-
-                <div class="kari">
+                    <!-- 検索 -->
+                    <div id="search_thread">
+                        <form th:action="@{/Hiroba/SearchThread}">
+                            <input id="bar" type="text" name="search_word" placeholder="スレッドの検索" required>
+                            <input id="search-button" type="submit" value="検索">
+                        </form>
+                    </div>
 
                     <!-- 急上昇 -->
-
                     <div class="trend">
 
 
                         <blockquote>
-                            <div class="heading-2">
-                                <a class="btn-flat-simple"
-                                    th:attr="onClick='location.href=\''+@{/Hiroba/ThreadList/popularThread}+'\''">
-                                    <i class="fa fa-caret-right"></i> もっと見る
-                                </a>
+                            <div class="Frame-header">
+                                <div class="heading-2">
+                                    <a class="btn-flat-simple"
+                                        th:attr="onClick='location.href=\''+@{/Hiroba/ThreadList/popularThread}+'\''">
+                                        <i class="fa fa-caret-right"></i> もっと見る
+                                    </a>
+                                </div>
                             </div>
                             <div class="container2">
                                 <li class="news-item container-item rank" th:each="obj:${spikeupmovie}">
@@ -113,15 +89,149 @@
 
                     </div>
 
+                    <!-- 自作　フォロー　カスタム -->
+                    <div class="gh">
+                        <!-- 自作スレ -->
+                        <div class="blockqut fst">
+                            <div class="ContentsDigestFrame ThemeContainer-contentsDigestFrame"
+                                data-gtm-imp="nicovideo_imp_nicotop-theme" data-gtm-label-detail="ボカロ曲プレイリストを公開中！"
+                                data-gtm-imp-sent="1">
 
 
+                                <!-- タイトル頭 -->
+                                <div class="Frame-header">
+                                    <!-- もっと見る　リンク -->
+                                    <div class="heading-2">
+                                        <a class="btn-flat-simple"
+                                            th:attr="onClick='location.href=\''+@{/Hiroba/ThreadList/myThread}+'\''">
+                                            <i class="fa fa-caret-right"></i> もっと見る
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- 動画 -->
+                                <div class="Frame-cards">
+                                    <div th:each="obj:${mythread}" th:object="${obj}" class="bbg">
+                                        <th:block th:replace="~{commons/layout :: vi-frame}"></th:block>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- フォロースレッド -->
+                        <div class="blockqut sec">
+                            <div class="ContentsDigestFrame ThemeContainer-contentsDigestFrame"
+                                data-gtm-imp="nicovideo_imp_nicotop-theme" data-gtm-label-detail="ボカロ曲プレイリストを公開中！"
+                                data-gtm-imp-sent="1">
 
 
+                                <!-- タイトル頭 -->
+                                <div class="Frame-header">
+                                    <!-- もっと見る　リンク -->
+                                    <div class="heading-2">
+                                        <a class="btn-flat-simple"
+                                            th:attr="onClick='location.href=\''+@{/Hiroba/ThreadList/followThread}+'\''">
+                                            <i class="fa fa-caret-right"></i> もっと見る
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- 動画 -->
+                                <div class="Frame-cards">
 
+                                    <div th:each="obj:${followthread}" th:object="${obj}" class="bbg">
 
+                                        <th:block th:replace="~{commons/layout :: vi-frame}"></th:block>
+                                    </div>
+                                </div>
 
-                    
-                    <!-- スレッド作成画面　　ポップアップ -->
+                            </div>
+                        </div>
+
+                        <!-- カスタムジャンル -->
+                        <div class="blockqut thr">
+                            <div class="Frame-header">
+                                <div class="heading-2">
+                                    <a class="btn-flat-simple"
+                                        th:attr="onClick='location.href=\''+@{/Hiroba/ThreadList/genreThread}+'\''">
+                                        <i class="fa fa-caret-right"></i> もっと見る
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="CostomJ">
+                                <!-- ジャンル選択 -->
+                                <div class="janru">
+                                    <ul class="Tabs" id="NicoNewsContainer-tabs">
+
+                                        <th:block th:unless="${#lists.isEmpty(jenre)}">
+                                            <th:block th:each="obj:${jenre}" th:object="${obj}">
+                                                <li th:attr="onClick='location.href=\''+@{/Hiroba/jenre_change?jenre_id={jenre_id} (jenre_id=*{jenre_id})}+'\''"
+                                                    class="Tabs-tab" th:text="*{jenre_name}"></li>
+                                            </th:block>
+                                        </th:block>
+
+                                    </ul>
+                                </div>
+
+                                <!-- 人気スレッド -->
+                                <div class="ContentsDigestFrame ThemeContainer-contentsDigestFrame"
+                                    data-gtm-imp="nicovideo_imp_nicotop-theme" data-gtm-label-detail="ボカロ曲プレイリストを公開中！"
+                                    data-gtm-imp-sent="1">
+
+                                    <!-- タイトル頭 -->
+                                    <div class="Frame-header">
+
+                                        <div class="heading-1">
+                                            <a class="FrameTitleLink ContentsDigestFrame-titleLink" href="">
+                                                <div class="FrameTitleLink-titleText">
+                                                    人気スレッド
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- 動画 -->
+                                    <div class="Frame-cards">
+
+                                        <div th:each="obj:${popularthread}" th:object="${obj}" class="bbg">
+
+                                            <th:block th:replace="~{commons/layout :: vi-frame}"></th:block>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 新着スレッド -->
+                                <div class="ContentsDigestFrame ThemeContainer-contentsDigestFrame"
+                                    data-gtm-imp="nicovideo_imp_nicotop-theme" data-gtm-label-detail="ボカロ曲プレイリストを公開中！"
+                                    data-gtm-imp-sent="1">
+
+                                    <!-- タイトル頭 -->
+                                    <div class="Frame-header">
+                                        <div class="heading-1">
+                                            <a class="FrameTitleLink ContentsDigestFrame-titleLink" href="">
+                                                <div class="FrameTitleLink-titleText">
+                                                    新着スレッド
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- 動画 -->
+                                    <div class="Frame-cards">
+
+                                        <div th:each="obj:${newthread}" th:object="${obj}" class="bbg">
+
+                                            <th:block th:replace="~{commons/layout :: vi-frame}"></th:block>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 削除予定 2/4 -->
+                    <!-- 旧スレッド作成画面　ポップアップ -->
                     <div class="modal container">
 
                         <div class="modal__container " id="modal-container">
@@ -170,288 +280,20 @@
                             </div>
                         </div>
                     </div>
-
-                    
-                    
-
-                    <div class="gh">
-                        <!-- 自作スレ -->
-                        <div class="blockqut fst">
-                            <div class="ContentsDigestFrame ThemeContainer-contentsDigestFrame"
-                                data-gtm-imp="nicovideo_imp_nicotop-theme" data-gtm-label-detail="ボカロ曲プレイリストを公開中！"
-                                data-gtm-imp-sent="1">
-
-
-                                <!-- タイトル頭 -->
-                                <div class="Frame-header">
-
-                                    
-                                    <!-- もっと見る　リンク -->
-                                    <div class="heading-2">
-                                        <a class="btn-flat-simple"
-                                            th:attr="onClick='location.href=\''+@{/Hiroba/ThreadList/myThread}+'\''">
-                                            <i class="fa fa-caret-right"></i> もっと見る
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <!-- 動画 -->
-                                <div class="Frame-cards">
-
-                                    <div th:each="obj:${mythread}" th:object="${obj}" class="">
-
-                                        <!-- 1セット -->
-                                        <a class="Frame-card"
-                                            th:attr="onClick='location.href=\''+@{/Hiroba/ThreadDetail?thread_id={thread_id} (thread_id=*{thread_id})}+'\''"
-                                            title="カーソル合わせると出るやつ">
-                                            <div class="Frame-cardMedia">
-                                                <div class="ContentsDigestFrame-contentThumbnail" data-type="">
-                                                    <div class="Thumbnail ContentThumbnail-background">
-                                                        <div class="Thumbnail-image" data-thumbnail="" data-lazy-load=""
-                                                            data-background-image="画像" alt="動画タイトル" data-loaded="true"
-                                                            th:style="|background-image: url(*{thumbnail});|">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="ContentsDigestFrame-cardMeta">
-                                                <p class="ContentsDigestFrame-cardMetaTitle" th:text="*{thread_name}">
-                                                    タイトル
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- フォロースレッド -->
-                        <div class="blockqut sec">
-                            <div class="ContentsDigestFrame ThemeContainer-contentsDigestFrame"
-                                data-gtm-imp="nicovideo_imp_nicotop-theme" data-gtm-label-detail="ボカロ曲プレイリストを公開中！"
-                                data-gtm-imp-sent="1">
-
-
-                                <!-- タイトル頭 -->
-                                <div class="Frame-header">
-
-                                    <div class="heading-1">
-                                        <a class="FrameTitleLink ContentsDigestFrame-titleLink" href="">
-
-                                        </a>
-                                        <!-- ちっちゃい文字 -->
-                                        
-                                    </div>
-                                    <!-- もっと見る　リンク -->
-                                    <div class="heading-2">
-                                        <a class="btn-flat-simple"
-                                            th:attr="onClick='location.href=\''+@{/Hiroba/ThreadList/followThread}+'\''">
-                                            <i class="fa fa-caret-right"></i> もっと見る
-                                        </a>
-                                    </div>
-                                </div>
-
-
-
-
-                                <!-- 動画 -->
-                                <div class="Frame-cards">
-
-                                    <div th:each="obj:${followthread}" th:object="${obj}">
-
-                                        <!-- 1セット -->
-                                        <a class="Frame-card"
-                                            th:attr="onClick='location.href=\''+@{/Hiroba/ThreadDetail?thread_id={thread_id} (thread_id=*{thread_id})}+'\''"
-                                            title="カーソル合わせると出るやつ">
-
-                                            <div class="Frame-cardMedia">
-                                                <div class="ContentsDigestFrame-contentThumbnail" data-type="">
-                                                    <div class="Thumbnail ContentThumbnail-background">
-                                                        <div class="Thumbnail-image" data-thumbnail="" data-lazy-load=""
-                                                            data-background-image="画像" alt="動画タイトル" data-loaded="true"
-                                                            th:style="|background-image: url(*{thumbnail});|">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="ContentsDigestFrame-cardMeta">
-                                                <p class="ContentsDigestFrame-cardMetaTitle" th:text="*{thread_name}">
-                                                    タイトル
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blockqut thr">
-                            <!-- カスタムジャンル -->
-                            <div class="heading-2">
-                                <a class="btn-flat-simple"
-                                    th:attr="onClick='location.href=\''+@{/Hiroba/ThreadList/genreThread}+'\''">
-                                    <i class="fa fa-caret-right"></i> もっと見る
-                                </a>
-                            </div>
-                            <div class="CostomJ">
-
-                                <div class="janru">
-                                    <ul class="Tabs" id="NicoNewsContainer-tabs">
-
-                                        <th:block th:unless="${#lists.isEmpty(jenre)}">
-                                            <th:block th:each="obj:${jenre}" th:object="${obj}">
-                                                <li th:attr="onClick='location.href=\''+@{/Hiroba/jenre_change?jenre_id={jenre_id} (jenre_id=*{jenre_id})}+'\''"
-                                                    class="Tabs-tab" th:text="*{jenre_name}"></li>
-                                            </th:block>
-                                        </th:block>
-
-                                    </ul>
-                                </div>
-
-
-                                <!-- 人気スレッド -->
-                                <div class="ContentsDigestFrame ThemeContainer-contentsDigestFrame"
-                                    data-gtm-imp="nicovideo_imp_nicotop-theme" data-gtm-label-detail="ボカロ曲プレイリストを公開中！"
-                                    data-gtm-imp-sent="1">
-
-
-                                    <!-- タイトル頭 -->
-                                    <div class="Frame-header">
-
-                                        <div class="heading-1">
-                                            <a class="FrameTitleLink ContentsDigestFrame-titleLink" href="">
-                                                <div class="FrameTitleLink-titleText">
-                                                    人気スレッド
-                                                </div>
-                                            </a>
-                                            
-                                        </div>
-
-                                    </div>
-
-
-
-
-                                    <!-- 動画 -->
-                                    <div class="Frame-cards">
-
-                                        <div th:each="obj:${popularthread}" th:object="${obj}">
-
-                                            <!-- 1セット -->
-                                            <a class="Frame-card"
-                                                th:attr="onClick='location.href=\''+@{/Hiroba/ThreadDetail?thread_id={thread_id} (thread_id=*{thread_id})} +'\''"
-                                                title="カーソル合わせると出るやつ">
-                                                <div class="Frame-cardMedia">
-                                                    <div class="ContentsDigestFrame-contentThumbnail" data-type="">
-                                                        <div class="Thumbnail ContentThumbnail-background">
-                                                            <div class="Thumbnail-image" data-thumbnail=""
-                                                                data-lazy-load="" data-background-image="画像"
-                                                                alt="動画タイトル" data-loaded="true"
-                                                                th:style="|background-image: url(*{thumbnail});|">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="ContentsDigestFrame-cardMeta">
-                                                    <p class="ContentsDigestFrame-cardMetaTitle"
-                                                        th:text="*{thread_name}">
-                                                        タイトル
-                                                    </p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <!-- 新着スレッド -->
-                                <div class="ContentsDigestFrame ThemeContainer-contentsDigestFrame"
-                                    data-gtm-imp="nicovideo_imp_nicotop-theme" data-gtm-label-detail="ボカロ曲プレイリストを公開中！"
-                                    data-gtm-imp-sent="1">
-
-
-                                    <!-- タイトル頭 -->
-                                    <div class="Frame-header">
-
-                                        <div class="heading-1">
-                                            <a class="FrameTitleLink ContentsDigestFrame-titleLink" href="">
-                                                <div class="FrameTitleLink-titleText">
-                                                    新着スレッド
-                                                </div>
-                                            </a>
-                                            
-                                        </div>
-
-                                        <!-- もっと見る　リンク -->
-                                        <!-- <div class="heading-2">
-                                    <a class="btn-flat-simple"
-                                        th:attr="onClick='location.href=\''+@{/Hiroba/ThreadList/genruThread}+'\''">
-                                        <i class="fa fa-caret-right"></i> もっと見る
-                                    </a>
-                                </div> -->
-                                    </div>
-
-
-
-
-                                    <!-- 動画 -->
-                                    <div class="Frame-cards">
-
-                                        <div th:each="obj:${newthread}" th:object="${obj}">
-
-                                            <!-- 1セット -->
-                                            <a class="Frame-card"
-                                                th:attr="onClick='location.href=\''+@{/Hiroba/ThreadDetail?thread_id={thread_id} (thread_id=*{thread_id})} +'\''"
-                                                title="カーソル合わせると出るやつ">
-
-                                                <div class="Frame-cardMedia">
-                                                    <div class="ContentsDigestFrame-contentThumbnail" data-type="">
-                                                        <div class="Thumbnail ContentThumbnail-background">
-                                                            <div class="Thumbnail-image" data-thumbnail=""
-                                                                data-lazy-load="" data-background-image="画像"
-                                                                alt="動画タイトル" data-loaded="true"
-                                                                th:style="|background-image: url(*{thumbnail});|">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="ContentsDigestFrame-cardMeta">
-                                                    <p class="ContentsDigestFrame-cardMetaTitle"
-                                                        th:text="*{thread_name}">
-                                                        タイトル
-                                                    </p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-                            </div>
-                        </div>
-
-
-
-                    </div>
-
-                    <div class="">
-                        <button class="create-sa" id="open-modal2">スレッド作成</button>
-                    </div>
-
                 </div>
 
             </div>
             <!-- 通知エリア（右） -->
             <th:block th:replace="~{commons/layout :: side}"></th:block>
 
-            
+
         </div>
-        <footer th:replace="~{commons/layout :: footer}"></footer>
+        <!-- <footer th:replace="~{commons/layout :: footer}"></footer> -->
     </main>
-    
+
     <script th:src="@{/js/pop.js}"></script>
     <script th:src="@{/js/ajax.js}"></script>
-    
+    <script th:src="@{/js/hum.js}"></script>
 
 </body>
 

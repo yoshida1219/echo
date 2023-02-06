@@ -20,6 +20,26 @@ $(".j2").click(() => {
 
 
 
+// pc投稿
+$(".j3").click(() => {
+    $(".sure_kyouyu").css({
+        "display":"flex"
+    })
+    $(".sure_sesaku").css({
+        "display":"none"
+    })
+})
+$(".j4").click(() => {
+    $(".sure_sesaku").css({
+        "display":"flex"
+    })
+    $(".sure_kyouyu").css({
+        "display":"none"
+    })
+})
+
+
+
 
 
 
