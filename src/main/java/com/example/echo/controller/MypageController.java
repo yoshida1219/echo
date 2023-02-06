@@ -23,6 +23,7 @@ import com.example.echo.entity.select.Follower;
 import com.example.echo.entity.select.MypageResponse;
 import com.example.echo.entity.select.SubmitResponse;
 import com.example.echo.form.ResponseCreateForm;
+import com.example.echo.form.ThreadCreateForm;
 import com.example.echo.service.FavoriteMovie.FavoriteMovieService;
 import com.example.echo.service.Follow.FollowUserService;
 import com.example.echo.service.Follower.FollowerService;
@@ -88,6 +89,11 @@ public class MypageController {
         return new ResponseCreateForm();
     }
 
+    @ModelAttribute
+    public ThreadCreateForm setUpForm() {
+        return new ThreadCreateForm();
+    }
+
 
     /*
      * マイページを表示
@@ -127,9 +133,11 @@ public class MypageController {
         Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
         model.addAttribute("recommend", recommend);
 
-        
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
+
+        Iterable<Jenre> jenre = jenreService.selectAll();
+        model.addAttribute("jenre", jenre);
 
         return_word = "mypage";
         }
@@ -192,6 +200,9 @@ public class MypageController {
         
         Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
+
+        Iterable<Jenre> jenre_list = jenreService.selectAll();
+        model.addAttribute("jenre", jenre_list);
 
         return_word="mypage_edit";
     }
@@ -272,19 +283,22 @@ public class MypageController {
 
         if (sessionData.getUser_id() != null) {
 
-        Iterable<Follow> FollowList = followUserService.selectFollow(user_id,sessionData.getUser_id());
-        Iterable<Follower> FollowerList = followerService.OrderFollowerList(user_id);
-        model.addAttribute("FollowList", FollowList);
-        model.addAttribute("FollowerList", FollowerList);
+            Iterable<Follow> FollowList = followUserService.selectFollow(user_id,sessionData.getUser_id());
+            Iterable<Follower> FollowerList = followerService.OrderFollowerList(user_id);
+            model.addAttribute("FollowList", FollowList);
+            model.addAttribute("FollowerList", FollowerList);
 
-        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
-        model.addAttribute("side_user", side_user.get());
+            Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+            model.addAttribute("side_user", side_user.get());
 
-        
-        Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
-        model.addAttribute("follow_notice", followNotice);
+            
+            Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+            model.addAttribute("follow_notice", followNotice);
 
-        return_word="followerListViewer";
+            return_word="followerListViewer";
+
+            Iterable<Jenre> jenre = jenreService.selectAll();
+            model.addAttribute("jenre", jenre);
         }
 
         return return_word;

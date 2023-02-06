@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.echo.entity.Jenre;
 import com.example.echo.entity.User;
 import com.example.echo.Collection;
 import com.example.echo.entity.select.SelectFollowerMovie;
 import com.example.echo.form.ResponseCreateForm;
+import com.example.echo.form.ThreadCreateForm;
 import com.example.echo.service.Home.HomeService;
+import com.example.echo.service.Jenre.JenreService;
 import com.example.echo.service.Notice.NoticeService;
 import com.example.echo.service.Recommend.RecommendService;
 import com.example.echo.service.User.UserService;
@@ -32,6 +35,7 @@ public class HomeController {
     private final NoticeService noticeService;
     private final RecommendService recommendService;
     private final UserService userService;
+    private final JenreService jenreService;
 
     private final SessionData sessionData;
     private final Collection collection;
@@ -42,6 +46,7 @@ public class HomeController {
             NoticeService noticeService,
             RecommendService recommendService,
             UserService userService,
+            JenreService jenreService,
 
             SessionData sessionData,
             Collection collection
@@ -51,6 +56,7 @@ public class HomeController {
         this.noticeService = noticeService;
         this.recommendService = recommendService;
         this.userService = userService;
+        this.jenreService = jenreService;
 
         this.sessionData = sessionData;
         this.collection = collection;
@@ -64,6 +70,11 @@ public class HomeController {
     @ModelAttribute
     public ResponseCreateForm setUpResponseCreateForm() {
         return new ResponseCreateForm();
+    }
+    
+    @ModelAttribute
+    public ThreadCreateForm setUpForm() {
+        return new ThreadCreateForm();
     }
 
     /*
@@ -90,6 +101,9 @@ public class HomeController {
 
             Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
             model.addAttribute("side_user", side_user.get());
+
+            Iterable<Jenre> jenre = jenreService.selectAll();
+            model.addAttribute("jenre", jenre);
 
             return_word = "home";
         }

@@ -58,7 +58,7 @@ function showResponse(response) {
 
 function sendResponse() {
     stompClient.send("/app/response", {}, JSON.stringify({
-        'url':$("#url").val(), 
+        'url':$("#url-pc-thread").val(), 
         'response_name':$("#response_name").val(), 
         "thread_id":$("#thread_id").val(),
         "user_id":$("#user_id").val()
@@ -78,7 +78,7 @@ closeBtn.forEach(c => c.addEventListener('click', closeModal))
 
 $(function () {
     $("form").on('submit', function (e) {
-        $("#url").val("");
+        $("#url-pc-thread").val("");
         $("#response_name").val("");
         $("#video-player").attr("src", "");
 
