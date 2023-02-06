@@ -13,15 +13,17 @@ img{
 /* 検索バー */
 #search_thread {
     background-color: aquamarine;
-    height: 3em;
-    position: relative;
+    height: 2em;
+    /* position: relative; */
+    margin-bottom: 13px;
+    text-align: center;
 }
 
 #search_thread form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
 }
 
 #bar {
@@ -44,9 +46,9 @@ img{
 /* 急上昇 */
 .trend{
     display: flex;
-     flex-wrap: wrap;
+    flex-wrap: wrap;
     /* background-color: rgb(255 204 138); */
-    padding: 0 8%;
+    /* padding: 0 8%; */
 }
 .trend_tit{
     background-color: #58ad5a;
@@ -180,26 +182,24 @@ img{
 }
 
 .container2{
-    margin-left: 1rem;
-    margin-right: 1rem;
-    margin-top: 25px;
     border: dashed 2px rgba(155, 155, 155, 0.5);
     display: flex;
-    justify-content: center;
     background: #f1ebe0e0;
     border-radius: 15px;
-    flex-wrap: wrap;
+    overflow-x: auto;
+    margin-top: 10px;
   }
   .container-item{
     background-color: rgb(247, 247, 247);
     margin: 10px;
-    width: 30%;
-    padding: 10px;
+    width: 65%;
+    padding: 5px;
+    flex-shrink: 0;
   }
   .container-item-img img{
     display: block;
     object-fit: cover;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     width: 100%;
   }
 
@@ -252,14 +252,14 @@ img{
     box-sizing: border-box;
     }
 
-  .ribbon15 {  
+  .ribbon15 {
     display: inline-block;
     position: absolute;
     top: -6px;
     margin: 0;
     left: 0;
     padding: 10px 0;
-    z-index: 2;
+    z-index: 0;
     width: 40px;
     text-align: center;
     color: white;
@@ -434,7 +434,7 @@ img{
 
 
 a {
-    color: #3b3b3b;
+    /* color: #3b3b3b; */
     text-decoration: none;
     background-color: transparent;
 }
@@ -471,9 +471,10 @@ a {
 
 .Frame-cards{
     grid-gap: 16px;
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
+    display: flex;
+    /* grid-template-columns: repeat(5,1fr); */
     /* background-color: #58ad5a; */
+    overflow-x: auto;
 }
 .Frame-card {
     border: 1px solid #d9d9d9;
@@ -519,11 +520,10 @@ a {
     width: 80%;
 }
 .heading-2{
-    
-    width: 150px;
-    margin: 0 0 0 auto;
-    /* background-color: rgb(212, 214, 214); */
-    text-align: center;
+    /* width: 150px; */
+    margin: 0 0 0 auto;
+    /* background-color: rgb(212, 214, 214); */
+    text-align: center;
 }
 
 .btn-flat-simple {
@@ -687,3 +687,7 @@ blockquote {
     border-right: solid 9px transparent;
 }
 
+.bbg{
+    width: 50%;
+    flex-shrink: 0;
+}

@@ -15,8 +15,8 @@ public class CreateUserForm {
     @NotBlank(message = "入力してください")
     private String user_name;
 
-    @NotBlank(message = "入力してください")
-    private String mail;
+    //@NotBlank(message = "入力してください")
+    //private String mail;
 
     @NotBlank(message = "入力してください")
     private String pass;

@@ -11,8 +11,6 @@ public interface UserService {
 
     String selectUserIdMax();
 
-    Optional<String> selectMail(String mail);
-
     Optional<String> selectSearchName(String search_name);
 
     Optional<User> selectMypageUser(String user_id);

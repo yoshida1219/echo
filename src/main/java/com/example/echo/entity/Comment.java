@@ -19,10 +19,14 @@ public class Comment {
 
     private String view_user;
 
+    private String user_id;
+
     private String user_name;
 
     private String response_creater;
 
     private String submit_time;
+
+    private String icon;
 
 }

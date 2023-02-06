@@ -20,7 +20,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         //最初にwebsocketを繋ぐ、繋ぎ先
-        registry.addEndpoint("/gs-guide-websocket").withSockJS();
+        registry.addEndpoint("/gs-guide-websocket").withSockJS() .setClientLibraryUrl("../webjars/sockjs-client/sockjs.min.js");
     }
 
 }

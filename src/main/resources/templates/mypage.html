@@ -2,311 +2,263 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <!-- コピペ111 -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>卒業テスト</title>
-    <script src="js/jquery-3.6.1.min.js"></script>
-    <link rel="icon" href="img/ファビコン/favicon.ico">
-    <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
-    <link rel="stylesheet" th:href="@{css/style.css}" />
+    <th:block th:replace="~{commons/layout :: cssjs}"></th:block>
 
+    <link rel="stylesheet" th:href="@{/css/mypage.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-mypage.css}" media="screen and (max-width: 768px)">
 
-    <link rel="stylesheet" th:href="@{css/mypage.css}" />
-    <link rel="stylesheet" th:href="@{css/videoLyout-mypage.css}" />
-
-
-    <link rel="stylesheet" th:href="@{reset/ress.min.css}" />
-    <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
-    <!-- /111 -->
+    <link rel="stylesheet" th:href="@{/css/videoLyout-mypage.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-videoLyout-mypage.css}" media="screen and (max-width: 768px)">
 </head>
 
 <body>
-
-    <header th:replace="~{commons/layout :: header}"></header>
-
-
+    <!-- pc左バー 　　　＆スマホ上ヘッド＆　　PC版popup内容　　-->
+    <div th:replace="~{commons/layout :: header}"></div>
     <main>
-        
-
-
-        <!-- <div class="head">
-            <p>Echo</p>
-        </div> -->
         <div class="moto">
             <div class="center">
+                <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
+                <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
 
-                <div class="head">
-                    <p>Echo</p>
-                </div>
-                <!-- タイトル -->
+                <!-- 中央 -->
+                <div class="kari cent-1">
+                    
+                    <!-- マイページ　上のカード -->
+                    <div class="mypage-back">
 
-                <!-- マイページ -->
-                <div class="mypage-back">
+                        <div class="warlpa">
 
-                    <div class="warlpa">
-
-                        <div class="prof">
-                            <p>---------　　MY PROFILE　　---------</p>
-                        </div>
-
-                        <div class="search-up">
-
-                            <!-- 顔 -->
-                            <div class="up-1">
-
-                                <div class="follw-my-icon">
-                                    <img th:src="${list.icon}">
-                                </div>
-
-                                <div class="mypage-name">
-                                    <p id="naaaame" th:text="${list.user_name}"></p>
-                                    <p th:text="${list.search_name}"></p>
-                                </div>
-
-
+                            <div class="prof">
+                                <p>--------　　MY PROFILE　　--------</p>
                             </div>
 
-                            <!-- 文章 -->
-                            <div class="up-2">
+                            <div class="search-up">
 
-                                <!-- フォロー　プロフィール編集 -->
-                                <div class="follow-btn1">
-                                    <th:block th:unless="${login}==${list.user_id}">
-                                        <th:block th:if="${checkFollow}==0">
-                                            <button id="tt1"
-                                                th:attr="onClick='location.href=\''+ @{/follow?user_id={user_id}&check_follow=0 (user_id=${list.user_id})} +'\''">フォロー</button>
+                                <!-- 顔 -->
+                                <div class="up-1">
+
+                                    <div class="follw-my-icon">
+                                        <img th:src="${list.icon}">
+                                    </div>
+
+                                    <div class="mypage-name">
+                                        <p id="naaaame" th:text="${list.user_name}"></p>
+                                        <p th:text="${list.search_name}"></p>
+                                    </div>
+
+
+                                </div>
+
+                                <!-- 文章 -->
+                                <div class="up-2">
+
+
+
+                                    <!-- フォロー　プロフィール編集 -->
+                                    <div class="follow-btn1">
+
+
+                                        <!-- 登録ジャンル -->
+                                        <div class="mypage-janru">
+                                            <th:block th:unless="${#lists.isEmpty(jenreAll)}">
+                                                <th:block th:each="obj:${jenreAll}">
+                                                    <a th:href="@{/Hiroba/genre_change_detail?genre_id={genre_id} (genre_id=${obj.jenre_id})}" th:text="${obj.jenre_name}"></a>
+                                                </th:block>
+                                            </th:block>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <!-- 一言コメント -->
+                                    <div class="my-page-coment">
+                                        <p th:text="${list.introduction}"></p>
+                                    </div>
+
+                                    <!-- 上点線 -->
+                                    <!-- <div class="my-page-coment-2">
+                                        <p>　</p>
+                                    </div> -->
+
+                                    <!-- 数字 -->
+                                    <div class="mypage-suji">
+
+                                        <div class="sa1">
+                                            <p class="folo">フォロー</p>
+                                            <p><a
+                                                    th:href="@{/followerListViewer?user_id={user_id} (user_id=${user_id})}">
+                                                    [[${follow.follower}]]
+                                                </a></p>
+
+                                        </div>
+                                        <div class="sa2">
+                                            <p class="folo">フォロワー</p>
+                                            <p><a th:href="@{/followerListViewer?user_id={user_id} (user_id=${user_id})}">
+                                                [[${follower.follower}]]
+                                            </a></p>
+                                        </div>
+
+
+                                        <p id="foorowa2">
+                                            
+                                        </p>
+                                        <th:block th:unless="${login}==${list.user_id}">
+                                            <th:block th:if="${checkFollow}==0">
+                                                <button id="tt1"
+                                                    th:attr="onClick='location.href=\''+ @{/follow?user_id={user_id}&check_follow=0 (user_id=${list.user_id})} +'\''">フォロー</button>
+                                            </th:block>
+                                            <th:block th:if="${checkFollow}==1">
+                                                <button id="tt2"
+                                                    th:attr="onClick='location.href=\''+ @{/follow?user_id={user_id}&check_follow=1 (user_id=${list.user_id})} +'\''">フォロー解除</button>
+                                            </th:block>
                                         </th:block>
-                                        <th:block th:if="${checkFollow}==1">
-                                            <button id="tt2"
-                                                th:attr="onClick='location.href=\''+ @{/follow?user_id={user_id}&check_follow=1 (user_id=${list.user_id})} +'\''">フォロー解除</button>
-                                        </th:block>
-                                    </th:block>
+                                    </div>
                                     <th:block th:if="${login}==${list.user_id}">
                                         <button class="tt3"
-                                            th:attr="onClick='location.href=\''+ @{/edit?user_id={user_id} (user_id=${list.user_id})} +'\''">プロフィール編集</button>
+                                            th:attr="onClick='location.href=\''+ @{/edit?user_id={user_id} (user_id=${list.user_id})} +'\''">編集</button>
                                     </th:block>
-                                </div>
 
-                                <!-- 数字 -->
-                                <div class="mypage-suji">
-                                    <p>
-                                        <a th:href="@{/followerListViewer?user_id={user_id} (user_id=${user_id})}">
-                                            フォロー：[[${follow.follower}]]
-                                        </a>
-                                    </p>
-                                    
-                                    <p id="foorowa2">
-                                        <a th:href="@{/followerListViewer?user_id={user_id} (user_id=${user_id})}">
-                                            フォロワー：[[${follower.follower}]]
-                                        </a>                                        
-                                    </p>
-                                </div>
 
-                                <!-- 登録ジャンル -->
-                                <div class="mypage-janru">
-                                    <th:block th:unless="${#lists.isEmpty(jenreAll)}">
-                                        <th:block th:each="obj:${jenreAll}">
-                                            <a href="" th:text="${obj.jenre_name}"></a>
-                                        </th:block>
-                                    </th:block>
-                                </div>
 
-                                <!-- 一言コメント -->
-                                <div class="my-page-coment">
-                                    <p th:text="${list.introduction}"></p>
-                                </div>
-                                <div class="my-page-coment-2">
-                                    <p>　</p>
+
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="start-data">
-                            <p>登録日：<span>2020年1月26日　　</span><span>投稿数：[[${responseCount.submitcount}]]</span></p>
+                            <div class="start-data">
+                                <p>登録日：<span>2020年1月26日　　</span><span>投稿数：[[${responseCount.submitcount}]]</span></p>
+                            </div>
+
+
                         </div>
 
 
                     </div>
 
+                    <!-- pickup -->
+                    <div class="search-cent">
+                        <div class="cent-2 container">
 
-                </div>
+                            <div class="dwon-ex2 ggf">
+
+                                <ul class="pick-list">
+                                    <li class="news-item" th:each="loop : ${favoriteMovieList}">
+
+                                        <th:block th:if="${login}==${list.user_id}">
+                                            <a th:href="@{/favoriteMovie?user_id={user_id}&movie_id={movie_id}&check=1 (user_id=${loop.user_id}, movie_id=${loop.movie_id})}"
+                                                class="example">解除</a>
+                                        </th:block>
+
+                                        <div class="news-item-container">
+                                            <div class="image-wrapper">
+                                                <img th:src="${loop.thumbnail}" alt="">
+                                            </div>
 
 
+                                            <div class="text">
+                                                <div class="title"><span
+                                                        class="text text-overflow">[[${loop.movie_name}]]</span></div>
+                                            </div>
 
 
-
-                <!-- 動画 -->
-                <div class="search-cent">
-
-
-
-                    <div class="cent-2 container">
-
-
-
-
-                        <div class="dwon-ex2 ggf">
-
-                            <ul class="pick-list">
-                                <li class="news-item" th:each="loop : ${favoriteMovieList}">
-
-                                    <th:block th:if="${login}==${list.user_id}">
-                                        <a th:href="@{/favoriteMovie?user_id={user_id}&movie_id={movie_id}&check=1 (user_id=${loop.user_id}, movie_id=${loop.movie_id})}"
-                                            class="example">解除</a>
-                                    </th:block>
-
-                                    <div class="news-item-container">
-                                        <div class="image-wrapper">
-                                            <img th:src="${loop.thumbnail}" alt="">
                                         </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 投稿動画 -->
+                    <div class="search-dwon">
+                        <div class="dwon-1">
+                            <p>並び替え</p>
+                            <p>投稿削除</p>
+                        </div>
 
 
-                                        <div class="text">
-                                            <div class="title"><span
-                                                    class="text text-overflow">[[${loop.movie_name}]]</span></div>
+                        <div class="dwon-ex2 ">
+
+                            <ul class="pick-list down">
+                                <li class="news-item" th:each=" loop : ${myResponseList}">
+                                    <button
+                                        th:attr="onClick='location.href=\''+ @{/Hiroba/RessDetail/{url}?&user_id={user_id}&response_id={response_id} (url=${loop.url}, user_id=${loop.user_id}, response_id=${loop.response_id})} +'\''">
+
+                                        <div class="news-item-container">
+
+
+
+
+
+                                            <!-- 画像 -->
+                                            <div class="image-wrapper">
+
+                                                <th:block th:if="${loop.response_name}=='この投稿は共有されたものです'">
+
+                                                    <div class="text retui">
+                                                        <!--変更02/04 <div class="title"><span
+                                                            class="text text-overflow">[[${loop.response_name}]]</span>
+                                                    </div> -->
+                                                        <div class="title"><span class="text text-overflow">共有</span>
+                                                        </div>
+
+                                                    </div>
+                                                </th:block>
+                                                <!-- time -->
+                                                <div class="video-time-labe">
+                                                    <p>10:25</p>
+                                                </div>
+                                                <img th:src="${loop.thumbnail}" alt="">
+                                            </div>
+                                            <!-- お気に -->
+                                            <th:block th:if="${login}==${list.user_id}">
+                                                <a th:href="@{/favoriteMovie?user_id={user_id}&movie_id={movie_id}&check=0 (user_id=${loop.user_id}, movie_id=${loop.movie_id})}"
+                                                    class="example">お気に入り登録</a>
+                                            </th:block>
+
+                                            <!-- 削除 -->
+                                            <th:block th:if="${login}==${list.user_id}">
+                                                <a th:href="@{/Hiroba/delete_response/mypage?response_creater={user_id}&response_id={response_id}&thread_id=null (user_id=${loop.user_id},response_id=${loop.response_id})}"
+                                                    class="example">投稿を削除</a>
+                                            </th:block>
+
+                                            <!-- タイトル -->
+                                            <div class="text">
+                                                <div class="title"><span
+                                                        class="text text-overflow">[[${loop.movie_name}]]</span></div>
+                                            </div>
+
+
+
+
+
                                         </div>
-
-
-                                    </div>
+                                    </button>
                                 </li>
                             </ul>
-
                         </div>
-                    </div>
 
+
+                    </div>
                 </div>
-
-
-
-
-                <div class="search-dwon">
-                    <div class="dwon-1">
-                        <p>並び替え</p>
-                        <p>投稿削除</p>
-                    </div>
-
-
-                    <div class="dwon-ex2 ">
-
-                        <ul class="pick-list down">
-                        <li class="news-item" th:each=" loop : ${myResponseList}">
-                            <button
-                                th:attr="onClick='location.href=\''+ @{/Hiroba/RessDetail/{url}?&user_id={user_id}&response_id={response_id} (url=${loop.url}, user_id=${loop.user_id}, response_id=${loop.response_id})} +'\''">
-
-                                <div class="news-item-container">
-                                    <th:block th:if="${login}==${list.user_id}">
-                                            <a th:href="@{/favoriteMovie?user_id={user_id}&movie_id={movie_id}&check=0 (user_id=${loop.user_id}, movie_id=${loop.movie_id})}"
-                                                class="example">お気に入り登録</a>
-                                    </th:block>
-
-                                    
-                                    <th:block th:if="${login}==${list.user_id}">
-                                    <a th:href="@{/Hiroba/delete_response/Hiroba?response_creater={user_id}&response_id={response_id}&thread_id=null (user_id=${loop.user_id},response_id=${loop.response_id})}"
-                                    class="example">投稿を削除</a>
-                                    </th:block>
-                                    
-
-                                    <div class="image-wrapper">
-                                        <img th:src="${loop.thumbnail}" alt="">
-                                    </div>
-                                    <th:block th:if="${loop.response_name}=='この投稿は共有されたものです'">                                    <div class="text retui">
-                                        <div class="title"><span
-                                                class="text text-overflow">[[${loop.response_name}]]</span></div>
-                                        </div>
-                                    </th:block>
-                                    <div class="text">
-                                        <div class="title"><span
-                                                class="text text-overflow">[[${loop.movie_name}]]</span></div>
-                                    </div>
-
-
-                                    
-                                </div>
-                            </button>
-                        </li>
-                    </ul>
-                    </div>
-
-
-                </div>
-
-
 
             </div>
-
-            <!--  -->
-
-
-
-
-
             <!--通知エリア（右） -->
-
             <div class="side" th:replace="~{commons/layout :: side}"></div>
-
-            <!-- /*通知エリア*/ -->
         </div>
-
-
-        <div class="foot0">
-
-            <div class="foot1">
-                <h6 class="heading">top</h6>
-                <p><a href="">このサイトについて[...]</a></p>
-                <p><a href="">サポートトップ</a></p>
-                <p><a href="">修正のご案内</a></p>
-                <p><a href="">Echoアカウント</a></p>
-                <p><a href="">よくあるご質問</a></p>
-            </div>
-
-
-            <div class="foot2">
-                <h6 class="heading">Next</h6>
-                <p><a href="">会社概要</a></p>
-                <p><a href="">経営方針</a></p>
-                <p><a href="">業務・財務情報</a></p>
-                <p><a href="">IRライブラリ</a></p>
-                <p><a href="">個人投資家の皆様へ</a></p>
-                <p></p>
-                <a href="#">At massa in sed tortor sit amet</a>
-            </div>
-
-            <div class="foot4">
-                <h6 class="heading">会社概要</h6>
-                <p>株式会社YuzawaIndustry</p>
-                <p>東証プライム市場</p>
-                <p>設立：1997年6月25日</p>
-                <p>資本金：99,611百万円</p>
-                <p>従業員数：5名(連結、2022年12月10日現在)</p>
-                <p>〒950-0901 新潟県新潟市中央区弁天２丁目</p>
-            </div>
-
-        </div>
-
-
-
-
         <footer>
             <p id="lasrrt">Copyright © 2023 -- 一般社団法人阿部情報大臣湯沢支部 All Rights Reserved </p>
         </footer>
-
-
-
-
-
-
-
-
 
         <!-- <button class="modal__button create-sa" id="open-modal">投稿</button> -->
         <button id="scroll-to-top-btn">↑</button>
 
     </main>
+    <script th:src="@{js/hum.js}"></script>
+    <script th:src="@{js/pop.js}"></script>
+    <script th:src="@{js/scroll.js}"></script>
+    <script th:src="@{/js/ajax.js}"></script>
 
-
-    <script src="js/pop.js"></script>
-    <script src="js/scroll.js"></script>
 </body>
 
 </html>

@@ -27,8 +27,8 @@ import com.example.echo.session.SessionData;
 @Controller
 @RequestMapping("")
 public class HomeController {
-	
-	private final HomeService homeService;
+
+    private final HomeService homeService;
     private final NoticeService noticeService;
     private final RecommendService recommendService;
     private final UserService userService;
@@ -38,14 +38,14 @@ public class HomeController {
 
     @Autowired
     public HomeController(
-        HomeService homeService,
-        NoticeService noticeService,
-        RecommendService recommendService,
-        UserService userService,
+            HomeService homeService,
+            NoticeService noticeService,
+            RecommendService recommendService,
+            UserService userService,
 
-        SessionData sessionData,
-        Collection collection
-        
+            SessionData sessionData,
+            Collection collection
+
     ) {
         this.homeService = homeService;
         this.noticeService = noticeService;
@@ -66,7 +66,6 @@ public class HomeController {
         return new ResponseCreateForm();
     }
 
-
     /*
      * URL : /home
      * 
@@ -74,30 +73,38 @@ public class HomeController {
      */
     @GetMapping("/home")
     public String showHome(Model model) {
-        Iterable<SelectFollowerMovie> list = homeService.selectFollowerMovie(sessionData.getUser_id());
+        String return_word = "redirect:/";
 
-        model.addAttribute("timeline", list);
+        if (sessionData.getUser_id() != null) {
 
-        
-        Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
-        model.addAttribute("recommend", recommend);
+            Iterable<SelectFollowerMovie> list = homeService.selectFollowerMovie(sessionData.getUser_id());
 
-        Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+            model.addAttribute("timeline", list);
 
-        model.addAttribute("follow_notice", followNotice);
+            Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
+            model.addAttribute("recommend", recommend);
 
-        
-        Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
-        model.addAttribute("side_user", side_user.get());
+            Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
 
-        return "home";
+            model.addAttribute("follow_notice", followNotice);
+
+            Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
+            model.addAttribute("side_user", side_user.get());
+
+            return_word = "home";
+        }
+
+
+
+        return return_word;
+
     }
 
     /*
      * ホーム画面から投稿する
      */
     @GetMapping("/response_creater")
-    public String responseCreate(Model model, @Validated ResponseCreateForm responseCreateForm) throws Exception{
+    public String responseCreate(Model model, @Validated ResponseCreateForm responseCreateForm) throws Exception {
         responseCreateForm.setThread_id(null);
         collection.response_create(responseCreateForm);
 

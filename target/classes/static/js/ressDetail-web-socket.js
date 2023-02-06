@@ -23,9 +23,20 @@ function disconnect() {
 function showResponse(response) {
     $(".d3-1").prepend(`
     <div class="tuiti">
-        <p>` + response.user_name + `</p>
-        <p>` + response.comment + `</p>
-        <p>` + response.submit_time + `</p>
+        <div id="user_left">
+            <button class="clickshow"
+                onClick="location.href='/mypage?user_id=` + response.user_id + `'">
+                <div id="user_icon">
+                    <img src="` + response.icon + `" alt="">
+                </div>
+                <p>` + response.user_name + `</p>
+            </button>
+        </div>
+
+        <div id="user">
+            <p>` + response.comment + `</p>
+            <p id="time">` + response.submit_time + `</p>
+        </div>           
     </div>
     `)
 }

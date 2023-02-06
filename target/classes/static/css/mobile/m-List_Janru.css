@@ -6,12 +6,12 @@
 
 .motto-tit {
   background-color: #e5e5e5;
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 .motto-list {
-  margin: 0 10%;
-  padding: 5px;
+  /* margin: 0 5%; */
+  /* padding: 5px; */
   background-color: rgb(221, 221, 221);
 }
 
@@ -40,7 +40,7 @@
 }
 
 .waku1 {
-  font-size: 30px;
+  font-size: 20px;
   display: flex;
 }
 
@@ -49,11 +49,12 @@
 }
 
 .tag {
-  background-color: #e5e5e5;
-    /* margin: 0 auto; */
-    padding: 0px;
-    margin-right: 50px;
-    padding: 10px;
+  background-color: #6c6c6c;
+  /* margin: 0 auto; */
+  padding: 2px 7px;
+  margin-right: 2%;
+  /* padding: 10px; */
+  color: white;
 }
 .tag:hover{
   background-color: coral;
@@ -61,15 +62,14 @@
 }
 
 .content_ja {
-  background-color: rgb(131, 97, 104);
-  padding: 0 100px 0 100px;
-  margin-top: 20px;
-
+  /* background-color: rgb(131, 97, 104); */
+  /* padding: 0 100px 0 100px; */
+  /* margin-top: 20px; */
 }
 
 .motto-list li {
   list-style: none;
-  margin: 5px 10px;
+  /* margin: 5px; */
 }
 
 .motto-frame {
@@ -87,15 +87,14 @@
 .container-item {
   display: flex;
   /* background-color: rgb(205, 243, 144); */
-
-  padding: 0px 10px;
+  /* padding: 10px; */
   width: 100%;
 }
 
 .container-item-img {
   background-color: white;
-
-  width: 30%;
+  width: 40%;
+  /* padding: 10px; */
 }
 
 .container-item-img img {
@@ -105,8 +104,8 @@
 }
 
 .container-item-date {
-  width: 70%;
-  margin: 0px 0px 0px 15px;
+  width: 60%;
+  /* margin: 0px 0px 0px 5px; */
 }
 
 
@@ -121,12 +120,13 @@
 
 /* アイコン　ユーザ名 */
 .List-user {
-  background-color: #b5b5d1;
-  width: 50%;
-  margin: 3px 10px;
-  border-radius: 5px;
+  /* background-color: #a4a4d7; */
+  width: 80%;
+  /* margin: 3px 10px; */
+  /* border-radius: 5px; */
   display: flex;
-
+  height: 25%;
+  font-size: 8px;
 }
 
 .List-user img {
@@ -139,13 +139,19 @@
   margin: auto;
   width: 50%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .List-user-name {
-  width: 80%;
+  width: 60%;
   text-align: left;
   margin: auto;
+  background-color: #719091;
+  /* padding: 5px; */
+  /* border-radius: 5px; */
+  color: white;
+  /* font-size: 10px; */
+  text-align: center;
 }
 
 
@@ -162,21 +168,26 @@
 
 /* タイトル */
 .List-title {
-  /* background-color: rgb(224, 224, 224); */
-  height: 70%;
-  font-size: 20px;
+  /* background-color: rgb(221 221 221); */
+  height: 50%;
+  font-size: 13px;
   text-align: left;
+  /* margin: 5px 0; */
+  padding: 6px 0;
+  /* color: white; */
 }
 
 
 /* 数 */
 .List-come {
   display: flex;
-  background-color: rgb(221, 221, 221);
-  width: 50%;
-  margin: 3px 10px;
-  border-radius: 10px;
-  font-size: 15px;
+  /* background-color: rgb(173 173 173); */
+  /* width: 50%; */
+  /* margin: 3px 10px; */
+  /* border-radius: 10px; */
+  font-size: 10px;
+  height: 25%;
+  text-align: left;
 }
 
 .List-sita {
@@ -185,21 +196,26 @@
 }
 
 .janruuuuu {
-  background-color: #62626a;
+  background-color: #818187;
   color: white;
-  border-radius: 0px 10px 10px 0px;
-  width: 130px;
-  margin: 0px 30px 0px 15px;
   text-align: center;
+  width: 40%;
+  margin: auto;
+  /* padding: 5px; */
+  /* border-radius: 5px; */
+  margin-left: 4px;
 }
 
 .timeeeeee {
-  width: 30%;
+  width: 50%;
+  margin: auto;
+  text-align: center;
 }
 
 .List-up1 {
   background-color: rgb(255, 255, 255);
-  padding: 10px;
+  /* padding: 10px; */
+  margin: 1px 0;
 }
 
 .List-time {
@@ -209,11 +225,33 @@
 }
 
 .List_ja {
-  padding: 10px 0px;
-
+  padding: 5px 0px;
 }
 
 .crtl-box {
   background-color: #ffffff;
-  padding: 30px;
+  padding: 10px 25px;
+}
+
+.fptit{
+  background-color: #484848;
+}
+
+.ujf{
+  
+margin: auto;
+  
+display: flex;
+}
+.List-come p{
+  font-weight: 600;
+  /* font-size: 15px; */
+}
+
+
+
+.ofrmsertch{
+  display: flex;
+  justify-content: center;
+  padding: 2%;
 }

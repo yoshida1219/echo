@@ -7,41 +7,117 @@
 </head>
 
 <body>
+    <!-- 全画面必要 -->
+    <th:block th:fragment="cssjs">
 
-    <!-- ヘッダー -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Echo</title>
+        <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+        <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
+        <link rel="icon" th:href="@{/img/ファビコン/favicon.ico}">
+        <link rel="stylesheet" th:href="@{/reset/ress.min.css}" />
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
+
+        <!-- style -->
+        <link rel="stylesheet" th:href="@{/css/style.css}" media="screen and (min-width: 767px)" />
+        <link rel="stylesheet" th:href="@{/css/mobile/m-style.css}" media="screen and (max-width: 768px)">
+        <!-- icon -->
+        <link rel="stylesheet" th:href="@{/css/icon.css}" media="screen and (min-width: 767px)">
+        <link rel="stylesheet" th:href="@{/css/mobile/m-icon.css}" media="screen and (max-width: 768px)">
+        <!-- pop -->
+        <link rel="stylesheet" th:href="@{/css/pop.css}" media="screen and (min-width: 767px)">
+        <link rel="stylesheet" th:href="@{/css/pop2.css}" media="screen and (min-width: 767px)">
+
+        <!-- m-pop -->
+        <link rel="stylesheet" th:href="@{/css/mobile/m-pop.css}" media="screen and (max-width: 768px)">
+        <link rel="stylesheet" th:href="@{/css/mobile/m-pop2.css}" media="screen and (max-width: 768px)">
+
+    </th:block>
+
+
+    <!-- pc左バー 　　　＆スマホ上ヘッド＆　　PC版popup内容　　-->
     <th:block th:fragment="header">
 
         <!-- <div class="openbtn"><span></span><span></span><span></span></div> -->
 
+        <!-- PC画面左ヘッダー -->
         <div class="header">
-            <div class="tit">
-                <img th:src="@{/img/ham-menu-image01.png}" class="rogo1">
+            <div class="tit icon-home-lin1">
+                <!-- <img th:src="@{/img/ham-menu-image01.png}" class="rogo1"> -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" class="rogo1">
+                    <path d="M6 36v-3h36v3Zm0-10.5v-3h36v3ZM6 15v-3h36v3Z" />
+                </svg>
+                <p class="side-name1"></p>
             </div>
 
-            <div class="btn1" id="d">
-                <button th:attr="onClick='location.href=\''+@{/home}+'\''">ホーム</button>
+            <div class="nemu-sideing">
+
+
+                <div class="btn1" id="d">
+                    <button th:attr="onClick='location.href=\''+@{/home}+'\''">
+                        <div class="icon-home-lin1">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+                                <path
+                                    d="M11 39h7.5V26.5h11V39H37V19.5L24 9.75 11 19.5Zm-3 3V18L24 6l16 12v24H26.5V29.5h-5V42Zm16-17.65Z"
+                                    class="html-icon1" />
+                            </svg>
+                            <p class="side-name1">ホーム</p>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="btn1">
+                    <button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''">
+                        <div class="icon-home-lin1">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+                                <path
+                                    d="M0 36v-2.65q0-1.95 2.1-3.15T7.5 29q.65 0 1.2.025.55.025 1.1.125-.4.85-.6 1.725-.2.875-.2 1.875V36Zm12 0v-3.25q0-3.25 3.325-5.25t8.675-2q5.4 0 8.7 2 3.3 2 3.3 5.25V36Zm27 0v-3.25q0-1-.175-1.875t-.575-1.725q.55-.1 1.1-.125Q39.9 29 40.5 29q3.4 0 5.45 1.2Q48 31.4 48 33.35V36Zm-15-7.5q-4 0-6.5 1.2T15 32.75V33h18v-.3q0-1.8-2.475-3T24 28.5Zm-16.5-1q-1.45 0-2.475-1.025Q4 25.45 4 24q0-1.45 1.025-2.475Q6.05 20.5 7.5 20.5q1.45 0 2.475 1.025Q11 22.55 11 24q0 1.45-1.025 2.475Q8.95 27.5 7.5 27.5Zm33 0q-1.45 0-2.475-1.025Q37 25.45 37 24q0-1.45 1.025-2.475Q39.05 20.5 40.5 20.5q1.45 0 2.475 1.025Q44 22.55 44 24q0 1.45-1.025 2.475Q41.95 27.5 40.5 27.5ZM24 24q-2.5 0-4.25-1.75T18 18q0-2.55 1.75-4.275Q21.5 12 24 12q2.55 0 4.275 1.725Q30 15.45 30 18q0 2.5-1.725 4.25T24 24Zm0-9q-1.25 0-2.125.85T21 18q0 1.25.875 2.125T24 21q1.3 0 2.15-.875Q27 19.25 27 18q0-1.3-.85-2.15Q25.3 15 24 15Zm0 18Zm0-15Z" />
+                            </svg>
+                            <p class="side-name1">広場</p>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="btn1" id="open-modal2">
+                    <button>
+                        <div class="icon-home-lin1">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+                                <path
+                                    d="M10.75 42.15q-1.7 0-3.35-.575Q5.75 41 4.5 39.7q1.75-.6 2.5-1.75t.75-3.1q0-2.2 1.525-3.725T13 29.6q2.2 0 3.725 1.525t1.525 3.725q0 3.2-2.175 5.25t-5.325 2.05Zm0-3q1.75 0 3.125-1.25t1.375-3.05q0-1-.625-1.625T13 32.6q-1 0-1.625.625t-.625 1.625q0 1.95-.425 2.875T8.75 38.85q.3.05 1 .175.7.125 1 .125Zm11.5-8.85-4.5-4.75 18.8-18.8q.7-.7 1.55-.725.85-.025 1.6.725l1.45 1.45q.75.75.725 1.625-.025.875-.725 1.575ZM13 34.85Z" />
+                            </svg>
+                            <p class="side-name1">投稿</p>
+                        </div>
+                    </button>
+
+                </div>
+
+                <div class="btn1 login-user">
+                    <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">
+                        <div class="icon-home-lin1 userr-iconnn">
+                            <img th:src="${side_user.icon}" class="rogo2">
+                            <p class="side-name1 origin-my">マイページ</p>
+                        </div>
+                        <!--                     <p>[[${side_user.user_name}]]</p>
+                        <p>[[${side_user.search_name}]]</p> -->
+                    </button>
+                </div>
+
+
+
+                <div class="btn1 last-log">
+                    <button th:attr="onClick='location.href=\''+@{/logout}+'\''">
+                        <p class="side-name1 second-log">ログアウト</p>
+                    </button>
+                </div>
+
             </div>
 
-            <div class="btn1">
-                <button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''">広場</button>
-            </div>
-
-            <div class="btn1 login-user">
-                <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">
-                    <div class="userr-iconnn"><img th:src="${side_user.icon}" class="rogo2"></div>
-                    <p>[[${side_user.user_name}]]</p>
-                    <p>[[${side_user.search_name}]]</p>
-                </button>
-            </div>
-
-            <div class="btn1">
-                <button th:attr="onClick='location.href=\''+@{/logout}+'\''">ログアウト</button>
-            </div>
         </div>
 
+        <!-- <div class="openbtn"><span></span><span></span><span></span></div>-->
 
-        <!-- <div class="openbtn"><span></span><span></span><span></span></div>
-     -->
+        <!-- PC画面ハンバーガーメニュー -->
         <nav id="g-nav2">
             <div class="tit2"><img th:src="@{/img/ham-menu-image01.png}" class="rogo1 rogo333"></div>
             <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
@@ -54,11 +130,12 @@
             </div>
         </nav>
 
-
         <!-- スマホ上ヘッド -->
         <div class="m-head">
             <div class="m-tit">
-                <h1 class="grandt  pch">Echo</h1>
+                <h1 class="grandt  pch">
+                    <button th:attr="onClick='location.href=\''+@{/home}+'\''">Echo</button>
+                </h1>
             </div>
             <div class="c-list">
                 <div class="m-c1" id="schbtn11">
@@ -71,22 +148,160 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- PC投稿作成画面　　ポップアップ -->
+
+        <div class="modal container">
+            <div class="modal__container" id="modal-container">
+
+                <div class="modal__content">
+
+
+                    <!-- 中身 -->
+                    <div class="fka"><button class="modal__button modal__button-width close-modal">X</button>
+                    </div>
+
+                    <!-- 中身 -->
+                    <div class="modalTitle nunu">
+                        <h2 class="">投稿するものを選択してください</h2>
+                    </div>
+                    <div class="modalTitle nunu">
+                        <h2 class="h2come j5 opbtn1">スレッドに投稿</h2>
+                        <h2 class="h2come j3 opbtn2">ホーム共有</h2>
+                        <h2 class="h2come j4 opbtn3">スレッド作成</h2>
+                    </div>
+                    <div class="modelMain sure_toukou tweet-01">
+
+                        <div class="formbox">
+                            <div class="stronger">投稿画面</div>
+                            <div class="formbody">
+
+                                <form th:object="${responseCreateForm}">
+                                    <p>
+                                        <!-- 動画URLの入力 -->
+                                        <input class="formelem maxwidth" oninput="removeFeatureShare(this)"
+                                            placeholder="動画URL" size="70" th:field="*{url}" minlength="11"
+                                            required>
+
+                                        <!-- コメントの入力 -->
+                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
+                                            cols="50" wrap="off" th:field="*{response_name}" maxlength="200"
+                                            required></textarea>
+
+                                        <!-- 投稿するスレッドID -->
+                                        <input type="hidden" id="thread_id" th:value="${thread_id}">
+
+                                        <input type="hidden" id="user_id"
+                                            th:value="${session.sessionData.user_id}">
+
+                                        <button id="send" class="submitbtn tweebtn" type="submit">書き込む</button>
+                                    </p>
+                                </form>
+
+                            </div>
+                        </div>
+
+                        <div class="formbox ">
+                            <div class="stronger">動画プレビュー</div>
+                            <div class="formbody preview">
+                                <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
+                                <iframe id="video-player" class="b" width="560" height="315" src=""
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modalMain sure_kyouyu tweet-02">
+
+                        <!-- 内容 -->
+                        <div class="formbox">
+                            <div class="stronger">投稿画面</div>
+                            <div class="formbody">
+
+                                <form th:object="${responseCreateForm}" th:action="@{/response_creater}">
+                                    <p>
+                                        <!-- 動画URLの入力 -->
+                                        <input type="text" class="formelem maxwidth url" id="url-pc" placeholder="動画URL"
+                                            size="70" th:field="*{url}" minlength="11" required>
+
+                                        <!-- コメントの入力 -->
+                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
+                                            wrap="off" th:field="*{response_name}" maxlength="200" required></textarea>
+
+                                        <input type="hidden" name="user_id" th:value="${session.sessionData.user_id}">
+
+                                        <input id="send" class="submitbtn tweebtn" type="submit"></input>
+                                    </p>
+                                </form>
+
+                            </div>
+                        </div>
+
+                        <div class="formbox">
+                            <div class="stronger">動画プレビュー</div>
+                            <div class="formbody preview">
+                                <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
+                                <iframe class="video-player b" width="560" height="315" src=""
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modelMain sure_sesaku tweet-03">
+
+
+                        <div class="formbox">
+                            <div class="stronger">スレッド作成画面</div>
+                            <div class="formbody">
+                                <form method="post">
+                                    <p>
+
+                                        <select class="formelem maxwidth" required>
+                                            <option value="">ジャンルを選択してください</option>
+
+
+                                            <option></option>
+
+                                        </select>
+
+                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="70"
+                                            wrap="off" maxlength="200" required></textarea>
+
+                                        <input class="submitbtn tweebtn" type="submit" value="スレッド作成" name="submit">
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
     </th:block>
 
-
-    <!-- スマホ下ヘッド -->
+    <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
     <th:block th:fragment="humber-nemu">
-        <div id="header">
-            <h1 id="grandt" class="gf">Echo</h1>
+        <div id="header" class="dnone">
+            <h1 id="grandt" class="gf">
+                <button th:attr="onClick='location.href=\''+@{/home}+'\''">Echo</button>
+            </h1>
+
             <nav id="g-navi">
                 <ul>
                     <li><button th:attr="onClick='location.href=\''+@{/home}+'\''"><a>ホーム</a></button></li>
                     <li><button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''"><a>広場</a></button></li>
-                    <li><button class="" id="open-modal2"><a>投稿</a></button></li>
-
-
+                    <!-- <li><button class="" id="open-modal2"><a>投稿</a></button></li> -->
+                    <!-- 投稿ボタン -->
                     <li>
-
                         <div class="popupModal1">
                             <input type="radio" name="modalPop" id="pop11" />
                             <label for="pop11" class="m-tweet"><a>投稿</a></label>
@@ -96,26 +311,157 @@
                             <label for="pop13">×</label>
                             <div class="modalPopup2">
                                 <div class="modalPopup3">
-                                    <h2 class="modalTitle">CSSだけのポップアップモーダル</h2>
-                                    <div class="modalMain">
-                                        <p>こちらに移し替える予定</p>
-                                        
+
+                                    <!-- 中身 -->
+                                    <div class="modalTitle nunu">
+                                        <h2 class="">投稿するものを選択してください</h2>
                                     </div>
+                                    <div class="modalTitle nunu">
+                                        
+                                        <h2 class="h2come j6 opbtn1">スレッドに投稿</h2>
+                                        <h2 class="h2come j1 opbtn2">動画共有</h2>
+                                        <h2 class="h2come j2 opbtn3">スレッド作成</h2>
+                                    </div>
+
+                                    <div class="modelMain sure_toukou tweet-01">
+
+                                        <div class="formbox">
+                                            <div class="stronger">投稿画面</div>
+                                            <div class="formbody">
+                
+                                                <form th:object="${responseCreateForm}">
+                                                    <p>
+                                                        <!-- 動画URLの入力 -->
+                                                        <input class="formelem maxwidth" oninput="removeFeatureShare(this)"
+                                                            placeholder="動画URL" size="70" th:field="*{url}" minlength="11"
+                                                            required>
+                
+                                                        <!-- コメントの入力 -->
+                                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
+                                                            cols="50" wrap="off" th:field="*{response_name}" maxlength="200"
+                                                            required></textarea>
+                
+                                                        <!-- 投稿するスレッドID -->
+                                                        <input type="hidden" id="thread_id" th:value="${thread_id}">
+                
+                                                        <input type="hidden" id="user_id"
+                                                            th:value="${session.sessionData.user_id}">
+                
+                                                        <button id="send" class="submitbtn tweebtn" type="submit">書き込む</button>
+                                                    </p>
+                                                </form>
+                
+                                            </div>
+                                        </div>
+                
+                                        <div class="formbox ">
+                                            <div class="stronger">動画プレビュー</div>
+                                            <div class="formbody preview">
+                                                <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
+                                                <iframe id="video-player" class="b" width="560" height="315" src=""
+                                                    title="YouTube video player" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen>
+                                                </iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modalMain sure_kyouyu tweet-02">
+
+                                        <!-- 内容 -->
+                                        <div class="formbox">
+                                            <div class="formbody">
+
+                                                <form th:object="${responseCreateForm}"
+                                                    th:action="@{/response_creater}">
+                                                    <p>
+                                                        <!-- 動画URLの入力 -->
+                                                        <input class="formelem maxwidth url" id="url-phone"
+                                                            placeholder="動画URL" size="70" th:field="*{url}"
+                                                            minlength="11" required>
+
+                                                        <!-- コメントの入力 -->
+                                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="2"
+                                                            cols="50" wrap="off" th:field="*{response_name}"
+                                                            maxlength="200" required></textarea>
+
+                                                        <input type="hidden" name="user_id"
+                                                            th:value="${session.sessionData.user_id}">
+
+                                                        <button id="send" class="submitbtn tweebtn"
+                                                            type="submit">投稿</button>
+                                                    </p>
+                                                </form>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="formbox ">
+                                            <div class="stronger">動画プレビュー</div>
+                                            <div class="formbody preview">
+                                                <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
+                                                <iframe class="video-player" width="560" height="315" src=""
+                                                    title="YouTube video player" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen>
+                                                </iframe>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modelMain sure_sesaku tweet-03">
+
+
+                                        <div class="formbox">
+                                            <div class="stronger">スレッド作成画面</div>
+                                            <div class="formbody">
+                                                <form method="post">
+                                                    <p>
+
+                                                        <select class="formelem maxwidth" required>
+                                                            <option value="">ジャンルを選択してください</option>
+
+
+                                                            <option></option>
+
+                                                        </select>
+
+                                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
+                                                            cols="70" wrap="off" maxlength="200" required></textarea>
+
+                                                        <input class="submitbtn tweebtn" type="submit" value="スレッド作成"
+                                                            name="submit">
+                                                    </p>
+                                                </form>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+
+
+
+
+                                    <!-- タイトル -->
+                                    <h2 class="modalTitle">　</h2>
+
+
                                 </div>
                             </div>
                         </div>
-
                     </li>
-
-
-                    <li><button th:attr="onClick='location.href=\''+@{/mediate}+'\''"><a>マイページ</a></button></li>
                     <li><button th:attr="onClick='location.href=\''+@{/logout}+'\''"><a>ログアウト</a></button></li>
                     <li><!-- ハンバーガーメニュー -->
                         <!-- <div class="openbtn1 nume">
                             <span></span><span></span><span></span>
                         </div> -->
                     </li>
-
                 </ul>
             </nav>
         </div>
@@ -125,10 +471,7 @@
 
     </th:block>
 
-
-
-
-    <!-- 右 -->
+    <!-- PC＆スマホ　右バー -->
     <div class="side" th:fragment="side">
 
         <!-- ユーザ検索 -->
@@ -137,7 +480,7 @@
             <!-- 検索フォーム -->
             <form id="search_form" th:action="@{/Hiroba/search_user}">
                 <input type="text" id="search_word" name="search_word" placeholder="ユーザ名を入力">
-                <input type="submit" value="検索">
+                <input type="submit" id="search_button" value="検索">
             </form>
 
             <div id="result">
@@ -150,9 +493,9 @@
         <div class="light2">
             <p>表示された人にフォローされました</p>
             <ul class="osusu">
-                <li th:each="obj:${follow_notice}" th:object="${obj}">
+                <li th:each="obj:${follow_notice}" th:object="${obj}" class="result_user">
                     <button th:attr="onClick='location.href=\''+@{/notice?user_id={user_id} (user_id=*{user_id})}+'\''">
-                        <div id="user_icon">
+                        <div id="notice_user">
                             <img th:src="*{icon}" alt="">
                         </div>
                         <div id="user_details">
@@ -166,12 +509,11 @@
 
     </div>
 
-
     <!-- ユーザ検索 -->
     <th:block th:fragment="result_user">
         <div class="light1">
             <ul class="osusu">
-                <li th:each="obj:${user}" th:object="${obj}">
+                <li th:each="obj:${user}" th:object="${obj}" class="result_user">
                     <button th:attr="onClick='location.href=\''+@{/mypage?user_id={user_id} (user_id=*{user_id})}+'\''">
                         <div id="user_icon">
                             <img th:src="*{icon}" alt="">
@@ -185,7 +527,8 @@
         </div>
     </th:block>
 
-    <!-- 投稿フォーム -->
+
+    <!-- スレッド所属の投稿フォーム -->
     <div th:fragment="response_form" class="modal container">
         <div class="modal__container " id="modal-container">
 
@@ -233,8 +576,6 @@
         </div>
     </div>
 
-
-
     <!-- スレッド一覧のテンプレート表示 -->
     <th:block th:fragment="thread_content">
         <button
@@ -242,17 +583,6 @@
 
 
             <div class="List-up1">
-
-                <!-- 時間 -->
-                <div class="List-time">
-                    <div class="timeeeeee">
-                        <p th:text="*{thread_submit}"></p>
-                    </div>
-                    <div class="janruuuuu">
-                        <p th:text="*{jenre_name}"></p>
-                    </div>
-                </div>
-
 
                 <div class="container-item">
 
@@ -267,6 +597,8 @@
                     <!-- 右　文章 -->
                     <div class="container-item-date">
 
+
+
                         <!-- スレッド名 -->
                         <div class="List-title">
                             <div class="text-t2 text-overflow">
@@ -274,44 +606,39 @@
                             </div>
                         </div>
 
+                        <!-- user 　 ジャンル -->
+                        <div class="List-user">
+                            <div class="List-user-name">
+                                <p th:text="*{user_name}"></p>
+                            </div>
 
-                        <div class="List-sita">
 
+                            <div class="janruuuuu">
+                                <p th:text="*{jenre_name}"></p>
+                            </div>
+                        </div>
+                        <!-- 数字 -->
+                        <div class="List-come">
 
-
-                            <!-- 数字 -->
-                            <div class="List-come">
-
-                                <div class="List-suji">
-                                    <span>投稿数</span>
+                            <div class="List-suji">
+                                <div class="ujf">
+                                    <span>投稿</span>
                                     <p>[[*{res_count}]]</p>
                                 </div>
-
-                                <div class="List-suji">
-                                    <span>フォロー数</span>
+                                <div class="ujf">
+                                    <span>フォロー</span>
                                     <p>[[*{follow_count}]]</p>
                                 </div>
 
                             </div>
-
-
-
-                            <!-- user -->
-                            <div class="List-user">
-
-                                <div class="List-user-icon">
-                                    <!--<button th:attr="onClick='location.href=\''+@{/mypage?user_id={user_id} (user_id=*{user_id})} +'\''">-->
-                                    <img th:src="*{icon}" alt="">
-                                    <!--</button>-->
-                                </div>
-
-                                <div class="List-user-name">
-                                    <p th:text="*{user_name}"></p>
-                                </div>
-
+                            <div class="timeeeeee">
+                                <!-- <p th:text="*{thread_submit}"></p> -->
+                                <p>2023/02/11</p>
                             </div>
-
                         </div>
+
+
+
 
                     </div>
 
@@ -345,6 +672,32 @@
                 <div class="title" th:text="*{introduction}"></div>
             </div>
         </div>
+    </th:block>
+
+
+    <!-- 広場　動画フレーム -->
+    <th:block th:fragment="vi-frame">
+
+        <!-- 1セット -->
+        <a class="Frame-card"
+            th:attr="onClick='location.href=\''+@{/Hiroba/ThreadDetail?thread_id={thread_id} (thread_id=*{thread_id})}+'\''"
+            title="カーソル合わせると出るやつ">
+            <div class="Frame-cardMedia">
+                <div class="ContentsDigestFrame-contentThumbnail" data-type="">
+                    <div class="Thumbnail ContentThumbnail-background">
+                        <div class="Thumbnail-image" data-thumbnail="" data-lazy-load="" data-background-image="画像"
+                            alt="動画タイトル" data-loaded="true" th:style="|background-image: url(*{thumbnail});|">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ContentsDigestFrame-cardMeta">
+                <p class="ContentsDigestFrame-cardMetaTitle" th:text="*{thread_name}">
+                    タイトル
+                </p>
+            </div>
+        </a>
+
     </th:block>
 
 
