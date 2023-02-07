@@ -181,12 +181,11 @@
                                     <p>
                                         <!-- 動画URLの入力 -->
                                         <input class="formelem maxwidth url" id="url-pc-thread"
-                                            oninput="removeFeatureShare(this)" placeholder="動画URL" size="70"
-                                            th:field="*{url}" minlength="11" required>
+                                            oninput="removeFeatureShare(this)" placeholder="動画URL" th:field="*{url}">
 
                                         <!-- コメントの入力 -->
                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
-                                            wrap="off" th:field="*{response_name}" maxlength="200" required></textarea>
+                                            wrap="off" th:field="*{response_name}"></textarea>
 
                                         <!-- 投稿するスレッドID -->
                                         <input type="hidden" id="thread_id" th:value="${thread_id}">
@@ -225,11 +224,11 @@
                                     <p>
                                         <!-- 動画URLの入力 -->
                                         <input type="text" class="formelem maxwidth url" id="url-pc-share"
-                                            placeholder="動画URL" size="70" th:field="*{url}" minlength="11" required>
+                                            placeholder="動画URL" size="70" th:field="*{url}">
 
                                         <!-- コメントの入力 -->
                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
-                                            wrap="off" th:field="*{response_name}" maxlength="200" required></textarea>
+                                            wrap="off" th:field="*{response_name}"></textarea>
 
                                         <input type="hidden" name="user_id" th:value="${session.sessionData.user_id}">
 
@@ -262,20 +261,19 @@
                                 <form method="post" th:action="@{/Hiroba/thread_create}"
                                     th:object="${threadCreateForm}">
                                     <p>
-                                        <select class="formelem maxwidth" th:field="*{genre_id}" required>
+                                        <select class="formelem maxwidth" th:field="*{genre_id}">
                                             <option value="">ジャンルを選択してください</option>
 
                                             <th:block th:unless="${#lists.isEmpty(jenre)}">
                                                 <th:block th:each="obj:${jenre}">
-                                                    <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}">
-                                                    </option>
+                                                    <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}"></option>
                                                 </th:block>
                                             </th:block>
 
                                         </select>
 
                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="70"
-                                            wrap="off" maxlength="200" th:field="*{thread_name}" required></textarea>
+                                            wrap="off" maxlength="200" th:field="*{thread_name}"></textarea>
 
                                         <input class="submitbtn tweebtn" type="submit" value="スレッド作成" name="submit">
                                     </p>

@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -118,7 +119,10 @@ public class HomeController {
      * ホーム画面から投稿する
      */
     @GetMapping("/response_creater")
-    public String responseCreate(Model model, @Validated ResponseCreateForm responseCreateForm) throws Exception {
+    public String responseCreate(@Validated ResponseCreateForm responseCreateForm, BindingResult result, Model model) throws Exception {
+        // if(result.hasErrors()) {
+        //     return "";
+        // }
         responseCreateForm.setThread_id(null);
         collection.response_create(responseCreateForm);
 

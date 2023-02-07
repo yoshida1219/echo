@@ -155,8 +155,8 @@
                                 <input type="text" id="CommentText" placeholder="投稿にコメントしよう" name="comment"
                                     pattern=".*\S+.*" maxlength="48" required>
                                 <input type="submit" id="CommentButton" value="投稿">
+                                
                                 <input type="hidden" id="user_id" th:value="${session.sessionData.user_id}">
-
                                 <input type="hidden" name="response_id" th:value="${response_id}" id="response_id">
                                 <input type="hidden" name="response_creater" th:value="${response_creater}"
                                     id="response_creater">
