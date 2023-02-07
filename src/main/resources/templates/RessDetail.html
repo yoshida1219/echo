@@ -130,8 +130,15 @@
 
 
                             <div class="kyouyu-datail">
+                                <th:block th:unless="${share_count}>=1">
                                 <th:block th:unless="${login_user}==${response_creater}">
                                     <button id="tt1" onclick="share_response()">共有</button>
+                                </th:block>
+                                </th:block>
+                                <th:block th:if="${share_count}>=1">
+                                <th:block th:unless="${login_user}==${response_creater}">
+                                    <button id="tt1" onclick="share_response()">共有解除</button>
+                                </th:block>
                                 </th:block>
                             </div>
 

@@ -271,7 +271,7 @@ public class HirobaController {
             Integer count = responseService.OrderShare_check(login_user, user_id, response_id);
             model.addAttribute("share_count", count);
 
-            
+
             Iterable<Jenre> jenre = jenreService.selectAll();
             model.addAttribute("jenre", jenre);
         }
@@ -573,6 +573,16 @@ public class HirobaController {
         String login_user_response = collection.createId(new_response_id);
 
         responseService.ShareResponse(login_user_id, login_user_response, response_creater, response_id);
+
+        return "redirect:/Hiroba/RessDetail/" + url + "?user_id=" + response_creater + "&response_id=" + response_id;
+    }
+
+    @GetMapping("delete_share_response")
+    public String delete_ShareResponse(Model model, @RequestParam("response_creater") String response_creater,
+            @RequestParam("response_id") String response_id, @RequestParam("url") String url) {
+        String login_user_id = sessionData.getUser_id();
+
+        responseService.DeleteShareResponse(login_user_id, response_creater, response_id);
 
         return "redirect:/Hiroba/RessDetail/" + url + "?user_id=" + response_creater + "&response_id=" + response_id;
     }

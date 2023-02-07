@@ -53,4 +53,9 @@ public class ResponseServiceImpl implements ResponseService{
     public Integer OrderShare_check(String login_user_id, String response_creater, String response_id) {
         return repository.findCheck_share(login_user_id, response_creater, response_id);
     }
+
+    @Override
+    public void DeleteShareResponse(String login_user_id, String response_creater, String response_id) {
+        repository.deleteShareResponse(login_user_id, response_creater, response_id);
+    }
 }

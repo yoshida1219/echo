@@ -114,21 +114,25 @@ public interface ResponseRepository extends CrudRepository<Response, String> {
             @Param("response_creater") String response_creater,
             @Param("response_id") String response_id);
 
-    @Modifying
     @Query("""
-        USE echo_sns;
-        with share_user_check as (
-        select case when response.response_creater=:login_user_id then 1 else 0 end as share_user_check 
-        from response
-        right outer join response as share_response on share_response.response_id = response.origin_id and share_response.response_creater = response.origin_creater 
-        where share_response.response_creater=:response_creater and share_response.response_id=:response_id
-        )
-        select case  when sum(share_user_check) > 0 then 1 else 0 end as 'share_check' from share_user_check; 
-            """)
-        Integer findCheck_share(
-        @Param("login_user_id") String login_user_id,
-        @Param("response_creater") String response_creater,
-        @Param("response_id") String response_id
-        );
+            with share_user_check as (
+            select case when response.response_creater=:login_user_id then 1 else 0 end as share_user_check
+            from response
+            right outer join response as share_response on share_response.response_id = response.origin_id and share_response.response_creater = response.origin_creater
+            where share_response.response_creater=:response_creater and share_response.response_id=:response_id
+            )
+            select case when sum(share_user_check) > 0 then 1 else 0 end as 'share_check' from share_user_check;
+               """)
+    Integer findCheck_share(
+            @Param("login_user_id") String login_user_id,
+            @Param("response_creater") String response_creater,
+            @Param("response_id") String response_id);
+
+    @Modifying
+    @Query("delete from response where origin_creater = :response_creater and origin_id = :response_id and response_creater= :login_user_id;")
+    void deleteShareResponse(
+            @Param("login_user_id") String login_user_id,
+            @Param("response_creater") String response_creater,
+            @Param("response_id") String response_id);
 
 }
