@@ -9,7 +9,7 @@
 
 /*スクロールバー色*/
 ::-webkit-scrollbar-thumb {
-  background: #ff6ab0;
+  background: #4d4d4d;
 }
 
 /*今のところつかっていない*/
@@ -588,19 +588,14 @@ margin: 10px;
 }
 
 .tuiti {
-  /* text-align: center; */
   padding: 0.7em;
   margin: 1em;
   background-color: #ffffff;
-  color: #b73300;
-  /* width: 100%; */
-  /* max-width: 100%; */
+  color: #525252;
   display: flex;
-  /* width: 100%; */
-  /* text-align: center; */
   justify-content: center;
-  height: 12vh;
-  border-radius: 15px;
+  /* border-radius: 15px; */
+  border-bottom: 1px solid;
 }
 
 .osusu {

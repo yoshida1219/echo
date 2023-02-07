@@ -2,7 +2,7 @@
     /* padding: 6px 12px; */
     background-color: violet;
     display: flex;
-    width: 80%;
+    /* width: 80%; */
 }
 
 .d3-2 p{
@@ -21,6 +21,7 @@
     box-sizing: border-box;
     display: inline-block;
     width: 80%;
+    padding: 10px;
 }
 
 .d3-2 #CommentButton{
@@ -30,4 +31,5 @@
     right: auto;
     /* margin-left: 230px; */
     width: 20%;
+    color: white;
 }

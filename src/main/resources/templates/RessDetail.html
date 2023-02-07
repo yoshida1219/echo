@@ -24,7 +24,7 @@
                 <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
 
                 <!-- タイトル -->
-                <div class="kari lyout1">
+                <div class="kari cent-1 lyout1">
                     
                     <!-- タイトル -->
                     <div class="">
@@ -48,9 +48,16 @@
 
                         <!-- 動画情報 -->
                         <div class="sub-title-Datail">
-                            <p>共有スレッド数:<span>0</span></p>
-                            <p>所属スレッド名:<span>[[${obj.thread_name}]]</span></p>
-                            <p>投稿日時：<span>[[${obj.response_submit}]]</span></p>
+                            <div class="dataacome">
+                                <p>所属スレッド名</p>
+                                <p>[[${obj.thread_name}]]</p>
+                            </div>
+                            <div class="dataacome">
+                                <p>投稿日時</p>
+                                <p>[[${obj.response_submit}]]</p>
+                            </div>
+                           
+
                         </div>
 
 
@@ -147,7 +154,7 @@
 
                                 <input type="text" id="CommentText" placeholder="投稿にコメントしよう" name="comment"
                                     pattern=".*\S+.*" maxlength="48" required>
-                                <input type="submit" id="CommentButton" value="コメント投稿">
+                                <input type="submit" id="CommentButton" value="投稿">
                                 <input type="hidden" id="user_id" th:value="${session.sessionData.user_id}">
 
                                 <input type="hidden" name="response_id" th:value="${response_id}" id="response_id">
@@ -161,7 +168,9 @@
 
                         <!-- 共有スレッド -->
                         <div class="Resu">
-                            <p>共有スレッド</p>
+                            <div class="">
+                                <p>共有スレッド数:0</p>
+                            </div>
                             <div class="Resu1">
                                 <th:block th:unless="${#lists.isEmpty(thread)}">
                                     <div th:each="obj:${thread}" class="Resu2">
@@ -182,11 +191,16 @@
 
                         <!-- コメント -->
                         <div class="d3">
+
+                            <div class="coment-head">コメント欄</div>
+
+
+
                             <div class="d3-1">
                                 <th:block th:unless="${#lists.isEmpty(list)}">
                                     <div th:each="obj:${list}" class="tuiti">
                                         <!-- アイコン画像 -->
-                                        <div id="user_left">
+                                        <div id="user_left"class="user-ga">
                                             <button class="clickshow"
                                                 th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
                                                 <div id="user_icon">
@@ -197,7 +211,10 @@
                                         </div>
 
                                         <div id="user">
-                                            <p th:text="${obj.comment}"></p>
+                                            <div class="te-text">
+                                                <p th:text="${obj.comment}"></p>
+                                            </div>
+
                                             <p id="time" th:text="${obj.submit_time}"></p>
                                         </div>
                                     </div>
