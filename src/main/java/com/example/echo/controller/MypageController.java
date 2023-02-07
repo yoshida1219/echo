@@ -217,7 +217,7 @@ public class MypageController {
 
     //プロフィールを編集する
     @PostMapping("/edit_change")
-    public String changeEdit(Model model, @RequestParam("user_id") String user_id, @RequestParam("file") MultipartFile file, @RequestParam("user_name") String user_name, @RequestParam("search_name") String search_name, @RequestParam("introduction") String introduction ,@RequestParam("genre1") String genre1, @RequestParam("genre2") String genre2) {
+    public String changeEdit(Model model, @RequestParam("user_id") String user_id, @RequestParam("file") MultipartFile file, @RequestParam("user_name") String user_name, @RequestParam("search_name") String search_name, @RequestParam("introduction") String introduction ,@RequestParam("genre1") String genre1, @RequestParam("genre2") String genre2, @RequestParam("hidden_icon") String hidden_icon) {
 
         //String login_user = sessionData.getUser_id();
         Saved_thumbnail saved_thumbnail = new Saved_thumbnail();
@@ -231,14 +231,19 @@ public class MypageController {
         }else if((genre1.equals("a")) && !(genre2.equals("b"))){
             jenreService.insertJenre(user_id, genre2);
         }
+        String icon = "";
+        if(hidden_icon.equals("f")){
+             icon = "https://skpacket.s3.ap-northeast-1.amazonaws.com/icon/user.png?v=1";
+        }else{
+             icon = "https://skpacket.s3.ap-northeast-1.amazonaws.com/icon/" + user_id + ".jpg?v=1";
         
-
-        String icon = "https://skpacket.s3.ap-northeast-1.amazonaws.com/icon/" + user_id + ".jpg?v=1";
-        try {
-            saved_thumbnail.saved_icon(file, user_id, movieService);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            
+            try {
+                saved_thumbnail.saved_icon(file, user_id, movieService);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         if (!search_name.startsWith("@")) {
             search_name = "@" + search_name;
