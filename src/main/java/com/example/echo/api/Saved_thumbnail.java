@@ -276,15 +276,20 @@ public class Saved_thumbnail{
 
 
                 // ISO 8601形式の再生時間を取得する
-                Duration d = Duration.parse(duration) ;
+                         Duration d = Duration.parse(duration) ;
+                         System.out.println(d);
+                        long seconds = d.getSeconds();
+                        long minutes = seconds / 60;
+                        long hour = 0L;
+                        if(minutes > 60){
+                            hour = minutes / 60;
+                            minutes = minutes % 60;
+                        }
+                        seconds = seconds % 60;
 
-                long seconds = d.getSeconds();
-                long minutes = seconds / 60;
-                seconds = seconds % 60;
-
-                // 再生時間をmm:ss形式に変換する
-                String durationStr = String.format("%d:%02d", minutes, seconds);
-                return_time = durationStr;
+                        // 再生時間をmm:ss形式に変換する
+                        return_time = String.format("%02d:%02d:%02d", hour, minutes, seconds);
+                        
 
                 
 
