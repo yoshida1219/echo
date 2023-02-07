@@ -266,6 +266,10 @@ public class HirobaController {
             Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
             model.addAttribute("side_user", side_user.get());
             return_word = "RessDetail";
+
+            //2023-02-07追加(阿部)
+            Integer count = responseService.OrderShare_check(login_user, user_id, response_id);
+            model.addAttribute("share_count", count);
         }
 
         return return_word;

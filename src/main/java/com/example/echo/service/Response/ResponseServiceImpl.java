@@ -48,4 +48,9 @@ public class ResponseServiceImpl implements ResponseService{
     public void ShareResponse(String login_user_id, String login_user_response, String response_creater, String response_id) {
         repository.ShareInsert(login_user_id, login_user_response, response_creater, response_id);
     }
+
+    @Override
+    public Integer OrderShare_check(String login_user_id, String response_creater, String response_id) {
+        return repository.findCheck_share(login_user_id, response_creater, response_id);
+    }
 }
