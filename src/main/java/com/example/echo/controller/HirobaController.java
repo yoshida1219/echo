@@ -270,6 +270,10 @@ public class HirobaController {
             //2023-02-07追加(阿部)
             Integer count = responseService.OrderShare_check(login_user, user_id, response_id);
             model.addAttribute("share_count", count);
+
+            
+            Iterable<Jenre> jenre = jenreService.selectAll();
+            model.addAttribute("jenre", jenre);
         }
 
         return return_word;
@@ -334,6 +338,9 @@ public class HirobaController {
             Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
             model.addAttribute("side_user", side_user.get());
             return_word = "ThreadDetail";
+
+            Iterable<Jenre> jenre = jenreService.selectAll();
+            model.addAttribute("jenre", jenre);
         }
 
         return return_word;
@@ -496,6 +503,9 @@ public class HirobaController {
             Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
             model.addAttribute("side_user", side_user.get());
             return_word = "ThreadList";
+
+            Iterable<Jenre> jenre = jenreService.selectAll();
+            model.addAttribute("jenre", jenre);
         }
 
         return return_word;
@@ -592,6 +602,9 @@ public class HirobaController {
             Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
             model.addAttribute("side_user", side_user.get());
 
+            Iterable<Jenre> jenre = jenreService.selectAll();
+            model.addAttribute("jenre", jenre);
+
             return_word = "SearchThread";
         }
 
@@ -618,6 +631,7 @@ public class HirobaController {
         // 新着順の一覧
         list = threadListService.selectGenreThread_OrderByRegist(genre_id);
         model.addAttribute("genreThread_OrderByRegist", list);
+
         return_word = "redirect:/Hiroba/ThreadList/genreThread";
         }
 

@@ -23,7 +23,7 @@ public interface UserRepository extends CrudRepository<User, String>{
     Optional<String> findSearchName(@Param("search_name") String search_name);
 
     @Modifying
-    @Query("INSERT INTO user VALUES(:user_id, :user_name, :pass, :search_name, null, '/img/icon/user.png', now())")
+    @Query("INSERT INTO user VALUES(:user_id, :user_name, :pass, :search_name, null, 'https://skpacket.s3.ap-northeast-1.amazonaws.com/icon/user.png', now())")
     void insertUser(
         @Param("user_id") String user_id,
         @Param("user_name") String user_name,
