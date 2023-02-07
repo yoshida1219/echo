@@ -45,6 +45,7 @@ function checkDuplicates() {
   var introduction = document.getElementById('introduction').value;
   
   var flag = true;
+  alert("a");
   if (genre1 === genre2 && genre1 !== "") {
     alert("同じジャンルは選択できません");
     flag = false;
