@@ -53,7 +53,7 @@ public interface ThreadDetailRepository extends CrudRepository<ThreadDetail,Stri
 
         + " select thread.thread_id, thread.thread_name, response.response_id, response.response_creater, response.response_name, movie.movie_name, movie.url, coalesce(movie.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, user.user_id, user.user_name, user.icon, jenre.jenre_name "
 
-        + " , coalesce(like_count.like_count, 0) as 'like', coalesce(share_count.share_count, 0) as 'share'"
+        + " , coalesce(like_count.like_count, 0) as 'like', coalesce(share_count.share_count, 0) as 'share', row_number() over(order by response.response_submit asc) as 'res_count'"
         
         + " from thread "
 
@@ -71,6 +71,7 @@ public interface ThreadDetailRepository extends CrudRepository<ThreadDetail,Stri
     Iterable<ThreadDetail> findThreadDetailAll(
         @Param("thread_id") String thread_id
     );
+
 
     //スレッド検索
     //一番人気以外の６つ

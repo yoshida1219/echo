@@ -106,7 +106,7 @@
                             </div>
                             <div class="kazu-datail kyo6">
                                 <p>共有など</p>
-                                <p th:text="${obj.share}"></p>
+                                <p  id="share_disp" th:text="${obj.share}"></p>
                                 <input type="hidden" id="response_id" th:value="*{response_id}">
                                 <input type="hidden" id="response_creater" th:value="*{response_creater}">
                                 <input type="hidden" id="view_user" th:value="${session.sessionData.user_id}">
@@ -137,14 +137,18 @@
 
 
                             <div class="kyouyu-datail">
+
+                                <!-- 2023-02-08追加(阿部) -->
+                                <input type="hidden" id="check_share" th:value="${share_count}">
+
                                 <th:block th:unless="${share_count}>=1">
                                 <th:block th:unless="${login_user}==${response_creater}">
-                                    <button id="tt1" onclick="share_response()">共有</button>
+                                    <button id="tt2" onclick="share_response()">共有</button>
                                 </th:block>
                                 </th:block>
                                 <th:block th:if="${share_count}>=1">
                                 <th:block th:unless="${login_user}==${response_creater}">
-                                    <button id="tt1" onclick="share_response()">共有解除</button>
+                                    <button id="tt2" onclick="share_response()">共有解除</button>
                                 </th:block>
                                 </th:block>
                             </div>

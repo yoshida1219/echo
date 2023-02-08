@@ -58,4 +58,9 @@ public class ResponseServiceImpl implements ResponseService{
     public void DeleteShareResponse(String login_user_id, String response_creater, String response_id) {
         repository.deleteShareResponse(login_user_id, response_creater, response_id);
     }
+
+    @Override
+    public Integer ThreadResponseCount(String thread_id) {
+        return repository.findResponseCount(thread_id);
+    }
 }
