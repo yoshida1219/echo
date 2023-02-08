@@ -577,10 +577,15 @@ public class HirobaController {
         return "redirect:/Hiroba/RessDetail/" + url + "?user_id=" + response_creater + "&response_id=" + response_id;
     }
 
+    /**/
     @GetMapping("delete_share_response")
     public String delete_ShareResponse(Model model, @RequestParam("response_creater") String response_creater,
             @RequestParam("response_id") String response_id, @RequestParam("url") String url) {
         String login_user_id = sessionData.getUser_id();
+
+        System.out.println(login_user_id);
+        System.out.println(response_creater);
+        System.out.println(response_id);
 
         responseService.DeleteShareResponse(login_user_id, response_creater, response_id);
 
