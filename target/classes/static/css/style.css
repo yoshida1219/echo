@@ -26,6 +26,10 @@ body {
   font-family: "M PLUS 1p";
 }
 
+.error {
+  color: red;
+}
+
 /***************header       「右」　　　　******************************************************************/
 .header {
   /* background-color: #008037; */
@@ -570,7 +574,8 @@ margin: 10px;
 }
 
 .result_user {
-margin: 0.3em;
+
+margin: 0.3em;
 }
 
 /*通知*/

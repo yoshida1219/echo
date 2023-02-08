@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -76,7 +78,7 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public String showLogin() {
+    public String showLogin(Model model) {
         return "login";
     }
 
@@ -88,17 +90,12 @@ public class LoginController {
      * 正常に登録できた　-> / 初期画面にリダイレクト
      * 登録できなかった -> アカウント作成画面を表示
      */
-    @PostMapping("/createUser/complete")
+    @PostMapping("/createUser")
     public String createUser(CreateUserForm form, Model model, RedirectAttributes redirectAttributes) throws Exception{
-        /*
-        if(!collection.checkMail(form.getMail())) {
-            model.addAttribute("mailError", "メールアドレスはすでに使われています");
-            return "login";
-        }
-        */
-
         if(!collection.checkSearchName(form.getSearch_name())) {;
-            model.addAttribute("searchNameError", "このIDはすでに使われています");
+            model.addAttribute("error", "アカウント作成に失敗しました");
+            model.addAttribute("name_error", "すでに使われています");
+            
             return "login";
         }
 

@@ -391,8 +391,7 @@ public class HirobaController {
      */
     @MessageMapping("/comment")
     @SendTo("/comment/posting")
-    public CommentPosting comment_create(CommentCreateForm commentCreateForm) {
-
+    public CommentPosting comment_create(CommentCreateForm commentCreateForm, Model model) {
         Comment comment = new Comment();
         String view_user = commentCreateForm.getUser_id();
         String comment_id = commentservice.maxCommentId(view_user);
