@@ -95,7 +95,7 @@
                 <div class="btn1 login-user">
                     <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">
                         <div class="icon-home-lin1 userr-iconnn">
-                            <img th:src="${side_user.icon}" class="rogo2">
+                            <img th:src="${side_user.icon}" class="rogo2 user-img1">
                             <p class="side-name1 origin-my">マイページ</p>
                         </div>
                         <!--                     <p>[[${side_user.user_name}]]</p>
@@ -119,7 +119,41 @@
 
         <!-- PC画面ハンバーガーメニュー -->
         <nav id="g-nav2">
-            <div class="tit2"><img th:src="@{/img/ham-menu-image01.png}" class="rogo1 rogo333"></div>
+            <div class="tit2">
+                <img th:src="@{/img/ham-menu-image01.png}" class="gulatyan rogo1 rogo333">
+                <h1>Echo</h1>
+            </div>
+
+            <div class="hum-list-2">
+                <div class="hum-list-2-hed1">
+                    <img th:src="${side_user.icon}" class="rogo2 user-img1 side-img2">
+                    <div>
+                        <p>なまえid</p>
+                        <p>id</p>
+                    </div>
+                </div>
+                <div class="hum-list-2-hed2">
+                    <p>＜ふぉろ＞</p>
+                    <p>＜ふぉぉわ＞</p>
+                </div>
+            </div>
+
+            <div class="hum-list-2">
+                <p>ホーム</p>
+                <p>広場</p>
+                <p>マイペ</p>
+                <p>ログアウト</p>
+            </div>
+
+            <div class="hum-list-2">
+                <p>カスタムジャンル</p>
+                <p>カスタムジャンル</p>
+                <p>カスタムジャンル</p>
+                <p>カスタムジャンル</p>
+                <p>カスタムジャンル</p>
+            </div>
+
+
             <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
                 <ul>
                     <li><button th:attr="onClick='location.href=\''+@{/home}+'\''"><a>ホーム</a></button></li>
@@ -133,8 +167,9 @@
         <!-- スマホ上ヘッド -->
         <div class="m-head">
             <div class="m-tit">
-                <h1 class="grandt  pch"th:attr="onClick='location.href=\''+@{/home}+'\''">Echo</h1>
+                <h1 class="grandt  pch" th:attr="onClick='location.href=\''+@{/home}+'\''">Echo</h1>
             </div>
+
             <div class="c-list">
                 <div class="m-c1" id="schbtn11">
                     <button><a>検索</a></button>
@@ -266,7 +301,8 @@
 
                                             <th:block th:unless="${#lists.isEmpty(jenre)}">
                                                 <th:block th:each="obj:${jenre}">
-                                                    <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}"></option>
+                                                    <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}">
+                                                    </option>
                                                 </th:block>
                                             </th:block>
 
@@ -291,7 +327,11 @@
 
     <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
     <th:block th:fragment="humber-nemu">
+
         <div id="header" class="dnone">
+
+
+
             <h1 id="grandt" class="gf">
                 <button th:attr="onClick='location.href=\''+@{/home}+'\''">Echo</button>
             </h1>
@@ -518,7 +558,7 @@
                 <li th:each="obj:${user}" th:object="${obj}" class="result_user">
                     <button th:attr="onClick='location.href=\''+@{/mypage?user_id={user_id} (user_id=*{user_id})}+'\''">
                         <div id="user_icon">
-                            <img th:src="*{icon}" alt="">
+                            <img th:src="*{icon}" alt="" class="user-img1">
                         </div>
                         <div id="user_details">
                             <p th:text="*{user_name}"></p>

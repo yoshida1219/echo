@@ -106,8 +106,11 @@ header {
 }
 
 .tit2 {
-  width: 30%;
+  width: 101%;
   padding: 5%;
+  display: flex;
+  text-align: center;
+  align-items: center;
 }
 
 /***************main       「中央」　　　　***************************************************************/
@@ -544,7 +547,7 @@ margin: 1vh;
   padding: 1.5em;
   margin: 1em;
   background-color: #ffffff;
-  height: 44vh;
+  /* height: 45vh; */
   border-radius: 15px;
 }
 
@@ -740,7 +743,7 @@ margin: 0.3em;
   border: none;
   border-radius: 15%;
   outline: none;
-  transform: rotate(-180deg);
+  transform: rotate(-90deg);
   opacity: 0;
   transition-duration: 0.5s;
   z-index: 1;
@@ -819,9 +822,14 @@ ul {
   width: 25%;
   height: 100vh;
   /*ナビの高さ*/
-  background: rgb(80, 97, 77);
+  background: rgb(194, 194, 194);
   /*動き*/
   transition: all 0.4s;
+}
+
+.gulatyan{
+  
+width: 25%;
 }
 
 /*アクティブクラスがついたら位置を0に*/
@@ -839,6 +847,10 @@ ul {
   /*表示する高さ*/
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+#g-nav-list{
+  display: none;
 }
 
 /*ナビゲーション*/
@@ -1023,5 +1035,33 @@ ul {
   display: block;
   /*flexの横並びをblockにして縦並びに*/
 }
+.user-img1{
+  border-radius: 10px;
+}
+.hum-list-2{
 
-.titl {}
+width: 100%;
+
+text-align: center;
+
+border: 1px solid;
+}
+.hum-list-2-hed1{
+
+/* display: flex; */
+
+align-items: center;
+
+/* width: 100%; */
+}
+.hum-list-2-hed2{
+
+display: flex;
+
+text-align: center;
+
+justify-content: center;
+}
+.side-img2{
+  max-width: 30%;
+}
