@@ -52,7 +52,7 @@ public interface HomeSelectRepository extends CrudRepository<SelectFollowerMovie
         + "left outer join share_count on share_count.response_creater = response.response_creater and share_count.response_id = response.response_id "
         
         + "where response.response_creater = :user_id " 
-        + "order by response_submit desc"
+        + "order by response_submit desc limit 30"
         + ";")
         /*@Query("select user1.user_name as 'my_name', user2.user_name as 'follower_name', "
         + "response.response_name, movie.movie_name, movie.url, movie.thumbnail, response.like, response.share, user2.user_id, "

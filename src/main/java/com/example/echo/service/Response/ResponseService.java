@@ -18,4 +18,6 @@ public interface ResponseService {
     Integer OrderShare_check(String login_user_id, String response_creater, String response_id);
 
     void DeleteShareResponse(String login_user_id, String response_creater, String response_id);
+
+    Integer ThreadResponseCount(String thread_id);
 }

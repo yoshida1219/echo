@@ -267,10 +267,9 @@ public class HirobaController {
             model.addAttribute("side_user", side_user.get());
             return_word = "RessDetail";
 
-            //2023-02-07追加(阿部)
+            // 2023-02-07追加(阿部)
             Integer count = responseService.OrderShare_check(login_user, user_id, response_id);
             model.addAttribute("share_count", count);
-
 
             Iterable<Jenre> jenre = jenreService.selectAll();
             model.addAttribute("jenre", jenre);
@@ -542,7 +541,7 @@ public class HirobaController {
         if (scene.equals("ThreadDetail")) {
             // .equals(msg2)
             return "redirect:/Hiroba/" + scene + "?thread_id=" + thread_id;
-        }else if(scene.equals("mypage")) {
+        } else if (scene.equals("mypage")) {
             return "redirect:/mypage?user_id=" + response_creater;
         } else {
             return "redirect:/" + scene;
@@ -561,18 +560,26 @@ public class HirobaController {
     /* 共有するとき */
     @GetMapping("share_response")
     public String ShareResponse(Model model, @RequestParam("response_creater") String response_creater,
-            @RequestParam("response_id") String response_id, @RequestParam("url") String url) {
+            @RequestParam("response_id") String response_id, @RequestParam("url") String url,
+            @RequestParam("check_share") String check_share) {
         String login_user_id = sessionData.getUser_id();
-        String new_response_id = "R000000";
-        Optional<SubmitResponse> count = submitResponseService.findSubmitResponse(login_user_id);
-        Integer response_count = count.get().getSubmitcount();
-        if (response_count != 0) {
-            new_response_id = responseService.selectMaxResponseId(login_user_id);
+
+        if (check_share.equals("0")) {
+            String new_response_id = "R000000";
+            Optional<SubmitResponse> count = submitResponseService.findSubmitResponse(login_user_id);
+            Integer response_count = count.get().getSubmitcount();
+            if (response_count != 0) {
+                new_response_id = responseService.selectMaxResponseId(login_user_id);
+            }
+            String login_user_response = collection.createId(new_response_id);
+
+            responseService.ShareResponse(login_user_id, login_user_response, response_creater, response_id);
+
+        } else {
+
+            responseService.DeleteShareResponse(login_user_id, response_creater, response_id);
+
         }
-        String login_user_response = collection.createId(new_response_id);
-
-        responseService.ShareResponse(login_user_id, login_user_response, response_creater, response_id);
-
         return "redirect:/Hiroba/RessDetail/" + url + "?user_id=" + response_creater + "&response_id=" + response_id;
     }
 
@@ -632,21 +639,21 @@ public class HirobaController {
         return "redirect:/Hiroba";
     }
 
-    @GetMapping("genre_change_detail") 
+    @GetMapping("genre_change_detail")
     public String showJenre_change_detail(Model model, @RequestParam("genre_id") String genre_id) {
-        
+
         String return_word = "redirect:/";
 
         if (sessionData.getUser_id() != null) {
-        sessionData.setJenre_id(genre_id);
-        Iterable<ThreadList> list = threadListService.selectGenreThread_OrderByPopular(genre_id);
-        model.addAttribute("genreThread_OrderByPopular", list);
+            sessionData.setJenre_id(genre_id);
+            Iterable<ThreadList> list = threadListService.selectGenreThread_OrderByPopular(genre_id);
+            model.addAttribute("genreThread_OrderByPopular", list);
 
-        // 新着順の一覧
-        list = threadListService.selectGenreThread_OrderByRegist(genre_id);
-        model.addAttribute("genreThread_OrderByRegist", list);
+            // 新着順の一覧
+            list = threadListService.selectGenreThread_OrderByRegist(genre_id);
+            model.addAttribute("genreThread_OrderByRegist", list);
 
-        return_word = "redirect:/Hiroba/ThreadList/genreThread";
+            return_word = "redirect:/Hiroba/ThreadList/genreThread";
         }
 
         return return_word;

@@ -179,6 +179,7 @@ public class Collection {
      */
     public ThreadDetail response_create(ResponseCreateForm responseCreateForm) throws Exception {
         Response response = makeResponse(responseCreateForm);
+        Integer response_count = responseService.ThreadResponseCount(response.getThread_id());
         
 
         //short動画を共有する際に付属する場合がある文章を削除
@@ -233,7 +234,10 @@ public class Collection {
             new_movie.getThumbnail(),
             responseCreateForm.getUser_id(),
             user.get().getUser_name(),
-            user.get().getIcon()
+            user.get().getIcon(),
+
+            //2023-02-08追加(阿部)
+            response_count
         );
 
         return detail;
