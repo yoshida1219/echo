@@ -12,11 +12,11 @@ img{
 
 /* 検索バー */
 #search_thread {
-    background-color: aquamarine;
-    height: 2em;
+    background-color: #e7e7e7;
+    /* height: 3em; */
     /* position: relative; */
     /* margin-top: 26px; */
-    /* padding: 11px; */
+    padding: 11px;
     /* padding: 10px; */
 }
 
@@ -29,19 +29,19 @@ img{
 }
 
 #bar {
-    background-color: gainsboro;
+    background-color: white;
     border: 1px solid;
-    margin-right: 4em;
+    /* margin-right: 4em; */
     padding: 0.2em;
-    border-radius: 0.5em;
+    /* border-radius: 0.5em; */
 }
 
 #search-button {
     border: 1px solid;
-    color: white;
-    background-color: gray;
+    /* color: white; */
+    background-color: white;
     padding: 0.2em 0.5em;
-    border-radius: 0.5em;
+    /* border-radius: 0.5em; */
 }
 
 
