@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import org.joda.time.format.ISODateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,10 +19,8 @@ import com.example.echo.youtube_conf.Youtube_key;
 // 必要なライブラリのインポート
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
-import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.services.youtube.model.ChannelListResponse;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.Video;
@@ -34,7 +31,6 @@ import java.time.Duration;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.net.URL;
-import java.time.format.DateTimeFormatter;
 
 import javax.imageio.ImageIO;
 
@@ -48,7 +44,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.awt.Color;
 import com.example.echo.entity.Movie;
-import java.time.format.DateTimeFormatter;
 
 import com.example.echo.service.Movie.MovieService;
 import com.example.echo.service.ApiAccount.ApiAccountService;
@@ -92,7 +87,7 @@ public class Saved_thumbnail{
             searchRequest.setQ(postUrl);
     
             //検索結果の上位何件までを取得するか指定する
-            searchRequest.setMaxResults(1L);
+            searchRequest.setMaxResults(5L);
     
             //なんかしてます
             SearchListResponse searchResponse = searchRequest.execute();
@@ -119,29 +114,38 @@ public class Saved_thumbnail{
 
             String[] movie_return = new String[2];
 
-                
+            
+
+            
     
             //検索結果が1件以上だった場合は検索結果を出力する
             if (searchResults.size() > 0) {
-    
+                SearchResult useResult = searchResults.get(0);
                 /*
                 * 「id」：動画のIDを表す項目です。検索結果から、各動画のIDを取り出すことができます。
                 * 「snippet」：動画の情報を表す項目です。検索結果から、各動画のタイトルや説明文、登録日時、サムネイル画像のURLなど、動画の情報を取り出すことができます。
                 *  idの項目を取得する場合は「getId()」の後ろに、snippetの項目を取得する場合は「getSnippet()」の後ろに「get〇〇()」を置く
                 */
-    
+                for(SearchResult searchList : searchResults){
+                    String testTitle = searchList.getSnippet().getTitle();
+                    if(url.equals(testTitle)){
+                        title = testTitle;
+                        useResult = searchList;
+                        break;
+                    }
+                }
                 //検索結果の1件目のみを変数resultに代入する
-                SearchResult ifSearchResult = searchResults.get(0);
+                //SearchResult ifSearchResult = searchResults.get(0);
                 
 
-                title = ifSearchResult.getSnippet().getTitle();
+                
                 start =  System.currentTimeMillis();
 
                 // 動画情報を取得するリクエストを作成する
                 Videos.List videoRequest = youtube.videos().list("snippet,contentDetails");
                 videoRequest.setKey(key);
                 // 動画IDを設定する
-                videoRequest.setId(ifSearchResult.getId().getVideoId());
+                videoRequest.setId(useResult.getId().getVideoId());
 
                 // 動画情報を取得する
                 VideoListResponse videoResponse = videoRequest.execute();
@@ -305,75 +309,75 @@ public class Saved_thumbnail{
         }
         public void saved_icon(MultipartFile file, String user_id, MovieService movieService) throws IOException{
 
-            System.out.println(file);
-            Iterable<Movie> movie_line = movieService.selectMovies();
+            // System.out.println(file);
+            // Iterable<Movie> movie_line = movieService.selectMovies();
 
-            // YouTube APIのクライアントを作成
-            YouTube youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
-                public void initialize(HttpRequest request) throws IOException {}
-            }).setApplicationName("youtube-api-example").build();
+            // // YouTube APIのクライアントを作成
+            // YouTube youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
+            //     public void initialize(HttpRequest request) throws IOException {}
+            // }).setApplicationName("youtube-api-example").build();
     
-            // 検索した際に、APIから受け取る値をlistに入れる
-            YouTube.Search.List searchRequest = youtube.search().list("id,snippet");
+            // // 検索した際に、APIから受け取る値をlistに入れる
+            // YouTube.Search.List searchRequest = youtube.search().list("id,snippet");
             
-            Youtube_key access = new Youtube_key();
+            // Youtube_key access = new Youtube_key();
 
-            String key = access.get_access();
-            //youtube apiのアクセスキー
-            searchRequest.setKey(key);
+            // String key = access.get_access();
+            // //youtube apiのアクセスキー
+            // searchRequest.setKey(key);
 
-            // 動画情報を取得するリクエストを作成する
-            Videos.List videoRequest = youtube.videos().list("snippet,contentDetails");
-            videoRequest.setKey(key);
+            // // 動画情報を取得するリクエストを作成する
+            // Videos.List videoRequest = youtube.videos().list("snippet,contentDetails");
+            // videoRequest.setKey(key);
             
 
-            for (Movie element : movie_line) {
-                    // 処理
+            // for (Movie element : movie_line) {
+            //         // 処理
                 
 
-                String postUrl = element.getUrl();
+            //     String postUrl = element.getUrl();
                 
             
 
                     
-                // 動画IDを設定する
-                videoRequest.setId(postUrl);
-                try{
+            //     // 動画IDを設定する
+            //     videoRequest.setId(postUrl);
+            //     try{
 
                     
-                        // 動画情報を取得する
-                        VideoListResponse videoResponse = videoRequest.execute();
-                        if (videoResponse.size() > 0) {
+            //             // 動画情報を取得する
+            //             VideoListResponse videoResponse = videoRequest.execute();
+            //             if (videoResponse.size() > 0) {
                             
 
-                            // 動画情報を取得する
-                            Video video = videoResponse.getItems().get(0);
+            //                 // 動画情報を取得する
+            //                 Video video = videoResponse.getItems().get(0);
 
-                            // 動画の再生時間を取得する
-                            String duration = video.getContentDetails().getDuration();
+            //                 // 動画の再生時間を取得する
+            //                 String duration = video.getContentDetails().getDuration();
 
 
-                            // ISO 8601形式の再生時間を取得する
-                            Duration d = Duration.parse(duration) ;
-                            System.out.println(d);
-                            long seconds = d.getSeconds();
-                            long minutes = seconds / 60;
-                            long hour = 0L;
-                            if(minutes > 60){
-                                hour = minutes / 60;
-                                minutes = minutes % 60;
-                            }
-                            seconds = seconds % 60;
+            //                 // ISO 8601形式の再生時間を取得する
+            //                 Duration d = Duration.parse(duration) ;
+            //                 System.out.println(d);
+            //                 long seconds = d.getSeconds();
+            //                 long minutes = seconds / 60;
+            //                 long hour = 0L;
+            //                 if(minutes > 60){
+            //                     hour = minutes / 60;
+            //                     minutes = minutes % 60;
+            //                 }
+            //                 seconds = seconds % 60;
 
-                            // 再生時間をmm:ss形式に変換する
-                            String durationStr = String.format("%02d:%02d:%02d", hour, minutes, seconds);
-                            movieService.updateMovie_time(element.getMovie_id(), durationStr);
+            //                 // 再生時間をmm:ss形式に変換する
+            //                 String durationStr = String.format("%02d:%02d:%02d", hour, minutes, seconds);
+            //                 movieService.updateMovie_time(element.getMovie_id(), durationStr);
                         
-                        }
-                }catch(Exception e){
-                    System.out.println("error");
-                }
-            }
+            //             }
+            //     }catch(Exception e){
+            //         System.out.println("error");
+            //     }
+            // }
             
 
 

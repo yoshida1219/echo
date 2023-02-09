@@ -6,7 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.example.echo.entity.ApiAccount;
-import com.google.api.client.repackaged.com.google.common.base.Optional;
 
 public  interface ApiAccountRepository extends CrudRepository<ApiAccount,String>{
     @Query("select id FROM echo_sns.api_account where flag = true limit 1;")
