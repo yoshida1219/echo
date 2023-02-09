@@ -16,12 +16,14 @@ import com.example.echo.form.ResponseCreateForm;
 import com.example.echo.service.Movie.MovieService;
 import com.example.echo.service.Response.ResponseService;
 import com.example.echo.service.User.UserService;
+import com.example.echo.service.ApiAccount.ApiAccountService;
 
 @Component
 public class Collection {  
     private final UserService userService;
     private final MovieService movieService;
     private final ResponseService responseService;
+    private final ApiAccountService apiAccountService;
 
     private String movie_id = "";
 
@@ -29,11 +31,13 @@ public class Collection {
     public Collection(
         UserService userService,
         MovieService movieService,
-        ResponseService responseService
+        ResponseService responseService,
+        ApiAccountService apiAccountService
     ) {
         this.userService = userService;
         this.movieService = movieService;
         this.responseService = responseService;
+        this.apiAccountService = apiAccountService;
     }
 
     /*
@@ -133,7 +137,7 @@ public class Collection {
         
         Optional<Movie> user = movieService.existsMovie(url);
 
-        String[] movie_return = api.savedThumbnail(url, user);
+        String[] movie_return = api.savedThumbnail(url, user, apiAccountService);
         
 
         String thumbnail = "https://skpacket.s3.ap-northeast-1.amazonaws.com/thumbnail/" + url + ".jpg";

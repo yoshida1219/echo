@@ -39,7 +39,7 @@ public interface MovieRepository extends CrudRepository<Movie,String>{
         @Param("thumbnail") String thumbnail
     );
 
-    @Query("select * from echo_sns.movie;")
+    @Query("select * from echo_sns.movie where movie_time is null ;")
     Iterable<Movie> selectMovies();
 
     @Modifying

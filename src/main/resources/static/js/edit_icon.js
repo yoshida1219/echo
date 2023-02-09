@@ -17,6 +17,9 @@ function previewImage() {
         document.getElementById("fileInput").value = "";
         return false;
       }
+    var hiddenInput = document.getElementById("hidden_icon");
+    hiddenInput.value= "t";
+
 
     reader.addEventListener("load", function () {
         var image = new Image();
@@ -39,34 +42,52 @@ function previewImage() {
 }
 
 function checkDuplicates() {
-  var genre1 = document.getElementById("genre1").value;
-  var genre2 = document.getElementById("genre2").value;
-  var user_name = document.getElementById('user_name').value;
-  var introduction = document.getElementById('introduction').value;
-  
-  var flag = true;
-  alert("a");
-  if (genre1 === genre2 && genre1 !== "") {
-    alert("同じジャンルは選択できません");
-    flag = false;
-  }
-  if (user_name.length > 20) {
-    alert("ユーザー名は 20 文字以内で入力してください");
-    flag = false;
-  }
-  if (introduction.length > 100) {
-    alert("自己紹介文は 100 文字以内で入力してください");
-    flag = false;
-  }
-  
-  if (flag) {
-    return true;
-  } else {
-    return false;
-  }
+    var genre1 = document.getElementById("genre1").value;
+    var genre2 = document.getElementById("genre2").value;
+    var user_name = document.getElementById('user_name').value;
+    var introduction = document.getElementById('introduction').value;
+
+    var name_txt = document.getElementById('name_txt');
+    var introduction_txt = document.getElementById('introduction_txt');
+    var message = document.getElementById('message');
+
+    
+
+    
+    
+    var flag = true;;
+    if (genre1 === genre2 && genre1 !== "") {
+      message.innerHTML = '同じジャンルを選択することはできません';
+      flag = false;
+    }
+    if (user_name.length > 10) {
+      name_txt.innerHTML = 'ユーザー名は10文字以内で入力してください';
+      flag = false;
+    }
+
+    if (user_name.length == 0) {
+      name_txt.innerHTML = 'ユーザー名を入力してください';
+      flag = false;
+    }
+    if (introduction.length > 100) {
+      introduction_txt.innerHTML = '自己紹介は100文字以内で入力してください';
+      flag = false;
+    }
+
+
+    
+
+    
+
+    
+    if (flag) {
+      return true;
+    } else {
+      return false;
+    }
   
     
-  }
+}
 
 
 document.getElementById('genre1').addEventListener('change', checkLists);
@@ -83,3 +104,13 @@ function checkLists() {
     message.innerHTML = '';
   }
 }
+
+window.addEventListener('load', function() {
+  var img = document.getElementById("preview");
+  var src = img.getAttribute('src');
+  
+  if(src !== "https://skpacket.s3.ap-northeast-1.amazonaws.com/icon/user.png"){
+      var hiddenInput = document.getElementById("hidden_icon");
+      hiddenInput.value= "t";
+  }
+});

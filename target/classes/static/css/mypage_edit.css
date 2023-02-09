@@ -139,3 +139,18 @@ font-weight: 100;
 .jenre{
     display:flex;
 }
+
+#introduction_txt,#name_txt, #message{
+    width: 80%;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ff0000;
+}
+
+#messageD{
+    width: 100%;
+}
+
+.mypage-janru{
+    width: 110%;
+}
