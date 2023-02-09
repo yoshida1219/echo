@@ -518,7 +518,20 @@
 
         <!-- ユーザ検索 -->
         <div id="search_user">
-            <p>ユーザ検索</p>
+            <p>探すものを選びましょう</p>
+            <div class="goe">
+                <button class="sure-btn2">スレッド検索</button>
+                <button class="user-btn2">ユーザー検索</button>
+            </div>
+
+            <!-- 検索 -->
+            <div id="search_thread">
+                <form th:action="@{/Hiroba/SearchThread}">
+                    <input id="bar" type="text" name="search_word" placeholder="スレッドの検索" required>
+                    <input id="search-button" type="submit" value="検索">
+                </form>
+            </div> 
+
             <!-- 検索フォーム -->
             <form id="search_form" th:action="@{/Hiroba/search_user}">
                 <input type="text" id="search_word" name="search_word" placeholder="ユーザ名を入力">
@@ -591,11 +604,11 @@
                                     <input class="formelem maxwidth" id="url" placeholder="動画URL" name="FROM" size="70">
                                     <textarea class="formelem maxwidth" placeholder="コメント内容" rows="5" cols="70"
                                         wrap="off" name="MESSAGE"></textarea>
-                                    <p id="urlP"></p>
-                                    <input type="hidden" name="bbs" value="">
-                                    <input type="hidden" name="key" value="">
-                                    <input type="hidden" name="time" value="">
-                                    <input class="submitbtn tweebtn" type="submit" value="書き込む" name="submit">
+                                <p id="urlP"></p>
+                                <input type="hidden" name="bbs" value="">
+                                <input type="hidden" name="key" value="">
+                                <input type="hidden" name="time" value="">
+                                <input class="submitbtn tweebtn" type="submit" value="書き込む" name="submit">
                                 </p>
                             </form>
                         </div>

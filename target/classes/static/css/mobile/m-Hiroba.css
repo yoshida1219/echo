@@ -10,36 +10,20 @@ img{
     max-width: 100%;
 }
 
-/* 検索バー */
-#search_thread {
-    background-color: aquamarine;
-    height: 2em;
-    /* position: relative; */
-    margin-bottom: 13px;
-    text-align: center;
-}
-
-#search_thread form {
-    /* position: absolute; */
-    /* top: 50%; */
-    /* left: 50%; */
-    /* transform: translate(-50%, -50%); */
-}
-
 #bar {
-    background-color: gainsboro;
+    background-color: white;
     border: 1px solid;
-    margin-right: 4em;
-    padding: 0.2em;
-    border-radius: 0.5em;
+    /* margin-right: 4em; */
+    /* padding: 0.2em; */
+    /* border-radius: 0.5em; */
 }
 
 #search-button {
     border: 1px solid;
-    color: white;
-    background-color: gray;
-    padding: 0.2em 0.5em;
-    border-radius: 0.5em;
+    color: black;
+    background-color: white;
+    /* padding: 0.2em 0.5em; */
+    /* border-radius: 0.5em; */
 }
 
 
@@ -520,10 +504,14 @@ a {
     width: 80%;
 }
 .heading-2{
-    /* width: 150px; */
-    margin: 0 0 0 auto;
-    /* background-color: rgb(212, 214, 214); */
-    text-align: center;
+    
+/* width: 150px; */
+    
+margin: 0 0 0 auto;
+    
+/* background-color: rgb(212, 214, 214); */
+    
+text-align: center;
 }
 
 .btn-flat-simple {
