@@ -62,7 +62,7 @@
                                             class="example btn-flat-simple kaijo">フォローを解除</a>
                                 </th:block>
 
-                                <th:block th:unless="${login_user}==${thread_creater}">
+                                <th:block th:if="${login_user_id}==${thread_creater}">
                                     <button class="da-1 sanbababa">
                                         <a th:href="@{delete_thread?thread_id={thread_id} (thread_id=${thread_id})} "
                                             class="delll btn-flat-simple">
@@ -135,8 +135,8 @@
                     <!-- 中身 -->
                     <div class="kari">
                         <!-- 真ん中　スレ -->
-                        <div class="">
-                            <!-- <div class="last-come">
+                        <div class="container3">
+                            <div class="last-come">
                                 <div class="count-ress">
                                     <p>＜コメント数＞コメント</p>
                                 </div>
