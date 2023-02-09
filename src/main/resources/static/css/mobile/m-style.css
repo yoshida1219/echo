@@ -757,6 +757,7 @@ ul {
   background:rgb(80, 97, 77);
   /*動き*/
   transition: all 0.6s;
+  display: none;
 }
 
 /*アクティブクラスがついたら位置を0に*/

@@ -1,6 +1,6 @@
 .list {
   display: flex;
-  background-color: #FFCC33;
+  background-color: #bdbdbd;
   /* border-radius: 5px; */
   padding: 5px;
   margin-bottom: 5px;
@@ -23,15 +23,16 @@
   /* transform: translate(0, 100%); */
 }
 
-/* .list button[name="1"]{
-  background-color: #ff6818;
-  color: #fff;
+ .list button[name="1"]{
+  background-color: #f0f8ff;
+  color: #ff6818;  
 }
 
 .list button[name="0"]{
-  background-color: #f0f8ff;
-  color: #ff6818;
-} */
+  background-color: #ff6818;
+  color: #fff;
+
+}
 
 .list img {
   max-width: 100%;
@@ -50,7 +51,7 @@
   font-size: 15px;
 }
 .user #name {
-  background-color: #91f956;
+  background-color: #d6e8d3;
   font-weight: bold;
   font-size: 20px;
 }

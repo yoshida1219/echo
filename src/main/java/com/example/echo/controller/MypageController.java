@@ -328,6 +328,4 @@ public class MypageController {
             followerService.FollowDelete(sessionData.getUser_id(), user_id);
         }
     }
-
-
 }

@@ -119,6 +119,8 @@
         <footer>
             <p id="lasrrt">Copyright © 2023 -- 一般社団法人阿部情報大臣湯沢支部 All Rights Reserved </p>
         </footer>
+        <!-- <button class="modal__button create-sa" id="open-modal">投稿</button> -->
+        <button id="scroll-to-top-btn">↑</button>
     </main>
 
     <script th:src="@{/js/hum.js}"></script>
@@ -138,7 +140,7 @@
             let flag = hidden.value;
 
             let btn = "#" + user_id + "." + event.getAttribute("class");
-            console.log(btn);
+            //console.log(btn);
             let button = document.querySelector(btn);
             console.log(button);
             $.ajax({
@@ -150,15 +152,17 @@
                 },
                 success: function (result) {
                     if (flag == 0) {
-                        // $(btnClass).css({
-                        //     "background-color": "black"
-                        // })
+                         $(button).css({
+                             "background-color": "#f0f8ff",
+                             "color":"#ff6818"
+                         })
                         button.innerHTML = "フォロー中";
                         hidden.value = 1;
                     } else {
-                        // $(btnClass).css({
-                        //     "background-color": "red"
-                        // })
+                         $(button).css({
+                             "background-color": "#ff6818",
+                             "color":"#fff"
+                         })
                         console.log("success");
                         button.innerHTML = "フォロー";
                         hidden.value = 0;

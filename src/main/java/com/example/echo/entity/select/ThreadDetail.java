@@ -25,4 +25,7 @@ public class ThreadDetail {
     private String user_id;
     private String user_name;
     private String icon;
+
+    //2023-02-08追加(阿部)
+    private Integer res_count;
 }
