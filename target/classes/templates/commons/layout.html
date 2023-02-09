@@ -133,9 +133,7 @@
         <!-- スマホ上ヘッド -->
         <div class="m-head">
             <div class="m-tit">
-                <h1 class="grandt  pch">
-                    <button th:attr="onClick='location.href=\''+@{/home}+'\''">Echo</button>
-                </h1>
+                <h1 class="grandt  pch"th:attr="onClick='location.href=\''+@{/home}+'\''">Echo</h1>
             </div>
             <div class="c-list">
                 <div class="m-c1" id="schbtn11">
@@ -179,23 +177,20 @@
                             <div class="stronger">投稿画面</div>
                             <div class="formbody">
 
-                                <form th:object="${responseCreateForm}" >
+                                <form th:object="${responseCreateForm}">
                                     <p>
                                         <!-- 動画URLの入力 -->
-                                        <input class="formelem maxwidth url" id="url-pc-thread" oninput="removeFeatureShare(this)"
-                                            placeholder="動画URL" size="70" th:field="*{url}" minlength="11"
-                                            required>
+                                        <input class="formelem maxwidth url" id="url-pc-thread"
+                                            oninput="removeFeatureShare(this)" placeholder="動画URL" th:field="*{url}">
 
                                         <!-- コメントの入力 -->
-                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
-                                            cols="50" wrap="off" th:field="*{response_name}" maxlength="200"
-                                            required></textarea>
+                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
+                                            wrap="off" th:field="*{response_name}"></textarea>
 
                                         <!-- 投稿するスレッドID -->
                                         <input type="hidden" id="thread_id" th:value="${thread_id}">
 
-                                        <input type="hidden" id="user_id"
-                                            th:value="${session.sessionData.user_id}">
+                                        <input type="hidden" id="user_id" th:value="${session.sessionData.user_id}">
 
                                         <button id="send" class="submitbtn tweebtn" type="submit">書き込む</button>
                                     </p>
@@ -228,12 +223,12 @@
                                 <form th:object="${responseCreateForm}" th:action="@{/response_creater}">
                                     <p>
                                         <!-- 動画URLの入力 -->
-                                        <input type="text" class="formelem maxwidth url" id="url-pc-share" placeholder="動画URL"
-                                            size="70" th:field="*{url}" minlength="11" required>
+                                        <input type="text" class="formelem maxwidth url" id="url-pc-share"
+                                            placeholder="動画URL" size="70" th:field="*{url}">
 
                                         <!-- コメントの入力 -->
                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
-                                            wrap="off" th:field="*{response_name}" maxlength="200" required></textarea>
+                                            wrap="off" th:field="*{response_name}"></textarea>
 
                                         <input type="hidden" name="user_id" th:value="${session.sessionData.user_id}">
 
@@ -263,9 +258,10 @@
                         <div class="formbox">
                             <div class="stronger">スレッド作成画面</div>
                             <div class="formbody">
-                                <form method="post" th:action="@{/Hiroba/thread_create}" th:object="${threadCreateForm}">
+                                <form method="post" th:action="@{/Hiroba/thread_create}"
+                                    th:object="${threadCreateForm}">
                                     <p>
-                                        <select class="formelem maxwidth" th:field="*{genre_id}" required>
+                                        <select class="formelem maxwidth" th:field="*{genre_id}">
                                             <option value="">ジャンルを選択してください</option>
 
                                             <th:block th:unless="${#lists.isEmpty(jenre)}">
@@ -277,7 +273,7 @@
                                         </select>
 
                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="70"
-                                            wrap="off" maxlength="200" th:field="*{thread_name}" required></textarea>
+                                            wrap="off" maxlength="200" th:field="*{thread_name}"></textarea>
 
                                         <input class="submitbtn tweebtn" type="submit" value="スレッド作成" name="submit">
                                     </p>
@@ -322,7 +318,7 @@
                                         <h2 class="">投稿するものを選択してください</h2>
                                     </div>
                                     <div class="modalTitle nunu">
-                                        
+
                                         <h2 class="h2come j6 opbtn1">スレッドに投稿</h2>
                                         <h2 class="h2come j1 opbtn2">動画共有</h2>
                                         <h2 class="h2come j2 opbtn3">スレッド作成</h2>
@@ -333,32 +329,33 @@
                                         <div class="formbox">
                                             <div class="stronger">投稿画面</div>
                                             <div class="formbody">
-                
+
                                                 <form th:object="${responseCreateForm}">
                                                     <p>
                                                         <!-- 動画URLの入力 -->
-                                                        <input class="formelem maxwidth" oninput="removeFeatureShare(this)"
-                                                            placeholder="動画URL" size="70" th:field="*{url}" minlength="11"
-                                                            required>
-                
+                                                        <input class="formelem maxwidth"
+                                                            oninput="removeFeatureShare(this)" placeholder="動画URL"
+                                                            size="70" th:field="*{url}" minlength="11" required>
+
                                                         <!-- コメントの入力 -->
                                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
-                                                            cols="50" wrap="off" th:field="*{response_name}" maxlength="200"
-                                                            required></textarea>
-                
+                                                            cols="50" wrap="off" th:field="*{response_name}"
+                                                            maxlength="200" required></textarea>
+
                                                         <!-- 投稿するスレッドID -->
                                                         <input type="hidden" id="thread_id" th:value="${thread_id}">
-                
+
                                                         <input type="hidden" id="user_id"
                                                             th:value="${session.sessionData.user_id}">
-                
-                                                        <button id="send" class="submitbtn tweebtn" type="submit">書き込む</button>
+
+                                                        <button id="send" class="submitbtn tweebtn"
+                                                            type="submit">書き込む</button>
                                                     </p>
                                                 </form>
-                
+
                                             </div>
                                         </div>
-                
+
                                         <div class="formbox ">
                                             <div class="stronger">動画プレビュー</div>
                                             <div class="formbody preview">
@@ -549,11 +546,12 @@
                     <div class="formbox">
                         <div class="stronger">投稿画面</div>
                         <div class="formbody">
-                            <form method="" accept-charset="Shift_JIS" action="">
+                            <form method="" accept-charset="Shift_JIS" action="" onsubmit="return checkDuplicates()">
                                 <p><input class="formelem maxwidth" placeholder="タグ" name="mail" size="70">
-                                    <input class="formelem maxwidth" placeholder="動画URL" name="FROM" size="70">
+                                    <input class="formelem maxwidth" id="url" placeholder="動画URL" name="FROM" size="70">
                                     <textarea class="formelem maxwidth" placeholder="コメント内容" rows="5" cols="70"
                                         wrap="off" name="MESSAGE"></textarea>
+                                    <p id="urlP"></p>
                                     <input type="hidden" name="bbs" value="">
                                     <input type="hidden" name="key" value="">
                                     <input type="hidden" name="time" value="">
@@ -749,7 +747,7 @@
 
     <!-- いいね数の登録　警告回避用 -->
     <th:block th:fragment="empty"></th:block>
-
+    <script th:src="@{/js/throw.js}"></script>
 
 </body>
 

@@ -545,10 +545,12 @@ display: block;
 
 .tuiti {
   text-align: center;
-  padding: 10%;
+  /* padding: 10%; */
   margin: 5%;
   background-color: #ffffff;
-  color: #b73300;
+  color: #000000;
+  display: flex;
+  border-bottom: 1px solid;
 }
 
 .osusu {

@@ -267,6 +267,11 @@ public class HirobaController {
             model.addAttribute("side_user", side_user.get());
             return_word = "RessDetail";
 
+            //2023-02-07追加(阿部)
+            Integer count = responseService.OrderShare_check(login_user, user_id, response_id);
+            model.addAttribute("share_count", count);
+
+
             Iterable<Jenre> jenre = jenreService.selectAll();
             model.addAttribute("jenre", jenre);
         }
@@ -386,8 +391,7 @@ public class HirobaController {
      */
     @MessageMapping("/comment")
     @SendTo("/comment/posting")
-    public CommentPosting comment_create(CommentCreateForm commentCreateForm) {
-
+    public CommentPosting comment_create(CommentCreateForm commentCreateForm, Model model) {
         Comment comment = new Comment();
         String view_user = commentCreateForm.getUser_id();
         String comment_id = commentservice.maxCommentId(view_user);
@@ -568,6 +572,16 @@ public class HirobaController {
         String login_user_response = collection.createId(new_response_id);
 
         responseService.ShareResponse(login_user_id, login_user_response, response_creater, response_id);
+
+        return "redirect:/Hiroba/RessDetail/" + url + "?user_id=" + response_creater + "&response_id=" + response_id;
+    }
+
+    @GetMapping("delete_share_response")
+    public String delete_ShareResponse(Model model, @RequestParam("response_creater") String response_creater,
+            @RequestParam("response_id") String response_id, @RequestParam("url") String url) {
+        String login_user_id = sessionData.getUser_id();
+
+        responseService.DeleteShareResponse(login_user_id, response_creater, response_id);
 
         return "redirect:/Hiroba/RessDetail/" + url + "?user_id=" + response_creater + "&response_id=" + response_id;
     }

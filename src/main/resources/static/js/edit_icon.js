@@ -107,9 +107,9 @@ function checkLists() {
 
 window.addEventListener('load', function() {
   var img = document.getElementById("preview");
-  var src = img.getAttribute('th:src');
+  var src = img.getAttribute('src');
   
-  if(src !== "https://skpacket.s3.ap-northeast-1.amazonaws.com/icon/user.png?v=1"){
+  if(src !== "https://skpacket.s3.ap-northeast-1.amazonaws.com/icon/user.png"){
       var hiddenInput = document.getElementById("hidden_icon");
       hiddenInput.value= "t";
   }
