@@ -179,7 +179,7 @@
                         <!-- 共有スレッド -->
                         <div class="Resu">
                             <div class="">
-                                <p>共有スレッド数:0</p>
+                                <p>共有スレッド数</p>
                             </div>
                             <div class="Resu1">
                                 <th:block th:unless="${#lists.isEmpty(thread)}">
@@ -189,6 +189,11 @@
                                             <img th:src="${obj.thumbnail}">
                                             <p th:text="${obj.thread_name}"></p>
                                         </button>
+                                    </div>
+                                </th:block>
+                                <th:block th:if="${#lists.isEmpty(thread)}">
+                                    <div>
+                                        <p>検索しましたが、存在しませんでした...</p>
                                     </div>
                                 </th:block>
                             </div>
