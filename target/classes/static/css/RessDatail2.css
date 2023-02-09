@@ -7,6 +7,7 @@
 /* **タイトル********************************************************* */
 .tit-1 {
   padding: 30px;
+  width: 100%;
 }
 
 .tit-2 {
@@ -80,6 +81,7 @@ blockquote {
   font-style: italic;
   background: #f3f3f3;
   box-shadow: 0 3px 4px rgb(0 0 0 / 15%);
+  width: 100%;
 }
 
 blockquote:before{
@@ -90,7 +92,7 @@ blockquote:before{
   width: 200px;
   height: 40px;
   text-align: center;
-  content: "急上昇スレッド";
+  content: "人気ランキング";
   font-family: FontAwesome;
   color: #FFF;
   font-size: 18px;

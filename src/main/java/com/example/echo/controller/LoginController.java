@@ -105,8 +105,12 @@ public class LoginController {
         User user = collection.makeUser(form);
         userService.insertUser(user);
 
+        sessionData.setUser_id(user.getUser_id());
+        sessionData.setJenre_id("J0001");
+        session.setAttribute("sessionData", sessionData);
+
         redirectAttributes.addFlashAttribute("complete", "アカウントを作成しました");
-        return "redirect:/";
+        return "redirect:/Hiroba";
     }
 
 
@@ -132,7 +136,7 @@ public class LoginController {
             session.setAttribute("sessionData", sessionData);
         }
         
-        return "redirect:/home";
+        return "redirect:/Hiroba";
     }
 
 

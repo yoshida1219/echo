@@ -53,7 +53,8 @@ function sendResponse() {
 
 
 $(function () {
-    $("form").on('submit', function (e) {
+
+    $("#comment_form").on('submit', function (e) {
         e.preventDefault();
         sendResponse();
 

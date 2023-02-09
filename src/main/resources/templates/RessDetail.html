@@ -160,10 +160,9 @@
                             </div>
 
                             <!-- コメント入力フォーム -->
-                            <form method="get" th:object="${commentCreateForm}">
+                            <form method="get" th:object="${commentCreateForm}" id="comment_form">
 
-                                <input type="text" id="CommentText" placeholder="投稿にコメントしよう" name="comment"
-                                    pattern=".*\S+.*" maxlength="48" required>
+                                <input type="text" id="CommentText" placeholder="投稿にコメントしよう" name="comment" pattern=".*\S+.*" maxlength="48" required>
                                 <input type="submit" id="CommentButton" value="投稿">
                                 
                                 <input type="hidden" id="user_id" th:value="${session.sessionData.user_id}">
