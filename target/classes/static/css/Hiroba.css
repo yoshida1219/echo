@@ -50,7 +50,7 @@ img{
     display: flex;
     flex-wrap: wrap;
     /* background-color: rgb(255 204 138); */
-    padding: 0 5%;
+    padding: 2% 5%;
 }
 .trend_tit{
     background-color: #58ad5a;
