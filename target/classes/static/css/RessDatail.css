@@ -159,6 +159,17 @@ img {}
     border: 1px solid;
 }
 
+.fadein-before {
+    opacity: 0;
+    transform:translateX(50vh);
+    transition:opacity 1s,transform 1s;
+}
+
+.fadein-after{
+    opacity: 1;
+    transform: translate(0);
+}
+
 .d3-2 {
     background-color: #dfdedf;
     height: 6%;
@@ -270,5 +281,6 @@ img {}
 }
 
 .Resu{
-    background-color: #ccd2d8;
+    
+background-color: #ccd2d8;
 }

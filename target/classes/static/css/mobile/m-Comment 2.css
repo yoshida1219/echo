@@ -1,0 +1,35 @@
+.d3-2 form{
+    /* padding: 6px 12px; */
+    background-color: violet;
+    display: flex;
+    /* width: 80%; */
+}
+
+.d3-2 p{
+    color: #48526a;
+    font-weight: 700;
+}
+.d3-2 textarea{
+    width: 330px;
+    /* height: 80px; */
+}
+
+.d3-2 #CommentText{
+    background-color: aliceblue;
+    border: 1px solid #ccc;
+    /* border-radius: 4px; */
+    box-sizing: border-box;
+    display: inline-block;
+    width: 80%;
+    padding: 10px;
+}
+
+.d3-2 #CommentButton{
+    background-color: #ff6704;
+    /* border: 1px solid #000; */
+    border-radius: 2px;
+    right: auto;
+    /* margin-left: 230px; */
+    width: 20%;
+    color: white;
+}
