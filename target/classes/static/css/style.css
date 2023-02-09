@@ -639,7 +639,8 @@ margin: 0.3em;
 
 #user_details {
   width: 60%;
-  text-align: center;
+  text-align: initial;
+  font-size: 12px;
 }
 
 .foot0 {

@@ -81,14 +81,20 @@
                             <th:block th:unless="${login_user}==${obj.user_id}">
                                 <th:block th:if="${check_follow}==0">
                                     <div class="follow-detail">
-                                        <button id="tt1"
-                                            th:attr="onClick='location.href=\''+ @{/Hiroba/ress_follow?url={url}&user_id={user_id}&response_id={response_id}&check_follow=0 (url=${send_url},user_id=${obj.user_id},response_id=${response_id})} +'\''">フォロー</button>
+                                        <button id="tt1" th:value="${obj.user_id}" onclick="follow(this)">
+                                            フォロー
+                                        </button>
+                                        <input type="hidden" th:id="${obj.user_id} + h"
+                                                th:value="${check_follow}">
                                     </div>
                                 </th:block>
                                 <th:block th:if="${check_follow}==1">
                                     <div class="follow-detail">
-                                        <button id="tt1"
-                                            th:attr="onClick='location.href=\''+ @{/Hiroba/ress_follow?url={url}&user_id={user_id}&response_id={response_id}&check_follow=1 (url=${send_url},user_id=${obj.user_id},response_id=${response_id})} +'\''">フォロー解除</button>
+                                        <button id="tt1" th:value="${obj.user_id}" onclick="follow(this)">
+                                            フォロー解除
+                                        </button>
+                                        <input type="hidden" th:id="${obj.user_id} + h"
+                                                th:value="${check_follow}">
                                     </div>
                                 </th:block>
                             </th:block>
@@ -245,6 +251,7 @@
     <script th:src="@{/js/favCount_movieTime.js}"></script>
     <script th:src="@{https://www.youtube.com/iframe_api}"></script>
     <script th:src="@{/js/ajax.js}"></script>
+    <script th:src="@{/js/followAjax.js}"></script>
     <script th:src="@{/js/share_response.js}"></script>
     <script th:src="@{/js/pop.js}"></script>
 

@@ -39,7 +39,10 @@
                                     <div class="list">
 
                                         <div class="fl-img">
-                                            <img th:src="${obj.icon}">
+                                             <button
+                                            th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
+                                                <img th:src="${obj.icon}">
+                                            </button>
                                         </div>
 
                                         <div class="fl-user user">
