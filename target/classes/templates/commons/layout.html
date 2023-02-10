@@ -374,9 +374,10 @@
                                                 <form th:object="${responseCreateForm}">
                                                     <p>
                                                         <!-- 動画URLの入力 -->
-                                                        <input class="formelem maxwidth"
+                                                        <input class="formelem maxwidth" id="video-url"
                                                              placeholder="動画URL"
                                                             size="70" th:field="*{url}" minlength="11" required>
+                                                        <div id="video-container"></div>
                                                             <!-- oninput="removeFeatureShare(this)" -->
                                                         <!-- コメントの入力 -->
                                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
@@ -519,9 +520,6 @@
 
         <!-- ユーザ検索 -->
         <div id="search_user">
-<<<<<<< HEAD
-            <p>ユーザ検索</p>
-=======
             <p>探すものを選びましょう</p>
             <div class="goe">
                 <button class="sure-btn2">スレッド検索</button>
@@ -536,7 +534,6 @@
                 </form>
             </div>
 
->>>>>>> 4161288531ee5f09fd33f29858a050a39c06bffb
             <!-- 検索フォーム -->
             <form id="search_form" th:action="@{/Hiroba/search_user}">
                 <input type="text" id="search_word" name="search_word" placeholder="ユーザ名を入力">
