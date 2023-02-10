@@ -33,7 +33,7 @@ public interface CommentRepository extends CrudRepository<Comment,String>{
     );
     
     @Modifying
-    @Query("insert into comment value(:response_id,:view_user,:comment_id,:comment,now(),:response_creater)")
+    @Query("insert into comment value(:response_id,:view_user,:comment_id,:comment,now(),:response_creater, 1)")
     void insertComment(
             @Param("response_id") String response_id,
             @Param("view_user") String view_user,

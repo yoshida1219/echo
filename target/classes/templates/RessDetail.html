@@ -178,7 +178,7 @@
                         <!-- 共有スレッド -->
                         <div class="Resu">
                             <div class="">
-                                <p>共有スレッド数:0</p>
+                                <p>共有スレッド数</p>
                             </div>
                             <div class="Resu1">
                                 <th:block th:unless="${#lists.isEmpty(thread)}">
@@ -188,6 +188,11 @@
                                             <img th:src="${obj.thumbnail}">
                                             <p th:text="${obj.thread_name}"></p>
                                         </button>
+                                    </div>
+                                </th:block>
+                                <th:block th:if="${#lists.isEmpty(thread)}">
+                                    <div>
+                                        <p>検索しましたが、存在しませんでした...</p>
                                     </div>
                                 </th:block>
                             </div>
@@ -209,7 +214,7 @@
                                 <th:block th:unless="${#lists.isEmpty(list)}">
                                     <div th:each="obj:${list}" class="tuiti">
                                         <!-- アイコン画像 -->
-                                        <div id="user_left"class="user-ga">
+                                        <div id="user_left" class="user-ga">
                                             <button class="clickshow"
                                                 th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
                                                 <div id="user_icon">

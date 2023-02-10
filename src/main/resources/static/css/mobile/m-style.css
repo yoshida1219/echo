@@ -227,7 +227,7 @@ min-height: 100vh;
 }
 
 .Frame2 {
-  width: 32%;
+  width: 100%;
   text-align: center;
   display: flex;
 }
@@ -1203,8 +1203,15 @@ padding: 10px;
 border-bottom: 1px solid;
 }
 
-
-
+.text-user9{
+  width: 80%;
+  text-align: initial;
+  margin: auto;
+}
+.vvrhsnor{
+  width: 20%;
+  padding: 5px 5px 0 5px;
+}
 
 
 

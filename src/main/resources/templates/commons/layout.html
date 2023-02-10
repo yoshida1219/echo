@@ -104,12 +104,36 @@
                 </div>
 
 
-
-                <div class="btn1 last-log">
-                    <button th:attr="onClick='location.href=\''+@{/logout}+'\''">
-                        <p class="side-name1 second-log">ログアウト</p>
+                <!-- Yotubeアイコン -->
+                <div class="btn1">
+                    <button onClick="window.open('https://www.youtube.com/', '_blank')">
+                        <div class="icon-home-lin1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube" width="45" height="45" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M3 5m0 4a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"></path>
+                                <path d="M10 9l5 3l-5 3z" fill="white" stroke="white" stroke-width="1px"></path>
+                             </svg>
+                            <p class="side-name1">Youtube</p>
+                        </div>
                     </button>
                 </div>
+
+
+                <!-- ログアウトアイコン -->
+                <div class="btn1 last-log">
+                    <button th:attr="onClick='location.href=\''+@{/logout}+'\''">
+                        <div class="icon-home-lin1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
+                                <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+                             </svg>
+                            <p class="side-name1">ログアウト</p>
+                        </div>
+                    </button>
+                </div>
+
+                
 
             </div>
 
