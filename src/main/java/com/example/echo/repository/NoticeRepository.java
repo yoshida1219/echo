@@ -14,7 +14,7 @@ public interface NoticeRepository extends CrudRepository<NoticeRepository, Strin
          select user.user_id, user.user_name, user.icon, 'follow' as 'reason', follow.follow_time as 'time', null as response_id, null as url 
          from user
          inner join follow on follow.user_id = user.user_id
-         where follow.followuser_id = 'U00000001'
+         where follow.followuser_id =:user_id
          and follow.notification = 1
          union
          select user.user_id, user.user_name, user.icon, 'comment', comment.submit_time as 'time', comment.response_id, movie.url
@@ -22,9 +22,9 @@ public interface NoticeRepository extends CrudRepository<NoticeRepository, Strin
          inner join user on user.user_id = comment.view_user
          inner join response on response.response_creater = comment.response_creater and response.response_id = comment.response_id
          inner join movie on movie.movie_id = response.movie_id
-         where comment.response_creater='U00000001'
+         where comment.response_creater=:user_id
          and comment.notification='1'
-         and comment.view_user!='U00000001'
+         and comment.view_user=:user_id
          order by time desc;
          """
     )
