@@ -183,16 +183,32 @@ $(".posting-form").on("submit", ()=> {
     }
 })
 
-// function onYouTubeIframeAPIReady() {
-//    player = new YT.Player('video-player', {
-//       events: {
-//          'onError': function (event) {
-//             alert("エラーが発生しました");
-//          }
-//       }
-//    });
-// }
-// onYouTubeIframeAPIReady関数を定義
+document.getElementById("video-url").addEventListener("change", function () {
+    updatePreview(this.value);
+});
+
+function updatePreview(videoUrl) {
+    var videoId = extractVideoId(videoUrl);
+    if (!videoId) {
+        console.error("Invalid URL: " + videoUrl);
+        return;
+    }
+
+    var player = new YT.Player('video_play', {
+        videoId: videoId,
+        events: {
+            'onError': function (event) {
+                alert("エラーが発生しました");
+            }
+        }
+    });
+}
+  
+// YouTubeのAPIを読み込み
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function checkDuplicates() {
     
