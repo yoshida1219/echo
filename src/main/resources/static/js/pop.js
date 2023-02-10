@@ -155,11 +155,67 @@ $(".url").on("input", (event) => {
     let input_url = $("#" + id).val();
     let url = "https://www.youtube.com/embed/";
 
+    
+
     if(input_url.length < 11) {
         return
     }
 
+    
+
     url += input_url.substr(-11)
+
+    url += "?enablejsapi=1"
 
     $(".video-player").attr("src", url)  
 })
+
+
+// function onYouTubeIframeAPIReady() {
+//    player = new YT.Player('video-player', {
+//       events: {
+//          'onError': function (event) {
+//             alert("エラーが発生しました");
+//          }
+//       }
+//    });
+// }
+// onYouTubeIframeAPIReady関数を定義
+
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '390',
+    width: '640',
+    videoId: 'video-id',
+    events: {
+      'onError': function (event) {
+        console.error("エラーが発生しました");
+      }
+    }
+  });
+}
+
+
+function checkDuplicates() {
+    
+    let flag = true;
+    var input_url = document.getElementById('url-pc-share').value;
+
+    if (input_url.includes("https://www.youtube.com/@")) {
+        alert("error2");
+        var urlError = document.getElementById('urlError');
+        urlError.innerHTML = 'fuckin';
+        flag = false;
+    }
+    
+
+    
+    if (flag) {
+      return true;
+    } else {
+      return false;
+    }
+    
+    
+}

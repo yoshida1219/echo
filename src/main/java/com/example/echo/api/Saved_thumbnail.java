@@ -91,7 +91,7 @@ public class Saved_thumbnail{
     
             //なんかしてます
             SearchListResponse searchResponse = searchRequest.execute();
-            int quata = 0;
+            int quata = Integer.parseInt(keybox[2]);
             quata += 100;
     
             //検索結果をsearchResultsに代入する
@@ -127,9 +127,9 @@ public class Saved_thumbnail{
                 *  idの項目を取得する場合は「getId()」の後ろに、snippetの項目を取得する場合は「getSnippet()」の後ろに「get〇〇()」を置く
                 */
                 for(SearchResult searchList : searchResults){
-                    String testTitle = searchList.getSnippet().getTitle();
-                    if(url.equals(testTitle)){
-                        title = testTitle;
+                    String testurl = searchList.getId().getVideoId();
+                    if(url.equals(testurl)){
+                        title = searchList.getSnippet().getTitle();;
                         useResult = searchList;
                         break;
                     }
@@ -192,6 +192,7 @@ public class Saved_thumbnail{
 
                         start = System.currentTimeMillis();
                         List<Future<Image>> futureImages = new ArrayList<>();
+                        System.out.println(imageUrls[3]);
 
                         for(String imageUrlBaby : imageUrls){
                             
@@ -299,7 +300,7 @@ public class Saved_thumbnail{
             movie_return[1] = return_time;
 
             
-
+            System.out.println("鍵鍵" + keybox[0]);
             access.changeFalseFlag(keybox[0], quata, apiAccountService);
 
 

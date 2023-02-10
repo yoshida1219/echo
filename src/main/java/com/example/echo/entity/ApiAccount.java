@@ -19,5 +19,5 @@ public class ApiAccount {
 
     private Timestamp url;
 
-    private int quota;
+    private int quata;
 }

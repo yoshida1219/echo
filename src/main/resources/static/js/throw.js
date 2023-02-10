@@ -1,19 +1,23 @@
-function checkDuplicates() {
-    var url = document.getElementById('url').value;
-    var message = document.getElementById('urlP');
+// document.addEventListener("DOMContentLoaded", function() {
+//   document.getElementById("url-pc-thread").addEventListener("input", function() {
+//     alert("error");
+//     var inputValue = document.getElementById("url-pc-thread").value;
+//     if (inputValue.includes("https://www.youtube.com/@")) {
+//       alert("error2");
+//     }
+//   });
+// });
 
-    var flag = true;;
-    if (url.includes("https://www.youtube.com/@")) {
-        alert('a')
-      message.innerHTML = 'このURLは添付できません';
-      flag = false;
-    }
-    
-    if (flag) {
-      return true;
-    } else {
-      return false;
-    }
+
+
+
+  // document.getElementById("url-pc-thread").addEventListener("input", function() {
+  //   alert("error");
+  //   var inputValue = document.getElementById("url-pc-thread").value;
+  //   if (inputValue.includes("https://www.youtube.com/@")) {
+  //     alert("error2");
+  //   }
+  // });
+  
   
     
-}
