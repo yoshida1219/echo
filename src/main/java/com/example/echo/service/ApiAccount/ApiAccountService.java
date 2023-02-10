@@ -1,9 +1,11 @@
 package com.example.echo.service.ApiAccount;
 
-import com.example.echo.entity.ApiAccount;
+
 
 public interface ApiAccountService {
     String useAccount();
+
+    String getAcQuata(String id); 
 
     void updateFlag();
 

@@ -127,17 +127,44 @@ function closeModal(){
 closeBtn.forEach(c => c.addEventListener('click', closeModal))
 
 
-//動画URLの自動切り出し
-$(".url").on("input", (event) => {
-    let id = event.target.id;
-    let input_url = $("#" + id).val();
-    let url = "https://www.youtube.com/embed/";
+// //動画URLの自動切り出し
+// $(".url").on("input", (event) => {
+//     let id = event.target.id;
+//     let input_url = $("#" + id).val();
+//     let url = "https://www.youtube.com/embed/";
 
-    if(input_url.length < 11) {
-        return
+    
+
+//     if(input_url.length < 11) {
+//         return
+//     }
+
+    
+
+//     url += input_url.substr(-11)
+
+//     $(".video-player").attr("src", url)  
+// })
+
+function checkDuplicates() {
+    
+    let flag = true;
+    var input_url = document.getElementById('url-pc-share').value;
+
+    if (input_url.includes("https://www.youtube.com/@")) {
+        alert("error2");
+        var urlError = document.getElementById('urlError');
+        urlError.innerHTML = 'fuckin';
+        flag = false;
     }
+    
 
-    url += input_url.substr(-11)
-
-    $(".video-player").attr("src", url)  
-})
+    
+    if (flag) {
+      return true;
+    } else {
+      return false;
+    }
+  
+    
+}
