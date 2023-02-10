@@ -214,7 +214,7 @@
                                 <th:block th:unless="${#lists.isEmpty(list)}">
                                     <div th:each="obj:${list}" class="tuiti">
                                         <!-- アイコン画像 -->
-                                        <div id="user_left"class="user-ga">
+                                        <div id="user_left" class="user-ga">
                                             <button class="clickshow"
                                                 th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
                                                 <div id="user_icon">

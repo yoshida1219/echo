@@ -29,7 +29,7 @@
                             <div class="Frame2">
                                 <div class="vvrhsnor"><button class="clickshow "
                                     th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
-                                    <img th:src="${obj.icon}" class="rogo2">
+                                    <img th:src="${obj.icon}" class="rogo2 user-img1">
                                 </button></div>
                                 <div class="text-user9">
                                     <p th:text="${obj.follower_name}"></p>
@@ -117,7 +117,6 @@
 
     <script th:src="@{/js/pop.js}"></script>
     <script th:src="@{/js/scroll.js}"></script>
-    <script th:src="@{/js/hover1.js}"></script>
     <script th:src="@{/js/ajax.js}"></script>
     <script th:src="@{/js/hum.js}"></script>
 </body>

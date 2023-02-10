@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="~{commons/layout :: cssjs}"></th:block>
+
+
+    <link rel="stylesheet" th:href="@{/css/mypage.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-mypage.css}" media="screen and (max-width: 768px)">
+
+    <link rel="stylesheet" th:href="@{/css/mypage_edit.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-mypage_edit.css}" media="screen and (max-width: 768px)">
+
+</head>
+
+<body>
+    <!-- pc左バー 　　　＆スマホ上ヘッド＆　　PC版popup内容　　-->
+    <div th:replace="~{commons/layout :: header}"></div>
+
+    <main>
+        <div class="moto">
+            <div class="center">
+
+                <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
+                <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
+
+
+                <div class="kari cent-1">
+
+
+
+                    <!-- マイページ　上のカード -->
+                    <div class="mypage-back">
+
+                        <div class="warlpa">
+
+                            <div class="prof">
+                                <p>--------　　MY PROFILE　　--------</p>
+                            </div>
+
+
+                            <form th:action="@{/edit_change?user_id={user_id} (user_id=${list.user_id})}" method="post"
+                                enctype="multipart/form-data" onsubmit="return checkDuplicates()">
+                                <div class="search-up">
+                                    <!-- 顔 -->
+                                    <div class="up-1">
+                                    <!--  -->
+
+
+
+                                        <div class="follw-my-icon">
+                                            <div class="input-container">
+                                                <input type="file" id="fileInput" name="file" onchange="previewImage()">
+                                                <div class="prev_img">
+                                                    <img id="preview" th:src="*{list.icon}" alt="ないぞ">
+                                                </div>
+                                                <input type="hidden" value="f" name="hidden_icon" id="hidden_icon">
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="mypage-name">
+                                            <p>名前(10文字以内)</p>
+                                            <input type="text" class="edit" size="auto" name="user_name" id="user_name"
+                                                th:value="${list.user_name}" >
+                                            <p id="name_txt"></p>
+
+
+                                            <p>ID</p>
+                                            <input type="text" class="edit" id="id" size="auto" name="search_name"
+                                                th:value="${list.search_name}" disabled>
+                                            
+                                            <input type="hidden" name="search_name" th:value="${list.search_name}">
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <!-- 文章 -->
+                                    <div class="up-2">
+
+
+
+                                        <!-- フォロー　プロフィール編集 -->
+                                        <div class="follow-btn1">
+
+
+                                            <p>好きなジャンル</p>
+                                            <!-- 登録ジャンル -->
+                                            <div class="mypage-janru" id="jenre">
+
+                                                
+                                                <select class="formelem maxwidth" id="genre1" name="genre1" required>
+                                                    <option value="">ジャンルを選択してください</option>
+                                                    <th:block th:each="obj:${jenreList}">
+                                                        <th:block th:if="${jenre1}==${obj.jenre_id}">
+                                                            <option th:value="${obj.jenre_id}"
+                                                                th:text="${obj.jenre_name}" selected>
+                                                            </option>
+                                                        </th:block>
+                                                        <th:block th:unless="${jenre1}==${obj.jenre_id}">
+                                                            <option th:value="${obj.jenre_id}"
+                                                                th:text="${obj.jenre_name}">
+                                                            </option>
+                                                        </th:block>
+                                                    </th:block>
+                                                </select>
+
+                                                <select class="formelem maxwidth" id="genre2" name="genre2" required>
+                                                    <option value="">ジャンルを選択してください</option>
+
+                                                    <th:block th:each="obj:${jenreList}">
+                                                        <th:block th:if="${jenre2}==${obj.jenre_id}">
+                                                            <option th:value="${obj.jenre_id}"
+                                                                th:text="${obj.jenre_name}" selected>
+                                                            </option>
+                                                        </th:block>
+                                                        <th:block th:unless="${jenre2}==${obj.jenre_id}">
+                                                            <option th:value="${obj.jenre_id}"
+                                                                th:text="${obj.jenre_name}">
+                                                            </option>
+                                                        </th:block>
+                                                    </th:block>
+                                                </select>
+                                                <div id="messageD">
+                                                    <p id="message"></p>
+                                                </div>
+
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <!-- 一言コメント -->
+                                        <div class="my-page-coment" id="editext">
+
+                                            <p>自己紹介文(100文字以内)</p>
+                                            <textarea class="edit" name="introduction" cols="auto" id="introduction"
+                                                rows="3">[[${list.introduction}]]</textarea>
+                                            <p id="introduction_txt"></p>
+
+                                        </div>
+
+                                        <!-- 上点線 -->
+                                        <!-- <div class="my-page-coment-2">
+                                        <p>　</p>
+                                    </div> -->
+
+                                        <!-- 数字 -->
+                                        <div class="mypage-suji">
+
+
+                                            <p id="foorowa2">
+                                                <div class="submit_btn">
+                                                    <input type="submit" value="編集完了">
+                                                </div>
+
+                                            </p>
+
+                                        </div>
+                                       
+                                    </div>
+
+                                </div>
+                            </form>
+
+
+                            <div class="start-data">
+                                <p>登録日：<span>2020年1月26日　　</span><span>投稿数：</span></p>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+            <!-- 通知エリア（右） -->
+            <th:block th:replace="~{commons/layout :: side}"></th:block>
+        </div>
+        <footer>
+            <p id="lasrrt">Copyright © 2023 -- 一般社団法人阿部情報大臣湯沢支部 All Rights Reserved </p>
+        </footer>
+        <!-- <button class="modal__button create-sa" id="open-modal">投稿</button> -->
+        <button id="scroll-to-top-btn">↑</button>
+
+
+    </main>
+
+    <script src="js/pop.js"></script>
+    <script src="js/scroll.js"></script>
+    <script th:src="@{/js/icon_pop.js}"></script>
+    <script th:src="@{/js/edit_icon.js}"></script>
+    <script th:src="@{/js/imageResize.js}"></script>
+</body>
+
+</html>
