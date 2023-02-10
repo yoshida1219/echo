@@ -196,9 +196,6 @@ main {
 
 .TimeLine:hover {
   /* background-color: #666666; */
-  background-color: #ff835d;
-  font-weight: bold;
-
 
 }
 
@@ -206,11 +203,6 @@ main {
   /* display: flex; */
 }
 
-/*
-.Frame1,.Frame2,.Frame3{
-
-}
-*/
 .Frame1 {
   padding: 0.5%;
   background-color: blue;
@@ -220,6 +212,7 @@ main {
   /* width: 10%; */
   text-align: center;
   display: flex;
+  padding: 3px;
 }
 
 .Frame2 img {
@@ -257,19 +250,19 @@ main {
 
 .douga {
 
-/*  background-color: #ececec;
+  /*  background-color: #ececec;
 
  
   border-radius: 10px; */
 
-/* border-right: #d1d1d1 2px solid;
+  /* border-right: #d1d1d1 2px solid;
   border-radius: 10px 0 0 10px; */
 
-background-color: white;
+  background-color: white;
 
-padding: 2%;
+  padding: 2%;
 
-/* width: 70%; */
+  /* width: 70%; */
 }
 
 iframe {
@@ -311,7 +304,7 @@ iframe {
 .balloon1-left:before {
   content: "";
   position: absolute;
-  top: 5%;
+  top: 13%;
   left: -30px;
   margin-top: -15px;
   border: 15px solid transparent;
@@ -546,17 +539,21 @@ display: block;
 }
 
 #search_form #search_word {
-
-width: 55%;
-
-/* margin: 10px; */
+width: 55%;
+/* margin: 10px; */
+background-color: white;
+border: 1px solid;
+/* margin-right: 4em; */
+padding: 0.2em;
 }
 
 #search_form #search_button {
-
-width: 20%;
-
-/* margin: 10px; */
+width: 20%;
+/* margin: 10px; */
+border: 1px solid;
+/* color: white; */
+background-color: white;
+padding: 0.2em 0.5em;
 }
 
 .light1 {
@@ -1070,6 +1067,9 @@ ul {
 
 #search_form {
   display: none;
+  padding: 11px;
+  margin: 1vh;
+  background-color: #e7e7e7;
 }
 
 .sure-btn2,
@@ -1094,16 +1094,20 @@ ul {
 }
 
 
-.text-user9{
-  
-width: 80%;
-  
-text-align: left;
+.text-user9 {
+
+  width: 80%;
+
+  text-align: left;
+
+  margin: auto;
 }
 
-.vvrhsnor{
-  
-width: 20%;
+.vvrhsnor {
+
+  width: 20%;
+
+  margin: auto;
 }
 
 
@@ -1135,3 +1139,49 @@ width: 20%;
   margin: 0;
   padding: 0;
 }
+
+
+
+.balloon1-top:hover:before {
+  border-bottom: 15px solid #ff835d;
+  font-weight: bold;
+}
+
+.balloon1-top:hover {
+  background-color: #ff835d;
+}
+
+#search_thread {
+  background-color: #e7e7e7;
+  /* height: 3em; */
+  /* position: relative; */
+  /* margin-top: 26px; */
+  padding: 11px;
+  /* padding: 10px; */
+}
+
+#search_thread form {
+  /* position: absolute; */
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%); */
+  text-align: left;
+}
+
+#bar {
+  background-color: white;
+  border: 1px solid;
+  /* margin-right: 4em; */
+  padding: 0.2em;
+  /* border-radius: 0.5em; */
+}
+
+#search-button {
+  border: 1px solid;
+  /* color: white; */
+  background-color: white;
+  padding: 0.2em 0.5em;
+  /* border-radius: 0.5em; */
+}
+
+
