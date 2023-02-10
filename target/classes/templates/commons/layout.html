@@ -212,15 +212,15 @@
                             <div class="stronger">投稿画面</div>
                             <div class="formbody">
 
-                                <form th:object="${responseCreateForm}">
+                                <form th:object="${responseCreateForm}" class="posting-form">
                                     <p>
                                         <!-- 動画URLの入力 -->
                                         <input class="formelem maxwidth url" id="url-pc-thread"
-                                            oninput="removeFeatureShare(this)" placeholder="動画URL" th:field="*{url}">
+                                            oninput="removeFeatureShare(this)" placeholder="動画URL" th:field="*{url}" required>
 
                                         <!-- コメントの入力 -->
                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
-                                            wrap="off" th:field="*{response_name}"></textarea>
+                                            wrap="off" th:field="*{response_name}" required></textarea>
 
                                         <!-- 投稿するスレッドID -->
                                         <input type="hidden" id="thread_id" th:value="${thread_id}">
@@ -255,15 +255,15 @@
                             <div class="stronger">投稿画面</div>
                             <div class="formbody">
 
-                                <form th:object="${responseCreateForm}" th:action="@{/response_creater}">
+                                <form th:object="${responseCreateForm}" th:action="@{/response_creater}" class="posting-form">
                                     <p>
                                         <!-- 動画URLの入力 -->
                                         <input type="text" class="formelem maxwidth url" id="url-pc-share"
-                                            placeholder="動画URL" size="70" th:field="*{url}">
+                                            placeholder="動画URL" size="70" th:field="*{url}" required>
 
                                         <!-- コメントの入力 -->
                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
-                                            wrap="off" th:field="*{response_name}"></textarea>
+                                            wrap="off" th:field="*{response_name}" required></textarea>
 
                                         <input type="hidden" name="user_id" th:value="${session.sessionData.user_id}">
 
