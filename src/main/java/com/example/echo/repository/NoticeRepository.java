@@ -24,7 +24,7 @@ public interface NoticeRepository extends CrudRepository<NoticeRepository, Strin
          inner join movie on movie.movie_id = response.movie_id
          where comment.response_creater=:user_id
          and comment.notification='1'
-         and comment.view_user=:user_id
+         and comment.view_user!=:user_id
          order by time desc;
          """
     )
