@@ -183,16 +183,7 @@ $(".posting-form").on("submit", ()=> {
     }
 })
 
-// function onYouTubeIframeAPIReady() {
-//    player = new YT.Player('video-player', {
-//       events: {
-//          'onError': function (event) {
-//             alert("エラーが発生しました");
-//          }
-//       }
-//    });
-// }
-// onYouTubeIframeAPIReady関数を定義
+
 
 function checkDuplicates() {
     
@@ -202,7 +193,7 @@ function checkDuplicates() {
     if (input_url.includes("https://www.youtube.com/@")) {
         alert("error2");
         var urlError = document.getElementById('urlError');
-        urlError.innerHTML = 'fuckin';
+        
         flag = false;
     }
     
@@ -216,3 +207,40 @@ function checkDuplicates() {
     
     
 }
+
+function removeFeatureShare(input) {
+    var inputValue = input.value;
+    var flag = false
+    let id = document.getElementById("urlError");
+    let error = id.innerText;
+    console.log(id);
+    if (inputValue.includes("?feature=share")) {
+      input.value = inputValue.replace("?feature=share", "");
+    }
+
+    if (inputValue.includes("&list=")) {
+      input.value = inputValue.substring(0, inputValue.indexOf("&list="));
+    }
+
+    if(inputValue.includes("https://www.youtube.com/watch?v=")){
+        flag = true;
+    }
+    if(inputValue.includes("https://youtu.be/")){
+        flag = true;
+    }
+    if(inputValue.includes("https://www.youtube.com/shorts/")){
+        flag = true;
+    }
+    if(inputValue.includes("https://youtube.com/shorts/")){
+        flag = true;
+    }
+
+    if(flag){
+        error = '';
+    }else{
+        error = 'このURLは入力できません';
+    }
+
+    console.log(error);
+
+  }

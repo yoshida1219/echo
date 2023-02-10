@@ -78,6 +78,9 @@ closeBtn.forEach(c => c.addEventListener('click', closeModal))
 
 $(function () {
     $("form").on('submit', function (e) {
+
+        if(($("#url-pc-thread").val()))
+
         $("#url-pc-thread").val("");
         $("#response_name").val("");
         $("#video-player").attr("src", "");

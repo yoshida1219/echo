@@ -233,11 +233,11 @@
 
                                 <form th:object="${responseCreateForm}" class="posting-form">
                                 <form th:object="${responseCreateForm}" onsubmit="return checkDuplicates()">
-                                    <p>
+                                    
                                         <!-- 動画URLの入力 -->
                                         <input class="formelem maxwidth url" id="url-pc-thread"
                                             oninput="removeFeatureShare(this)" placeholder="動画URL" th:field="*{url}" required>
-
+                                        <p id="urlError"></p>
                                         <!-- コメントの入力 -->
                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
                                             wrap="off" th:field="*{response_name}" required></textarea>
@@ -248,7 +248,7 @@
                                         <input type="hidden" id="user_id" th:value="${session.sessionData.user_id}">
 
                                         <button id="send" class="submitbtn tweebtn" type="submit">書き込む</button>
-                                    </p>
+                                    
                                 </form>
 
                             </div>
@@ -279,8 +279,8 @@
                                     <p>
                                         <!-- 動画URLの入力 -->
                                         <input type="text" class="formelem maxwidth url" id="url-pc-share"
-                                            placeholder="動画URL" size="70" th:field="*{url}" required>
-
+                                            placeholder="動画URL" size="70" th:field="*{url}" oninput="removeFeatureShare(this)"  required>
+                                        <p id="urlError"></p>
                                         <!-- コメントの入力 -->
                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
                                             wrap="off" th:field="*{response_name}" required></textarea>
@@ -391,11 +391,12 @@
                                             <div class="formbody">
 
                                                 <form th:object="${responseCreateForm}">
-                                                    <p>
+                                                    
                                                         <!-- 動画URLの入力 -->
                                                         <input class="formelem maxwidth" id="video-url"
                                                             oninput="removeFeatureShare(this)" placeholder="動画URL"
                                                             size="70" th:field="*{url}" minlength="11" required>
+                                                        <p id="urlError"></p>
                                                         <div id="video-container"></div>
 
                                                         <!-- コメントの入力 -->
@@ -411,7 +412,7 @@
 
                                                         <button id="send" class="submitbtn tweebtn"
                                                             type="submit">書き込む</button>
-                                                    </p>
+                                                   
                                                 </form>
 
                                             </div>
@@ -420,7 +421,7 @@
                                         <div class="formbox ">
                                             <div class="stronger">動画プレビュー</div>
                                             <div class="formbody preview">
-                                                <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
+                                                <!-- https://www.youtube.com/embed/IJBHpgxVPXI --> 
                                                 <iframe id="video-player" class="b" width="560" height="315" src=""
                                                     title="YouTube video player" frameborder="0"
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -437,11 +438,12 @@
 
                                                 <form th:object="${responseCreateForm}"
                                                     th:action="@{/response_creater}">
-                                                    <p>
+                                                    
                                                         <!-- 動画URLの入力 -->
                                                         <input class="formelem maxwidth url" id="url-phone"
                                                             placeholder="動画URL" size="70" th:field="*{url}"
                                                             minlength="11" required>
+                                                            <p id="urlError"></p>
 
                                                         <!-- コメントの入力 -->
                                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="2"
@@ -453,7 +455,7 @@
 
                                                         <button id="send" class="submitbtn tweebtn"
                                                             type="submit">投稿</button>
-                                                    </p>
+                                                    
                                                 </form>
 
                                             </div>
@@ -464,7 +466,7 @@
                                             <div class="stronger">動画プレビュー</div>
                                             <div class="formbody preview">
                                                 <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
-                                                <iframe class="video-player" width="560" height="315" src=""
+                                                <iframe class="video-player" width="560" height="315" src="" id="video-player"
                                                     title="YouTube video player" frameborder="0"
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                     allowfullscreen>
@@ -836,7 +838,36 @@
 
     <!-- いいね数の登録　警告回避用 -->
     <th:block th:fragment="empty"></th:block>
+
+    <!-- 動画投稿時のエラー処理
+    <script>
+        document.getElementById("video-url").addEventListener("change", function () {
+            updatePreview();
+        });
+
+        function updatePreview() {
+            alert("a")
+            // var videoId = extractVideoId(videoUrl);
+            // if (!videoId) {
+            //     console.error("Invalid URL: " + videoUrl);
+            //     return;
+            // }
+            
+
+
+            var player = new YT.Player('video-player', {
+                events: {
+                    'onError': function (event) {
+                        alert("エラーが発生しました");
+                    }
+                }
+            });
+        }
+        
+        
+    </script> -->
     <script th:src="@{/js/throw.js}"></script>
+
 
 </body>
 
