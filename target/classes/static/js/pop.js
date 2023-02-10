@@ -194,21 +194,6 @@ $(".posting-form").on("submit", ()=> {
 // }
 // onYouTubeIframeAPIReady関数を定義
 
-var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '390',
-    width: '640',
-    videoId: 'video-id',
-    events: {
-      'onError': function (event) {
-        console.error("エラーが発生しました");
-      }
-    }
-  });
-}
-
-
 function checkDuplicates() {
     
     let flag = true;

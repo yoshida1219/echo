@@ -393,9 +393,10 @@
                                                 <form th:object="${responseCreateForm}">
                                                     <p>
                                                         <!-- 動画URLの入力 -->
-                                                        <input class="formelem maxwidth"
+                                                        <input class="formelem maxwidth" id="video-url"
                                                             oninput="removeFeatureShare(this)" placeholder="動画URL"
                                                             size="70" th:field="*{url}" minlength="11" required>
+                                                        <div id="video-container"></div>
 
                                                         <!-- コメントの入力 -->
                                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
