@@ -183,32 +183,7 @@ $(".posting-form").on("submit", ()=> {
     }
 })
 
-document.getElementById("video-url").addEventListener("change", function () {
-    updatePreview(this.value);
-});
 
-function updatePreview(videoUrl) {
-    var videoId = extractVideoId(videoUrl);
-    if (!videoId) {
-        console.error("Invalid URL: " + videoUrl);
-        return;
-    }
-
-    var player = new YT.Player('video_play', {
-        videoId: videoId,
-        events: {
-            'onError': function (event) {
-                alert("エラーが発生しました");
-            }
-        }
-    });
-}
-  
-// YouTubeのAPIを読み込み
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function checkDuplicates() {
     
@@ -218,7 +193,7 @@ function checkDuplicates() {
     if (input_url.includes("https://www.youtube.com/@")) {
         alert("error2");
         var urlError = document.getElementById('urlError');
-        urlError.innerHTML = 'fuckin';
+        
         flag = false;
     }
     
@@ -232,3 +207,40 @@ function checkDuplicates() {
     
     
 }
+
+function removeFeatureShare(input) {
+    var inputValue = input.value;
+    var flag = false
+    let id = document.getElementById("urlError");
+    let error = id.innerText;
+    console.log(id);
+    if (inputValue.includes("?feature=share")) {
+      input.value = inputValue.replace("?feature=share", "");
+    }
+
+    if (inputValue.includes("&list=")) {
+      input.value = inputValue.substring(0, inputValue.indexOf("&list="));
+    }
+
+    if(inputValue.includes("https://www.youtube.com/watch?v=")){
+        flag = true;
+    }
+    if(inputValue.includes("https://youtu.be/")){
+        flag = true;
+    }
+    if(inputValue.includes("https://www.youtube.com/shorts/")){
+        flag = true;
+    }
+    if(inputValue.includes("https://youtube.com/shorts/")){
+        flag = true;
+    }
+
+    if(flag){
+        error = '';
+    }else{
+        error = 'このURLは入力できません';
+    }
+
+    console.log(error);
+
+  }

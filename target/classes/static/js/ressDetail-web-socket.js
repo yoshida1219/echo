@@ -60,6 +60,7 @@ $(function () {
 
     $("#comment_form").on('submit', function (e) {
         e.preventDefault();
+        
         sendResponse();
 
         $("#CommentText").val("");
