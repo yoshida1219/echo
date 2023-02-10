@@ -18,7 +18,7 @@
             <div class="center">
 
                 <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
-                <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
+                <th:block th:replace="~{commons/layout :: humber-menu}"></th:block>
 
                 <!-- 中央 -->
                 <div class="cent-1" th:unless="${#lists.isEmpty(timeline)}">
@@ -27,10 +27,12 @@
 
                             <!-- ユーザのアイコン画像 -->
                             <div class="Frame2">
-                                <div class="vvrhsnor"><button class="clickshow "
-                                    th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
-                                    <img th:src="${obj.icon}" class="rogo2 user-img1">
-                                </button></div>
+                                <div class="vvrhsnor">
+                                    <button class="clickshow" th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
+                                        <img th:src="${obj.icon}" class="rogo2 user-img1">
+                                    </button>
+                                </div>
+                                
                                 <div class="text-user9">
                                     <p th:text="${obj.follower_name}"></p>
                                 </div>

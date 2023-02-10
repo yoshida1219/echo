@@ -36,19 +36,15 @@
     </th:block>
 
 
-    <!-- pc左バー 　　　＆スマホ上ヘッド＆　　PC版popup内容　　-->
+    <!-- スマホ左バー ハンバーガーメニュー-->
     <th:block th:fragment="header">
-
-        <!-- <div class="openbtn"><span></span><span></span><span></span></div> -->
 
         <!-- PC画面左ヘッダー -->
         <div class="header">
             <div class="tit icon-home-lin1">
-                <!-- <img th:src="@{/img/ham-menu-image01.png}" class="rogo1"> -->
                 <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" class="rogo1">
                     <path d="M6 36v-3h36v3Zm0-10.5v-3h36v3ZM6 15v-3h36v3Z" />
                 </svg>
-                <p class="side-name1"></p>
             </div>
 
             <div class="nemu-sideing">
@@ -141,22 +137,22 @@
 
         <!-- <div class="openbtn"><span></span><span></span><span></span></div>-->
 
-        <!-- PC画面ハンバーガーメニュー -->
+        <!-- スマホ画面ハンバーガーメニュー -->
         <nav id="g-nav2">
-            <div class="tit2">
+            <!-- <div class="tit2">
                 <img th:src="@{/img/ham-menu-image01.png}" class="gulatyan rogo1 rogo333">
                 <h1>Echo</h1>
-            </div>
+            </div> -->
 
             <div class="hum-list-2">
                 <div class="hum-list-2-hed1">
                     <img th:src="${side_user.icon}" class="rogo2 user-img1 side-img2">
+                </div>
+                <div class="hum-list-2-hed2">
                     <div>
                         <p>なまえid</p>
                         <p>id</p>
                     </div>
-                </div>
-                <div class="hum-list-2-hed2">
                     <p>＜ふぉろ＞</p>
                     <p>＜ふぉぉわ＞</p>
                 </div>
@@ -199,9 +195,7 @@
                     <button><a>検索</a></button>
                 </div>
                 <div class="m-c2">
-                    <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">
-                        <div class="m-userr-iconnn"><img th:src="${side_user.icon}" class="rogo3"></div>
-                    </button>
+                    <div class="m-userr-iconnn"><img th:src="${side_user.icon}" class="rogo3"></div>
                 </div>
             </div>
         </div>
@@ -350,7 +344,7 @@
     </th:block>
 
     <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
-    <th:block th:fragment="humber-nemu">
+    <th:block th:fragment="humber-menu">
 
         <div id="header" class="dnone">
 

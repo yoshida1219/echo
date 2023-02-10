@@ -52,6 +52,14 @@ header {
   z-index: 1;
 }
 
+.tit {
+  display: none;
+}
+
+.nemu-sideing {
+  padding-top: 10vh;
+}
+
 .rogo333 {
   /* max-width: 100%; */
 }
