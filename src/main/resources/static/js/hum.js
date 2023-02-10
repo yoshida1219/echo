@@ -7,7 +7,7 @@
 //     $('.openbtn1').addClass('fadeDown');//.openbtnにfadeDownというクラス名を付与して
 //     $('#header').addClass('dnone');//#headerにdnoneというクラス名を付与
 //     $('.openbtn1').addClass('fix');
-    
+
 //   } else {//それ以外は
 //     $('.openbtn1').removeClass('fadeDown');//fadeDownというクラス名を除き
 //     $('#header').removeClass('dnone');//dnoneというクラス名を除く
@@ -38,24 +38,24 @@ $("#g-navi li a").click(function () {//ナビゲーションのリンクがク�
 
 
 $(".openbtn").click(function () {//ボタンがクリックされたら
-	$(this).toggleClass('active');//ボタン自身に activeクラスを付与し
-    $("#g-nav2").toggleClass('panelactive');//ナビゲーションにpanelactiveクラスを付与
+  $(this).toggleClass('active');//ボタン自身に activeクラスを付与し
+  $("#g-nav2").toggleClass('panelactive');//ナビゲーションにpanelactiveクラスを付与
 });
 
 $("#g-nav2 a").click(function () {//ナビゲーションのリンクがクリックされたら
-    $(".openbtn").removeClass('active');//ボタンの activeクラスを除去し
-    $("#g-nav2").removeClass('panelactive');//ナビゲーションのpanelactiveクラスも除去
+  $(".openbtn").removeClass('active');//ボタンの activeクラスを除去し
+  $("#g-nav2").removeClass('panelactive');//ナビゲーションのpanelactiveクラスも除去
 });
 
 $(".rogo1").click(function () {//ボタンがクリックされたら
-	$(this).toggleClass('active');//ボタン自身に activeクラスを付与し
-    $("#g-nav2").toggleClass('panelactive');//ナビゲーションにpanelactiveクラスを付与
+  $(this).toggleClass('active');//ボタン自身に activeクラスを付与し
+  $("#g-nav2").toggleClass('panelactive');//ナビゲーションにpanelactiveクラスを付与
 });
 
 
 $("#schbtn11").click(function () {//ボタンがクリックされたら
-	$(this).toggleClass('active');//ボタン自身に activeクラスを付与し
-    $(".side").toggleClass('rig');//ナビゲーションにpanelactiveクラスを付与
+  $(this).toggleClass('active');//ボタン自身に activeクラスを付与し
+  $(".side").toggleClass('rig');//ナビゲーションにpanelactiveクラスを付与
 });
 
 
@@ -95,3 +95,18 @@ $(window).scroll(function () {
 $(window).on('load', function () {
   fadeAnime();/* アニメーション用の関数を呼ぶ*/
 });// ここまで画面が読み込まれたらすぐに動かしたい場合の記述
+
+
+
+
+
+// ハンバーメニューの制御
+$(".m-c2").click(function() {
+  $(this).addClass('active');
+  $("#g-nav2").addClass('panelactive');
+})
+
+$(".hum-list-2-hed1").click(function() {
+  $(this).removeClass('active');
+  $("#g-nav2").removeClass('panelactive');
+})

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    
+
     <!-- pc左バー 　　　＆スマホ上ヘッド＆　　PC版popup内容　　-->
     <div th:replace="~{commons/layout :: header}"></div>
 
@@ -18,7 +18,7 @@
             <div class="center">
 
                 <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
-                <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
+                <th:block th:replace="~{commons/layout :: humber-menu}"></th:block>
 
                 <!-- 中央 -->
                 <div class="cent-1" th:unless="${#lists.isEmpty(timeline)}">
@@ -27,14 +27,16 @@
 
                             <!-- ユーザのアイコン画像 -->
                             <div class="Frame2">
-                                <div class="vvrhsnor"><button class="clickshow "
-                                    th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
-                                    <img th:src="${obj.icon}" class="rogo2 user-img1">
-                                </button></div>
+                                <div class="vvrhsnor">
+                                    <button class="clickshow" th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
+                                        <img th:src="${obj.icon}" class="rogo2 user-img1">
+                                    </button>
+                                </div>
+                                
                                 <div class="text-user9">
                                     <p th:text="${obj.follower_name}"></p>
                                 </div>
-                                
+
                             </div>
 
 
@@ -48,7 +50,7 @@
 
                                     <div class="coment">
                                         <div class="user">
-                                            <p th:text="${obj.response_name}"class="text-overflow"></p>
+                                            <p th:text="${obj.response_name}" class="text-overflow"></p>
                                         </div>
                                     </div>
 
@@ -85,8 +87,8 @@
 
                                             <div class="come kyou">
                                                 <th:block th:unless="${obj.response_name}==この投稿は共有されたものです">
-                                                <p class="iine2">共有</p>
-                                                <span th:text="${obj.share}"></span>
+                                                    <p class="iine2">共有</p>
+                                                    <span th:text="${obj.share}"></span>
                                                 </th:block>
                                             </div>
 
@@ -108,7 +110,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <!-- 通知エリア（右） -->
             <div class="side" th:replace="~{commons/layout :: side}"></div>

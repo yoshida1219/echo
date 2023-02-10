@@ -23,7 +23,7 @@ function disconnect() {
 function showResponse(response) {
     $(".d3-1").prepend(`
     <div class="tuiti fadein-before">
-        <div id="user_left">
+        <div id="user_left" class="user-ga">
             <button class="clickshow"
                 onClick="location.href='/mypage?user_id=` + response.user_id + `'">
                 <div id="user_icon">

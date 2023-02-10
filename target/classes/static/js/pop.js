@@ -170,6 +170,18 @@ $(".url").on("input", (event) => {
     $(".video-player").attr("src", url)  
 })
 
+$(".posting-form").on("submit", ()=> {
+    console.log("submit");
+    console.log($("iframe").document);
+    console.log($(".ytp-error").length);
+
+    if($(".ytp-error").length) {
+        console.log("success");
+    }else {
+        console.log("error");
+        return false;
+    }
+})
 
 // function onYouTubeIframeAPIReady() {
 //    player = new YT.Player('video-player', {

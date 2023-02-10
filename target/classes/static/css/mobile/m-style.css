@@ -26,13 +26,16 @@ body {
 /***************header       「右」　　　　******************************************************************/
 .header {
   background-color: #008037;
-  width: 8%;
-  min-height: 100vh;
+  /* width: 18%; */
+  /* min-height: 100vh; */
   position: fixed;
-  left: 0px;
-  z-index: 1;
+  /* left: 0px; */
+  /* z-index: 1; */
   /* padding: 5% 0 0 0; */
   /* background-color: #0e4626; */
+  /* display: none; */
+  z-index: 20;
+  right: 0;
   display: none;
 }
 
@@ -45,23 +48,39 @@ header {
   z-index: 1;
 }
 
+.tit {
+  display: block;
+}
+
+.nemu-sideing {
+  display: none;
+}
+
 .rogo333{
   /* max-width: 100%; */
 }
 /*ロゴデザイン*/
 .tit {
-  text-align: center;
-  margin: auto;
-  padding: 15%;
+  /* text-align: center; */
+  /* margin: auto; */
+  /* padding: 15%; */
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  /* width: 100%; */
+  /* justify-content: center; */
+  /* vertical-align: top; */
 }
 
 .rogo1 {
-  max-width: 60%;
+  /* max-width: 60%; */
   background-color: azure;
+  vertical-align: top;
 }
 
 .rogo2 {
   max-width: 100%;
+  border-radius: 50%;
 }
 
 /*左側ボタン*/
@@ -194,7 +213,7 @@ min-height: 100vh;
 
 /***************コンテンツ       「中身」　　　　**************************************/
 .TimeLine {
-  margin: 1% 1%;
+  margin: 4% 1%;
   padding: 1%;
   border-radius: 10px;
   /* background-color: #5fc360; */
@@ -239,7 +258,19 @@ min-height: 100vh;
 
 .Frame3 {
   background-color: #ffffff;
-  width: 90%;
+  /* width: 90%; */
+  /* border-radius: 5px; */
+  position: relative;
+  display: inline-block;
+  /* margin: 1.3em 0; */
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #dadada;
+  width: 100%;
+  border-radius: 5px;
 }
 
 .douga .content1 img {
@@ -753,18 +784,18 @@ ul {
   z-index: 999;
   /*ナビのスタート位置と形状*/
   top:0;
-  left: -120%;
-  width:25%;
+  right: -120%;
+  width: 100%;
   height: 100vh;/*ナビの高さ*/
   background:rgb(80, 97, 77);
   /*動き*/
   transition: all 0.6s;
-  display: none;
+  /* display: none; */
 }
 
 /*アクティブクラスがついたら位置を0に*/
 #g-nav2.panelactive{
-  left: 0;
+  right: 0;
 }
 
 /*ナビゲーションの縦スクロール*/
@@ -796,6 +827,15 @@ list-style: none;
 }
 
 #g-nav2 li a{color: #fff;margin-bottom: 10px;border: 5px solid;text-decoration: none;padding:10px;display: block;text-transform: uppercase;letter-spacing: 0.1em;font-weight: bold;}
+
+.hum-list-2-hed1 {
+  width: 14%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  /* border-radius: 50%; */
+  padding: 0.5vh;
+}
 
 /*========= ボタンのためのCSS ===============*/
 .openbtn{position:fixed;z-index: 9999;/*ボタンを最前面に*/top: 10px;left: 25px;cursor: pointer;width: 4%;height: 7.5%;background-color: aliceblue;/* display: none; */}
@@ -888,7 +928,7 @@ opacity: 0;
   right: 0;
 }
 
-.m-head{position: fixed;background-color: #b8cbb8;display: flex;width: 100%;/* height: 50px; */z-index: 999;}
+.m-head{position: fixed;background-color: #b8cbb8;display: flex;width: 100%;/* height: 50px; */z-index: 10;height: 6vh;padding-top: 0.5vh;}
 .m-ull{width: 70%;display: flex;margin: auto;justify-content: end;color: white;/* height: 100px; */}
 .pch{
   color: #008d38;
@@ -926,7 +966,7 @@ border-radius: 50%;
 }
 .m-c1{
 
-width: 20%;
+/* width: 20%; */
 
 text-align: center;
 
@@ -939,10 +979,12 @@ font-weight: 600;
 background-color: #0e2e19;
 
 padding: 5px;
+
+/* margin-right: 20%; */
 }
 .m-c2{
-  
-width: 20%;
+  /* display: none; */
+  width: 20%;
 }
 .m-tweet{
   
@@ -1204,13 +1246,20 @@ border-bottom: 1px solid;
 }
 
 .text-user9{
-  width: 80%;
+  width: 65%;
   text-align: initial;
   margin: auto;
 }
 .vvrhsnor{
-  width: 20%;
-  padding: 5px 5px 0 5px;
+  
+width: 20%;
+  
+padding: 5px 5px 0 5px;
+}
+
+.comevgj{
+  width: 15%;
+  margin: auto;
 }
 
 
