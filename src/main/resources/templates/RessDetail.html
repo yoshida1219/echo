@@ -81,14 +81,20 @@
                             <th:block th:unless="${login_user}==${obj.user_id}">
                                 <th:block th:if="${check_follow}==0">
                                     <div class="follow-detail">
-                                        <button id="tt1"
-                                            th:attr="onClick='location.href=\''+ @{/Hiroba/ress_follow?url={url}&user_id={user_id}&response_id={response_id}&check_follow=0 (url=${send_url},user_id=${obj.user_id},response_id=${response_id})} +'\''">フォロー</button>
+                                        <button id="tt1" th:value="${obj.user_id}" onclick="follow(this)">
+                                            フォロー
+                                        </button>
+                                        <input type="hidden" th:id="${obj.user_id} + h"
+                                                th:value="${check_follow}">
                                     </div>
                                 </th:block>
                                 <th:block th:if="${check_follow}==1">
                                     <div class="follow-detail">
-                                        <button id="tt1"
-                                            th:attr="onClick='location.href=\''+ @{/Hiroba/ress_follow?url={url}&user_id={user_id}&response_id={response_id}&check_follow=1 (url=${send_url},user_id=${obj.user_id},response_id=${response_id})} +'\''">フォロー解除</button>
+                                        <button id="tt1" th:value="${obj.user_id}" onclick="follow(this)">
+                                            フォロー解除
+                                        </button>
+                                        <input type="hidden" th:id="${obj.user_id} + h"
+                                                th:value="${check_follow}">
                                     </div>
                                 </th:block>
                             </th:block>
@@ -154,10 +160,9 @@
                             </div>
 
                             <!-- コメント入力フォーム -->
-                            <form method="get" th:object="${commentCreateForm}">
+                            <form method="get" th:object="${commentCreateForm}" id="comment_form">
 
-                                <input type="text" id="CommentText" placeholder="投稿にコメントしよう" name="comment"
-                                    pattern=".*\S+.*" maxlength="48" required>
+                                <input type="text" id="CommentText" placeholder="投稿にコメントしよう" name="comment" pattern=".*\S+.*" maxlength="48" required>
                                 <input type="submit" id="CommentButton" value="投稿">
                                 
                                 <input type="hidden" id="user_id" th:value="${session.sessionData.user_id}">
@@ -173,7 +178,7 @@
                         <!-- 共有スレッド -->
                         <div class="Resu">
                             <div class="">
-                                <p>共有スレッド数:0</p>
+                                <p>共有スレッド数</p>
                             </div>
                             <div class="Resu1">
                                 <th:block th:unless="${#lists.isEmpty(thread)}">
@@ -183,6 +188,11 @@
                                             <img th:src="${obj.thumbnail}">
                                             <p th:text="${obj.thread_name}"></p>
                                         </button>
+                                    </div>
+                                </th:block>
+                                <th:block th:if="${#lists.isEmpty(thread)}">
+                                    <div>
+                                        <p>検索しましたが、存在しませんでした...</p>
                                     </div>
                                 </th:block>
                             </div>
@@ -204,7 +214,7 @@
                                 <th:block th:unless="${#lists.isEmpty(list)}">
                                     <div th:each="obj:${list}" class="tuiti">
                                         <!-- アイコン画像 -->
-                                        <div id="user_left"class="user-ga">
+                                        <div id="user_left" class="user-ga">
                                             <button class="clickshow"
                                                 th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
                                                 <div id="user_icon">
@@ -245,6 +255,7 @@
     <script th:src="@{/js/favCount_movieTime.js}"></script>
     <script th:src="@{https://www.youtube.com/iframe_api}"></script>
     <script th:src="@{/js/ajax.js}"></script>
+    <script th:src="@{/js/followAjax.js}"></script>
     <script th:src="@{/js/share_response.js}"></script>
     <script th:src="@{/js/pop.js}"></script>
 

@@ -227,7 +227,7 @@ min-height: 100vh;
 }
 
 .Frame2 {
-  width: 32%;
+  width: 100%;
   text-align: center;
   display: flex;
 }
@@ -525,7 +525,7 @@ display: block;
 #search_form input {
   border: 1px solid;
   background: white;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 /*通知*/
@@ -559,8 +559,8 @@ display: block;
 }
 
 .osusu li {
-  background-color: #00a149;
-  height: 50px;
+  background-color: #dedede;
+  /* height: 50px; */
   margin: 5px;
   position: relative;
 }
@@ -571,13 +571,15 @@ display: block;
 }
 
 .osusu li button img{
-  max-width: 100%;
+  width: 50px;
+  height: 50px;
 }
 
 #user_icon {
-  width: 13%;
-  position: relative;
-  margin: 0 10%;
+  /* width: 13%; */
+  /* position: relative; */
+  /* margin: 0 10%; */
+  margin: auto;
 }
 
 #user_details {
@@ -1169,15 +1171,47 @@ font-size: 15px;
   display: none;
 }
 
+.light1{
+  height: 66vh;
+  overflow-y: scroll;
+}
 
+#search_thread{
+  display: none;
+  margin: 1vh;
+  /* margin: 1vh; */
+}
+#search_form{
+  display: none;
+  margin: 1vh;
+}
 
+.sure-btn2 ,.user-btn2{
+  background-color: #bdbdbd;
+  color: white;
+  padding: 6px;
+}
+#bar {
+  background-color: white;
+  border: 1px solid;
+}
 
+.goe{
 
+padding: 10px;
 
+border-bottom: 1px solid;
+}
 
-
-
-
+.text-user9{
+  width: 80%;
+  text-align: initial;
+  margin: auto;
+}
+.vvrhsnor{
+  width: 20%;
+  padding: 5px 5px 0 5px;
+}
 
 
 

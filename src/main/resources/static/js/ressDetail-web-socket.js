@@ -22,7 +22,7 @@ function disconnect() {
 
 function showResponse(response) {
     $(".d3-1").prepend(`
-    <div class="tuiti">
+    <div class="tuiti fadein-before">
         <div id="user_left">
             <button class="clickshow"
                 onClick="location.href='/mypage?user_id=` + response.user_id + `'">
@@ -39,6 +39,10 @@ function showResponse(response) {
         </div>           
     </div>
     `)
+
+    setTimeout(() => {
+        $(".fadein-before").addClass("fadein-after");
+    }, 10);
 }
 
 function sendResponse() {
@@ -53,7 +57,8 @@ function sendResponse() {
 
 
 $(function () {
-    $("form").on('submit', function (e) {
+
+    $("#comment_form").on('submit', function (e) {
         e.preventDefault();
         sendResponse();
 

@@ -62,7 +62,7 @@
                                             class="example btn-flat-simple kaijo">フォローを解除</a>
                                 </th:block>
 
-                                <th:block th:unless="${login_user}==${thread_creater}">
+                                <th:block th:if="${login_user_id}==${thread_creater}">
                                     <button class="da-1 sanbababa">
                                         <a th:href="@{delete_thread?thread_id={thread_id} (thread_id=${thread_id})} "
                                             class="delll btn-flat-simple">
@@ -135,7 +135,7 @@
                     <!-- 中身 -->
                     <div class="kari">
                         <!-- 真ん中　スレ -->
-                        <div class="">
+                        <div class="container3">
                             <div class="last-come">
                                 <div class="count-ress">
                                     <p>＜コメント数＞コメント</p>
@@ -143,7 +143,7 @@
                                 <div class="new-ress j3">
                                     <button>レスに投稿</button>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- 一覧表示　上が最新 -->
                             <th:block th:unless="${#lists.isEmpty(list)}">
@@ -267,6 +267,8 @@
     <script th:src="@{/js/scroll.js}"></script>
     <script th:src="@{/js/moviePlay.js}"></script>
     <script th:src="@{/js/threadDetail-web-socket.js}"></script>
+    <script th:src="@{/js/ajax.js}"></script>
+
 </body>
 
 </html>

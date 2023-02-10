@@ -9,11 +9,13 @@ import com.example.echo.entity.User;
 
 public interface NoticeRepository extends CrudRepository<NoticeRepository, String> {
 
-    @Query("select *"
-        + " from user"
-        + " inner join follow on follow.user_id = user.user_id"
-        + " where follow.followuser_id = :user_id"
-        + " and follow.notification = 1;"
+    @Query("""
+         select *
+         from user
+         inner join follow on follow.user_id = user.user_id
+         where follow.followuser_id = :user_id
+         and follow.notification = 1;
+         """
     )
     Iterable<User> OrderNoticeFollow(@Param("user_id") String user_id);
 

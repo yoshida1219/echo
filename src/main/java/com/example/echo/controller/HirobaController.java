@@ -316,6 +316,12 @@ public class HirobaController {
             Optional<Thread> thread = threadService.selectThread(thread_id);
             Integer threadFollow = threadService.findFollowCheck(sessionData.getUser_id(), thread_id);
 
+            //2023-02-09追加（阿部）
+            String login_user_id = sessionData.getUser_id();
+            model.addAttribute("login_user_id", login_user_id);
+            model.addAttribute("thread_creater", thread.get().getThread_creater());
+            //ここまで
+
             model.addAttribute("list_popular3", list_popular3);
             model.addAttribute("list", list);
             model.addAttribute("thread_data", thread_data.get());
@@ -390,7 +396,7 @@ public class HirobaController {
      */
     @MessageMapping("/comment")
     @SendTo("/comment/posting")
-    public CommentPosting comment_create(CommentCreateForm commentCreateForm, Model model) {
+    public CommentPosting comment_create(CommentCreateForm commentCreateForm) {
         Comment comment = new Comment();
         String view_user = commentCreateForm.getUser_id();
         String comment_id = commentservice.maxCommentId(view_user);

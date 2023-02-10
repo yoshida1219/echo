@@ -84,6 +84,28 @@ $(".j5").click(() => {
 
 
 
+//スレッド
+$(".sure-btn2").click(() => {
+    $("#search_thread").css({
+        "display":"block"
+    })
+    $("#search_form").css({
+        "display":"none"
+    })
+})
+// ユーザー
+$(".user-btn2").click(() => {
+    $("#search_thread").css({
+        "display":"none"
+    })
+    $("#search_form").css({
+        "display":"block"
+    })
+})
+
+
+
+
 
 
 
