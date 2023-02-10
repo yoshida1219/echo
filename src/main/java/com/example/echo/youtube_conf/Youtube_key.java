@@ -19,8 +19,10 @@ public class Youtube_key {
         apiAccountService.updateFlag();
 
         String id = apiAccountService.useAccount();
-        String[] returnbox = new String[2];
+        String quata = apiAccountService.getAcQuata(id);
+        String[] returnbox = new String[3];
         returnbox[0] = id;
+        returnbox[2] = quata;
 
         if(id.equals("A01")){
             String youtube_key = "AIzaSyDz1TbxBmwERK2DC9N7BII7E_DQjfaN9wc";
@@ -29,6 +31,7 @@ public class Youtube_key {
         }
 
         if(id.equals("A02")){
+            System.out.println("fuckin fuckin");
             String youtube_key = "AIzaSyBG66vFnVKDaraljqSxacVydPxfvWMRMfQ";
             returnbox[1] = youtube_key;
             return returnbox;
@@ -58,8 +61,9 @@ public class Youtube_key {
     public void changeFalseFlag(String id, int quata, ApiAccountService apiAccountService){
 
         apiAccountService.updateQuata(id, quata);
+        System.out.println(quata);
 
-        if(quata >= 9800){
+        if(quata >= 9400){
             apiAccountService.changeFalseFlag(id);
         }
         

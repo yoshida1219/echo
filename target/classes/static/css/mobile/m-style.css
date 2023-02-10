@@ -213,7 +213,7 @@ min-height: 100vh;
 
 /***************コンテンツ       「中身」　　　　**************************************/
 .TimeLine {
-  margin: 1% 1%;
+  margin: 4% 1%;
   padding: 1%;
   border-radius: 10px;
   /* background-color: #5fc360; */
@@ -258,7 +258,19 @@ min-height: 100vh;
 
 .Frame3 {
   background-color: #ffffff;
-  width: 90%;
+  /* width: 90%; */
+  /* border-radius: 5px; */
+  position: relative;
+  display: inline-block;
+  /* margin: 1.3em 0; */
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #dadada;
+  width: 100%;
+  border-radius: 5px;
 }
 
 .douga .content1 img {
@@ -1234,7 +1246,7 @@ border-bottom: 1px solid;
 }
 
 .text-user9{
-  width: 80%;
+  width: 65%;
   text-align: initial;
   margin: auto;
 }
@@ -1243,6 +1255,11 @@ border-bottom: 1px solid;
 width: 20%;
   
 padding: 5px 5px 0 5px;
+}
+
+.comevgj{
+  width: 15%;
+  margin: auto;
 }
 
 

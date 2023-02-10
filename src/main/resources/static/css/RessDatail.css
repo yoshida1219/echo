@@ -205,7 +205,7 @@ img {}
     position: relative;
     /* text-align: center; */
     margin: auto;
-    border: 1px solid;
+    /* border: 1px solid; */
 }
 
 /************共有スレッド**********************************************************/
@@ -283,4 +283,9 @@ img {}
 .Resu{
     
 background-color: #ccd2d8;
+}
+
+.vuab{
+    
+/* height: 80%; */
 }

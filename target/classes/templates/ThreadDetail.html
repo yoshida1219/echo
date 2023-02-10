@@ -6,12 +6,13 @@
 
 
     <link rel="stylesheet" th:href="@{/css/RessDatail2.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/RessDatail-video.css}" media="screen and (min-width: 767px)">
     <link rel="stylesheet" th:href="@{/css/mobile/m-RessDatail2.css}" media="screen and (max-width: 768px)">
 
 
     <link rel="stylesheet" th:href="@{/css/pop.css}" media="screen and (min-width: 767px)">
     <link rel="stylesheet" th:href="@{/css/mobile/m-pop.css}" media="screen and (max-width: 768px)">
-    
+
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 </head>
@@ -29,12 +30,8 @@
                 <!-- 中央 -->
                 <div class="kari cent-1">
 
-                    
-
                     <!-- タイトル -->
                     <div class="tit-1">
-
-
                         <div class="box25">
                             <!-- ジャンル -->
                             <div class="janru">
@@ -133,43 +130,44 @@
                     </blockquote>
 
                     <!-- 中身 -->
-                    <div class="kari">
+                    <div class="kari kari2">
                         <!-- 真ん中　スレ -->
-                        <div class="container3">
+                        <div class="container3 container4">
+
                             <div class="last-come">
                                 <div class="count-ress">
                                     <p>＜コメント数＞コメント</p>
                                 </div>
-                                <div class="new-ress j3">
+                                <!-- <div class="new-ress j3">
                                     <button>レスに投稿</button>
-                                </div>
-                            </div> -->
+                                </div> -->
+                            </div>
 
                             <!-- 一覧表示　上が最新 -->
                             <th:block th:unless="${#lists.isEmpty(list)}">
 
                                 <!-- 投稿の表示 -->
-                                <div class="TimeLine" th:each="response,s:${list}" th:object="${response}">
-                                    <div class="flec">
-
-                                        <div class="Frame2">
+                                <div class="TimeLine TimeLine2" th:each="response,s:${list}" th:object="${response}">
+                                    <div class="flec flec2">
+                                        
+                                        <div class="Frame2 Frame5555">
+                                            <div class="comevgj"><p th:text="*{res_count}" class="vfdi"></p></div>
+                                            
                                             <!-- ユーザのアイコン画像 -->
-                                            <button class="clickshow"
-                                                th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=*{user_id}) } + '\''">
-                                                <img th:src="*{icon}" class="rogo2">
-                                            </button>
-                                            <p th:text="*{user_name}"></p>
-                                            <p th:text="*{res_count}"></p>
+                                            <div class="vvrhsnor vresvn"><button class="clickshow"
+                                                    th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=*{user_id}) } + '\''">
+                                                    <img th:src="*{icon}" class="rogo2">
+                                                </button></div>
+                                            <div class="text-user9">
+                                                <p th:text="*{user_name}"></p>
+                                            </div>
                                         </div>
 
-
-
-                                        <div class="Frame3 balloon1-left">
+                                        <div class="Frame3 balloon1-left Frame4">
                                             <button type="button" class="clickshow" onclick="buttonClick()"
                                                 th:attr="onClick='location.href=\''+@{/Hiroba/RessDetail/{url}?response_id={response_id}&user_id={user_id} (user_id=*{response_creater}, url=*{url}, response_id=*{response_id})} +'\''">
 
-                                                <div class="coment">
-                                                    <p>コメント</p>
+                                                <div class="coment coment2">
                                                     <div class="user">
                                                         <p th:text="*{response_name}"></p>
                                                     </div>
@@ -177,38 +175,35 @@
 
 
 
-                                                <div class="Content">
-                                                    <div class="douga">
+                                                <div class="Content Content2">
+                                                    <div class="douga douga2">
 
-                                                        <div class="samneiru">
+                                                        <div class="samneiru samneiru2">
                                                             <!-- 動画のサムネ画像 -->
                                                             <img th:src="*{thumbnail}" alt="">
                                                         </div>
 
 
 
-                                                        <div class="con23">
-                                                            <div class="content2">
+                                                        <div class="con23 con232">
+                                                            <div class="content2 content3">
                                                                 <p class="titl" th:text="*{movie_name}"></p>
-
-
                                                             </div>
-
                                                         </div>
 
                                                     </div>
-                                                    <div class="content3">
-                                                        <div class="come ine">
+                                                    <div class="content3 content4">
+                                                        <div class="come ine come2 ine2">
                                                             <p class="iine">いいね</p>
                                                             <span th:text="*{like}"></span>
                                                         </div>
 
-                                                        <div class="come kyou">
+                                                        <div class="come kyou  come2 kyou2">
                                                             <p class="iine2">共有</p>
                                                             <span th:text="*{share}"></span>
                                                         </div>
 
-                                                        <div class="come">
+                                                        <div class="come come2">
                                                             <th:block
                                                                 th:if="${session.sessionData.user_id}==*{response_creater}">
                                                                 <a

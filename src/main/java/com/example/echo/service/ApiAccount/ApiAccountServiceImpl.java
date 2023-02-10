@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.echo.entity.ApiAccount;
 import com.example.echo.repository.ApiAccountRepository;
 
 
@@ -16,6 +17,11 @@ public class ApiAccountServiceImpl implements ApiAccountService{
     @Override
     public String useAccount() {
         return repository.useAccount();
+    }
+
+    @Override
+    public String getAcQuata(String id) {
+        return repository.getAcQuata(id);
     }
 
     @Override

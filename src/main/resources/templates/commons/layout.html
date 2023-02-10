@@ -147,6 +147,7 @@
             <div class="hum-list-2">
                 <div class="hum-list-2-hed1">
                     <img th:src="${side_user.icon}" class="rogo2 user-img1 side-img2">
+
                 </div>
                 <div class="hum-list-2-hed2">
                     <div>
@@ -231,6 +232,7 @@
                             <div class="formbody">
 
                                 <form th:object="${responseCreateForm}" class="posting-form">
+                                <form th:object="${responseCreateForm}" onsubmit="return checkDuplicates()">
                                     <p>
                                         <!-- 動画URLの入力 -->
                                         <input class="formelem maxwidth url" id="url-pc-thread"
