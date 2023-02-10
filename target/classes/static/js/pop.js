@@ -149,24 +149,53 @@ function closeModal(){
 closeBtn.forEach(c => c.addEventListener('click', closeModal))
 
 
-// //動画URLの自動切り出し
-// $(".url").on("input", (event) => {
-//     let id = event.target.id;
-//     let input_url = $("#" + id).val();
-//     let url = "https://www.youtube.com/embed/";
+//動画URLの自動切り出し
+$(".url").on("input", (event) => {
+    let id = event.target.id;
+    let input_url = $("#" + id).val();
+    let url = "https://www.youtube.com/embed/";
 
     
 
-//     if(input_url.length < 11) {
-//         return
-//     }
+    if(input_url.length < 11) {
+        return
+    }
 
     
 
-//     url += input_url.substr(-11)
+    url += input_url.substr(-11)
 
-//     $(".video-player").attr("src", url)  
-// })
+    url += "?enablejsapi=1"
+
+    $(".video-player").attr("src", url)  
+})
+
+
+// function onYouTubeIframeAPIReady() {
+//    player = new YT.Player('video-player', {
+//       events: {
+//          'onError': function (event) {
+//             alert("エラーが発生しました");
+//          }
+//       }
+//    });
+// }
+// onYouTubeIframeAPIReady関数を定義
+
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '390',
+    width: '640',
+    videoId: 'video-id',
+    events: {
+      'onError': function (event) {
+        console.error("エラーが発生しました");
+      }
+    }
+  });
+}
+
 
 function checkDuplicates() {
     
@@ -187,6 +216,6 @@ function checkDuplicates() {
     } else {
       return false;
     }
-  
+    
     
 }

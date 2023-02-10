@@ -104,36 +104,12 @@
                 </div>
 
 
-                <!-- Yotubeアイコン -->
-                <div class="btn1">
-                    <button onClick="window.open('https://www.youtube.com/', '_blank')">
-                        <div class="icon-home-lin1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube" width="45" height="45" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M3 5m0 4a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"></path>
-                                <path d="M10 9l5 3l-5 3z" fill="white" stroke="white" stroke-width="1px"></path>
-                             </svg>
-                            <p class="side-name1">Youtube</p>
-                        </div>
-                    </button>
-                </div>
 
-
-                <!-- ログアウトアイコン -->
                 <div class="btn1 last-log">
                     <button th:attr="onClick='location.href=\''+@{/logout}+'\''">
-                        <div class="icon-home-lin1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
-                                <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
-                             </svg>
-                            <p class="side-name1">ログアウト</p>
-                        </div>
+                        <p class="side-name1 second-log">ログアウト</p>
                     </button>
                 </div>
-
-                
 
             </div>
 
@@ -283,7 +259,7 @@
                                 <form th:object="${responseCreateForm}" th:action="@{/response_creater}" onsubmit="return checkDuplicates()">
                                     <p>
                                         <!-- 動画URLの入力 -->
-                                        <input type="text" class="formelem maxwidth url" id="url-pc-share"
+                                        <input type="text" class="formelem maxwidth url" id="url-pc-share" 
                                             placeholder="動画URL" size="70" th:field="*{url}">
 
                                         <!-- コメントの入力 -->
@@ -468,7 +444,7 @@
                                             <div class="stronger">動画プレビュー</div>
                                             <div class="formbody preview">
                                                 <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
-                                                <iframe class="video-player" width="560" height="315" src=""
+                                                <iframe class="video-player" id="video-player" width="560" height="315" src=""
                                                     title="YouTube video player" frameborder="0"
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                     allowfullscreen>
@@ -543,20 +519,7 @@
 
         <!-- ユーザ検索 -->
         <div id="search_user">
-            <p>探すものを選びましょう</p>
-            <div class="goe">
-                <button class="sure-btn2">スレッド検索</button>
-                <button class="user-btn2">ユーザー検索</button>
-            </div>
-
-            <!-- 検索 -->
-            <div id="search_thread">
-                <form th:action="@{/Hiroba/SearchThread}">
-                    <input id="bar" type="text" name="search_word" placeholder="スレッドの検索" required>
-                    <input id="search-button" type="submit" value="検索">
-                </form>
-            </div> 
-
+            <p>ユーザ検索</p>
             <!-- 検索フォーム -->
             <form id="search_form" th:action="@{/Hiroba/search_user}">
                 <input type="text" id="search_word" name="search_word" placeholder="ユーザ名を入力">
@@ -629,11 +592,11 @@
                                     <input class="formelem maxwidth" id="url" placeholder="動画URL" name="FROM" size="70">
                                     <textarea class="formelem maxwidth" placeholder="コメント内容" rows="5" cols="70"
                                         wrap="off" name="MESSAGE"></textarea>
-                                <p id="urlP"></p>
-                                <input type="hidden" name="bbs" value="">
-                                <input type="hidden" name="key" value="">
-                                <input type="hidden" name="time" value="">
-                                <input class="submitbtn tweebtn" type="submit" value="書き込む" name="submit">
+                                    <p id="urlP"></p>
+                                    <input type="hidden" name="bbs" value="">
+                                    <input type="hidden" name="key" value="">
+                                    <input type="hidden" name="time" value="">
+                                    <input class="submitbtn tweebtn" type="submit" value="書き込む" name="submit">
                                 </p>
                             </form>
                         </div>
