@@ -26,6 +26,7 @@ import com.example.echo.entity.View_response;
 import com.example.echo.entity.select.FollowThread;
 import com.example.echo.entity.select.JenreThread;
 import com.example.echo.entity.select.MyThread;
+import com.example.echo.entity.select.Notice;
 import com.example.echo.entity.select.PopularThread;
 import com.example.echo.entity.select.SelectResponse;
 import com.example.echo.entity.select.SharedThread;
@@ -176,7 +177,7 @@ public class HirobaController {
             Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
             model.addAttribute("recommend", recommend);
 
-            Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+            Iterable<Notice> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
             model.addAttribute("follow_notice", followNotice);
 
             Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
@@ -260,7 +261,7 @@ public class HirobaController {
             Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
             model.addAttribute("recommend", recommend);
 
-            Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+            Iterable<Notice> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
             model.addAttribute("follow_notice", followNotice);
 
             Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
@@ -337,7 +338,7 @@ public class HirobaController {
             Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
             model.addAttribute("recommend", recommend);
 
-            Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+            Iterable<Notice> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
             model.addAttribute("follow_notice", followNotice);
 
             Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
@@ -501,7 +502,7 @@ public class HirobaController {
             Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
             model.addAttribute("recommend", recommend);
 
-            Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+            Iterable<Notice> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
             model.addAttribute("follow_notice", followNotice);
 
             Optional<User> side_user = userService.selectMypageUser(sessionData.getUser_id());
