@@ -530,7 +530,7 @@
                     <input id="bar" type="text" name="search_word" placeholder="スレッドの検索" required>
                     <input id="search-button" type="submit" value="検索">
                 </form>
-            </div> 
+            </div>
 
             <!-- 検索フォーム -->
             <form id="search_form" th:action="@{/Hiroba/search_user}">
@@ -549,15 +549,31 @@
             <p>表示された人にフォローされました</p>
             <ul class="osusu">
                 <li th:each="obj:${follow_notice}" th:object="${obj}" class="result_user">
-                    <button th:attr="onClick='location.href=\''+@{/notice?user_id={user_id} (user_id=*{user_id})}+'\''">
-                        <div id="notice_user">
-                            <img th:src="*{icon}" alt="">
-                        </div>
-                        <div id="user_details">
-                            <p th:text="*{user_name}"></p>
-                            <p th:text="*{search_name}"></p>
-                        </div>
-                    </button>
+                    <th:block th:if="*{reason}=='follow'">
+                        <button
+                            th:attr="onClick='location.href=\''+@{/notice?user_id={user_id} (user_id=*{user_id})}+'\''">
+                            <div id="notice_user">
+                                <img th:src="*{icon}" alt="">
+                            </div>
+                            <div id="user_details">
+                                <p th:text="*{user_name}"></p>
+                                <p th:text="*{search_name}"></p>
+                            </div>
+                        </button>
+                    </th:block>
+
+                    <th:block th:if="*{reason}=='comment'">
+                        <button
+                            th:attr="onClick='location.href=\''+@{/notice_comment?response_id={response_id}&url={url} ( url=*{url}, response_id=*{response_id})}+'\''">
+                            <div id="notice_user">
+                                <img th:src="*{icon}" alt="">
+                            </div>
+                            <div id="user_details">
+                                <p th:text="*{user_name}"></p>
+                                <p th:text="*{search_name}"></p>
+                            </div>
+                        </button>
+                    </th:block>
                 </li>
             </ul>
         </div>

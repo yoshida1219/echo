@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.echo.entity.Jenre;
 import com.example.echo.entity.User;
 import com.example.echo.Collection;
+import com.example.echo.entity.select.Notice;
 import com.example.echo.entity.select.SelectFollowerMovie;
 import com.example.echo.form.ResponseCreateForm;
 import com.example.echo.form.ThreadCreateForm;
@@ -96,7 +97,7 @@ public class HomeController {
             Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
             model.addAttribute("recommend", recommend);
 
-            Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+            Iterable<Notice> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
 
             model.addAttribute("follow_notice", followNotice);
 
@@ -133,5 +134,12 @@ public class HomeController {
     public String showNoticeCheck(Model model, @RequestParam("user_id") String user_id) {
         noticeService.FindUpdateFollow(user_id, sessionData.getUser_id());
         return "redirect:/mypage?user_id=" + user_id;
+    }
+
+    @GetMapping("/notice_comment")
+    public String showNoticeCommentCheck(Model model, @RequestParam("response_id") String response_id, @RequestParam("url") String url) {
+        String login_user_id = sessionData.getUser_id();
+        noticeService.FindUpdateComment(login_user_id, response_id);
+        return "redirect:/Hiroba/RessDetail/" + url + "?user_id=" + login_user_id + "&response_id=" + response_id;
     }
 }

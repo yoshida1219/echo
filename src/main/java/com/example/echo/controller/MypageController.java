@@ -22,6 +22,7 @@ import com.example.echo.entity.Jenre;
 import com.example.echo.entity.select.FavoriteMovie;
 import com.example.echo.entity.select.Follower;
 import com.example.echo.entity.select.MypageResponse;
+import com.example.echo.entity.select.Notice;
 import com.example.echo.entity.select.SubmitResponse;
 import com.example.echo.form.ResponseCreateForm;
 import com.example.echo.form.ThreadCreateForm;
@@ -138,7 +139,7 @@ public class MypageController {
         Iterable<User> recommend = recommendService.FindRecommendUser(sessionData.getUser_id());
         model.addAttribute("recommend", recommend);
 
-        Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+        Iterable<Notice> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
 
         Iterable<Jenre> jenre = jenreService.selectAll();
@@ -203,7 +204,7 @@ public class MypageController {
         model.addAttribute("list", list.get());
 
         
-        Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+        Iterable<Notice> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
         model.addAttribute("follow_notice", followNotice);
 
         Iterable<Jenre> jenre_list = jenreService.selectAll();
@@ -307,7 +308,7 @@ public class MypageController {
             model.addAttribute("side_user", side_user.get());
 
             
-            Iterable<User> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
+            Iterable<Notice> followNotice = noticeService.FindNoticeFollow(sessionData.getUser_id());
             model.addAttribute("follow_notice", followNotice);
 
             return_word="followerListViewer";
