@@ -295,8 +295,9 @@ public class MypageController {
 
     @GetMapping("/followerListViewer")
     public String showFollowerList(Model model, @RequestParam("user_id") String user_id){
+        
         String return_word = "redirect:/";
-
+        
         if (sessionData.getUser_id() != null) {
 
         Iterable<Follow> FollowList = followUserService.selectFollow(user_id,sessionData.getUser_id());
