@@ -566,6 +566,7 @@ blockquote cite {
 
 .tit-2-button{
   text-align: end;
+  display: flex;
 }
 
 .btn-flat-simple {
