@@ -8,7 +8,9 @@ import org.springframework.data.repository.query.Param;
 import com.example.echo.entity.select.MypageResponse;
 
 public interface MypageResponseRespository extends CrudRepository<MypageResponseRespository, String> {
-    @Query("select response.response_creater as 'user_id', response.response_id, response.response_name, response.response_submit, thread.thread_id, thread.thread_name, movie.movie_id, movie.movie_name, coalesce(movie.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, movie.url "
+    @Query("select response.response_creater as 'user_id', response.response_id, response.response_name, response.response_submit,"
+    + "thread.thread_id, thread.thread_name, movie.movie_id, movie.movie_name, coalesce(movie.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, movie.url, " 
+    + "case when DATE_FORMAT(movie.movie_time, '%H')='00' then DATE_FORMAT(movie.movie_time, '%i:%s') else DATE_FORMAT(movie.movie_time, '%H:%i:%s') end 'movie_time' "
     + "from response " 
     + "inner join movie on movie.movie_id = response.movie_id " 
     + "left outer join thread on thread.thread_id = response.thread_id " 

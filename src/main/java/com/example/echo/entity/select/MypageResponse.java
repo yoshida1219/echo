@@ -31,4 +31,6 @@ public class MypageResponse {
     private String thumbnail;
 
     private String url;
+
+    private String movie_time;
 }

@@ -13,7 +13,7 @@ import com.example.echo.entity.select.JenreThread;
 public interface ThreadDetailRepository extends CrudRepository<ThreadDetail,String>{
     //投稿　いいね順で３つ
     @Query("with like_count as ( select response_creater, response_id, sum(view_like) as 'like_count' from view_response tmp1 group by response_creater, response_id ) "
-        + ", share_count as ( select count(*) as 'share_count', origin_creater as response_creater, origin_id as response_id from response tmp2 group by origin_creater, origin_id)"
+        + ", share_count as ( select count(ORIGIN_ID) as 'share_count', origin_creater as response_creater, origin_id as response_id from response tmp2 group by origin_creater, origin_id union select tmp3.share_count, response_creater, response_id from response inner join (select count(*) as 'share_count', origin_creater, origin_id from response tmp2 group by origin_creater, origin_id) tmp3 using(origin_creater, origin_id))"
         + "select thread.thread_id, thread.thread_name, response.response_id, response.response_creater, response.response_name, coalesce(like_count, 0) as 'like', coalesce(share_count, 0) as 'share', movie.movie_name, movie.url,coalesce(movie.thumbnail, '/img/のーいめーじ.jpg') as thumbnail,user.user_name, user.icon "
         + " from thread"
         + " inner join response on response.thread_id = thread.thread_id"
@@ -49,7 +49,7 @@ public interface ThreadDetailRepository extends CrudRepository<ThreadDetail,Stri
 
      
     @Query("with like_count as ( select response_creater, response_id, sum(view_like) as 'like_count' from view_response tmp1 group by response_creater, response_id ), "
-        + " share_count as ( select count(*) as 'share_count', origin_creater as response_creater, origin_id as response_id from response tmp2 group by origin_creater, origin_id)"
+        + "share_count as ( select count(ORIGIN_ID) as 'share_count', origin_creater as response_creater, origin_id as response_id from response tmp2 group by origin_creater, origin_id union select tmp3.share_count, response_creater, response_id from response inner join (select count(*) as 'share_count', origin_creater, origin_id from response tmp2 group by origin_creater, origin_id) tmp3 using(origin_creater, origin_id))"
 
         + " select thread.thread_id, thread.thread_name, response.response_id, response.response_creater, response.response_name, movie.movie_name, movie.url, coalesce(movie.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, user.user_id, user.user_name, user.icon, jenre.jenre_name "
 
