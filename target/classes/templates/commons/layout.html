@@ -231,13 +231,13 @@
                             <div class="stronger">投稿画面</div>
                             <div class="formbody">
 
-                                <form th:object="${responseCreateForm}" class="posting-form">
-                                <form th:object="${responseCreateForm}" onsubmit="return checkDuplicates()">
+                                <form th:object="${responseCreateForm}" class="posting-form" onsubmit="check()">
+                            
                                     
                                         <!-- 動画URLの入力 -->
-                                        <input class="formelem maxwidth url" id="url-pc-thread"
-                                            oninput="removeFeatureShare(this)" placeholder="動画URL" th:field="*{url}" required>
-                                        <p id="urlError"></p>
+                                        <input type="text" class="formelem maxwidth url" id="url-pc-thread"
+                                            oninput="threadError(this)" placeholder="動画URL" th:field="*{url}" required>
+                                        <p id="urlError_movie"></p>
                                         <!-- コメントの入力 -->
                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
                                             wrap="off" th:field="*{response_name}" required></textarea>
@@ -275,12 +275,12 @@
                             <div class="stronger">投稿画面</div>
                             <div class="formbody">
 
-                                <form th:object="${responseCreateForm}" th:action="@{/response_creater}" class="posting-form">
-                                    <p>
+                                <form th:object="${responseCreateForm}" th:action="@{/response_creater}" class="posting-form" onsubmit="return check()">
+                                        
                                         <!-- 動画URLの入力 -->
                                         <input type="text" class="formelem maxwidth url" id="url-pc-share"
-                                            placeholder="動画URL" size="70" th:field="*{url}" oninput="removeFeatureShare(this)"  required>
-                                        <p id="urlError"></p>
+                                            oninput="homeError(this)" placeholder="動画URL" size="70" th:field="*{url}"   required>
+                                            <p id="urlError_movie"></p>
                                         <!-- コメントの入力 -->
                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
                                             wrap="off" th:field="*{response_name}" required></textarea>
@@ -288,7 +288,7 @@
                                         <input type="hidden" name="user_id" th:value="${session.sessionData.user_id}">
 
                                         <input id="send" class="submitbtn tweebtn" type="submit"></input>
-                                    </p>
+                                    
                                 </form>
 
                             </div>
@@ -396,7 +396,7 @@
                                                         <input class="formelem maxwidth" id="video-url"
                                                             oninput="removeFeatureShare(this)" placeholder="動画URL"
                                                             size="70" th:field="*{url}" minlength="11" required>
-                                                        <p id="urlError"></p>
+                                                            <p id="urlError_movie"></p>
                                                         <div id="video-container"></div>
 
                                                         <!-- コメントの入力 -->
@@ -440,10 +440,10 @@
                                                     th:action="@{/response_creater}">
                                                     
                                                         <!-- 動画URLの入力 -->
-                                                        <input class="formelem maxwidth url" id="url-phone"
-                                                            placeholder="動画URL" size="70" th:field="*{url}"
+                                                        <input class="formelem maxwidth url" id="url-phone"  
+                                                            oninput="removeFeatureShare(this)" placeholder="動画URL" size="70" th:field="*{url}"
                                                             minlength="11" required>
-                                                            <p id="urlError"></p>
+                                                            <p id="urlError_movie"></p>
 
                                                         <!-- コメントの入力 -->
                                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="2"

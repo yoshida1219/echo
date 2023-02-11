@@ -208,12 +208,56 @@ function checkDuplicates() {
     
 }
 
-function removeFeatureShare(input) {
+function threadError(input) {nextMovieTitle(input)}
+function homeError(input) {nextMovieTitle(input)}
+function mobileThreadError(input) {nextMovieTitle(input)}
+function mobileHomeError(input) {nextMovieTitle(input)}
+
+
+
+function nextMovieTitle(input) {
+    // var inputValue = input.value;
+    // var flag = false
+    // let error = document.getElementById('urlError_movie').innerHTML
+    // console.log(error);
+    // if (inputValue.includes("?feature=share")) {
+    //   input.value = inputValue.replace("?feature=share", "");
+    // }
+
+    // if (inputValue.includes("&list=")) {
+    //   input.value = inputValue.substring(0, inputValue.indexOf("&list="));
+    // }
+
+    // if(inputValue.includes("https://www.youtube.com/watch?v=")){
+    //     flag = true;
+    // }
+    // if(inputValue.includes("https://youtu.be/")){
+    //     flag = true;
+    // }
+    // if(inputValue.includes("https://www.youtube.com/shorts/")){
+    //     flag = true;
+    // }
+    // if(inputValue.includes("https://youtube.com/shorts/")){
+    //     flag = true;
+    // }
+
+    // if(flag){
+    //     error = 'a';
+    // }else{
+    //     error = 'このURLは入力できません';
+    // }
+    // error = document.getElementById('urlError_movie');
+    // error.innerHTML = 'このURLは入力できません';
+    // console.log(error.innerHTML);
+
+  }
+
+
+  function check(){
     var inputValue = input.value;
     var flag = false
-    let id = document.getElementById("urlError");
-    let error = id.innerText;
-    console.log(id);
+    let error = document.getElementById('urlError_movie').innerHTML
+    console.log(error);
     if (inputValue.includes("?feature=share")) {
       input.value = inputValue.replace("?feature=share", "");
     }
@@ -236,11 +280,14 @@ function removeFeatureShare(input) {
     }
 
     if(flag){
-        error = '';
+        return false
+        // error = 'a';
     }else{
-        error = 'このURLは入力できません';
+        return false
+        // error = 'このURLは入力できません';
     }
-
-    console.log(error);
-
+    return false
+    // error = document.getElementById('urlError_movie');
+    // error.innerHTML = 'このURLは入力できません';
+    // console.log(error.innerHTML);
   }

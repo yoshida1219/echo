@@ -298,3 +298,9 @@ img{
   color: red;
   text-align: start;
 }
+
+#urlError_movie{
+  font-size: 15px;
+  color: red;
+  z-index: 5;
+}
