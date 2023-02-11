@@ -286,6 +286,7 @@
 .down{
     border: solid 6px #4da0ff;
     margin-bottom: 5%;
+    /* width: 100%; */
 }
 .down li:after {
     /*タイトルタブ*/
@@ -326,4 +327,8 @@ font-size: 14px;
 font-weight: 600;
     
 background: #20a549;
+}
+
+.search-dwon{
+width: 100%;
 }
