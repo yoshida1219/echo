@@ -953,8 +953,8 @@ margin: auto;
 /* object-fit: cover; */
 }
 .rogo3{
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 45px;
+  max-height: 50px;
   border-radius: 50%;
   vertical-align: top;
 }
@@ -1249,8 +1249,8 @@ padding: 5px 5px 0 5px;
 }
 
 .comevgj{
-  width: 15%;
-  margin: auto;
+  /* width: 15%; */
+  /* margin: auto; */
 }
 
 
