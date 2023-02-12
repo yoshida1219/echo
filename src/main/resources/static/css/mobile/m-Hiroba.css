@@ -178,6 +178,7 @@ img{
     margin: 10px;
     width: 65%;
     padding: 5px;
+    flex-shrink: 0;
   }
   .container-item-img img{
     display: block;
