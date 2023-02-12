@@ -39,7 +39,7 @@
 
 .lyoutRessd {
     /* display: flex; */
-    padding: 0 2% 5% 2%;
+    padding: 0px 2% 5% 2%;
 }
 
 .kyouyu-datail {
@@ -84,8 +84,8 @@ iframe {
     top: 0;
     right: 0;
     z-index: 998;
-    height: 42%;
-    padding-top: 6.5vh;
+    height: 43%;
+    padding-top: 8.5vh;
 }
 
 img {}
