@@ -282,16 +282,6 @@ public class MypageController {
         boolean deplicate_result;
         Boolean count_result;
         if(check==1) {
-            System.out.println("お気に入り動画削除フェーズ");
-            System.out.println("お気に入り動画削除フェーズ");
-            System.out.println("お気に入り動画削除フェーズ");
-            System.out.println("お気に入り動画削除フェーズ");
-            System.out.println("お気に入り動画削除フェーズ");
-            System.out.println("お気に入り動画削除フェーズ");
-            System.out.println("お気に入り動画削除フェーズ");
-            System.out.println("お気に入り動画削除フェーズ");
-            System.out.println("お気に入り動画削除フェーズ");
-            System.out.println("お気に入り動画削除フェーズ");
             favoriteMovieService.DeleteFavoriteMovie(user_id, response_id);
         }else {
             deplicate_result = favoriteMovieService.CheckDeplicate(user_id, response_id);
