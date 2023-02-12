@@ -277,17 +277,17 @@ public class MypageController {
 
     //動画をお気に入りにする
     @GetMapping("/favoriteMovie")
-    public String showFavoriteMovie(Model model, @RequestParam("movie_id") String movie_id, @RequestParam("user_id") String user_id, @RequestParam("check") Integer check, RedirectAttributes redirectAttributes) {
+    public String showFavoriteMovie(Model model, @RequestParam("movie_id") String movie_id, @RequestParam("user_id") String user_id, @RequestParam("check") Integer check, @RequestParam("response_id") String response_id) {
 
         boolean deplicate_result;
         Boolean count_result;
         if(check==1) {
-            favoriteMovieService.DeleteFavoriteMovie(user_id, movie_id);
+            favoriteMovieService.DeleteFavoriteMovie(user_id, response_id);
         }else {
-            deplicate_result = favoriteMovieService.CheckDeplicate(user_id, movie_id);
+            deplicate_result = favoriteMovieService.CheckDeplicate(user_id, response_id);
             count_result = favoriteMovieService.FavoriteMovieCount(user_id);
             if(deplicate_result && count_result) {
-                favoriteMovieService.InsertFavoriteMovie(user_id, movie_id);
+                favoriteMovieService.InsertFavoriteMovie(user_id, response_id, movie_id);
             }
         }
         return "redirect:/mypage?user_id=" + user_id;

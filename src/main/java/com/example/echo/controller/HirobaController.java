@@ -482,6 +482,10 @@ public class HirobaController {
                     list = threadListService.selectGenreThread_OrderByRegist(genre_id);
                     model.addAttribute("genreThread_OrderByRegist", list);
 
+                    
+                    //ジャンル一覧のみ
+                    model.addAttribute("jenre_detail", "jenre_detail");
+
                     model.addAttribute("jenre", jenre);
 
                     break;
@@ -658,6 +662,7 @@ public class HirobaController {
             // 新着順の一覧
             list = threadListService.selectGenreThread_OrderByRegist(genre_id);
             model.addAttribute("genreThread_OrderByRegist", list);
+
 
             return_word = "redirect:/Hiroba/ThreadList/genreThread";
         }

@@ -12,11 +12,16 @@ import lombok.NoArgsConstructor;
 public class FavoriteMovie {
     
     @Id
-    private String movie_id;
 
     private String user_id;
 
+    private String response_id;
+    
+    private String movie_id;
+
     private String movie_name;
+
+    private String movie_time;
     
     private String url;
 
