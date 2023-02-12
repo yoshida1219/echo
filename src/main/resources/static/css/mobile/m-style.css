@@ -299,7 +299,7 @@ min-height: 100vh;
 .cent-1 {
   /* margin: 3px 3%; */
   /* background-color: rgb(177, 255, 255); */
-  padding-top: 40px;
+  padding: 40px 0;
 }
 
 .douga {/*  background-color: #ececec;
@@ -328,7 +328,7 @@ iframe {
   padding: 5px;
   /* margin-bottom: 15px; */
   height: 90%;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .balloon1-left {
@@ -388,8 +388,9 @@ iframe {
 }
 
 .content2 {
-  font-size: 22px;
+  font-size: 15px;
   display: flex;
+  text-align: start;
 }
 
 .content3 {
@@ -762,6 +763,7 @@ ul {
   display: flex;
   /* flex-wrap: wrap; */
   overflow-x: auto;
+  padding-bottom: 10px;
 }
 .Tabs li{
   /* float:left; */
