@@ -17,7 +17,7 @@
                 <th:block th:replace="~{commons/layout :: humber-menu}"></th:block>
 
                 <!-- 中央 -->
-                <div class="kari cent-1">
+                <div class="kari">
 
                     <!-- タイトル 　パネル-->
                     <div class="motto-tit">
@@ -33,16 +33,18 @@
 
                             <!-- ジャンル -->
                             <th:block th:unless="${jenre==null}">
-                                <p>コントロールパネル</p>
-                            <div class="janru itirannja">
-                                <ul class="Tabs" id="NicoNewsContainer-tabs">
-                                    <th:block th:each="obj:${jenre}" th:object="${obj}">
-                                        <li th:attr="onClick='location.href=\''+@{/Hiroba/genre_change_detail?genre_id={jenre_id} (jenre_id=*{jenre_id})}+'\''"
-                                            class="Tabs-tab" data-tab="エンターテインメント" th:text="*{jenre_name}">
-                                        </li>
-                                    </th:block>
-                                </ul>
-                            </div>
+                                <p>ジャンル一覧</p>
+                                <div class="janru itirannja">
+
+                                    <ul class="Tabs" id="NicoNewsContainer-tabs">
+                                        <th:block th:each="obj:${jenre}" th:object="${obj}">
+                                            <li th:attr="onClick='location.href=\''+@{/Hiroba/genre_change_detail?genre_id={jenre_id} (jenre_id=*{jenre_id})}+'\''"
+                                                class="Tabs-tab" data-tab="エンターテインメント" th:text="*{jenre_name}">
+                                            </li>
+                                        </th:block>
+                                    </ul>
+
+                                </div>
                             </th:block>
 
                         </div>

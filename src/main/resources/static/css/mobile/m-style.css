@@ -23,6 +23,11 @@ body {
   font-family: "M PLUS 1p";
 }
 
+/* aタグの色を無効にする */
+a {
+  color: inherit;
+}
+
 /***************header       「右」　　　　******************************************************************/
 .header {
   background-color: #008037;
@@ -125,6 +130,8 @@ main {
 
 .kari{
   /* margin: 2%; */
+  margin: 50px 0;
+  padding-top: 10px;
 }
 
 
@@ -292,7 +299,7 @@ min-height: 100vh;
 .cent-1 {
   /* margin: 3px 3%; */
   /* background-color: rgb(177, 255, 255); */
-  padding: 15vw 0;
+  padding: 40px 0;
 }
 
 .douga {/*  background-color: #ececec;
@@ -321,7 +328,7 @@ iframe {
   padding: 5px;
   /* margin-bottom: 15px; */
   height: 90%;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .balloon1-left {
@@ -381,8 +388,9 @@ iframe {
 }
 
 .content2 {
-  font-size: 22px;
+  font-size: 15px;
   display: flex;
+  text-align: start;
 }
 
 .content3 {
@@ -407,7 +415,16 @@ iframe {
   /* height: 33.3%; */
   /* padding: 15px; */
   background-color: white;
-  margin: auto;
+  position: relative;
+}
+
+.come svg {
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }
 .iine {
   font-size: 16px;
@@ -539,8 +556,9 @@ display: block;
   /* right: -10px; */
   position: fixed;
   right: -600px;
-  margin: 6vh 0px;
+  margin: 9vh 0px;
   transition: all 0.4s;
+  z-index: 50;
 }
 
 #search_user {
@@ -551,6 +569,7 @@ display: block;
   height: 90vh;
   border-radius: 15px;
   /* z-index: 1; */
+  /* display: none; */
 }
 
 #search_form input {
@@ -706,8 +725,8 @@ display: block;
 
 #scroll-to-top-btn {
   position: fixed;
-  bottom: 10px;
-  left: 11%;
+  bottom: 60px;
+  right: 5%;
   height: 50px;
   width: 50px;
   color: #FFF;
@@ -716,7 +735,7 @@ display: block;
   border: none;
   border-radius: 15%;
   outline: none;
-  transform: rotate(-180deg);
+  /* transform: rotate(-180deg); */
   opacity: 0;
   transition-duration: 0.5s;
   z-index: 1;
@@ -742,10 +761,13 @@ ul {
 
 .Tabs {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  overflow-x: auto;
+  padding-bottom: 10px;
 }
 .Tabs li{
   /* float:left; */
+  flex-shrink: 0;
 }
 
 .Tabs-tab {
@@ -923,13 +945,13 @@ opacity: 0;
 
 #schbtn11{
   display:block;
-  width: 20%;
+  /* width: 20%; */
 }
 .rig{
   right: 0;
 }
 
-.m-head{position: fixed;background-color: #b8cbb8;display: flex;width: 100%;/* height: 50px; */z-index: 10;height: 6.5vh;padding: 0.5vh 0;}
+.m-head{position: fixed;background-color: #b8cbb8;display: flex;width: 100%;/* height: 50px; */z-index: 10;/* height: 6.5vh; */padding: 0.5vh 0;}
 .m-ull{width: 70%;display: flex;margin: auto;justify-content: end;color: white;/* height: 100px; */}
 .pch{
   color: #008d38;
@@ -945,42 +967,40 @@ margin: auto;
   display: none;
 }
 .m-userr-iconnn{
-  
-width: 80%;
-  
-margin: auto;
-  
-/* object-fit: cover; */
+  width: 100%;
+  margin: auto;
+  /* object-fit: cover; */
 }
 .rogo3{
-  max-width: 45px;
-  max-height: 50px;
-  border-radius: 50%;
-  vertical-align: top;
+  /* max-width: 45px; */
+  max-height: 50px;
+  border-radius: 50%;
+  vertical-align: top;
+  border: 2px solid;
 }
+
 .c-list{
   width: 70%;
   display: flex;
   justify-content: end;
 }
 .m-c1{
-/* width: 20%; */
-text-align: center;
-margin: auto 0;
-color: white;
-font-weight: 600;
-background-color: #0e2e19;
-padding: 5px;
-/* margin-right: 20%; */
+/* width: 20%; */
+text-align: center;
+margin: auto 0;
+color: rgb(50, 50, 50);
+
+padding: 6px;
+/* margin-right: 20%; */
 }
 .m-c2{
   /* display: none; */
-  width: 20%;
+  width: 48px;
+  /* height: 50px; */
+  margin: 0 10px;
 }
+
 .m-tweet{
-  
-background-color: #bb7878;
-  
 /* width: 10%; */
   
 font-size: 15px;
@@ -991,7 +1011,7 @@ font-size: 15px;
 
   /*==ヘッダーの形状*/
   #header {
-    /* height: 50px; */
+    height: 55px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -1000,7 +1020,7 @@ font-size: 15px;
     border: 1px solid #999;
     color: #fff;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     font-size: 10px;
     position: fixed;
     bottom: 0;
@@ -1022,7 +1042,13 @@ font-size: 15px;
   #g-navi ul {
     list-style: none;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+  }
+
+  #g-navi ul li {
+    width: 20%;
+    margin: 0 6px;
+    position: relative;
   }
   
   #g-navi ul li a {
@@ -1056,6 +1082,7 @@ font-size: 15px;
     /*はじめは透過0に*/
     /* opacity: 0; */
     /* transition: all 0.4s; */
+    color: rgb(50, 50, 50);
   }
   
   /*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたナビゲーションの形状*/
@@ -1253,7 +1280,10 @@ padding: 5px 5px 0 5px;
   /* margin: auto; */
 }
 
-
+/* フッター */
+footer {
+  margin-bottom: 55px;
+}
 
 
 

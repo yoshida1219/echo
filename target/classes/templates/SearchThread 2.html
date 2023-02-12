@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="~{commons/layout :: cssjs}"></th:block>
+
+    <link rel="stylesheet" th:href="@{/css/List_Janru.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-List_Janru.css}" media="screen and (max-width: 768px)">
+</head>
+
+<body>
+    <!-- pc左バー 　　　＆スマホ上ヘッド＆　　PC版popup内容　　-->
+    <div th:replace="~{commons/layout :: header}"></div>
+    <main>
+        <div class="moto">
+            <div class="center">
+                <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
+                <th:block th:replace="~{commons/layout :: humber-menu}"></th:block>
+
+
+                <!-- 中央 -->
+                <div class="kari cent-1">
+
+                    <!-- タイトル　検索 -->
+                    <div class="motto-tit">
+
+                        <!-- タイトル 　-->
+                        <div class="label_ja1 text-overflow">
+                            <p th:text="${title}"></p>
+                        </div>
+
+
+
+                        <div class="crtl-box">
+
+                            <!-- なんとか順 -->
+                            <div class="List_ja">
+                                <!-- スレッド検索 -->
+                                <div class="waku1">
+                                    <div id="search_thread jusn">
+                                        <form class="ofrmsertch" th:action="@{/Hiroba/SearchThread}">
+                                            <p><input type="text" name="search_word" placeholder="スレッドの検索" required
+                                                    style="border: 1px solid;"></p>
+                                            <input id="search-button" type="submit" value="検索">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- スレ一覧 -->
+                    <div class="motto-list">
+
+
+                        <!-- スレッド検索の一覧 -->
+                        <th:block th:unless="${#lists.isEmpty(searchThread)}">
+                            <li class="content_ja" th:each="obj:${searchThread}" th:object="${obj}">
+                                <th:block th:replace="~{commons/layout :: thread_content}"></th:block>
+                            </li>
+                        </th:block>
+
+                        <th:block th:if="${#lists.isEmpty(searchThread)}">
+                            <p>スレッドが見つかりませんでした...</p>
+                        </th:block>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <!--通知エリア（右） -->
+            <div class="side" th:replace="~{commons/layout :: side}"></div>
+        </div>
+        <footer>
+            <p id="lasrrt">Copyright © 2023 -- 一般社団法人阿部情報大臣湯沢支部 All Rights Reserved </p>
+        </footer>
+        <script th:src="@{/js/threadList.js}"></script>
+    </main>
+
+    <script th:src="@{/js/pop.js}"></script>
+    <script th:src="@{/js/hum.js}"></script>
+    <script th:src="@{/js/ajax.js}"></script>
+
+</body>
+
+</html>

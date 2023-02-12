@@ -101,12 +101,12 @@ $(window).on('load', function () {
 
 
 // ハンバーメニューの制御
-$(".m-c2").click(function() {
-  $(this).addClass('active');
-  $("#g-nav2").addClass('panelactive');
-})
+// $(".m-c2").click(function() {
+//   $(this).addClass('active');
+//   $("#g-nav2").addClass('panelactive');
+// })
 
-$(".hum-list-2-hed1").click(function() {
-  $(this).removeClass('active');
-  $("#g-nav2").removeClass('panelactive');
-})
+// $(".hum-list-2-hed1").click(function() {
+//   $(this).removeClass('active');
+//   $("#g-nav2").removeClass('panelactive');
+// })

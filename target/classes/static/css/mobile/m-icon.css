@@ -57,3 +57,17 @@
     left: 3px;
     bottom: 0
     } 
+
+.icon-tabler-brand-youtube {
+    fill: red;
+    stroke: red;
+}
+
+.icon-footer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    stroke-width: 1.5px;
+    width: 80%;
+}
