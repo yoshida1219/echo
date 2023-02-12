@@ -204,7 +204,9 @@
                     <button><a>検索</a></button>
                 </div>
                 <div class="m-c2">
-                    <div class="m-userr-iconnn"><img th:src="${side_user.icon}" class="rogo3"></div>
+                    <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">
+                        <div class="m-userr-iconnn"><img th:src="${side_user.icon}" class="rogo3"></div>
+                    </button>
                 </div>
             </div>
         </div>

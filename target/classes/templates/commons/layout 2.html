@@ -104,15 +104,11 @@
                 <div class="btn1">
                     <button onClick="window.open('https://www.youtube.com/', '_blank')">
                         <div class="icon-home-lin1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube"
-                                width="45" height="45" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube" width="45" height="45" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path
-                                    d="M3 5m0 4a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z">
-                                </path>
+                                <path d="M3 5m0 4a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"></path>
                                 <path d="M10 9l5 3l-5 3z" fill="white" stroke="white" stroke-width="1px"></path>
-                            </svg>
+                             </svg>
                             <p class="side-name1">Youtube</p>
                         </div>
                     </button>
@@ -123,21 +119,17 @@
                 <div class="btn1 last-log">
                     <button th:attr="onClick='location.href=\''+@{/logout}+'\''">
                         <div class="icon-home-lin1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout"
-                                width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path
-                                    d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2">
-                                </path>
+                                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
                                 <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
-                            </svg>
+                             </svg>
                             <p class="side-name1">ログアウト</p>
                         </div>
                     </button>
                 </div>
 
-
+                
 
             </div>
 
@@ -204,9 +196,7 @@
                     <button><a>検索</a></button>
                 </div>
                 <div class="m-c2">
-                    <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">
-                        <div class="m-userr-iconnn"><img th:src="${side_user.icon}" class="rogo3"></div>
-                    </button>
+                    <div class="m-userr-iconnn"><img th:src="${side_user.icon}" class="rogo3"></div>
                 </div>
             </div>
         </div>
@@ -246,8 +236,7 @@
                                     
                                         <!-- 動画URLの入力 -->
                                         <input class="formelem maxwidth url" id="url-pc-thread"
-                                            oninput="removeFeatureShare(this)" placeholder="動画URL" th:field="*{url}"
-                                            required>
+                                            oninput="removeFeatureShare(this)" placeholder="動画URL" th:field="*{url}" required>
                                         <p id="urlError"></p>
                                         <!-- コメントの入力 -->
                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
@@ -259,8 +248,8 @@
                                         <input type="hidden" id="user_id" th:value="${session.sessionData.user_id}">
 
                                         <button id="send" class="submitbtn tweebtn" type="submit">書き込む</button>
-
-                                    </form>
+                                    
+                                </form>
 
                             </div>
                         </div>
@@ -287,21 +276,19 @@
                             <div class="stronger">投稿画面</div>
                             <div class="formbody">
 
-                                <form th:object="${responseCreateForm}" th:action="@{/response_creater}"
-                                    class="posting-form">
+                                <form th:object="${responseCreateForm}" th:action="@{/response_creater}" class="posting-form">
                                     <p>
                                         <!-- 動画URLの入力 -->
                                         <input type="text" class="formelem maxwidth url" id="url-pc-share"
-                                            placeholder="動画URL" size="70" th:field="*{url}"
-                                            oninput="removeFeatureShare(this)" required>
-                                    <p id="urlError"></p>
-                                    <!-- コメントの入力 -->
-                                    <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50" wrap="off"
-                                        th:field="*{response_name}" required></textarea>
+                                            placeholder="動画URL" size="70" th:field="*{url}" oninput="removeFeatureShare(this)"  required>
+                                        <p id="urlError"></p>
+                                        <!-- コメントの入力 -->
+                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
+                                            wrap="off" th:field="*{response_name}" required></textarea>
 
-                                    <input type="hidden" name="user_id" th:value="${session.sessionData.user_id}">
+                                        <input type="hidden" name="user_id" th:value="${session.sessionData.user_id}">
 
-                                    <input id="send" class="submitbtn tweebtn" type="submit"></input>
+                                        <input id="send" class="submitbtn tweebtn" type="submit"></input>
                                     </p>
                                 </form>
 
@@ -437,28 +424,28 @@
                                             <div class="formbody">
 
                                                 <form th:object="${responseCreateForm}">
+                                                    
+                                                        <!-- 動画URLの入力 -->
+                                                        <input class="formelem maxwidth" id="video-url"
+                                                            oninput="removeFeatureShare(this)" placeholder="動画URL"
+                                                            size="70" th:field="*{url}" minlength="11" required>
+                                                        <p id="urlError"></p>
+                                                        <div id="video-container"></div>
 
-                                                    <!-- 動画URLの入力 -->
-                                                    <input class="formelem maxwidth" id="video-url"
-                                                        oninput="removeFeatureShare(this)" placeholder="動画URL" size="70"
-                                                        th:field="*{url}" minlength="11" required>
-                                                    <p id="urlError"></p>
-                                                    <div id="video-container"></div>
+                                                        <!-- コメントの入力 -->
+                                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
+                                                            cols="50" wrap="off" th:field="*{response_name}"
+                                                            maxlength="200" required></textarea>
 
-                                                    <!-- コメントの入力 -->
-                                                    <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
-                                                        cols="50" wrap="off" th:field="*{response_name}" maxlength="200"
-                                                        required></textarea>
+                                                        <!-- 投稿するスレッドID -->
+                                                        <input type="hidden" id="thread_id" th:value="${thread_id}">
 
-                                                    <!-- 投稿するスレッドID -->
-                                                    <input type="hidden" id="thread_id" th:value="${thread_id}">
+                                                        <input type="hidden" id="user_id"
+                                                            th:value="${session.sessionData.user_id}">
 
-                                                    <input type="hidden" id="user_id"
-                                                        th:value="${session.sessionData.user_id}">
-
-                                                    <button id="send" class="submitbtn tweebtn"
-                                                        type="submit">書き込む</button>
-
+                                                        <button id="send" class="submitbtn tweebtn"
+                                                            type="submit">書き込む</button>
+                                                   
                                                 </form>
 
                                             </div>
@@ -467,7 +454,7 @@
                                         <div class="formbox ">
                                             <div class="stronger">動画プレビュー</div>
                                             <div class="formbody preview">
-                                                <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
+                                                <!-- https://www.youtube.com/embed/IJBHpgxVPXI --> 
                                                 <iframe id="video-player" class="b" width="560" height="315" src=""
                                                     title="YouTube video player" frameborder="0"
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -484,24 +471,24 @@
 
                                                 <form th:object="${responseCreateForm}"
                                                     th:action="@{/response_creater}">
+                                                    
+                                                        <!-- 動画URLの入力 -->
+                                                        <input class="formelem maxwidth url" id="url-phone"
+                                                            placeholder="動画URL" size="70" th:field="*{url}"
+                                                            minlength="11" required>
+                                                            <p id="urlError"></p>
 
-                                                    <!-- 動画URLの入力 -->
-                                                    <input class="formelem maxwidth url" id="url-phone"
-                                                        placeholder="動画URL" size="70" th:field="*{url}" minlength="11"
-                                                        required>
-                                                    <p id="urlError"></p>
+                                                        <!-- コメントの入力 -->
+                                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="2"
+                                                            cols="50" wrap="off" th:field="*{response_name}"
+                                                            maxlength="200" required></textarea>
 
-                                                    <!-- コメントの入力 -->
-                                                    <textarea class="formelem maxwidth" placeholder="コメント" rows="2"
-                                                        cols="50" wrap="off" th:field="*{response_name}" maxlength="200"
-                                                        required></textarea>
+                                                        <input type="hidden" name="user_id"
+                                                            th:value="${session.sessionData.user_id}">
 
-                                                    <input type="hidden" name="user_id"
-                                                        th:value="${session.sessionData.user_id}">
-
-                                                    <button id="send" class="submitbtn tweebtn"
-                                                        type="submit">投稿</button>
-
+                                                        <button id="send" class="submitbtn tweebtn"
+                                                            type="submit">投稿</button>
+                                                    
                                                 </form>
 
                                             </div>
@@ -512,8 +499,8 @@
                                             <div class="stronger">動画プレビュー</div>
                                             <div class="formbody preview">
                                                 <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
-                                                <iframe class="video-player" width="560" height="315" src=""
-                                                    id="video-player" title="YouTube video player" frameborder="0"
+                                                <iframe class="video-player" width="560" height="315" src="" id="video-player"
+                                                    title="YouTube video player" frameborder="0"
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                     allowfullscreen>
                                                 </iframe>
@@ -616,7 +603,7 @@
                     <input id="bar" type="text" name="search_word" placeholder="スレッドの検索" required>
                     <input id="search-button" type="submit" value="検索">
                 </form>
-            </div>
+            </div> 
 
             <!-- 検索フォーム -->
             <form id="search_form" th:action="@{/Hiroba/search_user}">
@@ -636,29 +623,27 @@
             <ul class="osusu">
                 <li th:each="obj:${follow_notice}" th:object="${obj}" class="result_user">
                     <th:block th:if="*{reason}=='follow'">
-                        <button
-                            th:attr="onClick='location.href=\''+@{/notice?user_id={user_id} (user_id=*{user_id})}+'\''">
-                            <div id="notice_user">
-                                <img th:src="*{icon}" alt="">
-                            </div>
-                            <div id="user_details">
-                                <p th:text="*{user_name}"></p>
-                                <p th:text="*{search_name}"></p>
-                            </div>
-                        </button>
+                    <button th:attr="onClick='location.href=\''+@{/notice?user_id={user_id} (user_id=*{user_id})}+'\''">
+                        <div id="notice_user">
+                            <img th:src="*{icon}" alt="">
+                        </div>
+                        <div id="user_details">
+                            <p th:text="*{user_name}"></p>
+                            <p th:text="*{search_name}"></p>
+                        </div>
+                    </button>
                     </th:block>
 
                     <th:block th:if="*{reason}=='comment'">
-                        <button
-                            th:attr="onClick='location.href=\''+@{/notice_comment?response_id={response_id}&url={url} (response_id=*{response_id}, url=*{url})}+'\''">
-                            <div id="notice_user">
-                                <img th:src="*{icon}" alt="">
-                            </div>
-                            <div id="user_details">
-                                <p th:text="*{user_name}"></p>
-                                <p th:text="*{search_name}"></p>
-                            </div>
-                        </button>
+                    <button th:attr="onClick='location.href=\''+@{/notice_comment?response_id={response_id}&url={url} (response_id=*{response_id}, url=*{url})}+'\''">
+                        <div id="notice_user">
+                            <img th:src="*{icon}" alt="">
+                        </div>
+                        <div id="user_details">
+                            <p th:text="*{user_name}"></p>
+                            <p th:text="*{search_name}"></p>
+                        </div>
+                    </button>
                     </th:block>
                 </li>
             </ul>
