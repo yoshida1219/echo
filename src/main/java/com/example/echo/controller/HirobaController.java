@@ -389,7 +389,6 @@ public class HirobaController {
         model.addAttribute("thread_id", MaxThread_id);
 
         return "redirect:/Hiroba/ThreadDetail?thread_id=" + MaxThread_id;
-
     }
 
     /*

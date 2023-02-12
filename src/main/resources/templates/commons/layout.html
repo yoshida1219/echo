@@ -231,8 +231,8 @@
                             <div class="stronger">投稿画面</div>
                             <div class="formbody">
 
-                                <form th:object="${responseCreateForm}" class="posting-form">
-                                <form th:object="${responseCreateForm}" onsubmit="return checkDuplicates()">
+                                <!-- <form th:object="${responseCreateForm}" class="posting-form"> -->
+                                <form th:object="${responseCreateForm}" id="form-thread" class="posting-form" onsubmit="return checkDuplicates()">
                                     
                                         <!-- 動画URLの入力 -->
                                         <input class="formelem maxwidth url" id="url-pc-thread"
@@ -266,6 +266,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     <!-- ホームに投稿 -->
                     <div class="modalMain sure_kyouyu tweet-02">
@@ -307,8 +308,9 @@
                         </div>
                     </div>
 
-                    <div class="modelMain sure_sesaku tweet-03">
 
+                    <!-- スレッド作成 -->
+                    <div class="modelMain sure_sesaku tweet-03">
 
                         <div class="formbox">
                             <div class="stronger">スレッド作成画面</div>
@@ -358,18 +360,49 @@
 
             <nav id="g-navi">
                 <ul>
-                    <li><button th:attr="onClick='location.href=\''+@{/home}+'\''"><a>ホーム</a></button></li>
-                    <li><button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''"><a>広場</a></button></li>
+                    <!-- ホームアイコン -->
+                    <li>
+                        <button th:attr="onClick='location.href=\''+@{/home}+'\''">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="40" height="38" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
+                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                             </svg>
+                        </button>
+                    </li>
+
+                    <!-- 広場アイコン -->
+                    <li>
+                        <button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+                                <path
+                                    d="M0 36v-2.65q0-1.95 2.1-3.15T7.5 29q.65 0 1.2.025.55.025 1.1.125-.4.85-.6 1.725-.2.875-.2 1.875V36Zm12 0v-3.25q0-3.25 3.325-5.25t8.675-2q5.4 0 8.7 2 3.3 2 3.3 5.25V36Zm27 0v-3.25q0-1-.175-1.875t-.575-1.725q.55-.1 1.1-.125Q39.9 29 40.5 29q3.4 0 5.45 1.2Q48 31.4 48 33.35V36Zm-15-7.5q-4 0-6.5 1.2T15 32.75V33h18v-.3q0-1.8-2.475-3T24 28.5Zm-16.5-1q-1.45 0-2.475-1.025Q4 25.45 4 24q0-1.45 1.025-2.475Q6.05 20.5 7.5 20.5q1.45 0 2.475 1.025Q11 22.55 11 24q0 1.45-1.025 2.475Q8.95 27.5 7.5 27.5Zm33 0q-1.45 0-2.475-1.025Q37 25.45 37 24q0-1.45 1.025-2.475Q39.05 20.5 40.5 20.5q1.45 0 2.475 1.025Q44 22.55 44 24q0 1.45-1.025 2.475Q41.95 27.5 40.5 27.5ZM24 24q-2.5 0-4.25-1.75T18 18q0-2.55 1.75-4.275Q21.5 12 24 12q2.55 0 4.275 1.725Q30 15.45 30 18q0 2.5-1.725 4.25T24 24Zm0-9q-1.25 0-2.125.85T21 18q0 1.25.875 2.125T24 21q1.3 0 2.15-.875Q27 19.25 27 18q0-1.3-.85-2.15Q25.3 15 24 15Zm0 18Zm0-15Z">
+                                </path>
+                            </svg>
+                        </button>
+                    </li>
+
                     <!-- <li><button class="" id="open-modal2"><a>投稿</a></button></li> -->
                     <!-- 投稿ボタン -->
                     <li>
                         <div class="popupModal1">
                             <input type="radio" name="modalPop" id="pop11" />
-                            <label for="pop11" class="m-tweet"><a>投稿</a></label>
+                            <label for="pop11" class="m-tweet">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="50" height="50" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                    <path d="M9 12l6 0"></path>
+                                    <path d="M12 9l0 6"></path>
+                                </svg>
+                            </label>
+
                             <input type="radio" name="modalPop" id="pop12" />
                             <label for="pop12">CLOSE</label>
+
                             <input type="radio" name="modalPop" id="pop13" />
                             <label for="pop13">×</label>
+                            
                             <div class="modalPopup2">
                                 <div class="modalPopup3">
 
@@ -521,12 +554,29 @@
                             </div>
                         </div>
                     </li>
-                    <li><button th:attr="onClick='location.href=\''+@{/logout}+'\''"><a>ログアウト</a></button></li>
-                    <li><!-- ハンバーガーメニュー -->
-                        <!-- <div class="openbtn1 nume">
-                            <span></span><span></span><span></span>
-                        </div> -->
+
+                    <!-- Youtubeアイコン -->
+                    <li>
+                        <button onClick="window.open('https://www.youtube.com/', '_blank')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M3 5m0 4a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"></path>
+                                <path d="M10 9l5 3l-5 3z" fill="white" stroke="white"></path>
+                            </svg>
+                        </button>
                     </li>
+
+                    <!-- ログアウトアイコン -->
+                    <li>
+                        <button th:attr="onClick='location.href=\''+@{/logout}+'\''">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="36" height="36" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
+                                <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+                             </svg>
+                        </button>
+                    </li>
+
                 </ul>
             </nav>
         </div>
