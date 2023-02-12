@@ -126,15 +126,16 @@
 }
 
 .my-page-coment {
-    padding: 10px;
+    padding: 0px 10px;
+    margin-bottom: 0px;
     /* border-bottom: 2px dashed #000; */
-    height: 30%;
+    height: 45%;
     /* font-weight: 100; */
 }
 
 .my-page-coment p {
     width: 90%;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
 }
 
@@ -152,10 +153,10 @@
 
 .mypage-suji {
     display: flex;
-    padding: 3px 10px;
+    padding: 10px 10px;
     border-top: 2px dashed #000;
     /* width: 90%; */
-    height: 50%;
+    height: 35%;
 }
 
 .mypage-suji p {
@@ -285,6 +286,7 @@
 .down{
     border: solid 6px #4da0ff;
     margin-bottom: 5%;
+    /* width: 100%; */
 }
 .down li:after {
     /*タイトルタブ*/
@@ -325,4 +327,8 @@ font-size: 14px;
 font-weight: 600;
     
 background: #20a549;
+}
+
+.search-dwon{
+width: 100%;
 }

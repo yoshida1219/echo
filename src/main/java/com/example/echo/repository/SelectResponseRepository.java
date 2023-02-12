@@ -11,7 +11,7 @@ import com.example.echo.entity.select.SelectResponse;
 public interface SelectResponseRepository extends CrudRepository<SelectResponse,String>{
 
     @Query("with like_count as ( select response_creater, response_id, sum(view_like) as 'like_count' from view_response tmp1 group by response_creater, response_id ), "
-        + "share_count as ( select count(*) as 'share_count', origin_creater as response_creater, origin_id as response_id from response tmp2 group by origin_creater, origin_id) "
+        + "share_count as ( select count(ORIGIN_ID) as 'share_count', origin_creater as response_creater, origin_id as response_id from response tmp2 group by origin_creater, origin_id union select tmp3.share_count, response_creater, response_id from response inner join (select count(*) as 'share_count', origin_creater, origin_id from response tmp2 group by origin_creater, origin_id) tmp3 using(origin_creater, origin_id)) "
 
         + "select user.user_name, user.user_id, user.icon, response.response_name "
         + " , coalesce(like_count.like_count, 0) as 'like', coalesce(share_count.share_count, 0) as 'share', movie.movie_name, coalesce(thread.thread_name, '存在しないか、既に削除された場合があります') as thread_name " 

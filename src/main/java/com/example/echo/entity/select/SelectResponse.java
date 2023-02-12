@@ -14,14 +14,6 @@ import java.time.format.DateTimeParseException;
 @AllArgsConstructor
 public class SelectResponse {
 
-    public static String Date_format(String date)throws DateTimeParseException {
-
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy年mm月dd日");
-        String change_date = date.formatted(format);
-        return change_date;
-
-    }
-
     @Id
     private String response_id;
 
