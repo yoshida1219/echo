@@ -88,7 +88,11 @@ $(function () {
         e.preventDefault();
         closeModal();
     });
-    $( "#send" ).click(function() { sendResponse(); });
+    //$( "#send" ).click(function() { sendResponse(); });
 });
+
+function aiueo(){
+    $( "#send" ).click(function() { sendResponse(); });
+}
 
 setTimeout("connect()", 3000);

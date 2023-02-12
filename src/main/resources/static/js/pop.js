@@ -187,73 +187,49 @@ $(".posting-form").on("submit", ()=> {
 
 function checkDuplicates() {
     
-    let flag = true;
-    var input_url = document.getElementById('url-pc-share').value;
-
-    if (input_url.includes("https://www.youtube.com/@")) {
-        alert("error2");
-        var urlError = document.getElementById('urlError');
+    // let flag = false;
+    // var input_url = document.getElementById('url-pc-share').value;
+    // alert("error2");
+    // if (input_url.includes("https://www.youtube.com/@")) {
+    //     alert("error2");
+    //     var urlError = document.getElementById('urlError');
         
-        flag = false;
+    //     flag = false;
+    // }
+    var inputValue = document.getElementById('url-pc-thread').value;
+    var flag = false
+    console.log(inputValue);
+
+    if(inputValue.includes("https://www.youtube.com/watch?v=")){
+        flag = true;
+    }
+    if(inputValue.includes("https://youtu.be/")){
+        flag = true;
+    }
+    if(inputValue.includes("https://www.youtube.com/shorts/")){
+        flag = true;
+    }
+    if(inputValue.includes("https://youtube.com/shorts/")){
+        flag = true;
     }
     
 
     
     if (flag) {
-      return true;
+        alert("true");
+        sendResponse();
+        return true;
     } else {
-      return false;
+        alert("false");
+        return false;
     }
     
     
 }
 
-function threadError(input) {nextMovieTitle(input)}
-function homeError(input) {nextMovieTitle(input)}
-function mobileThreadError(input) {nextMovieTitle(input)}
-function mobileHomeError(input) {nextMovieTitle(input)}
 
 
-
-function nextMovieTitle(input) {
-    // var inputValue = input.value;
-    // var flag = false
-    // let error = document.getElementById('urlError_movie').innerHTML
-    // console.log(error);
-    // if (inputValue.includes("?feature=share")) {
-    //   input.value = inputValue.replace("?feature=share", "");
-    // }
-
-    // if (inputValue.includes("&list=")) {
-    //   input.value = inputValue.substring(0, inputValue.indexOf("&list="));
-    // }
-
-    // if(inputValue.includes("https://www.youtube.com/watch?v=")){
-    //     flag = true;
-    // }
-    // if(inputValue.includes("https://youtu.be/")){
-    //     flag = true;
-    // }
-    // if(inputValue.includes("https://www.youtube.com/shorts/")){
-    //     flag = true;
-    // }
-    // if(inputValue.includes("https://youtube.com/shorts/")){
-    //     flag = true;
-    // }
-
-    // if(flag){
-    //     error = 'a';
-    // }else{
-    //     error = 'このURLは入力できません';
-    // }
-    // error = document.getElementById('urlError_movie');
-    // error.innerHTML = 'このURLは入力できません';
-    // console.log(error.innerHTML);
-
-  }
-
-
-  function check(){
+function removeFeatureShare(input) {
     var inputValue = input.value;
     var flag = false
     let error = document.getElementById('urlError_movie').innerHTML
@@ -278,16 +254,14 @@ function nextMovieTitle(input) {
     if(inputValue.includes("https://youtube.com/shorts/")){
         flag = true;
     }
-
+    let a = 'a';
     if(flag){
-        return false
-        // error = 'a';
+        a = '';
     }else{
-        return false
-        // error = 'このURLは入力できません';
+        a = 'このURLは入力できません';
     }
-    return false
-    // error = document.getElementById('urlError_movie');
-    // error.innerHTML = 'このURLは入力できません';
-    // console.log(error.innerHTML);
+    error = document.getElementById('urlError_movie');
+    error.innerHTML = a;
+    console.log(error.innerHTML);
+
   }
