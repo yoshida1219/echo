@@ -20,17 +20,17 @@ public class FavoriteMovieServiceImpl implements FavoriteMovieService {
         return inst.OrderFavoriteMovie(user_id);
     }
 
-    public void DeleteFavoriteMovie(String user_id, String movie_id) { 
-        inst.delete(user_id, movie_id);
+    public void DeleteFavoriteMovie(String user_id, String response_id) { 
+        inst.delete(user_id, response_id);
     }
 
         
-    public void InsertFavoriteMovie(String user_id, String movie_id) { 
-        inst.insert(user_id, movie_id);
+    public void InsertFavoriteMovie(String user_id, String response_id, String movie_id) { 
+        inst.insert(user_id, response_id, movie_id);
     }
 
-    public Boolean CheckDeplicate(String user_id, String movie_id) {
-        Integer count = inst.CheckDate(user_id, movie_id);
+    public Boolean CheckDeplicate(String user_id, String response_id) {
+        Integer count = inst.CheckDate(user_id, response_id);
         boolean result = false;
         if(count == 0) {
             result = true;

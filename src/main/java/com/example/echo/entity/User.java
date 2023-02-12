@@ -27,5 +27,8 @@ public class User {
     //2023-1-31追加(阿部)
     private String open_date;
 
+    //2023-02-12追加(阿部)
+    private String open_date_format;
+
     private String icon;
 }
