@@ -8,8 +8,7 @@ let elm = document.documentElement;
 // scrollHeight ページの高さ clientHeight ブラウザの高さ
 let bottom = elm.scrollHeight - elm.clientHeight;
 function scroll_to_top(){
-	window.scroll({top: bottom, behavior: 'smooth'});
-
+	window.scroll({top: 0, behavior: 'smooth'});
 };
 
 
