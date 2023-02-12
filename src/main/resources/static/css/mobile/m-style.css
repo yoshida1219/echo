@@ -23,6 +23,11 @@ body {
   font-family: "M PLUS 1p";
 }
 
+/* aタグの色を無効にする */
+a {
+  color: inherit;
+}
+
 /***************header       「右」　　　　******************************************************************/
 .header {
   background-color: #008037;
@@ -125,6 +130,8 @@ main {
 
 .kari{
   /* margin: 2%; */
+  margin-top:50px;
+  padding-top: 10px;
 }
 
 
@@ -292,7 +299,7 @@ min-height: 100vh;
 .cent-1 {
   /* margin: 3px 3%; */
   /* background-color: rgb(177, 255, 255); */
-  padding: 15vw 0;
+  padding-top: 40px;
 }
 
 .douga {/*  background-color: #ececec;
@@ -407,7 +414,16 @@ iframe {
   /* height: 33.3%; */
   /* padding: 15px; */
   background-color: white;
-  margin: auto;
+  position: relative;
+}
+
+.come svg {
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }
 .iine {
   font-size: 16px;
@@ -541,6 +557,7 @@ display: block;
   right: -600px;
   margin: 6vh 0px;
   transition: all 0.4s;
+  z-index: 50;
 }
 
 #search_user {
@@ -707,8 +724,8 @@ display: block;
 
 #scroll-to-top-btn {
   position: fixed;
-  bottom: 10px;
-  left: 11%;
+  bottom: 60px;
+  right: 5%;
   height: 50px;
   width: 50px;
   color: #FFF;
@@ -717,7 +734,7 @@ display: block;
   border: none;
   border-radius: 15%;
   outline: none;
-  transform: rotate(-180deg);
+  /* transform: rotate(-180deg); */
   opacity: 0;
   transition-duration: 0.5s;
   z-index: 1;
@@ -956,42 +973,32 @@ margin: auto;
 /* object-fit: cover; */
 }
 .rogo3{
-  
-/* max-width: 45px; */
-  
-max-height: 50px;
-  
-border-radius: 50%;
-  
-vertical-align: top;
+  /* max-width: 45px; */
+  max-height: 50px;
+  border-radius: 50%;
+  vertical-align: top;
+  border: 2px solid;
 }
+
 .c-list{
   width: 70%;
   display: flex;
   justify-content: end;
 }
 .m-c1{
-
 /* width: 20%; */
-
 text-align: center;
-
 margin: auto 0;
+color: rgb(50, 50, 50);
 
-color: white;
-
-font-weight: 600;
-
-background-color: #0e2e19;
-
-padding: 5px;
-
+padding: 6px;
 /* margin-right: 20%; */
 }
 .m-c2{
   /* display: none; */
   width: 48px;
   /* height: 50px; */
+  margin: 0 10px;
 }
 
 .m-tweet{
@@ -1076,7 +1083,7 @@ font-size: 15px;
     /*はじめは透過0に*/
     /* opacity: 0; */
     /* transition: all 0.4s; */
-    color: black;
+    color: rgb(50, 50, 50);
   }
   
   /*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたナビゲーションの形状*/
@@ -1274,7 +1281,10 @@ padding: 5px 5px 0 5px;
   /* margin: auto; */
 }
 
-
+/* フッター */
+footer {
+  margin-bottom: 55px;
+}
 
 
 

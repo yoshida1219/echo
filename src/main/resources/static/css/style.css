@@ -30,6 +30,11 @@ body {
   color: red;
 }
 
+/* aタグの色を無効にする */
+a {
+  color: inherit;
+}
+
 /***************header       「右」　　　　******************************************************************/
 .header {
   /* background-color: #008037; */
@@ -379,7 +384,17 @@ iframe {
   /* height: 33.3%; */
   /* padding: 35px; */
   background-color: white;
+  position: relative;
   width: 33.3%;
+}
+
+.come svg {
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }
 
 .iine {
