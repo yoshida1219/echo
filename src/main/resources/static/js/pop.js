@@ -183,45 +183,162 @@ $(".posting-form").on("submit", ()=> {
     }
 })
 
+var flag = true;
 
+function checkDuplicatesThread() {
+let error = document.getElementById('urlError_movie').innerHTML
+var inputValue = document.getElementById('url-pc-thread').value;
+var inflag = false
+console.log(inputValue);
 
-function checkDuplicates() {
+var regex = /v=([A-Za-z0-9-]{11})/;
+var regex2 = /be\/([A-Za-z0-9-]{11})/;
+var regex3 = /shorts\/([A-Za-z0-9-]{11})/;
+
+if(inputValue.includes("https://www.youtube.com/watch?v=") && inputValue.match(regex)){
+    inflag = true;
+}
+if(inputValue.includes("https://youtu.be/") && inputValue.match(regex2)){
+    inflag = true;
+}
+if(inputValue.includes("https://www.youtube.com/shorts/") && inputValue.match(regex3)){
+    inflag = true;
+}
+if(inputValue.includes("https://youtube.com/shorts/") && inputValue.match(regex3)){
+    inflag = true;
+}
+
+if (inflag) {
+    flag = inflag;
+    sendResponse();
+    closeModal();
+    error = '';
+} else {
+    flag = inflag;
+    error = '不正なURLです';
+    showErrorPopup();
+}
+}
+
+function checkDuplicatesShare() {
     
-    // let flag = false;
-    // var input_url = document.getElementById('url-pc-share').value;
-    // alert("error2");
-    // if (input_url.includes("https://www.youtube.com/@")) {
-    //     alert("error2");
-    //     var urlError = document.getElementById('urlError');
-        
-    //     flag = false;
-    // }
-    var inputValue = document.getElementById('url-pc-thread').value;
-    var flag = false
+    var inputValue = document.getElementById('url-pc-share').value;
+    var inflag = false
+    console.log(inputValue);
+    let error = document.getElementById('urlError_movie2').innerHTML
+    var regex = /v=([A-Za-z0-9-]{11})/;
+    var regex2 = /be\/([A-Za-z0-9-]{11})/;
+    var regex3 = /shorts\/([A-Za-z0-9-]{11})/;
+
+
+    
+
+    if(inputValue.includes("https://www.youtube.com/watch?v=") && inputValue.match(regex)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://youtu.be/") && inputValue.match(regex2)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://www.youtube.com/shorts/") && inputValue.match(regex3)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://youtube.com/shorts/") && inputValue.match(regex3)){
+        inflag = true;
+    }
+    
+
+    
+    if (inflag) {
+        flag = inflag;
+        sendResponse();
+        closeModal();
+        error = '';
+    } else {
+        flag = inflag;
+        error = '不正なURLです';
+        showErrorPopup();
+    }
+    
+    
+}
+
+function checkDuplicatesUrl() {
+    var inputValue = document.getElementById('video-url').value;
+    var inflag = false
     console.log(inputValue);
 
-    if(inputValue.includes("https://www.youtube.com/watch?v=")){
-        flag = true;
+    let error = document.getElementById('urlError_movie3').innerHTML
+    var regex = /v=([A-Za-z0-9-]{11})/;
+    var regex2 = /be\/([A-Za-z0-9-]{11})/;
+    var regex3 = /shorts\/([A-Za-z0-9-]{11})/;
+
+
+    
+
+    if(inputValue.includes("https://www.youtube.com/watch?v=") && inputValue.match(regex)){
+        inflag = true;
     }
-    if(inputValue.includes("https://youtu.be/")){
-        flag = true;
+    if(inputValue.includes("https://youtu.be/") && inputValue.match(regex2)){
+        inflag = true;
     }
-    if(inputValue.includes("https://www.youtube.com/shorts/")){
-        flag = true;
+    if(inputValue.includes("https://www.youtube.com/shorts/") && inputValue.match(regex3)){
+        inflag = true;
     }
-    if(inputValue.includes("https://youtube.com/shorts/")){
-        flag = true;
+    if(inputValue.includes("https://youtube.com/shorts/") && inputValue.match(regex3)){
+        inflag = true;
     }
     
 
     
-    if (flag) {
-        alert("true");
+    if (inflag) {
+        flag = inflag;
         sendResponse();
-        return true;
+        closeModal();
+        error = '';
     } else {
-        alert("false");
-        return false;
+        flag = inflag;
+        error = '不正なURLです';
+        showErrorPopup();
+    }
+    
+    
+}
+
+function checkDuplicatesUrlPhone() {
+    
+    var inputValue = document.getElementById('url-phone').value;
+    var inflag = false
+    console.log(inputValue);
+
+    let error = document.getElementById('urlError_movie4').innerHTML
+    var regex = /v=([A-Za-z0-9-]{11})/;
+    var regex2 = /be\/([A-Za-z0-9-]{11})/;
+    var regex3 = /shorts\/([A-Za-z0-9-]{11})/;
+
+    if(inputValue.includes("https://www.youtube.com/watch?v=") && inputValue.match(regex)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://youtu.be/") && inputValue.match(regex2)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://www.youtube.com/shorts/") && inputValue.match(regex3)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://youtube.com/shorts/") && inputValue.match(regex3)){
+        inflag = true;
+    }
+    
+
+    
+    if (inflag) {
+        flag = inflag;
+        sendResponse();
+        closeModal();
+        error = '';
+    } else {
+        flag = inflag;
+        error = '不正なURLです';
+        showErrorPopup();
     }
     
     
@@ -231,7 +348,7 @@ function checkDuplicates() {
 
 function removeFeatureShare(input) {
     var inputValue = input.value;
-    var flag = false
+    var dflag = false
     let error = document.getElementById('urlError_movie').innerHTML
     console.log(error);
     if (inputValue.includes("?feature=share")) {
@@ -242,26 +359,71 @@ function removeFeatureShare(input) {
       input.value = inputValue.substring(0, inputValue.indexOf("&list="));
     }
 
-    if(inputValue.includes("https://www.youtube.com/watch?v=")){
-        flag = true;
-    }
-    if(inputValue.includes("https://youtu.be/")){
-        flag = true;
-    }
-    if(inputValue.includes("https://www.youtube.com/shorts/")){
-        flag = true;
-    }
-    if(inputValue.includes("https://youtube.com/shorts/")){
-        flag = true;
-    }
-    let a = 'a';
-    if(flag){
-        a = '';
-    }else{
-        a = 'このURLは入力できません';
-    }
-    error = document.getElementById('urlError_movie');
-    error.innerHTML = a;
-    console.log(error.innerHTML);
+    // if(inputValue.includes("https://www.youtube.com/watch?v=")){
+    //     dflag = true;
+    // }
+    // if(inputValue.includes("https://youtu.be/")){
+    //     dflag = true;
+    // }
+    // if(inputValue.includes("https://www.youtube.com/shorts/")){
+    //     dflag = true;
+    // }
+    // if(inputValue.includes("https://youtube.com/shorts/")){
+    //     dflag = true;
+    // }
+    // let a = 'a';
+    // if(dflag){
+    //     a = '';
+    // }else{
+    //     a = 'このURLは入力できません';
+    // }
+    // error = document.getElementById('urlError_movie');
+    // error.innerHTML = a;
+    // console.log(error.innerHTML);
 
   }
+
+    function showErrorPopup() {
+        $("#error-popup").show();
+        $("#error-popup2").show();
+        $("#error-popup3").show();
+        $("#error-popup4").show();
+    }
+    
+    $(document).ready(function () {
+    $("#back-button").click(function () {
+    $("#error-popup").hide();
+    $("#error-popup2").hide();
+    $("#error-popup3").hide();
+    $("#error-popup4").hide();
+    
+    });
+    $("#back-button2").click(function () {
+    $("#error-popup").hide();
+    $("#error-popup2").hide();
+    $("#error-popup3").hide();
+    $("#error-popup4").hide();
+    
+    });
+    $("#back-button3").click(function () {
+    $("#error-popup").hide();
+    $("#error-popup2").hide();
+    $("#error-popup3").hide();
+    $("#error-popup4").hide();
+    
+    });
+    $("#back-button4").click(function () {
+    $("#error-popup").hide();
+    $("#error-popup2").hide();
+    $("#error-popup3").hide();
+    $("#error-popup4").hide();
+    
+    });
+    });
+    
+    
+    
+    
+    
+  
+  

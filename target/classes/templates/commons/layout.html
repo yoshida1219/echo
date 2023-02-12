@@ -231,7 +231,7 @@
                             <div class="stronger">投稿画面</div>
                             <div class="formbody">
 
-                                <form th:object="${responseCreateForm}" class="posting-form" onsubmit="return checkDuplicates()">
+                                <form th:object="${responseCreateForm}" class="posting-form" onsubmit="checkDuplicatesThread()">
                                     
                                         <!-- 動画URLの入力 -->
                                         <input class="formelem maxwidth url" id="url-pc-thread"
@@ -251,6 +251,7 @@
                                 </form>
 
                             </div>
+                            
                         </div>
 
                         <div class="formbox ">
@@ -264,6 +265,12 @@
                                 </iframe>
                             </div>
                         </div>
+                        <div id="error-popup" class="popup-container">
+                            <div class="popup-content">
+                              <p>入力されたURLが正しくありません。正しいYouTubeのURLを入力してください。</p>
+                              <button id="back-button">戻る</button>
+                            </div>
+                          </div>
                     </div>
 
                     <!-- ホームに投稿 -->
@@ -274,12 +281,12 @@
                             <div class="stronger">投稿画面</div>
                             <div class="formbody">
 
-                                <form th:object="${responseCreateForm}" th:action="@{/response_creater}" class="posting-form">
+                                <form th:object="${responseCreateForm}" th:action="@{/response_creater}" class="posting-form" onsubmit="checkDuplicatesShare()">
                                         
                                         <!-- 動画URLの入力 -->
                                         <input type="text" class="formelem maxwidth url" id="url-pc-share"
                                             oninput="removeFeatureShare(this)" placeholder="動画URL" size="70" th:field="*{url}"   required>
-                                        <p id="urlError_movie"></p>
+                                        <p id="urlError_movie2"></p>
                                         <!-- コメントの入力 -->
                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
                                             wrap="off" th:field="*{response_name}" required></textarea>
@@ -304,6 +311,12 @@
                                 </iframe>
                             </div>
                         </div>
+                        <div id="error-popup2" class="popup-container">
+                            <div class="popup-content">
+                              <p>入力されたURLが正しくありません。正しいYouTubeのURLを入力してください。</p>
+                              <button id="back-button2">戻る</button>
+                            </div>
+                          </div>
                     </div>
 
                     <div class="modelMain sure_sesaku tweet-03">
@@ -389,13 +402,13 @@
                                             <div class="stronger">投稿画面</div>
                                             <div class="formbody">
 
-                                                <form th:object="${responseCreateForm}">
+                                                <form th:object="${responseCreateForm}" onsubmit="checkDuplicatesUrl()">
                                                     
                                                         <!-- 動画URLの入力 -->
                                                         <input class="formelem maxwidth" id="video-url"
                                                             oninput="removeFeatureShare(this)" placeholder="動画URL"
                                                             size="70" th:field="*{url}" minlength="11" required>
-                                                            <p id="urlError_movie"></p>
+                                                            <p id="urlError_movie3"></p>
                                                         <div id="video-container"></div>
 
                                                         <!-- コメントの入力 -->
@@ -415,6 +428,7 @@
                                                 </form>
 
                                             </div>
+                                            
                                         </div>
 
                                         <div class="formbox ">
@@ -428,6 +442,12 @@
                                                 </iframe>
                                             </div>
                                         </div>
+                                        <div id="error-popup3" class="popup-container">
+                                            <div class="popup-content">
+                                              <p>入力されたURLが正しくありません。正しいYouTubeのURLを入力してください。</p>
+                                              <button id="back-button3">戻る</button>
+                                            </div>
+                                          </div>
                                     </div>
                                     <div class="modalMain sure_kyouyu tweet-02">
 
@@ -436,13 +456,13 @@
                                             <div class="formbody">
 
                                                 <form th:object="${responseCreateForm}"
-                                                    th:action="@{/response_creater}">
+                                                    th:action="@{/response_creater}" onsubmit="checkDuplicatesUrlPhone()">
                                                     
                                                         <!-- 動画URLの入力 -->
                                                         <input class="formelem maxwidth url" id="url-phone"  
                                                             oninput="removeFeatureShare(this)" placeholder="動画URL" size="70" th:field="*{url}"
                                                             minlength="11" required>
-                                                            <p id="urlError_movie"></p>
+                                                            <p id="urlError_movie4"></p>
 
                                                         <!-- コメントの入力 -->
                                                         <textarea class="formelem maxwidth" placeholder="コメント" rows="2"
@@ -472,6 +492,12 @@
                                                 </iframe>
                                             </div>
                                         </div>
+                                        <div id="error-popup4" class="popup-container">
+                                            <div class="popup-content">
+                                              <p>入力されたURLが正しくありません。正しいYouTubeのURLを入力してください。</p>
+                                              <button id="back-button4">戻る</button>
+                                            </div>
+                                          </div>
 
                                     </div>
                                     <div class="modelMain sure_sesaku tweet-03">
@@ -635,7 +661,7 @@
                     <div class="formbox">
                         <div class="stronger">投稿画面</div>
                         <div class="formbody">
-                            <form method="" accept-charset="Shift_JIS" action="" onsubmit="return checkDuplicates()">
+                            <form method="" accept-charset="Shift_JIS" action="" onsubmit="checkDuplicates()">
                                 <p><input class="formelem maxwidth" placeholder="タグ" name="mail" size="70">
                                     <input class="formelem maxwidth" id="url" placeholder="動画URL" name="FROM" size="70">
                                     <textarea class="formelem maxwidth" placeholder="コメント内容" rows="5" cols="70"
