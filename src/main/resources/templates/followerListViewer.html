@@ -23,6 +23,7 @@
             <div class="center">
 
                 <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
+                <th:block th:replace="~{commons/layout :: humber-menu}"></th:block>
 
                 <!--ここが機能していないため全体が動かなかったため、一時コメントアウトしています(2023-02-11(阿部))-->
                 <!--
@@ -85,7 +86,10 @@
                                     <div class="list">
 
                                         <div class="fl-img">
-                                            <img th:src="${obj.icon}">
+                                             <button
+                                            th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
+                                                <img th:src="${obj.icon}">
+                                            </button>
                                         </div>
 
                                         <div class="fl-user user">
