@@ -227,7 +227,7 @@ $(".m-tweet").on("click", () => {
     $(".popupBack").css("display", "block");
 })
 
-$(".popupBack").on("click", () => {
+$(".popupBack,.pop13").on("click", () => {
     $(".popupModal1").css("display", "none");
     $(".popupBack").css("display", "none");
 })
