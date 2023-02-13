@@ -1,5 +1,4 @@
-.popupModal1>input {
-  /* ラジオボックス非表示 */
+/* .popupModal1>input {
   display: none;
 }
 
@@ -8,12 +7,10 @@
 }
 
 .modalPopup2 {
-  /* 初期設定 ポップアップ非表示 */
   display: none;
 }
 
 .popupModal1>input:nth-child(1):checked+label+input:nth-child(3)+label+input:nth-child(5)+label+.modalPopup2 {
-  /* ラジオ１ チェックでポップアップ表示 */
   display: block;
   z-index: 998;
   position: fixed;
@@ -32,8 +29,6 @@
 }
 
 @media (min-width: 768px) {
-
-  /* PCのときはページの真ん中の600x600領域 */
   .popupModal1>input:nth-child(1):checked+label+input:nth-child(3)+label+input:nth-child(5)+label+.modalPopup2 {
     width: 600px;
     height: 600px;
@@ -50,7 +45,6 @@
 }
 
 .popupModal1>input:nth-child(1):checked+label+input:nth-child(3)+label+input:nth-child(5)+label+.modalPopup2>div {
-  /* */
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   display: inline-block;
@@ -66,14 +60,11 @@
 }
 
 .popupModal1>input:nth-child(1):checked+label+input:nth-child(3)+label+input:nth-child(5)+label+.modalPopup2>div>img {
-  /* ポップアップの中の要素 */
   max-width: 100%;
 }
 
 .popupModal1>input:nth-child(1)+label~label {
   display: none;
-  /* ラジオ１ 以外のラベルを初期は非表示 */
-
 }
 
 .popupModal1>input:nth-child(1):checked+label+input:nth-child(3)+label {
@@ -93,7 +84,6 @@
   background: rgba(255, 255, 255, 0.5);
   display: inline-block;
   position: fixed;
-  /* left: 10px; */
   background-color: #006a10;
   top: 58px;
   right: 21px;
@@ -110,9 +100,8 @@
 
 .popupModal1>input:nth-child(1)+label+input:nth-child(3):checked+label+input:nth-child(5)+label+.modalPopup2,
 .popupModal1>input:nth-child(1)+label+input:nth-child(3)+label+input:nth-child(5):checked+label+.modalPopup2 {
-  /* ラジオ２と３ どっちかチェックでポップアップ非表示 */
   display: none;
-}
+} */
 
 
 .modalPopup2 {
@@ -184,4 +173,43 @@ background-color: #6a8091;
 }
 .sure_toukou{
   display: none;
+}
+
+.popupModal1 {
+  display: none;
+  z-index: 998;
+  position: fixed;
+  width: 90%;
+  height: 80%;
+  border-radius: 20px;
+  left: 50%;
+  top: 45%;
+  margin-top: 30px;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 7px 10px;
+  overflow: hidden;
+}
+
+.popupBack {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
+  background: rgba(100, 100, 100, 0.5);
+}
+
+.pop13 {
+  font-size: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  background: green;
+  width: 46px;
 }

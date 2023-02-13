@@ -165,8 +165,6 @@ $(".url").on("input", (event) => {
 })
 
 
-
-
 function checkDuplicates() {
     
     let flag = true;
@@ -179,15 +177,11 @@ function checkDuplicates() {
         flag = false;
     }
     
-
-    
     if (flag) {
       return true;
     } else {
       return false;
     }
-    
-    
 }
 
 function removeFeatureShare(input) {
@@ -226,3 +220,14 @@ function removeFeatureShare(input) {
     console.log(error);
 
   }
+
+
+$(".m-tweet").on("click", () => {
+    $(".popupModal1").css("display", "block");
+    $(".popupBack").css("display", "block");
+})
+
+$(".popupBack,.pop13").on("click", () => {
+    $(".popupModal1").css("display", "none");
+    $(".popupBack").css("display", "none");
+})
