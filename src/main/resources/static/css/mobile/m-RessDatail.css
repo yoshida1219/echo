@@ -16,7 +16,7 @@
     /* width: 85%; */
     background-color: #f7f7f7;
     border-radius: 10px;
-    margin: 43vh 2% 0% 2%;
+    margin: 48vh 2% 0% 2%;
     padding: 10px  5px;
 }
 
@@ -84,7 +84,7 @@ iframe {
     top: 0;
     right: 0;
     z-index: 1;
-    height: 43%;
+    height: 38%;
     /* padding-top: 13.5%; */
     margin-top: 8.5vh;
 }
