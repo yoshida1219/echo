@@ -557,10 +557,10 @@
                                         <div class="formbox">
                                             <div class="stronger">スレッド作成画面</div>
                                             <div class="formbody">
-                                                <form method="post">
+                                                <form method="post" th:action="@{/Hiroba/thread_create}" th:object="${threadCreateForm}">
                                                     <p>
 
-                                                        <select class="formelem maxwidth" required>
+                                                        <select class="formelem maxwidth" th:field="*{genre_id}" required>
                                                             <option value="">ジャンルを選択してください</option>
 
                                                             <th:block th:unless="${#lists.isEmpty(jenre)}">
@@ -571,12 +571,11 @@
                                                             </th:block>
 
                                                         </select>
+            
+                                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="70"
+                                                            wrap="off" maxlength="200" th:field="*{thread_name}" required></textarea>
 
-                                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
-                                                            cols="70" wrap="off" maxlength="200" required></textarea>
-
-                                                        <input class="submitbtn tweebtn" type="submit" value="スレッド作成"
-                                                            name="submit">
+                                                        <input class="submitbtn tweebtn" type="submit" value="スレッド作成" name="submit">
                                                     </p>
                                                 </form>
                                             </div>
