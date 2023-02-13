@@ -108,6 +108,9 @@ function sendResponsePc() {
 }
 
 function sendResponseMobile() {
+    $(".popupModal1").css("display", "none");
+    $(".popupBack").css("display", "none");
+
     stompClient.send("/app/response", {}, JSON.stringify({
         'url':$("#video-url").val(), 
         'response_name':$("#response_name_mobile").val(), 
