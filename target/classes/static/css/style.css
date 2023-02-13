@@ -555,7 +555,7 @@ iframe {
 }
 
 .osusu li {
-  background-color: #8ae1cd;
+  /* background-color: #8ae1cd; */
   /* height: 6.5vh; */
   /* margin: 5px; */
   padding: 0.3em;
@@ -565,6 +565,12 @@ iframe {
   display: flex;
   width: 100%;
   justify-content: center;
+  background-color: burlywood;
+  padding: 5px;
+}
+
+.ura{
+  background:#88ae8c
 }
 
 #user_icon {

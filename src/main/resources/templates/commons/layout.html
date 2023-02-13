@@ -645,12 +645,12 @@
 
         <!-- 通知エリア -->
         <div class="light2">
-            <p>表示された人にフォローされました</p>
+            <p>フォロー・通知</p>
             <ul class="osusu">
                 <li th:each="obj:${follow_notice}" th:object="${obj}" class="result_user">
                     <th:block th:if="*{reason}=='follow'">
                         <button
-                            th:attr="onClick='location.href=\''+@{/notice?user_id={user_id} (user_id=*{user_id})}+'\''">
+                            th:attr="onClick='location.href=\''+@{/notice?user_id={user_id} (user_id=*{user_id})}+'\''"class="ura">
                             <div id="notice_user">
                                 <img th:src="*{icon}" alt="">
                             </div>
