@@ -79,7 +79,7 @@
   background-color: #CCFF99;
 }
 
-.fl-img{/* width: 10%; */height: 105px;padding: 5px;text-align: center;margin: auto;display: block;}
+.fl-img{width: 130px;height: 130px;padding: 5px;text-align: center;margin: auto;display: block;background-color: aliceblue;}
 .fl-user{width: 70%;height: 100%;}
 .fl-btn{
   width: 20%;
