@@ -250,10 +250,10 @@
                             <div class="formbody">
 
                                 <!-- <form th:object="${responseCreateForm}" class="posting-form"> -->
-                                    <form th:object="${responseCreateForm}" class="posting-form" onsubmit="checkDuplicatesThread()">
+                                    <form th:object="${responseCreateForm}" class="posting-form" onsubmit="event.preventDefault(), checkDuplicatesThread()">
                                     
                                         <!-- 動画URLの入力 -->
-                                        <input class="formelem maxwidth url" id="url-pc-thread"
+                                        <input class="formelem maxwidth url" id="url-pc-thread" type="text"
                                             oninput="removeFeatureShare(this)" placeholder="動画URL" th:field="*{url}"
                                             required>
                                             <p id="urlError_movie"></p>
