@@ -76,19 +76,19 @@ closeBtn.forEach(c => c.addEventListener('click', closeModal))
 
 
 
-$(function () {
-    $("form").on('submit', function (e) {
+// $(function () {
+//     $("form").on('submit', function (e) {
 
-        if(($("#url-pc-thread").val()))
+//         if(($("#url-pc-thread").val()))
 
-        $("#url-pc-thread").val("");
-        $("#response_name").val("");
-        $("#video-player").attr("src", "");
+//         $("#url-pc-thread").val("");
+//         $("#response_name").val("");
+//         $("#video-player").attr("src", "");
 
-        e.preventDefault();
-        // closeModal();
-    });
-    // $( "#send" ).click(function() { sendResponse(); });
-});
+//         e.preventDefault();
+//         // closeModal();
+//     });
+//     // $( "#send" ).click(function() { sendResponse(); });
+// });
 
-setTimeout("connect()", 3000);
+// setTimeout("connect()", 3000);

@@ -56,15 +56,15 @@ function sendResponse() {
 }
 
 
-$(function () {
+// $(function () {
 
-    $("#comment_form").on('submit', function (e) {
-        e.preventDefault();
+//     $("#comment_form").on('submit', function (e) {
+//         e.preventDefault();
         
-        sendResponse();
+//         sendResponse();
 
-        $("#CommentText").val("");
-    });
-});
+//         $("#CommentText").val("");
+//     });
+// });
 
-setTimeout("connect()", 3000);
+// setTimeout("connect()", 3000);
