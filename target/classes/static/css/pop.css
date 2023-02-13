@@ -296,5 +296,43 @@ img{
 
 .error {
   color: red;
-  text-align: start;
+  text-align: center;
+}
+
+.popup-container,  .popup-container2{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+}
+
+.popup-content {
+  position: absolute;
+  color: #000000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 50;
+}
+
+#back-button, #back-button2{
+  color: #fff;
+  background-color: #333;
+  border-color: #ffffff;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  border: 1px solid transparent;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 15px;
+  border-radius: 4px;
 }

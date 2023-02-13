@@ -124,6 +124,12 @@ public class HomeController {
         // if(result.hasErrors()) {
         //     return "";
         // }
+        System.out.println("テスト");
+        System.out.println("テスト");
+        System.out.println("テスト");
+        System.out.println("テスト");
+        System.out.println("テスト");
+        
         responseCreateForm.setThread_id(null);
         collection.response_create(responseCreateForm);
 
