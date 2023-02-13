@@ -21,13 +21,7 @@
     <main>
         <div class="moto">
             <div class="center">
-
-                <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
-
-                <!--ここが機能していないため全体が動かなかったため、一時コメントアウトしています(2023-02-11(阿部))-->
-                <!--
-                    <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
-                -->
+                <th:block th:replace="~{commons/layout :: humber-menu}"></th:block>
 
                 <!-- 中央 -->
                 <div class="kari cent-1">
@@ -123,13 +117,13 @@
             </div>
 
             <!--通知エリア（右） -->
-            <div class="side" th:replace="~{commons/layout :: side}"></div>
 
         </div>
         <footer>
             <p id="lasrrt">Copyright © 2023 -- 一般社団法人阿部情報大臣湯沢支部 All Rights Reserved </p>
         </footer>
         <!-- <button class="modal__button create-sa" id="open-modal">投稿</button> -->
+        <div class="side" th:replace="~{commons/layout :: side}"></div>
 
     </main>
 
