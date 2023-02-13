@@ -31,7 +31,7 @@ public interface UserRepository extends CrudRepository<User, String>{
         @Param("search_name") String search_name
     );
 
-    @Query("select *, DATE_FORMAT(open_date, '%Y/%m/%d') as open_date_format from user where user_id = :user_id;")
+    @Query("select * from user where user_id = :user_id;")
     Optional<User> findMypageUser(@Param("user_id") String user_id);
 
     @Query("SELECT user_id FROM user WHERE search_name = :search_name;")
