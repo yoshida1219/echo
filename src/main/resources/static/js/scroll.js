@@ -13,14 +13,14 @@ function scroll_to_top(){
 
 
 //スクロール時のイベントを追加
-window.addEventListener( 'scroll' , scroll_event );
+// window.addEventListener( 'scroll' , scroll_event );
 
-function scroll_event(){
+// function scroll_event(){
 	
-	if(window.pageYOffset > 400){
-		scroll_to_top_btn.style.opacity = '1';
-	}else	if(window.pageYOffset < 400){
-		scroll_to_top_btn.style.opacity = '0';
-	}
+// 	if(window.pageYOffset > 400){
+// 		scroll_to_top_btn.style.opacity = '1';
+// 	}else	if(window.pageYOffset < 400){
+// 		scroll_to_top_btn.style.opacity = '0';
+// 	}
 	
-};
+// };

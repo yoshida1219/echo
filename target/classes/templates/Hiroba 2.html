@@ -19,7 +19,7 @@
                 <th:block th:replace="~{commons/layout :: humber-menu}"></th:block>
 
                 <!-- 中央 -->
-                <div class="kari cent-1">
+                <div class="kari">
 
                     
 
@@ -28,14 +28,6 @@
 
 
                         <blockquote>
-                            <div class="Frame-header">
-                                <div class="heading-2">
-                                    <a class="btn-flat-simple"
-                                        th:attr="onClick='location.href=\''+@{/Hiroba/ThreadList/popularThread}+'\''">
-                                        <i class="fa fa-caret-right"></i> もっと見る
-                                    </a>
-                                </div>
-                            </div>
                             <div class="container2">
                                 <li class="news-item container-item rank" th:each="obj:${spikeupmovie}">
                                     <button

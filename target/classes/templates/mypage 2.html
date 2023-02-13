@@ -21,7 +21,7 @@
                 <th:block th:replace="~{commons/layout :: humber-menu}"></th:block>
 
                 <!-- 中央 -->
-                <div class="kari cent-1">
+                <div class="kari">
                     
                     <!-- マイページ　上のカード -->
                     <div class="mypage-back">
@@ -126,13 +126,10 @@
                             </div>
 
                             <div class="start-data">
-                                <p>登録日：<span>[[${list.open_date}]]</span><span>投稿数：[[${responseCount.submitcount}]]</span></p>
+                                <!--隙間もなく情報が詰まっているれいあうとだったため、臨時的に全角の空白を置きました(2023-02-12(阿部))-->
+                                <p>登録日：<span>[[${list.open_date}]]　　</span><span>投稿数：[[${responseCount.submitcount}]]</span></p>
                             </div>
-
-
                         </div>
-
-
                     </div>
 
                     <!-- pickup -->
@@ -141,16 +138,23 @@
 
                             <div class="dwon-ex2 ggf">
 
-                                <ul class="pick-list">
+                                <ul class="pick-list" th:unless="${#lists.isEmpty(favoriteMovieList)}">
                                     <li class="news-item" th:each="loop : ${favoriteMovieList}">
 
                                         <th:block th:if="${login}==${list.user_id}">
-                                            <a th:href="@{/favoriteMovie?user_id={user_id}&movie_id={movie_id}&check=1 (user_id=${loop.user_id}, movie_id=${loop.movie_id})}"
+                                            <a th:href="@{/favoriteMovie?user_id={user_id}&movie_id={movie_id}&response_id={response_id}&check=1 (user_id=${loop.user_id}, movie_id=${loop.movie_id}, response_id=${loop.response_id})}"
                                                 class="example">解除</a>
                                         </th:block>
 
                                         <div class="news-item-container">
+                                            <button
+                                            th:attr="onClick='location.href=\''+ @{/Hiroba/RessDetail/{url}?&user_id={user_id}&response_id={response_id} (url=${loop.url}, user_id=${loop.user_id}, response_id=${loop.response_id})} +'\''">
+
                                             <div class="image-wrapper">
+                                                <!-- time -->
+                                                <div class="video-time-labe">
+                                                    <p>[[${loop.movie_time}]]</p>
+                                                </div>
                                                 <img th:src="${loop.thumbnail}" alt="">
                                             </div>
 
@@ -159,6 +163,7 @@
                                                 <div class="title"><span
                                                         class="text text-overflow">[[${loop.movie_name}]]</span></div>
                                             </div>
+                                            </button>
 
 
                                         </div>
@@ -174,7 +179,7 @@
 
                         <div class="dwon-ex2 ">
 
-                            <ul class="pick-list down">
+                            <ul class="pick-list down"  th:unless="${#lists.isEmpty(myResponseList)}">
                                 <li class="news-item" th:each=" loop : ${myResponseList}">
                                     <button
                                         th:attr="onClick='location.href=\''+ @{/Hiroba/RessDetail/{url}?&user_id={user_id}&response_id={response_id} (url=${loop.url}, user_id=${loop.user_id}, response_id=${loop.response_id})} +'\''">
@@ -201,13 +206,13 @@
                                                 </th:block>
                                                 <!-- time -->
                                                 <div class="video-time-labe">
-                                                    <p>10:25</p>
+                                                    <p>[[${loop.movie_time}]]</p>
                                                 </div>
                                                 <img th:src="${loop.thumbnail}" alt="">
                                             </div>
                                             <!-- お気に -->
                                             <th:block th:if="${login}==${list.user_id}">
-                                                <a th:href="@{/favoriteMovie?user_id={user_id}&movie_id={movie_id}&check=0 (user_id=${loop.user_id}, movie_id=${loop.movie_id})}"
+                                                <a th:href="@{/favoriteMovie?user_id={user_id}&movie_id={movie_id}&response_id={response_id}&check=0 (user_id=${loop.user_id}, movie_id=${loop.movie_id}, response_id=${loop.response_id})}"
                                                     class="example">お気に入り登録</a>
                                             </th:block>
 

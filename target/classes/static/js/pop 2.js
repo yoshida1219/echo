@@ -155,13 +155,9 @@ $(".url").on("input", (event) => {
     let input_url = $("#" + id).val();
     let url = "https://www.youtube.com/embed/";
 
-    
-
     if(input_url.length < 11) {
         return
     }
-
-    
 
     url += input_url.substr(-11)
 
@@ -170,50 +166,188 @@ $(".url").on("input", (event) => {
     $(".video-player").attr("src", url)  
 })
 
-$(".posting-form").on("submit", ()=> {
-    console.log("submit");
-    console.log($("iframe").document);
-    console.log($(".ytp-error").length);
 
-    if($(".ytp-error").length) {
-        console.log("success");
-    }else {
-        console.log("error");
+// function checkDuplicates() {
+    
+//     let flag = true;
+//     var input_url = document.getElementById('url-pc-share').value;
+
+//     if (input_url.includes("https://www.youtube.com/@")) {
+//         alert("error2");
+//         var urlError = document.getElementById('urlError');
+        
+//         flag = false;
+//     }
+    
+
+    
+//     if (flag) {
+//       return true;
+//     } else {
+//       return false;
+//     }
+    
+    
+// }
+
+
+
+var flag = true;
+
+function checkDuplicatesThread() {
+    let error = document.getElementById('urlError_movie').innerHTML
+    var inputValue = document.getElementById('url-pc-thread').value;
+    var inflag = false
+    console.log(inputValue);
+    var regex = /v=([A-Za-z0-9-_]{11})/;
+    var regex2 = /be\/([A-Za-z0-9-_]{11})/;
+    var regex3 = /shorts\/([A-Za-z0-9-_]{11})/;
+
+    if(inputValue.includes("https://www.youtube.com/watch?v=") && inputValue.match(regex)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://youtu.be/") && inputValue.match(regex2)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://www.youtube.com/shorts/") && inputValue.match(regex3)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://youtube.com/shorts/") && inputValue.match(regex3)){
+        inflag = true;
+    }
+
+    if (inflag) {
+        flag = inflag;
+        sendResponse();
+        closeModal();
+        error = '';
+        return true;
+    } else {
+        flag = inflag;
+        error = '不正なURLです';
+        showErrorPopup();
         return false;
     }
-})
 
-
-
-function checkDuplicates() {
-    
-    let flag = true;
-    var input_url = document.getElementById('url-pc-share').value;
-
-    if (input_url.includes("https://www.youtube.com/@")) {
-        alert("error2");
-        var urlError = document.getElementById('urlError');
-        
-        flag = false;
-    }
-    
-
-    
-    if (flag) {
-      return true;
-    } else {
-      return false;
-    }
-    
-    
+    return false;
 }
+
+function checkDuplicatesShare() {
+    var inputValue = document.getElementById('url-pc-share').value;
+    var inflag = false
+    console.log(inputValue);
+    let error = document.getElementById('urlError_movie2').innerHTML
+    var regex = /v=([A-Za-z0-9-_]{11})/;
+    var regex2 = /be\/([A-Za-z0-9-_]{11})/;
+    var regex3 = /shorts\/([A-Za-z0-9-_]{11})/;
+
+    if(inputValue.includes("https://www.youtube.com/watch?v=") && inputValue.match(regex)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://youtu.be/") && inputValue.match(regex2)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://www.youtube.com/shorts/") && inputValue.match(regex3)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://youtube.com/shorts/") && inputValue.match(regex3)){
+        inflag = true;
+    }
+
+    if (inflag) {
+        flag = inflag;
+        console.log("正常な動作");
+        closeModal();
+        error = '';
+    } else {
+        flag = inflag;
+        error = '不正なURLです';
+        showErrorPopup();
+        return false;
+    }
+}
+
+function checkDuplicatesUrl() {
+    closeModal();
+    
+    var inputValue = document.getElementById('video-url').value;
+    var inflag = false
+    console.log(inputValue);
+    let error = document.getElementById('urlError_movie3').innerHTML
+    var regex = /v=([A-Za-z0-9-_]{11})/;
+    var regex2 = /be\/([A-Za-z0-9-_]{11})/;
+    var regex3 = /shorts\/([A-Za-z0-9-_]{11})/;
+
+    if(inputValue.includes("https://www.youtube.com/watch?v=") && inputValue.match(regex)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://youtu.be/") && inputValue.match(regex2)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://www.youtube.com/shorts/") && inputValue.match(regex3)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://youtube.com/shorts/") && inputValue.match(regex3)){
+        inflag = true;
+    }
+
+    if (inflag) {
+        flag = inflag;
+        
+        sendResponseMobile();
+        error = '';
+    } else {
+        flag = inflag;
+        error = '不正なURLです';
+        showErrorPopup();
+    }
+}
+
+function checkDuplicatesUrlPhone() {
+
+    var inputValue = document.getElementById('url-phone').value;
+    var inflag = false
+    console.log(inputValue);
+
+    let error = document.getElementById('urlError_movie4').innerHTML
+    var regex = /v=([A-Za-z0-9-_]{11})/;
+    var regex2 = /be\/([A-Za-z0-9-_]{11})/;
+    var regex3 = /shorts\/([A-Za-z0-9-_]{11})/;
+
+    if(inputValue.includes("https://www.youtube.com/watch?v=") && inputValue.match(regex)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://youtu.be/") && inputValue.match(regex2)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://www.youtube.com/shorts/") && inputValue.match(regex3)){
+        inflag = true;
+    }
+    if(inputValue.includes("https://youtube.com/shorts/") && inputValue.match(regex3)){
+        inflag = true;
+    }
+
+
+
+    if (inflag) {
+        flag = inflag;
+        
+        closeModal();
+        error = '';
+        return true;
+    } else {
+        flag = inflag;
+        error = '不正なURLです';
+        showErrorPopup();
+        return false;
+    }
+}
+
+    
 
 function removeFeatureShare(input) {
     var inputValue = input.value;
-    var flag = false
-    let id = document.getElementById("urlError");
-    let error = id.innerText;
-    console.log(id);
+    var dflag = false
     if (inputValue.includes("?feature=share")) {
       input.value = inputValue.replace("?feature=share", "");
     }
@@ -222,25 +356,63 @@ function removeFeatureShare(input) {
       input.value = inputValue.substring(0, inputValue.indexOf("&list="));
     }
 
-    if(inputValue.includes("https://www.youtube.com/watch?v=")){
-        flag = true;
-    }
-    if(inputValue.includes("https://youtu.be/")){
-        flag = true;
-    }
-    if(inputValue.includes("https://www.youtube.com/shorts/")){
-        flag = true;
-    }
-    if(inputValue.includes("https://youtube.com/shorts/")){
-        flag = true;
-    }
+    // if(inputValue.includes("https://www.youtube.com/watch?v=")){
+    //     flag = true;
+    // }
+    // if(inputValue.includes("https://youtu.be/")){
+    //     flag = true;
+    // }
+    // if(inputValue.includes("https://www.youtube.com/shorts/")){
+    //     flag = true;
+    // }
+    // if(inputValue.includes("https://youtube.com/shorts/")){
+    //     flag = true;
+    // }
 
-    if(flag){
-        error = '';
-    }else{
-        error = 'このURLは入力できません';
-    }
+    // if(flag){
+    //     error = '';
+    // }else{
+    //     error = 'このURLは入力できません';
+    // }
 
-    console.log(error);
+    // console.log(error);
 
   }
+
+  function showErrorPopup() {
+    $("#error-popup").show();
+    $("#error-popup2").show();
+    $("#error-popup3").show();
+    $("#error-popup4").show();
+}
+
+$(document).ready(function () {
+$("#back-button").click(function () {
+$("#error-popup").hide();
+$("#error-popup2").hide();
+$("#error-popup3").hide();
+$("#error-popup4").hide();
+
+});
+$("#back-button2").click(function () {
+$("#error-popup").hide();
+$("#error-popup2").hide();
+$("#error-popup3").hide();
+$("#error-popup4").hide();
+
+});
+$("#back-button3").click(function () {
+$("#error-popup").hide();
+$("#error-popup2").hide();
+$("#error-popup3").hide();
+$("#error-popup4").hide();
+
+});
+$("#back-button4").click(function () {
+$("#error-popup").hide();
+$("#error-popup2").hide();
+$("#error-popup3").hide();
+$("#error-popup4").hide();
+
+});
+});

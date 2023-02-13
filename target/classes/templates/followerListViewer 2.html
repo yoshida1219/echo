@@ -23,10 +23,17 @@
             <div class="center">
 
                 <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
-                <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
+                <th:block th:replace="~{commons/layout :: humber-menu}"></th:block>
+
+                <!--ここが機能していないため全体が動かなかったため、一時コメントアウトしています(2023-02-11(阿部))-->
+                <!--
+                    <th:block th:replace="~{commons/layout :: humber-nemu}"></th:block>
+                -->
 
                 <!-- 中央 -->
                 <div class="kari cent-1">
+                    
+                    
 
                     <div id="tabs" class="follow-tab">
                         <ul>
@@ -79,7 +86,10 @@
                                     <div class="list">
 
                                         <div class="fl-img">
-                                            <img th:src="${obj.icon}">
+                                             <button
+                                            th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
+                                                <img th:src="${obj.icon}">
+                                            </button>
                                         </div>
 
                                         <div class="fl-user user">
@@ -111,6 +121,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
 
             </div>
@@ -123,10 +134,10 @@
             <p id="lasrrt">Copyright © 2023 -- 一般社団法人阿部情報大臣湯沢支部 All Rights Reserved </p>
         </footer>
         <!-- <button class="modal__button create-sa" id="open-modal">投稿</button> -->
-        <button id="scroll-to-top-btn">↑</button>
+
     </main>
 
-    <script th:src="@{/js/hum.js}"></script>
+    <script src="@{/js/hum.js}"></script>
     <script src="js/pop.js"></script>
     <script src="js/scroll.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

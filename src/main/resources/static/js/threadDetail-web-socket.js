@@ -91,10 +91,19 @@ function showResponse(response) {
     `);
 }
 
-function sendResponse() {
+function sendResponsePc() {
     stompClient.send("/app/response", {}, JSON.stringify({
         'url':$("#url-pc-thread").val(), 
         'response_name':$("#response_name").val(), 
+        "thread_id":$("#thread_id").val(),
+        "user_id":$("#user_id").val()
+    }));
+}
+
+function sendResponseMobile() {
+    stompClient.send("/app/response", {}, JSON.stringify({
+        'url':$("#video-url").val(), 
+        'response_name':$("#response_name_mobile").val(), 
         "thread_id":$("#thread_id").val(),
         "user_id":$("#user_id").val()
     }));
@@ -111,19 +120,26 @@ closeBtn.forEach(c => c.addEventListener('click', closeModal))
 
 
 
-$(function () {
-    $("#form-thread").on('submit', function (e) {
+// $(function () {
+//     $(".form-thread").on('submit', function (e) {
+//         console.log("ok");
+//         $(".url").val("");
+//         $("#response_name").val("");
+//         $("#video-player").attr("src", "");
 
-        if(($("#url-pc-thread").val()))
+//         e.preventDefault();
+//         closeModal();
+//     });
+//     $( ".send" ).click(function() { sendResponse(); });
+// });
 
-        $("#url-pc-thread").val("");
-        $("#response_name").val("");
-        $("#video-player").attr("src", "");
+function thread() {
+    console.log("ok");
+    $(".url").val("");
+    $("#response_name").val("");
+    $("#video-player").attr("src", "");
 
-        e.preventDefault();
-        closeModal();
-    });
-    $( "#send" ).click(function() { sendResponse(); });
-});
+    closeModal();
+}
 
-setTimeout("connect()", 3000);
+setTimeout("connect()", 1000);
