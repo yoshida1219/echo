@@ -46,6 +46,7 @@ function onPlayerStateChange(event) {
     intervalId = setInterval(countUp,100);
     done = true;
   } else {
+    console.log("aaaaa");
     clearInterval(intervalId);
     done = false;
   }
