@@ -66,7 +66,18 @@ function showResponse(response) {
 function sendResponse() {
     stompClient.send("/app/response", {}, JSON.stringify({
         'url':$("#url-pc-thread").val(), 
-        'response_name':$("#response_name").val(), 
+        'response_name':$("#response_name_pc").val(), 
+        "thread_id":$("#thread_id").val(),
+        "user_id":$("#user_id").val()
+    }));
+}
+
+function sendResponseMobile() {
+    console.log($("#response_name").val());
+
+    stompClient.send("/app/response", {}, JSON.stringify({
+        'url':$("#video-url").val(), 
+        'response_name':$("#response_name_mobile").val(), 
         "thread_id":$("#thread_id").val(),
         "user_id":$("#user_id").val()
     }));
@@ -173,6 +184,8 @@ function checkDuplicatesShare() {
 }
 
 function checkDuplicatesUrl() {
+    closeModal();
+    
     var inputValue = document.getElementById('video-url').value;
     var inflag = false
     console.log(inputValue);
@@ -196,8 +209,8 @@ function checkDuplicatesUrl() {
 
     if (inflag) {
         flag = inflag;
-        sendResponse();
-        closeModal();
+        
+        sendResponseMobile();
         error = '';
     } else {
         flag = inflag;

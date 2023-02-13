@@ -258,7 +258,7 @@
                                             required>
                                             <p id="urlError_movie"></p>
                                         <!-- コメントの入力 -->
-                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
+                                        <textarea id="response_name_pc" class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
                                             wrap="off" th:field="*{response_name}" required></textarea>
 
                                         <!-- 投稿するスレッドID -->
@@ -435,7 +435,7 @@
                             <input type="radio" name="modalPop" id="pop13" />
                             <label for="pop13">×</label>
                             
-                            <div class="modalPopup2">
+                            <div class="modalPopup2" id="modal-container">
                                 <div class="modalPopup3">
 
                                     <!-- 中身 -->
@@ -455,7 +455,7 @@
                                             <div class="stronger">投稿画面</div>
                                             <div class="formbody">
 
-                                                <form th:object="${responseCreateForm}" onsubmit="checkDuplicatesUrl()">
+                                                <form th:object="${responseCreateForm}" onsubmit="event.preventDefault(), checkDuplicatesUrl()">
 
                                                     <!-- 動画URLの入力 -->
                                                     <input class="formelem maxwidth" id="video-url"
@@ -465,7 +465,7 @@
                                                     <div id="video-container"></div>
 
                                                     <!-- コメントの入力 -->
-                                                    <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
+                                                    <textarea id="response_name_mobile" class="formelem maxwidth" placeholder="コメント" rows="5"
                                                         cols="50" wrap="off" th:field="*{response_name}" maxlength="200"
                                                         required></textarea>
 
