@@ -79,7 +79,10 @@
                                     <div class="list">
 
                                         <div class="fl-img">
-                                            <img th:src="${obj.icon}">
+                                            <button
+                                            th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
+                                                <img th:src="${obj.icon}">
+                                            </button>
                                         </div>
 
                                         <div class="fl-user user">
@@ -117,13 +120,14 @@
             </div>
 
             <!--通知エリア（右） -->
+            <div class="side" th:replace="~{commons/layout :: side}"></div>
 
         </div>
         <footer>
             <p id="lasrrt">Copyright © 2023 -- 一般社団法人阿部情報大臣湯沢支部 All Rights Reserved </p>
         </footer>
         <!-- <button class="modal__button create-sa" id="open-modal">投稿</button> -->
-        <div class="side" th:replace="~{commons/layout :: side}"></div>
+        
 
     </main>
 

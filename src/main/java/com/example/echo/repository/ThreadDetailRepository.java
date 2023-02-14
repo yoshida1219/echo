@@ -24,7 +24,7 @@ public interface ThreadDetailRepository extends CrudRepository<ThreadDetail,Stri
         + " left outer join share_count on share_count.response_creater = response.response_creater and share_count.response_id = response.response_id"
 
         + " where thread.thread_id = :thread_id"
-        + " order by like_count desc limit 3;")
+        + " order by like_count desc, response_submit asc limit 3;")
     Iterable<ThreadDetail> findThreadDetail_Popular3(
         @Param("thread_id") String thread_id
     );
