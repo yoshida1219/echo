@@ -132,7 +132,7 @@
 .popupModal1 .modalTitle {
   padding-bottom: .5em;
   margin: .5em 0;
-  border-bottom: 1px solid #666;
+  /* border-bottom: 1px solid #666; */
   font-weight: bold;
   color: black;
 }
@@ -156,13 +156,17 @@
   font-size: 14px;
 }
 
+.opbtn1, .opbtn2 {
+  background-color: #ff7b00;
+}
+
 .j2 {
 background-color: #6a8091;
 }
 
-.h2come:hover{
+/* .h2come:hover{
   background-color: #ff7b00;
-}
+} */
 
 
 .sure_kyouyu{
@@ -181,7 +185,7 @@ background-color: #6a8091;
   position: fixed;
   width: 90%;
   height: 80%;
-  border-radius: 20px;
+  border-radius: 26px;
   left: 50%;
   top: 45%;
   margin-top: 30px;
@@ -205,11 +209,11 @@ background-color: #6a8091;
 }
 
 .pop13 {
-  font-size: 30px;
+  font-size: 33px;
   position: absolute;
   top: 0;
   right: 0;
   border-radius: 50%;
   background: green;
-  width: 46px;
+  width: 50px;
 }
