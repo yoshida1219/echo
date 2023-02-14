@@ -608,3 +608,7 @@ blockquote cite {
 .opbtn1{
   display: block;
 }
+
+.opbtn2 {
+  display: none;
+}

@@ -36,8 +36,22 @@ $(".j6").click(() => {
     
 })
 
-
-
+// フォーム選択タブ
+$(".opbtn1").on("click", ()=> {
+    $(".opbtn1").css("background-color", "#ff7b00");
+    $(".opbtn2").css("background-color", "#6a8091");
+    $(".opbtn3").css("background-color", "#6a8091");
+})
+$(".opbtn2").on("click", ()=> {
+    $(".opbtn1").css("background-color", "#6a8091");
+    $(".opbtn2").css("background-color", "#ff7b00");
+    $(".opbtn3").css("background-color", "#6a8091");
+})
+$(".opbtn3").on("click", ()=> {
+    $(".opbtn1").css("background-color", "#6a8091");
+    $(".opbtn2").css("background-color", "#6a8091");
+    $(".opbtn3").css("background-color", "#ff7b00");
+})
 
 
 

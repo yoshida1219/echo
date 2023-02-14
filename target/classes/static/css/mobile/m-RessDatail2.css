@@ -602,6 +602,10 @@ blockquote cite {
 
 .opbtn1{
   display: block;
+  
+}
+.opbtn2 {
+  display: none;
 }
 .sure_kyouyu{
   display: none;

@@ -238,7 +238,7 @@
                     </div>
                     <div class="modalTitle nunu">
                         <h2 class="h2come j5 opbtn1">スレッドに投稿</h2>
-                        <h2 class="h2come j3 opbtn2">ホーム共有</h2>
+                        <h2 class="h2come j3 opbtn2">ホームに投稿</h2>
                         <h2 class="h2come j4 opbtn3">スレッド作成</h2>
                     </div>
 
@@ -268,9 +268,7 @@
                                         <input type="hidden" id="user_id" th:value="${session.sessionData.user_id}">
 
                                         <button class="send submitbtn tweebtn" type="submit">書き込む</button>
-
                                 </form>
-
                             </div>
                         </div>
 
@@ -310,7 +308,7 @@
 
                                     <input type="hidden" name="user_id" th:value="${session.sessionData.user_id}">
 
-                                    <input id="send" class="submitbtn tweebtn" type="submit">
+                                    <input id="send" class="submitbtn tweebtn" type="submit" value="書き込む">
                                     </p>
                                 </form>
 
@@ -434,7 +432,7 @@
                                     <div class="modalTitle nunu">
 
                                         <h2 class="h2come j6 opbtn1">スレッドに投稿</h2>
-                                        <h2 class="h2come j1 opbtn2">動画共有</h2>
+                                        <h2 class="h2come j1 opbtn2">ホームに投稿</h2>
                                         <h2 class="h2come j2 opbtn3">スレッド作成</h2>
                                     </div>
 
@@ -509,7 +507,7 @@
                                                         th:value="${session.sessionData.user_id}">
 
                                                     <button id="send" class="submitbtn tweebtn"
-                                                        type="submit">投稿</button>
+                                                        type="submit">書き込む</button>
 
                                                 </form>
 
