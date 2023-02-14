@@ -226,6 +226,9 @@ public class HirobaController {
             String login_user = sessionData.getUser_id();
             threadList.setThread_id(selectResponseService.SelectThread_id(response_id, user_id));
             threadList.setMovie_id(selectResponseService.SelectMovie_id(response_id, user_id));
+            if(threadList.getThread_id()==null) {
+                threadList.setThread_id("T000000");
+            }
             Iterable<SharedThread> thread = sharedThreadService.selectThread(threadList);
 
             // 2023-02-01追加(阿部)
