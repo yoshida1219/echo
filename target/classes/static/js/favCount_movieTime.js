@@ -41,14 +41,14 @@ function onPlayerReady(event) {
 //    the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
+  clearInterval(intervalId);
   if (event.data == YT.PlayerState.PLAYING && !done) {
-    clearInterval(intervalId);
     intervalId = setInterval(countUp,100);
     done = true;
   } else {
     console.log("aaaaa");
-    clearInterval(intervalId);
     done = false;
+    iine();
   }
 }
 
@@ -61,10 +61,14 @@ function countUp(){
 }
 
 
+window.onbeforeunload = function() {
+  iine();
+}
 
-//ページを離れるとき　いいね数を取り出す
-window.onbeforeunload = function(e) {
-  alert("ok");
+
+//いいね数を取り出す
+function iine(){
+  console.log("stop");
   let before_like = $("#regacy_fav_count").val();
   let now_like = $("#fav_count").text();
   
@@ -78,7 +82,7 @@ function send_like(like) {
   let response_creater = $("#response_creater").val();
 
   let paramUrl = "/Hiroba/RessDetail/update_like?response_id=" + response_id + "&response_creater=" + response_creater  + "&like=" + like;
-  open( "URL","_blank") ;
+  //open( "URL","_blank");
 
   $.ajax({
       type : "GET",

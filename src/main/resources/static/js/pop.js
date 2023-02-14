@@ -94,26 +94,37 @@ $(".j5").click(() => {
 
 
 
-
-
-
-
 //スレッド
 $(".sure-btn2").click(() => {
     $("#search_thread").css({
         "display":"block"
     })
+    $(".sure-btn2").css({
+        "background-color":"#ff7b00"
+    })
+
     $("#search_form").css({
         "display":"none"
     })
+    $(".user-btn2").css({
+        "background-color":"#bdbdbd"
+    })
 })
+
 // ユーザー
 $(".user-btn2").click(() => {
     $("#search_thread").css({
         "display":"none"
     })
+    $(".sure-btn2").css({
+        "background-color":"#bdbdbd"
+    })
+
     $("#search_form").css({
         "display":"block"
+    })
+    $(".user-btn2").css({
+        "background-color":"#ff7b00"
     })
 })
 
