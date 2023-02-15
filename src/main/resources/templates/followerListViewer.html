@@ -17,6 +17,7 @@
 
 <body>
     <!-- pc左バー 　　　＆スマホ上ヘッド＆　　PC版popup内容　　-->
+    
     <header th:replace="~{commons/layout :: header}"></header>
     <main>
         <div class="moto">
@@ -131,12 +132,12 @@
 
     </main>
 
-    <script src="@{/js/hum.js}"></script>
-    <script src="@{/js/pop.js}"></script>
-    <script src="@{/js/scroll.js}"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="@{/js/jquery.tab.js}" type="text/javascript"></script>
     <script th:src="@{/js/hum.js}"></script>
+    <script th:src="@{/js/pop.js}"></script>
+    <script th:src="@{/js/scroll.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script th:src="@{/js/jquery.tab.js}" type="text/javascript"></script>
+    <!-- <script th:src="@{/js/hum.js}"></script> -->
 
     <script>
         $(document).ready(function () {
