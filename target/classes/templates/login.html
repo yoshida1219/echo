@@ -61,7 +61,7 @@
           <!-- アカウント作成フォーム -->
           <form class="register-form" th:action="@{/createUser}" method="post" th:object="${createUserForm}">
             <p class="error" th:if="${name_error}" th:text="${name_error}"></p>
-            <input type="text" placeholder="ID" th:field="*{search_name}" maxlength="20" required/>
+            <input type="text" placeholder="ID" th:field="*{search_name}" maxlength="10" required/>
             <input type="text" placeholder="ニックネーム" th:field="*{user_name}" maxlength="20" required/>
             <input type="password" placeholder="password" th:field="*{pass}" maxlength="20" required/>
 

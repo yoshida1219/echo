@@ -624,14 +624,14 @@
             <!-- 検索 -->
             <div class="search" id="search_thread">
                 <form th:action="@{/Hiroba/SearchThread}">
-                    <input class="bar" type="text" name="search_word" placeholder="スレッドの検索" required>
+                    <input class="bar" type="text" name="search_word" maxlength="30" placeholder="スレッドの検索" required>
                     <input class="search_button" type="submit" value="検索">
                 </form>
             </div>
 
             <!-- 検索フォーム -->
             <form class="search" id="search_form" th:action="@{/Hiroba/search_user}">
-                <input type="text" class="bar" id="search_word" name="search_word" placeholder="ユーザ名を入力">
+                <input type="text" class="bar" id="search_word" name="search_word" maxlength="20" placeholder="ユーザ名を入力">
                 <input type="submit" class="search_button" value="検索">
             </form>
 
