@@ -187,6 +187,7 @@ img {}
     /* height: 80%; */
     position: relative;
     padding: 0em 0.8em;
+    font-size: 13px;
 }
 
 #time {
