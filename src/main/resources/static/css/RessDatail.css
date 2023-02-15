@@ -289,3 +289,7 @@ background-color: #ccd2d8;
     
 /* height: 80%; */
 }
+
+.side{
+    display: none;
+}

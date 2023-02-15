@@ -489,7 +489,7 @@ iframe {
   height: 1000px;
   top: 0px;
   font-size: 13px;
-  display: none;
+  /* display: none; */
 }
 
 #search_user {
@@ -1040,12 +1040,10 @@ ul {
 
 
 .text-user9 {
-
-  width: 80%;
-
-  text-align: left;
-
-  margin: auto;
+width: 80%;
+text-align: left;
+margin: auto;
+text-align: center;
 }
 
 .vvrhsnor {
