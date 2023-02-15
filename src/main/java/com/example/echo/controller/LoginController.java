@@ -92,7 +92,7 @@ public class LoginController {
      */
     @PostMapping("/createUser")
     public String createUser(CreateUserForm form, Model model, RedirectAttributes redirectAttributes) throws Exception{
-        if(!collection.checkSearchName(form.getSearch_name())) {;
+        if(!collection.checkSearchName("@" + form.getSearch_name())) {;
             model.addAttribute("error", "アカウント作成に失敗しました");
             model.addAttribute("name_error", "すでに使われています");
             
