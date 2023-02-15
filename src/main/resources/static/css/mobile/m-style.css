@@ -609,7 +609,7 @@ display: block;
 }
 
 .osusu li {
-  background-color: #dedede;
+  background-color: burlywood;
   /* height: 50px; */
   margin: 5px;
   position: relative;
@@ -621,15 +621,19 @@ display: block;
 }
 
 .osusu li button img{
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
+  /* position: absolute; */
+  /* top: 50%; */
+  /* left: 0; */
+  /* transform: translate(50%, 50%); */
 }
 
 #user_icon {
   /* width: 13%; */
-  /* position: relative; */
+  position: relative;
   /* margin: 0 10%; */
-  margin: auto;
+  margin: 1vh auto 0;
 }
 
 #user_details {

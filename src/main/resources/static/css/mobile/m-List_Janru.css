@@ -7,6 +7,7 @@
 .motto-tit {
   background-color: #e5e5e5;
   /* padding: 10px; */
+  margin-top: 4vh;
 }
 
 .motto-list {
@@ -56,9 +57,9 @@
   /* padding: 10px; */
   color: white;
 }
-.tag:hover{
+
+.v {
   background-color: coral;
-  color: white;
 }
 
 .content_ja {
