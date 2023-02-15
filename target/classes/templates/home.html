@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="~{commons/layout :: cssjs}"></th:block>
+
+    <link rel="stylesheet" th:href="@{/css/home.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-home.css}" media="screen and (max-width: 768px)">
+</head>
+
+<body>
+
+    <!-- pc左バー 　　　＆スマホ上ヘッド＆　　PC版popup内容　　-->
+    <div th:replace="~{commons/layout :: header}"></div>
+
+    <main>
+        <div class="moto">
+            <div class="center">
+
+                <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
+                <th:block th:replace="~{commons/layout :: humber-menu}"></th:block>
+
+                <!-- 中央 -->
+                <div class="cent-1" th:unless="${#lists.isEmpty(timeline)}">
+                    <div th:each="obj:${timeline}" class="TimeLine">
+                        <div class="flec">
+
+                            <!-- ユーザのアイコン画像 -->
+                            <div class="Frame2">
+                                <div class="vvrhsnor">
+                                    <button class="clickshow" th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=${obj.user_id}) } + '\''">
+                                        <img th:src="${obj.icon}" class="rogo2 user-img1">
+                                    </button>
+                                </div>
+                                
+                                <div class="text-user9">
+                                    <p th:text="${obj.follower_name}"></p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="Frame3 balloon1-top">
+                                <!-- <button type="button" class="clickshow" onclick="buttonClick()"> -->
+                                <button class="clickshow"
+                                    th:attr="onClick='location.href=\''+ @{/Hiroba/RessDetail/{url}?user_id={user_id}&response_id={response_id} (url=${obj.url},user_id=${obj.user_id},response_id=${obj.response_id})} +'\''">
+
+
+
+
+                                    <div class="coment">
+                                        <div class="user">
+                                            <p th:text="${obj.response_name}" class="text-overflow"></p>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="Content">
+                                        <div class="douga">
+
+
+
+                                            <div class="samneiru">
+                                                <!-- 動画のサムネ画像 -->
+                                                <img th:src="${obj.thumbnail}" alt="">
+                                            </div>
+
+
+                                            <div class="con23">
+                                                <div class="content2">
+                                                    <p class="titl text-overflow" th:text="${obj.movie_name}"></p>
+                                                </div>
+                                                <!-- <button th:attr="onClick='location.href=\' '+ @{/Hiroba/delete_response?response_creater={response_creater}&response_id={response_id} (response_creater=${obj.user_id},response_id=${obj.response_id})} + '\''">
+                                                    投稿削除
+                                                </button> -->
+                                            </div>
+                                        </div>
+
+                                        <div class="content3">
+
+
+                                            <div class="come ine">
+                                                <p class="iine">いいね</p>
+                                                <span th:text="${obj.like}"></span>
+                                            </div>
+
+                                            <div class="come kyou">
+                                                <!--<th:block th:unless="${obj.response_name}==この投稿は共有されたものです">-->
+                                                    <p class="iine2">共有</p>
+                                                    <span th:text="${obj.share}"></span>
+                                                <!--</th:block>-->
+                                            </div>
+
+
+                                            <div class="come">
+                                                <th:block th:if="${side_user.user_id}==${obj.user_id}">
+                                                    <a
+                                                        th:href="@{/Hiroba/delete_response/home?response_creater={response_creater}&response_id={response_id}&thread_id=null (response_creater=${obj.user_id},response_id=${obj.response_id})}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="35" height="35" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path d="M4 7l16 0"></path>
+                                                        <path d="M10 11l0 6"></path>
+                                                        <path d="M14 11l0 6"></path>
+                                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                                     </svg>
+                                                    </a>
+                                                    <!-- <a
+                                                        th:href="@{/Hiroba/delete_response/home?response_creater={response_creater}&response_id={response_id}&thread_id=null (response_creater=${obj.user_id},response_id=${obj.response_id})}">
+                                                        <span class="jaf">削除する</span>
+                                                    </a> -->
+                                                </th:block>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- 通知エリア（右） -->
+            <div class="side" th:replace="~{commons/layout :: side}"></div>
+        </div>
+    </main>
+
+    <script th:src="@{/js/pop.js}"></script>
+    <script th:src="@{/js/scroll.js}"></script>
+    <script th:src="@{/js/ajax.js}"></script>
+    <script th:src="@{/js/hum.js}"></script>
+</body>
+
+</html>

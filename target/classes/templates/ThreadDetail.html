@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="~{commons/layout :: cssjs}"></th:block>
+
+
+    <link rel="stylesheet" th:href="@{/css/RessDatail2.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/RessDatail-video.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-RessDatail2.css}" media="screen and (max-width: 768px)">
+
+
+    <link rel="stylesheet" th:href="@{/css/pop.css}" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" th:href="@{/css/mobile/m-pop.css}" media="screen and (max-width: 768px)">
+
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+</head>
+
+<body>
+    <!-- pc左バー 　　　＆スマホ上ヘッド＆　　PC版popup内容　　-->
+    <div th:replace="~{commons/layout :: header}"></div>
+
+    <main>
+        <div class="moto">
+            <div class="center">
+                <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
+                <th:block th:replace="~{commons/layout :: humber-menu}"></th:block>
+
+                <!-- 中央 -->
+                <div class="kari">
+
+                    <!-- タイトル -->
+                    <div class="tit-1">
+                        <div class="box25">
+                            <!-- ジャンル -->
+                            <div class="janru">
+                                <ul class="Tabs" id="NicoNewsContainer-tabs">
+                                    <li class="Tabs-tab ttab" data-tab="エンターテインメント"><span
+                                            th:text="${thread_data.jenre_name}"></span></li>
+                                </ul>
+                            </div>
+
+                            <p th:text="${thread_name}"></p>
+
+
+                            <div class="tit-2-button">
+
+                                <th:block th:if="${checkFollow}==0">
+                                    <button class="da-1 firstban">
+                                        <a th:href="@{/Hiroba/follow_thread?user_id={user_id}&thread_id={thread_id}&check=0 (user_id=${user_id}, thread_id=${thread_id})}"
+                                            class="example btn-flat-simple">スレッドをフォロー</a>
+                                    </button>
+                                </th:block>
+
+                                <th:block th:if="${checkFollow}==1">
+                                    <button class="da-1 nibanme">
+                                        <a th:href="@{/Hiroba/follow_thread?user_id={user_id}&thread_id={thread_id}&check=1 (user_id=${user_id}, thread_id=${thread_id})}"
+                                            class="example btn-flat-simple kaijo">フォローを解除</a>
+                                </th:block>
+
+                                <th:block th:if="${login_user_id}==${thread_creater}">
+                                    <button class="da-1 sanbababa">
+                                        <a th:href="@{delete_thread?thread_id={thread_id} (thread_id=${thread_id})} "
+                                            class="delll btn-flat-simple">
+                                            スレッド削除
+                                        </a>
+                                    </button>
+                                </th:block>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ランキング -->
+                    <blockquote>
+                        <div class="container2">
+
+
+                            <th:block th:unless="${#lists.isEmpty(list_popular3)}">
+                                <li class="news-item container-item rank" th:each="response, s:${list_popular3}"
+                                    th:object="${response}">
+
+                                    <button type="button" class="clickshow" onclick="buttonClick()"
+                                        th:attr="onClick='location.href=\''+@{/Hiroba/RessDetail/{url}?response_id={response_id}&user_id={user_id} (user_id=*{response_creater}, url=*{url}, response_id=*{response_id})} +'\''">
+
+                                        <div class="ribbon15-wrapper">
+
+
+                                            <span class="ribbon15">[[${s.count}]]位</span>
+                                            <div class="news-item-container">
+                                                <!-- 画像 -->
+                                                <div class="container-item-img">
+                                                    <img class="text text-overflow takasa" th:src="*{thumbnail}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="fifif">
+
+                                                <!-- タイトル -->
+                                                <div class="text">
+                                                    <span class="text  text-overflow" th:text="*{movie_name}"></span>
+
+                                                </div>
+                                                <!-- iine 共有 -->
+                                                <div class="content3 rankup">
+                                                    <p class="rankiine marking">いいね:<span th:text="*{like}"></span></p>
+                                                    <p class="rankiine2 marking">共有:<span th:text="*{share}"></span></p>
+                                                </div>
+
+
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </button>
+                                </li>
+                            </th:block>
+
+
+
+
+
+                        </div>
+                    </blockquote>
+
+                    <!-- 中身 -->
+                    <div class="kari2">
+                        <!-- 真ん中　スレ -->
+                        <div class="container3 container4">
+
+                            <!-- <div class="last-come">
+                                <div class="count-ress">
+                                    <p>＜コメント数＞コメント</p>
+                                </div>
+                                <div class="new-ress j3">
+                                    <button>レスに投稿</button>
+                                </div>
+                            </div> -->
+
+                            <!-- 一覧表示　上が最新 -->
+                            <th:block th:unless="${#lists.isEmpty(list)}">
+
+                                <!-- 投稿の表示 -->
+                                <div class="TimeLine TimeLine2" th:each="response,s:${list}" th:object="${response}">
+                                    <div class="flec flec2">
+                                        
+                                        <div class="Frame2 Frame5555">
+                                            <div class="comevgj"><p th:text="*{res_count}" class="vfdi"></p></div>
+                                            
+                                            <!-- ユーザのアイコン画像 -->
+                                            <div class="vvrhsnor vresvn"><button class="clickshow"
+                                                    th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=*{user_id}) } + '\''">
+                                                    <img th:src="*{icon}" class="rogo2">
+                                                </button></div>
+                                            <div class="text-user9">
+                                                <p th:text="*{user_name}"></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="Frame3 balloon1-left Frame4">
+                                            <button type="button" class="clickshow" onclick="buttonClick()"
+                                                th:attr="onClick='location.href=\''+@{/Hiroba/RessDetail/{url}?response_id={response_id}&user_id={user_id} (user_id=*{response_creater}, url=*{url}, response_id=*{response_id})} +'\''">
+
+                                                <div class="coment coment2">
+                                                    <div class="user">
+                                                        <p th:text="*{response_name}"></p>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="Content Content2">
+                                                    <div class="douga douga2">
+
+                                                        <div class="samneiru samneiru2">
+                                                            <!-- 動画のサムネ画像 -->
+                                                            <img th:src="*{thumbnail}" alt="">
+                                                        </div>
+
+
+
+                                                        <div class="con23 con232">
+                                                            <div class="content2 content3">
+                                                                <p class="titl" th:text="*{movie_name}"></p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="content3 content4">
+                                                        <div class="come ine come2 ine2">
+                                                            <p class="iine">いいね</p>
+                                                            <span th:text="*{like}"></span>
+                                                        </div>
+
+                                                        <div class="come kyou  come2 kyou2">
+                                                            <p class="iine2">共有</p>
+                                                            <span th:text="*{share}"></span>
+                                                        </div>
+
+                                                        <div class="come come2">
+                                                            <th:block th:if="${session.sessionData.user_id}==*{response_creater}">
+                                                                <a th:href="@{/Hiroba/delete_response/ThreadDetail?response_creater={response_creater}&response_id={response_id}&thread_id={thread_id} (response_creater=*{response_creater},response_id=*{response_id},thread_id=${thread_id})}">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="35" height="35" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path d="M4 7l16 0"></path>
+                                                                        <path d="M10 11l0 6"></path>
+                                                                        <path d="M14 11l0 6"></path>
+                                                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                                                    </svg>
+                                                                </a>
+                                                            </th:block>
+                                                        </div>
+
+
+                                                    </div>
+                                            </button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </th:block>
+
+
+
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- <div class="">
+                    <button class=" create-sa" id="open-modal2">投稿作成</button>
+                </div> -->
+
+            </div>
+            <!-- 通知エリア（右） -->
+            <th:block th:replace="~{commons/layout :: side}"></th:block>
+        </div>
+        <footer>
+            <p id="lasrrt">Copyright © 2023 -- 一般社団法人阿部情報大臣湯沢支部 All Rights Reserved </p>
+        </footer>
+
+        <!-- <button class="modal__button create-sa" id="open-modal">投稿</button> -->
+        <!-- <button id="scroll-to-top-btn" onclick="scroll_to_top()">↑</button> -->
+
+    </main>
+
+
+    <script th:src="@{/js/hum.js}"></script>
+    <script th:src="@{/js/pop.js}"></script>
+    <script th:src="@{/js/scroll.js}"></script>
+    <script th:src="@{/js/moviePlay.js}"></script>
+    <script th:src="@{/js/threadDetail-web-socket.js}"></script>
+    <script th:src="@{/js/ajax.js}"></script>
+
+</body>
+
+</html>

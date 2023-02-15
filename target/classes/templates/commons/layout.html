@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 全画面必要 -->
+    <th:block th:fragment="cssjs">
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Echo</title>
+        <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+        <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
+        <link rel="icon" th:href="@{/img/ファビコン/favicon.ico}">
+        <link rel="stylesheet" th:href="@{/reset/ress.min.css}" />
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
+
+        <!-- style -->
+        <link rel="stylesheet" th:href="@{/css/style.css}" media="screen and (min-width: 767px)" />
+        <link rel="stylesheet" th:href="@{/css/mobile/m-style.css}" media="screen and (max-width: 768px)">
+        <!-- icon -->
+        <link rel="stylesheet" th:href="@{/css/icon.css}" media="screen and (min-width: 767px)">
+        <link rel="stylesheet" th:href="@{/css/mobile/m-icon.css}" media="screen and (max-width: 768px)">
+        <!-- pop -->
+        <link rel="stylesheet" th:href="@{/css/pop.css}" media="screen and (min-width: 767px)">
+        <link rel="stylesheet" th:href="@{/css/pop2.css}" media="screen and (min-width: 767px)">
+
+        <!-- m-pop -->
+        <link rel="stylesheet" th:href="@{/css/mobile/m-pop.css}" media="screen and (max-width: 768px)">
+        <link rel="stylesheet" th:href="@{/css/mobile/m-pop2.css}" media="screen and (max-width: 768px)">
+
+    </th:block>
+
+
+    <!-- スマホ左バー ハンバーガーメニュー-->
+    <th:block th:fragment="header">
+
+        <!-- PC画面左ヘッダー -->
+        <div class="header">
+            <div class="tit icon-home-lin1">
+                <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" class="rogo1">
+                    <path d="M6 36v-3h36v3Zm0-10.5v-3h36v3ZM6 15v-3h36v3Z" />
+                </svg>
+            </div>
+
+            <div class="nemu-sideing">
+
+
+                <div class="btn1" id="d">
+                    <button th:attr="onClick='location.href=\''+@{/home}+'\''">
+                        <div class="icon-home-lin1">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+                                <path
+                                    d="M11 39h7.5V26.5h11V39H37V19.5L24 9.75 11 19.5Zm-3 3V18L24 6l16 12v24H26.5V29.5h-5V42Zm16-17.65Z"
+                                    class="html-icon1" />
+                            </svg>
+                            <p class="side-name1">ホーム</p>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="btn1">
+                    <button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''">
+                        <div class="icon-home-lin1">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+                                <path
+                                    d="M0 36v-2.65q0-1.95 2.1-3.15T7.5 29q.65 0 1.2.025.55.025 1.1.125-.4.85-.6 1.725-.2.875-.2 1.875V36Zm12 0v-3.25q0-3.25 3.325-5.25t8.675-2q5.4 0 8.7 2 3.3 2 3.3 5.25V36Zm27 0v-3.25q0-1-.175-1.875t-.575-1.725q.55-.1 1.1-.125Q39.9 29 40.5 29q3.4 0 5.45 1.2Q48 31.4 48 33.35V36Zm-15-7.5q-4 0-6.5 1.2T15 32.75V33h18v-.3q0-1.8-2.475-3T24 28.5Zm-16.5-1q-1.45 0-2.475-1.025Q4 25.45 4 24q0-1.45 1.025-2.475Q6.05 20.5 7.5 20.5q1.45 0 2.475 1.025Q11 22.55 11 24q0 1.45-1.025 2.475Q8.95 27.5 7.5 27.5Zm33 0q-1.45 0-2.475-1.025Q37 25.45 37 24q0-1.45 1.025-2.475Q39.05 20.5 40.5 20.5q1.45 0 2.475 1.025Q44 22.55 44 24q0 1.45-1.025 2.475Q41.95 27.5 40.5 27.5ZM24 24q-2.5 0-4.25-1.75T18 18q0-2.55 1.75-4.275Q21.5 12 24 12q2.55 0 4.275 1.725Q30 15.45 30 18q0 2.5-1.725 4.25T24 24Zm0-9q-1.25 0-2.125.85T21 18q0 1.25.875 2.125T24 21q1.3 0 2.15-.875Q27 19.25 27 18q0-1.3-.85-2.15Q25.3 15 24 15Zm0 18Zm0-15Z" />
+                            </svg>
+                            <p class="side-name1">広場</p>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="btn1" id="open-modal2">
+                    <button>
+                        <div class="icon-home-lin1">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+                                <path
+                                    d="M10.75 42.15q-1.7 0-3.35-.575Q5.75 41 4.5 39.7q1.75-.6 2.5-1.75t.75-3.1q0-2.2 1.525-3.725T13 29.6q2.2 0 3.725 1.525t1.525 3.725q0 3.2-2.175 5.25t-5.325 2.05Zm0-3q1.75 0 3.125-1.25t1.375-3.05q0-1-.625-1.625T13 32.6q-1 0-1.625.625t-.625 1.625q0 1.95-.425 2.875T8.75 38.85q.3.05 1 .175.7.125 1 .125Zm11.5-8.85-4.5-4.75 18.8-18.8q.7-.7 1.55-.725.85-.025 1.6.725l1.45 1.45q.75.75.725 1.625-.025.875-.725 1.575ZM13 34.85Z" />
+                            </svg>
+                            <p class="side-name1">投稿</p>
+                        </div>
+                    </button>
+
+                </div>
+
+                <div class="btn1 login-user">
+                    <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">
+                        <div class="icon-home-lin1 userr-iconnn">
+                            <img th:src="${side_user.icon}" class="rogo2 user-img1">
+                            <p class="side-name1 origin-my">マイページ</p>
+                        </div>
+                        <!--                     <p>[[${side_user.user_name}]]</p>
+                        <p>[[${side_user.search_name}]]</p> -->
+                    </button>
+                </div>
+
+
+                <!-- Yotubeアイコン -->
+                <div class="btn1">
+                    <button onClick="window.open('https://www.youtube.com/', '_blank')">
+                        <div class="icon-home-lin1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube"
+                                width="45" height="45" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path
+                                    d="M3 5m0 4a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z">
+                                </path>
+                                <path d="M10 9l5 3l-5 3z" fill="white" stroke="white" stroke-width="1px"></path>
+                            </svg>
+                            <p class="side-name1">Youtube</p>
+                        </div>
+                    </button>
+                </div>
+
+
+                <!-- ログアウトアイコン -->
+                <div class="btn1 last-log">
+                    <button th:attr="onClick='location.href=\''+@{/logout}+'\''">
+                        <div class="icon-home-lin1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout"
+                                width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path
+                                    d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2">
+                                </path>
+                                <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+                            </svg>
+                            <p class="side-name1">ログアウト</p>
+                        </div>
+                    </button>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        <!-- <div class="openbtn"><span></span><span></span><span></span></div>-->
+
+        <!-- スマホ画面ハンバーガーメニュー -->
+        <nav id="g-nav2">
+            <!-- <div class="tit2">
+                <img th:src="@{/img/ham-menu-image01.png}" class="gulatyan rogo1 rogo333">
+                <h1>Echo</h1>
+            </div> -->
+
+            <div class="hum-list-2">
+                <div class="hum-list-2-hed1">
+                    <img th:src="${side_user.icon}" class="rogo2 user-img1 side-img2">
+
+                </div>
+                <div class="hum-list-2-hed2">
+                    <div>
+                        <p>なまえid</p>
+                        <p>id</p>
+                    </div>
+                    <p>＜ふぉろ＞</p>
+                    <p>＜ふぉぉわ＞</p>
+                </div>
+            </div>
+
+            <div class="hum-list-2">
+                <p>ホーム</p>
+                <p>広場</p>
+                <p>マイペ</p>
+                <p>ログアウト</p>
+            </div>
+
+            <div class="hum-list-2">
+                <p>カスタムジャンル</p>
+                <p>カスタムジャンル</p>
+                <p>カスタムジャンル</p>
+                <p>カスタムジャンル</p>
+                <p>カスタムジャンル</p>
+            </div>
+
+
+            <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
+                <ul>
+                    <li><button th:attr="onClick='location.href=\''+@{/home}+'\''"><a>ホーム</a></button></li>
+                    <li><button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''"><a>広場</a></button></li>
+                    <li><button th:attr="onClick='location.href=\''+@{/mediate}+'\''"><a>マイページ</a></button></li>
+                    <li><button th:attr="onClick='location.href=\''+@{/logout}+'\''"><a>ログアウト</a></button></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- スマホ上ヘッド -->
+        <div class="m-head">
+            <div class="m-tit">
+                <h1 class="grandt  pch" th:attr="onClick='location.href=\''+@{/home}+'\''">Echo</h1>
+            </div>
+
+            <div class="c-list">
+                <!-- 検索アイコン -->
+                <div class="m-c1" id="schbtn11">
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+                            <path d="M21 21l-6 -6"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- ユーザーアイコン -->
+                <div class="m-c2">
+                    <button th:attr="onClick='location.href=\''+@{/mediate}+'\''">
+                        <div class="m-userr-iconnn"><img th:src="${side_user.icon}" class="rogo3"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PC投稿作成画面　　ポップアップ -->
+
+        <div class="modal container">
+            <div class="modal__container" id="modal-container">
+
+                <div class="modal__content">
+
+
+                    <!-- 中身 -->
+                    <div class="fka"><button class="modal__button modal__button-width close-modal">X</button>
+                    </div>
+
+                    <!-- 中身 -->
+                    <div class="modalTitle nunu">
+                        <h2 class="">投稿するものを選択してください</h2>
+                    </div>
+                    <div class="modalTitle nunu">
+                        <h2 class="h2come j5 opbtn1">スレッドに投稿</h2>
+                        <h2 class="h2come j3 opbtn2">ホームに投稿</h2>
+                        <h2 class="h2come j4 opbtn3">スレッド作成</h2>
+                    </div>
+
+                    <!-- スレッドに投稿 -->
+                    <div class="modelMain sure_toukou tweet-01">
+
+                        <div class="formbox">
+                            <div class="stronger">投稿画面</div>
+                            <div class="formbody">
+
+                                <!-- <form th:object="${responseCreateForm}" class="posting-form"> -->
+                                <form th:object="${responseCreateForm}" class="posting-form" id="form-thread"
+                                onsubmit="event.preventDefault(), sendResponsePc(), thread();">
+                                    
+                                        <!-- 動画URLの入力 -->
+                                        <input class="formelem maxwidth url" id="url-pc-thread"
+                                            oninput="removeFeatureShare(this)" placeholder="動画URL" th:field="*{url}"
+                                            required>
+                                        <p id="urlError"></p>
+                                        <!-- コメントの入力 -->
+                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50"
+                                            wrap="off" th:field="*{response_name}" required></textarea>
+
+                                        <!-- 投稿するスレッドID -->
+                                        <input type="hidden" id="thread_id" th:value="${thread_id}">
+
+                                        <input type="hidden" id="user_id" th:value="${session.sessionData.user_id}">
+
+                                        <button class="send submitbtn tweebtn" type="submit">書き込む</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="formbox ">
+                            <div class="stronger">動画プレビュー</div>
+                            <div class="formbody preview">
+                                <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
+                                <iframe class="video-player b" width="560" height="315" src=""
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- ホームに投稿 -->
+                    <div class="modalMain sure_kyouyu tweet-02">
+
+                        <!-- 内容 -->
+                        <div class="formbox">
+                            <div class="stronger">投稿画面</div>
+                            <div class="formbody">
+
+                                <form th:object="${responseCreateForm}" th:action="@{/response_creater}"
+                                    class="posting-form">
+                                    <p>
+                                        <!-- 動画URLの入力 -->
+                                        <input type="text" class="formelem maxwidth url" id="url-pc-share"
+                                            placeholder="動画URL" size="70" th:field="*{url}"
+                                            oninput="removeFeatureShare(this)" required>
+                                    <p id="urlError"></p>
+                                    <!-- コメントの入力 -->
+                                    <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="50" wrap="off"
+                                        th:field="*{response_name}" required></textarea>
+
+                                    <input type="hidden" name="user_id" th:value="${session.sessionData.user_id}">
+
+                                    <input id="send" class="submitbtn tweebtn" type="submit" value="書き込む">
+                                    </p>
+                                </form>
+
+                            </div>
+                        </div>
+
+                        <div class="formbox">
+                            <div class="stronger">動画プレビュー</div>
+                            <div class="formbody preview">
+                                <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
+                                <iframe class="video-player b" width="560" height="315" src=""
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- スレッド作成 -->
+                    <div class="modelMain sure_sesaku tweet-03">
+
+                        <div class="formbox">
+                            <div class="stronger">スレッド作成画面</div>
+                            <div class="formbody">
+                                <form method="post" th:action="@{/Hiroba/thread_create}"
+                                    th:object="${threadCreateForm}">
+                                    <p>
+                                        <select class="formelem maxwidth" th:field="*{genre_id}">
+                                            <option value="">ジャンルを選択してください</option>
+
+                                            <th:block th:unless="${#lists.isEmpty(jenre)}">
+                                                <th:block th:each="obj:${jenre}">
+                                                    <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}">
+                                                    </option>
+                                                </th:block>
+                                            </th:block>
+
+                                        </select>
+
+                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5" cols="70"
+                                            wrap="off" maxlength="200" th:field="*{thread_name}"></textarea>
+
+                                        <input class="submitbtn tweebtn" type="submit" value="スレッド作成" name="submit">
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </th:block>
+
+    <!-- PC上ヘッダー 　＆スマホ下フッド＆　　スマホ版popup内容　　-->
+    <th:block th:fragment="humber-menu">
+
+        <div id="header" class="dnone">
+
+
+
+            <h1 id="grandt" class="gf">
+                <button th:attr="onClick='location.href=\''+@{/home}+'\''">Echo</button>
+            </h1>
+
+            <nav id="g-navi">
+                <ul>
+                    <!-- ホームアイコン -->
+                    <li>
+                        <button th:attr="onClick='location.href=\''+@{/home}+'\''">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-footer icon-tabler icon-tabler-home" width="40" height="38" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
+                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                             </svg>
+                        </button>
+                    </li>
+
+                    <!-- 広場アイコン -->
+                    <li>
+                        <button th:attr="onClick='location.href=\''+@{/Hiroba}+'\''">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-footer" height="48" width="48">
+                                <path
+                                    d="M0 36v-2.65q0-1.95 2.1-3.15T7.5 29q.65 0 1.2.025.55.025 1.1.125-.4.85-.6 1.725-.2.875-.2 1.875V36Zm12 0v-3.25q0-3.25 3.325-5.25t8.675-2q5.4 0 8.7 2 3.3 2 3.3 5.25V36Zm27 0v-3.25q0-1-.175-1.875t-.575-1.725q.55-.1 1.1-.125Q39.9 29 40.5 29q3.4 0 5.45 1.2Q48 31.4 48 33.35V36Zm-15-7.5q-4 0-6.5 1.2T15 32.75V33h18v-.3q0-1.8-2.475-3T24 28.5Zm-16.5-1q-1.45 0-2.475-1.025Q4 25.45 4 24q0-1.45 1.025-2.475Q6.05 20.5 7.5 20.5q1.45 0 2.475 1.025Q11 22.55 11 24q0 1.45-1.025 2.475Q8.95 27.5 7.5 27.5Zm33 0q-1.45 0-2.475-1.025Q37 25.45 37 24q0-1.45 1.025-2.475Q39.05 20.5 40.5 20.5q1.45 0 2.475 1.025Q44 22.55 44 24q0 1.45-1.025 2.475Q41.95 27.5 40.5 27.5ZM24 24q-2.5 0-4.25-1.75T18 18q0-2.55 1.75-4.275Q21.5 12 24 12q2.55 0 4.275 1.725Q30 15.45 30 18q0 2.5-1.725 4.25T24 24Zm0-9q-1.25 0-2.125.85T21 18q0 1.25.875 2.125T24 21q1.3 0 2.15-.875Q27 19.25 27 18q0-1.3-.85-2.15Q25.3 15 24 15Zm0 18Zm0-15Z">
+                                </path>
+                            </svg>
+                        </button>
+                    </li>
+
+                    <!-- <li><button class="" id="open-modal2"><a>投稿</a></button></li> -->
+                    <!-- 投稿ボタン -->
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="m-tweet icon-footer icon-tabler icon-tabler-circle-plus" width="50" height="50" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                            <path d="M9 12l6 0"></path>
+                            <path d="M12 9l0 6"></path>
+                        </svg>
+                        <div class="popupModal1">
+                            <!-- <input type="radio" name="modalPop" id="pop11" /> -->
+                            
+
+                            <!-- <input type="radio" name="modalPop" id="pop12" /> -->
+                            <!-- <label for="pop12">CLOSE</label> -->
+
+                            <!-- <input type="radio" name="modalPop" id="pop13" /> -->
+                            <label class="pop13">×</label>
+                            
+                            <div class="modalPopup2">
+                                <div class="modalPopup3">
+
+                                    <!-- 中身 -->
+                                    <div class="modalTitle nunu">
+                                        <h2 class="">投稿するものを選択してください</h2>
+                                    </div>
+                                    <div class="modalTitle nunu">
+
+                                        <h2 class="h2come j6 opbtn1">スレッドに投稿</h2>
+                                        <h2 class="h2come j1 opbtn2">ホームに投稿</h2>
+                                        <h2 class="h2come j2 opbtn3">スレッド作成</h2>
+                                    </div>
+
+                                    <div class="modelMain sure_toukou tweet-01">
+
+                                        <div class="formbox">
+                                            <div class="stronger">投稿画面</div>
+                                            <div class="formbody">
+
+                                                <form class="form-thread" th:object="${responseCreateForm}"
+                                                onsubmit="event.preventDefault(), sendResponseMobile(), thread();">
+
+                                                    <!-- 動画URLの入力 -->
+                                                    <input class="formelem maxwidth url" id="video-url"
+                                                        oninput="removeFeatureShare(this)" placeholder="動画URL" size="70"
+                                                        th:field="*{url}" minlength="11" required>
+                                                    <p id="urlError"></p>
+                                                    <div id="video-container"></div>
+
+                                                    <!-- コメントの入力 -->
+                                                    <textarea class="formelem maxwidth" id="response_name_mobile" placeholder="コメント" rows="5"
+                                                        cols="50" wrap="off" th:field="*{response_name}" maxlength="200"
+                                                        required></textarea>
+
+                                                    <!-- 投稿するスレッドID -->
+                                                    <input type="hidden" id="thread_id" th:value="${thread_id}">
+
+                                                    <input type="hidden" id="user_id"
+                                                        th:value="${session.sessionData.user_id}">
+
+                                                    <input class="send submitbtn tweebtn"
+                                                        type="submit" value="書き込む">
+
+                                                </form>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="formbox ">
+                                            <div class="stronger">動画プレビュー</div>
+                                            <div class="formbody preview">
+                                                <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
+                                                <iframe class="video-player b" width="560" height="315" src=""
+                                                    title="YouTube video player" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen>
+                                                </iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modalMain sure_kyouyu tweet-02">
+
+                                        <!-- 内容 -->
+                                        <div class="formbox">
+                                            <div class="formbody">
+
+                                                <form th:object="${responseCreateForm}"
+                                                    th:action="@{/response_creater}">
+
+                                                    <!-- 動画URLの入力 -->
+                                                    <input class="formelem maxwidth url" id="url-phone"
+                                                        placeholder="動画URL" size="70" th:field="*{url}" minlength="11"
+                                                        required>
+                                                    <p id="urlError"></p>
+
+                                                    <!-- コメントの入力 -->
+                                                    <textarea class="formelem maxwidth" placeholder="コメント" rows="2"
+                                                        cols="50" wrap="off" th:field="*{response_name}" maxlength="200"
+                                                        required></textarea>
+
+                                                    <input type="hidden" name="user_id"
+                                                        th:value="${session.sessionData.user_id}">
+
+                                                    <button id="send" class="submitbtn tweebtn"
+                                                        type="submit">書き込む</button>
+
+                                                </form>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="formbox ">
+                                            <div class="stronger">動画プレビュー</div>
+                                            <div class="formbody preview">
+                                                <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
+                                                <iframe class="video-player" width="560" height="315" src=""
+                                                    id="video-player" title="YouTube video player" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen>
+                                                </iframe>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modelMain sure_sesaku tweet-03">
+
+
+                                        <div class="formbox">
+                                            <div class="stronger">スレッド作成画面</div>
+                                            <div class="formbody">
+                                                <form method="post" th:action="@{/Hiroba/thread_create}" th:object="${threadCreateForm}">
+                                                    <p>
+                                                        <select class="formelem maxwidth" th:field="*{genre_id}" required>
+                                                            <option value="">ジャンルを選択してください</option>
+
+                                                            <th:block th:unless="${#lists.isEmpty(jenre)}">
+                                                                <th:block th:each="obj:${jenre}">
+                                                                    <option th:value="${obj.jenre_id}" th:text="${obj.jenre_name}">
+                                                                    </option>
+                                                                </th:block>
+                                                            </th:block>
+
+                                                        </select>
+
+                                                        <textarea class="formelem maxwidth" placeholder="コメント" rows="5"
+                                                            cols="70" wrap="off" maxlength="200" th:field="*{thread_name}" required></textarea>
+
+                                                        <input class="submitbtn tweebtn" type="submit" value="スレッド作成"
+                                                            name="submit">
+                                                    </p>
+                                                </form>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+
+
+
+
+                                    <!-- タイトル -->
+                                    <h2 class="modalTitle">　</h2>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="popupBack"></div>
+                    </li>
+
+                    <!-- Youtubeアイコン -->
+                    <li>
+                        <button onClick="window.open('https://www.youtube.com/', '_blank')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-footer icon-tabler icon-tabler-brand-youtube" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M3 5m0 4a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"></path>
+                                <path d="M10 9l5 3l-5 3z" fill="white" stroke="white"></path>
+                            </svg>
+                        </button>
+                    </li>
+
+                    <!-- ログアウトアイコン -->
+                    <li>
+                        <button th:attr="onClick='location.href=\''+@{/logout}+'\''">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-footer icon-tabler icon-tabler-logout" width="36" height="36" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
+                                <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+                             </svg>
+                        </button>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+
+        <div class="openbtn1"><span></span><span></span><span></span></div>
+
+
+    </th:block>
+
+    <!-- PC＆スマホ　右バー -->
+    <div class="side" th:fragment="side">
+
+        <!-- ユーザ検索 -->
+        <div id="search_user">
+            <p>探すものを選びましょう</p>
+            <div class="goe">
+                <button class="sure-btn2">スレッド検索</button>
+                <button class="user-btn2">ユーザー検索</button>
+            </div>
+
+            <!-- 検索 -->
+            <div class="search" id="search_thread">
+                <form th:action="@{/Hiroba/SearchThread}">
+                    <input class="bar" type="text" name="search_word" placeholder="スレッドの検索" required>
+                    <input class="search_button" type="submit" value="検索">
+                </form>
+            </div>
+
+            <!-- 検索フォーム -->
+            <form class="search" id="search_form" th:action="@{/Hiroba/search_user}">
+                <input type="text" class="bar" id="search_word" name="search_word" placeholder="ユーザ名を入力">
+                <input type="submit" class="search_button" value="検索">
+            </form>
+
+            <div id="result">
+                <th:block th:replace="~{commons/layout :: result_user}"></th:block>
+            </div>
+        </div>
+
+
+        <!-- 通知エリア -->
+        <div class="light2">
+            <p>フォロー・通知</p>
+            <ul class="osusu">
+                <li th:each="obj:${follow_notice}" th:object="${obj}" class="result_user">
+                    <th:block th:if="*{reason}=='follow'">
+                        <button
+                            th:attr="onClick='location.href=\''+@{/notice?user_id={user_id} (user_id=*{user_id})}+'\''"class="ura">
+                            <div id="notice_user">
+                                <img th:src="*{icon}" alt="">
+                            </div>
+                            <div id="user_details">
+                                <p th:text="*{user_name}"></p>
+                                <p th:text="*{search_name}"></p>
+                            </div>
+                        </button>
+                    </th:block>
+
+                    <th:block th:if="*{reason}=='comment'">
+                        <button
+                            th:attr="onClick='location.href=\''+@{/notice_comment?response_id={response_id}&url={url} (response_id=*{response_id}, url=*{url})}+'\''">
+                            <div id="notice_user">
+                                <img th:src="*{icon}" alt="">
+                            </div>
+                            <div id="user_details">
+                                <p th:text="*{user_name}"></p>
+                                <p th:text="*{search_name}"></p>
+                            </div>
+                        </button>
+                    </th:block>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- ユーザ検索 -->
+    <th:block th:fragment="result_user">
+        <div class="light1">
+            <ul class="osusu">
+                <li th:each="obj:${user}" th:object="${obj}" class="result_user">
+                    <button th:attr="onClick='location.href=\''+@{/mypage?user_id={user_id} (user_id=*{user_id})}+'\''">
+                        <div id="user_icon">
+                            <img th:src="*{icon}" alt="" class="user-img1">
+                        </div>
+                        <div id="user_details">
+                            <p th:text="*{user_name}"></p>
+                            <p th:text="*{search_name}"></p>
+                        </div>
+                    </button>
+                </li>
+        </div>
+    </th:block>
+
+
+    <!-- スレッド所属の投稿フォーム -->
+    <div th:fragment="response_form" class="modal container">
+        <div class="modal__container " id="modal-container">
+
+            <div class="modal__content">
+
+
+                <!-- 中身 -->
+                <div class="fka"><button class="modal__button modal__button-width close-modal">X</button></div>
+
+                <div class="tweet-1">
+
+
+                    <div class="formbox">
+                        <div class="stronger">投稿画面</div>
+                        <div class="formbody">
+                            <form method="" accept-charset="Shift_JIS" action="" onsubmit="return checkDuplicates()">
+                                <p><input class="formelem maxwidth" placeholder="タグ" name="mail" size="70">
+                                    <input class="formelem maxwidth" id="url" placeholder="動画URL" name="FROM" size="70">
+                                    <textarea class="formelem maxwidth" placeholder="コメント内容" rows="5" cols="70"
+                                        wrap="off" name="MESSAGE"></textarea>
+                                <p id="urlP"></p>
+                                <input type="hidden" name="bbs" value="">
+                                <input type="hidden" name="key" value="">
+                                <input type="hidden" name="time" value="">
+                                <input class="submitbtn tweebtn" type="submit" value="書き込む" name="submit">
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="formbox video-form">
+                        <div class="stronger">動画プレビュー</div>
+                        <div class="formbody preview">
+                            <!-- https://www.youtube.com/embed/IJBHpgxVPXI -->
+                            <iframe class="b" width="100%" height="100%" src="" title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- スレッド一覧のテンプレート表示 -->
+    <th:block th:fragment="thread_content">
+        <button
+            th:attr="onClick='location.href=\''+@{/Hiroba/ThreadDetail?thread_id={thread_id} (thread_id=*{thread_id})} +'\''">
+
+
+            <div class="List-up1">
+
+                <div class="container-item">
+
+                    <!-- 左　サムネ -->
+                    <div class="container-item-img">
+
+                        <div>
+                            <img th:src="*{thumbnail}" alt="">
+                        </div>
+                    </div>
+
+                    <!-- 右　文章 -->
+                    <div class="container-item-date">
+
+
+
+                        <!-- スレッド名 -->
+                        <div class="List-title">
+                            <div class="text-t2 text-overflow">
+                                <p th:text="*{thread_name}"></p>
+                            </div>
+                        </div>
+
+                        <!-- user 　 ジャンル -->
+                        <div class="List-user">
+                            <div class="List-user-name">
+                                <p th:text="*{user_name}"></p>
+                            </div>
+
+
+                            <div class="janruuuuu">
+                                <p th:text="*{jenre_name}"></p>
+                            </div>
+                        </div>
+                        <!-- 数字 -->
+                        <div class="List-come">
+
+                            <div class="List-suji">
+                                <div class="ujf">
+                                    <span>投稿</span>
+                                    <p>[[*{res_count}]]</p>
+                                </div>
+                                <div class="ujf">
+                                    <span>フォロー</span>
+                                    <p>[[*{follow_count}]]</p>
+                                </div>
+
+                            </div>
+                            <div class="timeeeeee">
+                                <!-- <p th:text="*{thread_submit}"></p> -->
+                                <!--なんで↑をコメントアウトしたんですか-->
+                                <p>[[*{thread_submit}]]</p>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </button>
+    </th:block>
+
+
+    <!-- ユーザ検索の結果　１件 -->
+    <th:block th:fragment="search_user_result">
+        <div class="userrr1">
+            <button th:attr="onClick='location.href=\' '+ @{/mypage?user_id={user_id} (user_id=*{user_id}) } + '\''">
+                <img th:src="*{icon}" alt="">
+            </button>
+        </div>
+        <div class="userrr2">
+            <div class="nfx">
+                <div class="desain">
+                    <p class="htre" th:text="*{user_name}"></p>
+                </div>
+                <div class="userrr3">
+                    <p>フォロー</p>
+                </div>
+            </div>
+            <div class="text">
+                <div class="title" th:text="*{introduction}"></div>
+            </div>
+        </div>
+    </th:block>
+
+
+    <!-- 広場　動画フレーム -->
+    <th:block th:fragment="vi-frame">
+        
+        <!-- 1セット -->
+        <a class="Frame-card"
+            th:attr="onClick='location.href=\''+@{/Hiroba/ThreadDetail?thread_id={thread_id} (thread_id=*{thread_id})}+'\''"
+            title="カーソル合わせると出るやつ">
+            <div class="Frame-cardMedia">
+                <div class="ContentsDigestFrame-contentThumbnail" data-type="">
+                    <div class="Thumbnail ContentThumbnail-background">
+                        <div class="Thumbnail-image" data-thumbnail="" data-lazy-load="" data-background-image="画像"
+                            alt="動画タイトル" data-loaded="true" th:style="|background-image: url(*{thumbnail});|">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ContentsDigestFrame-cardMeta">
+                <p class="ContentsDigestFrame-cardMetaTitle" th:text="*{thread_name}">
+                    タイトル
+                </p>
+            </div>
+        </a>
+
+    </th:block>
+
+
+    <!-- フッター -->
+    <footer th:fragment="footer">
+        <div class="foot0">
+
+            <div class="foot1">
+                <h6 class="heading">top</h6>
+                <p><a href="">このサイトについて[...]</a></p>
+                <p><a href="">サポートトップ</a></p>
+                <p><a href="">修正のご案内</a></p>
+                <p><a href="">Echoアカウント</a></p>
+                <p><a href="">よくあるご質問</a></p>
+            </div>
+
+
+            <div class="foot2">
+                <h6 class="heading">Next</h6>
+                <p><a href="">会社概要</a></p>
+                <p><a href="">経営方針</a></p>
+                <p><a href="">業務・財務情報</a></p>
+                <p><a href="">IRライブラリ</a></p>
+                <p><a href="">個人投資家の皆様へ</a></p>
+                <p></p>
+                <a href="#">At massa in sed tortor sit amet</a>
+            </div>
+
+            <div class="foot4">
+                <h6 class="heading">会社概要</h6>
+                <p>株式会社YuzawaIndustry</p>
+                <p>東証プライム市場</p>
+                <p>設立：1997年6月25日</p>
+                <p>資本金：99,611百万円</p>
+                <p>従業員数：5名(連結、2022年12月10日現在)</p>
+                <p>〒950-0901 新潟県新潟市中央区弁天２丁目</p>
+            </div>
+
+        </div>
+
+        <p id="lasrrt">Copyright © 2023 -- 一般社団法人阿部情報大臣湯沢支部 All Rights Reserved </p>
+    </footer>
+
+
+    <!-- いいね数の登録　警告回避用 -->
+    <th:block th:fragment="empty"></th:block>
+
+    <!-- 動画投稿時のエラー処理
+    <script>
+        document.getElementById("video-url").addEventListener("change", function () {
+            updatePreview();
+        });
+
+        function updatePreview() {
+            alert("a")
+            // var videoId = extractVideoId(videoUrl);
+            // if (!videoId) {
+            //     console.error("Invalid URL: " + videoUrl);
+            //     return;
+            // }
+            
+
+
+            var player = new YT.Player('video-player', {
+                events: {
+                    'onError': function (event) {
+                        alert("エラーが発生しました");
+                    }
+                }
+            });
+        }
+        
+        
+    </script> -->
+    <script th:src="@{/js/throw.js}"></script>
+
+
+</body>
+
+</html>

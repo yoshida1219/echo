@@ -1,0 +1,254 @@
+@charset "utf-8";
+
+
+
+
+
+.motto-tit {
+  background-color: #e5e5e5;
+  padding: 10px;
+}
+
+.motto-list {
+  margin: 0 5%;
+  padding: 5px;
+  background-color: rgb(221, 221, 221);
+  width: 100%;
+}
+
+
+
+.Janru1 {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.item_ja {
+  border-right: 1px solid;
+  background-color: rgb(233, 233, 233);
+  padding: 0 10px 0 10px;
+}
+
+.label_ja1 {
+  font-size: 30px;
+  max-width: 500px;
+  background-color: rgb(255, 255, 255);
+}
+.label_ja1 p{
+  margin: 10px;
+  background-color: antiquewhite
+}
+
+.waku1 {
+  font-size: 26px;
+  display: flex;
+}
+
+.itirannja {
+  background-color: rgb(255, 255, 255);
+}
+
+.tag {
+  background-color: #6c6c6c;
+  /* margin: 0 auto; */
+  padding: 2px 7px;
+  margin-right: 2%;
+  /* padding: 10px; */
+  color: white;
+}
+.tag:hover{
+  background-color: coral;
+  color: white;
+}
+
+.registList {
+  display: none;
+}
+
+.motto-list li {
+  list-style: none;
+  margin: 5px;
+}
+
+.motto-frame {
+  background-color: rgb(111, 188, 255);
+  padding: 1%;
+}
+
+
+
+.content_ja {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-item {
+  display: flex;
+  /* background-color: rgb(205, 243, 144); */
+  padding: 10px;
+  width: 100%;
+}
+
+.container-item-img {
+  background-color: white;
+  width: 40%;
+  /* padding: 10px; */
+}
+
+.container-item-img img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.container-item-date {
+  width: 60%;
+  margin: 0px 0px 0px 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* アイコン　ユーザ名 */
+.List-user {
+  /* background-color: #a4a4d7; */
+  width: 70%;
+  /* margin: 3px 10px; */
+  /* border-radius: 5px; */
+  display: flex;
+  height: 25%;
+}
+
+.List-user img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.List-suji {
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.List-user-name {
+  width: 60%;
+  text-align: left;
+  margin: auto;
+  background-color: #719091;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+
+.List-user-icon {
+  width: 20%;
+  padding: 5px;
+}
+
+.tt2 {
+  width: 90%;
+  margin: auto 0;
+}
+
+
+/* タイトル */
+.List-title {
+  background-color: rgb(213 213 213);
+  height: 50%;
+  font-size: 20px;
+  text-align: left;
+  /* color: white; */
+}
+
+
+/* 数 */
+.List-come {
+  display: flex;
+  /* background-color: rgb(173 173 173); */
+  /* width: 50%; */
+  /* margin: 3px 10px; */
+  /* border-radius: 10px; */
+  font-size: 14px;
+  height: 25%;
+  text-align: left;
+}
+
+.List-sita {
+  display: flex;
+  height: 30%;
+}
+
+.janruuuuu {
+  background-color: #818187;
+  color: white;
+  text-align: center;
+  width: 40%;
+  margin: auto;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 4px;
+}
+
+.timeeeeee {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+.List-up1 {
+  background-color: rgb(255, 255, 255);
+  /* padding: 10px; */
+}
+
+.List-time {
+  display: flex;
+  text-align: left;
+  padding: 0px 10px;
+}
+
+.List_ja {
+  padding: 5px 0px;
+}
+
+.crtl-box {
+  background-color: #ffffff;
+  /* padding: 10px 25px; */
+}
+
+.fptit{
+  background-color: #484848;
+}
+
+.ujf{
+  
+margin: auto;
+  
+display: flex;
+}
+.List-come p{
+  font-weight: 600;
+  /* font-size: 15px; */
+}
+
+
+#search_thread{
+  
+margin: auto;
+}
+
+.ofrmsertch{
+  display: flex;
+  justify-content: center;
+  padding: 2%;
+}
