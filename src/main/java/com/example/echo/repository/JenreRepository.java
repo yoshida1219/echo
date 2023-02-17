@@ -21,7 +21,7 @@ public interface JenreRepository extends CrudRepository<Jenre, String> {
 
 
     @Modifying
-    @Query("INSERT INTO echo_sns.join_Jenre VALUES(:user_id, :jenre_id)")
+    @Query("INSERT INTO echo_sns.join_jenre VALUES(:user_id, :jenre_id)")
     void insertJenre(
         @Param("user_id") String user_id,
         @Param("jenre_id") String jenre_id

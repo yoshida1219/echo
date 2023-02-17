@@ -200,7 +200,7 @@ public interface ThreadListRepository extends CrudRepository<ThreadList, String>
         + " order by response.response_submit desc"
         + " ) as temp where temp.rank = 1)"
         + " select p.user_id, p.user_name, p.icon, p.thread_id, p.thread_name, p.jenre_name,  DATE_FORMAT(p.thread_submit, '%Y/%m/%d %H:%i') as thread_submit, coalesce(p.thumbnail, '/img/のーいめーじ.jpg') as thumbnail, "
-        + " coalesce(p.res_count, 0) as res_count, coalesce(p.follow_count, 0) as follow_count from pickUp_movie as p order by p.thread_id, p.rank;")
+        + " coalesce(p.res_count, 0) as res_count, coalesce(p.follow_count, 0) as follow_count from pickup_movie as p order by p.thread_id, p.rank;")
     Iterable<ThreadList> findSearchThread(
         @Param("word") String search_word
     );

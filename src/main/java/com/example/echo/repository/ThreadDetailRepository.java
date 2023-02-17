@@ -84,7 +84,7 @@ public interface ThreadDetailRepository extends CrudRepository<ThreadDetail,Stri
         + " where case when :word != '' then thread_name like concat('%', :word, '%') else 1=0 end"
         + " order by response.response_submit desc"
         + " ) as temp where temp.rank <= 7 and temp.rank > 1)"
-        + " select * from pickUp_movie as p order by p.thread_id, p.rank;")
+        + " select * from pickup_movie as p order by p.thread_id, p.rank;")
     Iterable<ThreadDetail> findThreadByWord(
         @Param("word") String word
     );
